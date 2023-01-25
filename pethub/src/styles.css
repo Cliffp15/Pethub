@@ -38,10 +38,7 @@ body{
   justify-content: space-between;
 }
 
-.nav  li {
-   padding-left:50px;
-  padding-right:50px;
-}
+
 
 .nav a{
   color: inherit;
@@ -50,6 +47,9 @@ body{
   display: flex;
   align-items: center;
   padding: .25rem;
+  display:inline-block;
+   padding-left:50px;
+  padding-right:50px;
 }
 .nav li.active {
   background-color: #555;
