@@ -8,9 +8,9 @@ export default function Navbar() {
       <nav className="nav">
         {/* The Link component is the react version of href */}
 
-        <Link to="/" className="site-title">
+        {/* <Link to="/" className="site-title">
           PetHub
-        </Link>
+        </Link> */}
         <ul>
           {/* Creating a component CustomLink which I am passing in props to the correct page */}
           <CustomLink to="/findapet">Find Pets</CustomLink>
