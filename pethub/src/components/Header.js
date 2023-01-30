@@ -4,6 +4,7 @@ import logo from "../photos/logo.jpg";
 
 function Header() {
   return (
+    // header component returning the logo of the website
     <header>
       <Link to="/" target="_blank" rel="noreferrer">
         <img src={logo} alt="logo" className="logo" />
