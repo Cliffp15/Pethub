@@ -5,9 +5,9 @@ export default function Navbar() {
   return (
     <div className="header-nav">
       <nav className="nav">
+        <Header />
         {/* The Link component is the react version of href */}
         <ul className="nav-links">
-          <Header />
           {/* Creating a component CustomLink which I am passing in props to the correct page */}
           <CustomLink to="/findapet">Find Pets</CustomLink>
           <CustomLink to="/findshelter">Find Shelter</CustomLink>
