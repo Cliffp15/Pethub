@@ -83,7 +83,7 @@ object-fit: cover;
 filter: saturate(1.6);
 filter: blur(2px);
 /* filter: contrast(1); */
-border-radius: 10px 10px 0px 0px;
+border-radius: 0px 0px 0px 0px;
 
 }
 
@@ -103,9 +103,9 @@ border-radius: 10px 10px 0px 0px;
   bottom: 50px;
   background-color: #0277bb;
   width: 1000px;
-  margin-left: 750px;
+  margin-left: 930px;
   margin-bottom: 20px;
-  padding: 25px 0px 25px 0px;
+  padding: 25px 25px 25px 0px;
   border-radius: 5px;
 }
 
@@ -121,9 +121,9 @@ border-radius: 10px 10px 0px 0px;
   padding: 10px 15px;
   border-radius: 4px;
   margin-top: 5px;
-  margin-left: 20px;
+  margin-left: 10px;
   height: 47px;
-  width: 110px;
+  width: 140px;
 }
 
 .searchbutton:hover{
@@ -139,4 +139,43 @@ border-radius: 10px 10px 0px 0px;
   border-top: 1px solid black;
   font-size:3vmax;
   margin-top: 1px;
+}
+
+.petimage img{
+  position: relative;
+  right:450px;
+  top: 100px;
+  height: 450px;
+  filter: brightness(4px);
+}
+
+/* .favoritebutton img{
+  position: relative;
+  right: 200px;
+  bottom: 400px;
+  height: 80px;
+} */
+
+.peticon{
+  position: absolute;
+  bottom: 550px;
+  left: 675px;
+}
+
+.peticon img{
+  position: relative;
+  height: 100px; 
+}
+
+.petdetails{
+  position: absolute;
+  background-color: #84c5fa;
+  margin-left: 672px;
+  margin-bottom: 100px;
+  top: 1360px;
+  width:599px;
+}
+
+.petdetails h1{
+  font-size: 20px;
 }
