@@ -27,33 +27,6 @@ function App() {
         </Routes>
       </div>
     </>
-    // <Router>
-    //   <div>
-    //     <nav>
-    //       <ul>
-    //         <li>
-    //           <Link to="/">Home</Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/about">About</Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/findpets">Find Pets</Link>
-    //         </li>
-    //       </ul>
-    //     </nav>
-
-    //     {/* A <Routes> looks through its children <Route> and
-    //         renders the first one that matches the current URL. */}
-    //     <Routes>
-    //       <Route path="/" element={<Home />} />
-
-    //       <Route path="/about" element={<About />} />
-
-    //       <Route path="/findpets" element={<PetAdoptionPage />} />
-    //     </Routes>
-    //   </div>
-    // </Router>
   );
 }
 
