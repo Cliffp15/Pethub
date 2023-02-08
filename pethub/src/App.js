@@ -10,6 +10,7 @@ import PostAPet from "./pages/PostAPetPage";
 import FindPetPage from "./pages/FindPetPage";
 import LogInPage from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
+import SignUpPage from "./pages/SignUpPage";
 
 export const UserContext = createContext();
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/groups" element={<GroupsPage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signuptest" element={<SignUpPage />} />
         </Routes>
       </div>
     </>

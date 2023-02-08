@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,19 +15,16 @@ const SignUp = () => {
   const [zip, setZip] = useState("");
   // const [profilePicture, setProfilePicture] = useState(null);
 
-  let navigate = useNavigate();
-  const routeChange = () => {
-    let path = `/`;
-    navigate(path);
-  };
-  
+  // let navigate = useNavigate();
+  // const routeChange = () => {
+  //   let path = `/`;
+  //   navigate(path);
+  // };
 
   const handleSubmit = (e) => {
     console.log("button was pressed");
 
     e.preventDefault();
-
-    
 
     const data = {
       firstName: firstName,
@@ -184,8 +180,13 @@ const SignUp = () => {
           onChange={(e) => setZip(e.target.value)}
         />
       </div>
-      <button type="submit" onClick={routeChange}> Sign Up</button>
-      
+      <button type="submit" onClick={handleSubmit}>
+        {" "}
+        Sign Up
+      </button>
+      <p>
+        Already have an account? <Link to="/login">Sign In</Link>
+      </p>
     </form>
   );
 };
