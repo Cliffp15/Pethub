@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Navigate } from "react-router-dom";
+
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -32,19 +32,6 @@ const SignUp = () => {
       zip: zip,
     };
 
-  //   const formData = new FormData();
-  //   formData.append('firstName', firstName);
-  //   formData.append('lastName', lastName);
-  //  // formData.append('rePassword', rePassword);
-  //   formData.append('userName', userName)
-  //   formData.append('email', email);
-  //   formData.append('password', password);
-  //   formData.append('phone', phone);
-  //   formData.append('city', city);
-  //   formData.append('state', state);
-  //   formData.append('zip', zip);
-    // formData.append('profilePicture', profilePicture, profilePicture.name);
-      
     axios({
       method: "post",
       url: "http://localhost:3001/signup",
@@ -55,23 +42,13 @@ const SignUp = () => {
         //handle success
         console.log(response);
         alert('User signed up successfully');
+
       })
       .catch(function (response) {
         //handle error
         console.log(response);
         alert('An error occurred. Please try again.');
       });
-
-    // axios
-    //   .post('http://localhost:3001/signup', formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert('User signed up successfully');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert('An error occurred. Please try again.');
-    //   });
 
   };
   return (

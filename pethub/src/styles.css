@@ -7,7 +7,7 @@ body{
   margin: 0;
 }
 .container{ 
-  margin: 1rem;
+  
   text-align: center;
 }
 
@@ -66,3 +66,116 @@ body{
     padding-top: 10px;
 }
 
+/* Home Page */
+.herosection{
+  
+  height: 500px;
+  position: relative;
+}
+
+.herosection img{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(1.6);
+filter: blur(2px);
+/* filter: contrast(1); */
+border-radius: 0px 0px 0px 0px;
+
+}
+
+.herosection h1{
+  position: absolute;
+  background-color: #9f5c0946;
+  border-radius: 10px 10px 0px 0px;
+  padding: 60px 900px 210px 900px;
+  color: #c2e9ff;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: 100px;
+}
+
+.searchforanimal{
+  position: absolute;
+  bottom: 50px;
+  background-color: #0277bb;
+  width: 1000px;
+  margin-left: 930px;
+  margin-bottom: 20px;
+  padding: 25px 25px 25px 0px;
+  border-radius: 5px;
+}
+
+.searchforanimal input{
+  margin-left: 10px;
+  margin-right: 15px;
+  border-radius: 6px;
+  padding: 15px 0px 15px 20px;
+  font-size: 15px;
+}
+
+.searchbutton{
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-left: 10px;
+  height: 47px;
+  width: 140px;
+}
+
+.searchbutton:hover{
+  color: #f8fafb;
+  background-color: #84c5fa;
+}
+
+.featuredbanner{
+  background-color: #BCE0FD;
+  height:max-content;
+  padding: 20px;;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  font-size:3vmax;
+  margin-top: 1px;
+}
+
+.petimage img{
+  position: relative;
+  right:450px;
+  top: 100px;
+  height: 450px;
+  filter: brightness(4px);
+}
+
+/* .favoritebutton img{
+  position: relative;
+  right: 200px;
+  bottom: 400px;
+  height: 80px;
+} */
+
+.peticon{
+  position: absolute;
+  bottom: 550px;
+  left: 675px;
+}
+
+.peticon img{
+  position: relative;
+  height: 100px; 
+}
+
+.petdetails{
+  position: absolute;
+  background-color: #84c5fa;
+  margin-left: 672px;
+  margin-bottom: 100px;
+  top: 1360px;
+  width:599px;
+}
+
+.petdetails h1{
+  font-size: 20px;
+}
