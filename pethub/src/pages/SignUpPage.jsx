@@ -4,8 +4,10 @@ import axios from "axios";
 
 const SignUp = (props) => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    userName: "",
     password: "",
     password2: "",
     phone: "",
@@ -14,7 +16,7 @@ const SignUp = (props) => {
     zip: "",
   });
 
-  const { name, email, password, password2, phone, city, state, zip } =
+  const { firstName, lastName, email, userName, password, password2, phone, city, state, zip } =
     formData;
 
   const onChange = (e) =>
@@ -27,8 +29,10 @@ const SignUp = (props) => {
       alert("Passwords do not match");
     } else {
       const newUser = {
-        name,
+        firstName,
+        lastName,
         email,
+        userName,
         password,
         phone,
         city,
@@ -72,9 +76,21 @@ const SignUp = (props) => {
           <input
             placeholder="First Name"
             type="text"
-            name="name"
-            id="firstName"
-            value={name}
+            name="firstName"
+            id="firstName2"
+            value={firstName}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="email">Email Address</label> */}
+          <input
+            placeholder="Last Name"
+            type="text"
+            name="lastName"
+            id="lName2"
+            value={lastName}
             onChange={(e) => onChange(e)}
             required
           />
@@ -86,6 +102,18 @@ const SignUp = (props) => {
             type="email"
             name="email"
             value={email}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="email">Email Address</label> */}
+          <input
+            placeholder="Username"
+            type="text"
+            name="userName"
+            id="userName2"
+            value={userName}
             onChange={(e) => onChange(e)}
             required
           />

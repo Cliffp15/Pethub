@@ -73,7 +73,7 @@ app.post( '/signup', /*{upload.single('profilePicture'}),*/ (req, res) => {
     console.log(req.body);
     
     // const profilePicture = req.file.path;
-    const query = `INSERT INTO TestUsers (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip) 
+    const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip) 
                 VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${password}','${phone}', '${city}', '${state}', '${zip}')`;
 
     request.query(query, (err, result) => {
