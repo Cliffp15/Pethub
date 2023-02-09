@@ -15,6 +15,7 @@ export default function Navbar() {
           <CustomLink to="/groups">Groups</CustomLink>
           <CustomLink to="/login">Login</CustomLink>
           <CustomLink to="/signup">Sign up</CustomLink>
+          {/* <CustomLink to="/signuptest">Sign up Test</CustomLink> */}
         </ul>
       </nav>
     </div>
