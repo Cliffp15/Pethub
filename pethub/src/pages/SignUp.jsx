@@ -1,6 +1,3 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate, Link } from "react-router-dom";
 
 // const SignUp = () => {
 //   const [firstName, setFirstName] = useState("");
@@ -251,23 +248,6 @@ const SignUp = (props) => {
         alert("An error occurred. Please try again.");
       }
 
-      axios({
-        method: "post",
-        url: "http://localhost:3001/signup",
-        data: formData,
-        headers: { "Content-Type": "application/json" },
-      })
-        .then(function (response) {
-          //handle success
-          console.log(response);
-          alert("User signed up successfully");
-        })
-        .catch(function (response) {
-          //handle error
-          console.log(response);
-          alert("An error occurred. Please try again.");
-        });
-    }
   };
 
   let navigate = useNavigate();
