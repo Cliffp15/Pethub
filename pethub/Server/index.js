@@ -97,20 +97,23 @@ app.post("/login", (req, res) => {
 
     console.log(req.body);
 
-    const query =
-      "SELECT * FROM Users WHERE Username = @i1 AND Password = @i2";
+    const query = "SELECT * FROM Users WHERE Username = @i1 AND Password = @i2";
 
-    request.query(query,(err, result) => {
+    request.query(query, (err, result) => {
       console.log(result);
-      
+
       if (err) {
         console.log(err);
-        res.send("User sign up failed");
+        res.status(400).send("User sign up failed");
       }
-      if (result.rowsAffected > 0) {
+      if (result.recordset.length > 0) {
         console.log("User logged in successfully");
-        res.send("User logged in successfully");
-      } 
+        res.status(200).send("User logged in successfully");
+        res.redirect("/");
+      } else {
+        console.log("Username or password is incorrect");
+        res.status(401).send("Username or password is incorrect");
+      }
     });
   });
 });
