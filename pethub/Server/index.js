@@ -75,9 +75,10 @@ app.post("/signup", (req, res) => {
       if (err) {
         console.log(err);
         console.log("User sign up failed");
+        res.status(400).send("User sign up failed");
       } else {
         console.log("User signed up successfully");
-        res.send("User signed up successfully");
+        res.status(200).send("User signed up successfully");
       }
     });
   });
