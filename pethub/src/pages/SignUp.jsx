@@ -49,54 +49,46 @@ const SignUp = (props) => {
         state,
         zip,
       };
-      if (true) {
-        navigate("/");
-      } else {
-        // Handle authentication error here
-        alert("An error occurred. Please try again.");
-      }
-
-      const makeSignUpRequest = () => {
-        axios({
+      try {
+        const response = await axios({
           method: "post",
           url: "http://localhost:3001/signup",
-          data: formData,
+          data: newUser,
           headers: { "Content-Type": "application/json" },
-        })
-          .then(function (response) {
-            //handle success
-            console.log(response);
-            alert("User signed up successfully");
-          })
-          .catch(function (response) {
-            //handle error
-            console.log(response);
-            alert("An error occurred. Please try again.");
-          });
-        makeSignUpRequest();
-      };
-
-      // const port = process.env.PORT || 3001;
-      // app.listen(port, () => {
-      //   console.log(`Server started on port ${port}`);
+        });
+        if (response.status === 200) {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("An error occurred. Please try again.");
+      }
     }
   };
-  // axios({
-  //   method: "post",
-  //   url: "http://localhost:3001/signup",
-  //   data: formData,
-  //   headers: { "Content-Type": "application/json" },
-  // })
-  //   .then(function (response) {
-  //     //handle success
-  //     console.log(response);
-  //     alert("User signed up successfully");
-  //   })
-  //   .catch(function (response) {
-  //     //handle error
-  //     console.log(response);
-  //     alert("An error occurred. Please try again.");
-  //   });
+
+  const makeSignUpRequest = () => {
+    axios({
+      method: "post",
+      url: "http://localhost:3001/signup",
+      data: formData,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+        alert("User signed up successfully");
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+        alert("An error occurred. Please try again.");
+      });
+    makeSignUpRequest();
+  };
+
+  // const port = process.env.PORT || 3001;
+  // app.listen(port, () => {
+  //   console.log(`Server started on port ${port}`);
 
   let navigate = useNavigate();
 
