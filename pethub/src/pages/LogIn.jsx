@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./styles/Login.css";
 
 const LogInPage = () => {
   const [userName, setUserName] = useState("");
@@ -46,9 +47,6 @@ const LogInPage = () => {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-      </div>
-
-      <div>
         <input
           placeholder="Password"
           type="text"
