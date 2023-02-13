@@ -33,12 +33,20 @@ const SignUp = (props) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  // Import axios module
+  const axios = require("axios");
+
+  // Create a function that runs when the form is submitted
   const onSubmit = async (e) => {
+    // Prevent the form from submitting
     e.preventDefault();
+
+    // Check if the passwords match
     if (password !== password2) {
       console.log("Passwords do not match");
       alert("Passwords do not match");
     } else {
+      // Create a newUser object with the values from the form
       const newUser = {
         firstName,
         lastName,
@@ -50,6 +58,8 @@ const SignUp = (props) => {
         state,
         zip,
       };
+
+      // Use axios to make a POST request to the signup route
       try {
         const response = await axios({
           method: "post",
@@ -57,6 +67,8 @@ const SignUp = (props) => {
           data: newUser,
           headers: { "Content-Type": "application/json" },
         });
+
+        // If the response is successful, redirect to the home page
         if (response.status === 200) {
           navigate("/");
         }

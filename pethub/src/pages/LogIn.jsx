@@ -5,20 +5,23 @@ import { useNavigate } from "react-router-dom";
 import "./styles/Login.css";
 
 const LogInPage = () => {
+  //useState is a hook that allows you to have state variables in functional components.
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  //useNavigate is a hook that allows you to navigate from one page to another.
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    console.log("button was pressed");
-
+    // prevent the default form submission behavior
     e.preventDefault();
 
+    // create the data object to send to the server
     const data = {
       userName: userName,
       password: password,
     };
 
+    // send the data to the server
     axios({
       method: "post",
       url: "http://localhost:3001/login",
@@ -26,13 +29,13 @@ const LogInPage = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then(function (response) {
-        //handle success
+        // handle the response from the server
         console.log(response);
         alert("User logged in successfully");
         navigate("/");
       })
       .catch(function (response) {
-        //handle error
+        // handle an error from the server
         console.log(response);
         // alert("An error occurred. Please try again.");
       });

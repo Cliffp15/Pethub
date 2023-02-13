@@ -39,7 +39,7 @@ input[type="submit"] {
   width: 100%;
   padding: 10px;
   font-size: 18px;
-  background-color: #4CAF50;
+  background-color: #00b0b9;
   color: white;
   border: none;
   border-radius: 5px;
@@ -53,6 +53,6 @@ p {
 }
 
 a {
-  color: #4CAF50;
+  color: #00b0b9;
   font-weight: bold;
 }
