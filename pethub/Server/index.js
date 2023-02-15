@@ -115,5 +115,41 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.post("/postapet", (req, res) => {
+  sql.connect(config, (err) => {
+    if (err) console.log(err);
+
+    const request = new sql.Request();
+
+    const images = req.body.image;
+    const description = req.body.description;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zip = req.body.zip;
+    const species = req.body.species;
+    const breed = req.body.breed;
+    const age = req.body.breed;
+    const sex = req.body.sex;
+    const petName = req.body.petName;
+    const color = req.body.color;
+
+    console.log(req.body);
+
+    const query = `INSERT INTO Pets (Species, Name, Breed, Description, Sex, DefaultImage, Color ) 
+                VALUES ('${species}', '${petName}','${breed}', '${description}','${sex}', '${images}','${color}')`;
+
+    request.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+        console.log("pet failed to post");
+        res.send(err) 
+      } else {
+        console.log("Pet posted succesfully");
+        res.send("Pet posted succesfully");
+      }
+    });
+  });
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server started on port ${port}`));
