@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sql = require("mssql");
 const cors = require("cors");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,7 +52,7 @@ const config = {
 
 //Route to handle user sign-up
 app.post("/signup", (req, res) => {
-  sql.connect(config, (err) => {
+  sql.connect(config, async (err) => {
     if (err) console.log(err);
 
     const request = new sql.Request();
@@ -60,6 +62,8 @@ app.post("/signup", (req, res) => {
     const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
+    const salt = await bcrypt.genSalt(saltRounds)
+    const encryptPassword = await bcrypt.hash(password, salt);
     const phone = req.body.phone;
     const city = req.body.city;
     const state = req.body.state;
@@ -76,7 +80,7 @@ app.post("/signup", (req, res) => {
 
     // const profilePicture = req.file.path;
     const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
-                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${password}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
+                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
 
     request.query(query, (err, result) => {
       if (err) {
@@ -101,20 +105,24 @@ app.post("/login", (req, res) => {
     const password = req.body.password;
 
     request.input("UserNameEntered", sql.VarChar, userName);
-    request.input("PasswordEntered", sql.VarChar, password);
+    
 
     console.log(req.body);
 
-    const query = "SELECT * FROM Users WHERE Username = @UserNameEntered AND Password = @PasswordEntered";
+    const query = "SELECT Password FROM Users WHERE Username = @UserNameEntered";
 
-    request.query(query, (err, result) => {
+    request.query(query, async (err, result) => {
       console.log(result);
 
       if (err) {
         console.log(err);
         res.status(400).send("User sign up failed");
       }
-      if (result.recordset.length > 0) {
+
+      const hash = result.recordset[0].Password;
+      const resultBool = await bcrypt.compare(password, hash);
+
+      if (resultBool == true) {
         console.log("User logged in successfully");
         res.status(200).send("User logged in successfully");
         res.redirect("/");
