@@ -1,187 +1,237 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./styles/SignUp.css";
 
-const SignUp = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const [rePassword, setRePassword] = useState('');
-  const [userName, setUserName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-  // const [profilePicture, setProfilePicture] = useState(null);
+const SignUp = (props) => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    userName: "",
+    password: "",
+    password2: "",
+    phone: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
-  const handleSubmit = (e) => {
-    console.log("button was pressed")
+  const {
+    firstName,
+    lastName,
+    userName,
+    email,
+    password,
+    password2,
+    phone,
+    city,
+    state,
+    zip,
+  } = formData;
 
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  // Import axios module
+  const axios = require("axios");
+
+  // Create a function that runs when the form is submitted
+  const onSubmit = async (e) => {
+    // Prevent the form from submitting
     e.preventDefault();
 
-    const data = {
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-      email: email,
-      password: password,
-      phone: phone,
-      city: city,
-      state: state,
-      zip: zip,
-    };
+    // Check if the passwords match
+    if (password !== password2) {
+      console.log("Passwords do not match");
+      alert("Passwords do not match");
+    } else {
+      // Create a newUser object with the values from the form
+      const newUser = {
+        firstName,
+        lastName,
+        email,
+        userName,
+        password,
+        phone,
+        city,
+        state,
+        zip,
+      };
 
-  //   const formData = new FormData();
-  //   formData.append('firstName', firstName);
-  //   formData.append('lastName', lastName);
-  //  // formData.append('rePassword', rePassword);
-  //   formData.append('userName', userName)
-  //   formData.append('email', email);
-  //   formData.append('password', password);
-  //   formData.append('phone', phone);
-  //   formData.append('city', city);
-  //   formData.append('state', state);
-  //   formData.append('zip', zip);
-    // formData.append('profilePicture', profilePicture, profilePicture.name);
-      
+      // Use axios to make a POST request to the signup route
+      try {
+        const response = await axios({
+          method: "post",
+          url: "http://localhost:3001/signup",
+          data: newUser,
+          headers: { "Content-Type": "application/json" },
+        });
+
+        // If the response is successful, redirect to the home page
+        if (response.status === 200) {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("An error occurred. Please try again.");
+      }
+    }
+  };
+
+  const makeSignUpRequest = () => {
     axios({
       method: "post",
       url: "http://localhost:3001/signup",
-      data: data,
+      data: formData,
       headers: { "Content-Type": "application/json" },
     })
       .then(function (response) {
         //handle success
         console.log(response);
-        alert('User signed up successfully');
+        alert("User signed up successfully");
       })
       .catch(function (response) {
         //handle error
         console.log(response);
-        alert('An error occurred. Please try again.');
+        alert("An error occurred. Please try again.");
       });
-
-    // axios
-    //   .post('http://localhost:3001/signup', formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert('User signed up successfully');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert('An error occurred. Please try again.');
-    //   });
-
+    makeSignUpRequest();
   };
+
+  // const port = process.env.PORT || 3001;
+  // app.listen(port, () => {
+  //   console.log(`Server started on port ${port}`);
+
+  let navigate = useNavigate();
+
   return (
-    <form onSubmit={handleSubmit}>
-
-      <div>
-        <input
-          placeholder='First Name'
-          type="text"
-          id="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <input
-          placeholder='Last Name'
-          type="text"
-          id="LastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+    <div className="form-container">
+      <h1>Sign Up</h1>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <div className="form-group">
+          {/* <label htmlFor="name">First Name</label> */}
+          <input
+            placeholder="First Name"
+            type="text"
+            name="firstName"
+            id="firstName2"
+            value={firstName}
+            onChange={(e) => onChange(e)}
+            required
           />
-      </div>
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="email">Email Address</label> */}
+          <input
+            placeholder="Last Name"
+            type="text"
+            name="lastName"
+            id="lName2"
+            value={lastName}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="email">Email Address</label> */}
+          <input
+            placeholder="Email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="email">Email Address</label> */}
+          <input
+            placeholder="Username"
+            type="text"
+            name="userName"
+            id="userName2"
+            value={userName}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="password">Password</label> */}
+          <input
+            placeholder="Password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => onChange(e)}
+            required
+            minLength="6"
+          />
+        </div>
+        <div className="form-group">
+          {/* <label htmlFor="password2">Confirm Password</label> */}
+          <input
+            placeholder="Confirm Password"
+            type="password"
+            name="password2"
+            value={password2}
+            onChange={(e) => onChange(e)}
+            required
+            minLength="6"
+          />
 
-      <div>
-        <input
-        placeholder='User Name'
-          type="text"
-          id="userName"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          />
-      </div>
-
-      <div>
-        <input
-        placeholder='Email'
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          />
-      </div>
-
-      <div>
-        <input
-        placeholder='Password'
-          type="text"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          />
-      </div>
-
-      {/* <div>
-        <input
-        placeholder='Re-enter Password'
-          type="text"
-          id="rePassword"
-          value={rePassword}
-          onChange={(e) => setRePassword(e.target.value)}
-          />
-      </div> */}
-
-      <div>
-        <input
-        placeholder='Phone'
-          type="text"
-          id="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          />
-      </div>
-
-      <div>
-        <input
-        placeholder='City'
-          type="text"
-          id="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          />
-      </div>
-
-      <div>
-        <input
-        placeholder='State'
-          type="text"
-          id="state"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          />
-      </div>
-      
-      <div>
-        <input
-          placeholder='Zip'
-          type="text"
-          id="zip"
-          value={zip}
-          onChange={(e) => setZip(e.target.value)}
-          />
-      </div>
-      <button type="submit"> Sign Up</button>
-    </form>
+          <div className="form-group">
+            {/* <label htmlFor="phone"> Phone Number</label> */}
+            <input
+              placeholder="Phone Number"
+              type="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="city">City</label> */}
+            <input
+              placeholder="City"
+              type="text"
+              name="city"
+              value={city}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="state">State</label> */}
+            <input
+              placeholder="State"
+              type="text"
+              name="state"
+              value={state}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="zip">Zip Code</label> */}
+            <input
+              placeholder="Zip"
+              type="text"
+              name="zip"
+              value={zip}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+        </div>
+        <input type="submit" value="Sign Up" onClick={onChange} />
+      </form>
+      <p>
+        Already have an account? <Link to="/login">Sign In</Link>
+      </p>
+    </div>
   );
-
-
 };
 
 export default SignUp;
-
