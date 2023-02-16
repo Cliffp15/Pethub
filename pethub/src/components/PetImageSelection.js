@@ -10,7 +10,7 @@ const PetCard = ({petinfo}) => {
         return(
         <div >
             <div className="petimage"> 
-            <img src={imgURL} alt="kitten" />
+            <img src={imgURL} alt="No image available" />
             </div>
             <div className="peticon">
               <img src={caticon} alt="caticon" />
@@ -19,7 +19,6 @@ const PetCard = ({petinfo}) => {
                 <img src={heart} alt="caticon" />
               </div> */}
               <div className="petdetails">
-                
                 <h1 className="Name">{petinfo.name}</h1>
                 <h1 className='id'>{petinfo.id}</h1>
                 <h2 className="Breed&Age">{petinfo.breeds.primary}, {petinfo.age}</h2>
