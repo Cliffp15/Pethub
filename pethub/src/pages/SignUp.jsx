@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./styles/SignUp.css";
 
 const SignUp = (props) => {
   const [formData, setFormData] = useState({
@@ -32,12 +33,20 @@ const SignUp = (props) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  // Import axios module
+  const axios = require("axios");
+
+  // Create a function that runs when the form is submitted
   const onSubmit = async (e) => {
+    // Prevent the form from submitting
     e.preventDefault();
+
+    // Check if the passwords match
     if (password !== password2) {
       console.log("Passwords do not match");
       alert("Passwords do not match");
     } else {
+      // Create a newUser object with the values from the form
       const newUser = {
         firstName,
         lastName,
@@ -49,30 +58,50 @@ const SignUp = (props) => {
         state,
         zip,
       };
-      if (true) {
-        navigate("/");
-      } else {
-        // Handle authentication error here
+
+      // Use axios to make a POST request to the signup route
+      try {
+        const response = await axios({
+          method: "post",
+          url: "http://localhost:3001/signup",
+          data: newUser,
+          headers: { "Content-Type": "application/json" },
+        });
+
+        // If the response is successful, redirect to the home page
+        if (response.status === 200) {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error(error);
         alert("An error occurred. Please try again.");
       }
     }
   };
-  axios({
-    method: "post",
-    url: "http://localhost:3001/signup",
-    data: formData,
-    headers: { "Content-Type": "application/json" },
-  })
-    .then(function (response) {
-      //handle success
-      console.log(response);
-      alert("User signed up successfully");
+
+  const makeSignUpRequest = () => {
+    axios({
+      method: "post",
+      url: "http://localhost:3001/signup",
+      data: formData,
+      headers: { "Content-Type": "application/json" },
     })
-    .catch(function (response) {
-      //handle error
-      console.log(response);
-      alert("An error occurred. Please try again.");
-    });
+      .then(function (response) {
+        //handle success
+        console.log(response);
+        alert("User signed up successfully");
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+        alert("An error occurred. Please try again.");
+      });
+    makeSignUpRequest();
+  };
+
+  // const port = process.env.PORT || 3001;
+  // app.listen(port, () => {
+  //   console.log(`Server started on port ${port}`);
 
   let navigate = useNavigate();
 
