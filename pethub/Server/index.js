@@ -64,12 +64,19 @@ app.post("/signup", (req, res) => {
     const city = req.body.city;
     const state = req.body.state;
     const zip = req.body.zip;
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1;
+    const hh = today.getHours();
+    const ms = today.getMinutes();
+    const yyyy = today.getFullYear();
+    today = `${mm}-${dd}-${yyyy} ${hh}:${ms}`;
 
     console.log(req.body);
 
     // const profilePicture = req.file.path;
-    const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip) 
-                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${password}','${phone}', '${city}', '${state}', '${zip}')`;
+    const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
+                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${password}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
 
     request.query(query, (err, result) => {
       if (err) {
