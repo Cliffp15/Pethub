@@ -93,12 +93,12 @@ app.post("/login", (req, res) => {
     const userName = req.body.userName;
     const password = req.body.password;
 
-    request.input("i1", sql.VarChar, userName);
-    request.input("i2", sql.VarChar, password);
+    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("PasswordEntered", sql.VarChar, password);
 
     console.log(req.body);
 
-    const query = "SELECT * FROM Users WHERE Username = @i1 AND Password = @i2";
+    const query = "SELECT * FROM Users WHERE Username = @UserNameEntered AND Password = @PasswordEntered";
 
     request.query(query, (err, result) => {
       console.log(result);
