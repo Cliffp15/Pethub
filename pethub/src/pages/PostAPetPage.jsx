@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { City, State } from "country-state-city";
-const States = require('us-state-converter')
+const States = require("us-state-converter");
 
 const AdoptionPage = () => {
   const [imageUrl, setImageUrl] = useState([]);
@@ -14,11 +14,10 @@ const AdoptionPage = () => {
   const [breed, setBreed] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  const [color, setColor] = useState("")
+  const [color, setColor] = useState("");
 
   const [petBreeds, setPetBreeds] = useState([]);
   const [cities, setCities] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +44,7 @@ const AdoptionPage = () => {
 
   const handleStateChange = (e) => {
     setState(e.target.value);
-    setCities(City.getCitiesOfState("US",States.abbr(e.target.value)));
+    setCities(City.getCitiesOfState("US", States.abbr(e.target.value)));
   };
 
   const handleImageChange = (e) => {
@@ -64,7 +63,7 @@ const AdoptionPage = () => {
     const formData = new FormData();
     formData.append("image", imageUrl);
     formData.append("description", description);
-    formData.append("name", petName)
+    formData.append("name", petName);
     formData.append("city", city);
     formData.append("state", state);
     formData.append("zip", zip);
@@ -73,9 +72,9 @@ const AdoptionPage = () => {
     formData.append("age", age);
     formData.append("sex", sex);
     formData.append("petName", petName);
-    formData.append("color", color)
+    formData.append("color", color);
 
-    console.log(...formData)
+    console.log(...formData);
 
     axios({
       method: "post",
@@ -105,7 +104,7 @@ const AdoptionPage = () => {
         </div>
         <h2>Animal</h2>
         <div>
-        <label>
+          <label>
             Name:
             <input
               placeholder="Name"
@@ -117,7 +116,10 @@ const AdoptionPage = () => {
           </label>
           <label>
             Species:
-            <select value={species} onChange={(e) => setSpecies(e.target.value)}>
+            <select
+              value={species}
+              onChange={(e) => setSpecies(e.target.value)}
+            >
               <option default>Select</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
@@ -174,7 +176,7 @@ const AdoptionPage = () => {
           <label>
             State:
             <select value={state} onChange={handleStateChange}>
-              <option >Select a state</option>
+              <option>Select a state</option>
               {State.getStatesOfCountry("US").map((state) => (
                 <option key={state.id} value={state.name}>
                   {state.name}
@@ -185,12 +187,12 @@ const AdoptionPage = () => {
           <label>
             City:
             <select value={city} onChange={(e) => setCity(e.target.value)}>
-            <option >Select a city</option>
-            {cities.map(city => (
-              <option key={city.id} value={city.name}>
-                {city.name}
-              </option>
-            ))}
+              <option>Select a city</option>
+              {cities.map((city) => (
+                <option key={city.id} value={city.name}>
+                  {city.name}
+                </option>
+              ))}
             </select>
           </label>
           <label>
