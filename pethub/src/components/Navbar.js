@@ -1,11 +1,13 @@
 import { useImperativeHandle } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Header from "./Header";
+
+import "../pages/styles/Navbar.css";
 export default function Navbar() {
   return (
     <div className="header-nav">
       <nav className="nav">
-        <Header />
+        <Header className="logo" />
         {/* The Link component is the react version of href */}
         <ul className="nav-links">
           {/* Creating a component CustomLink which I am passing in props to the correct page */}
@@ -13,8 +15,12 @@ export default function Navbar() {
           <CustomLink to="/findshelter">Find Shelter</CustomLink>
           <CustomLink to="/postapet">Post A Pet</CustomLink>
           <CustomLink to="/groups">Groups</CustomLink>
-          <CustomLink to="/login">Login</CustomLink>
-          <CustomLink to="/signup">Sign up</CustomLink>
+
+          <div className="signup-login">
+            <CustomLink to="/signup">Sign up</CustomLink>
+            <span className="slash">/</span>
+            <CustomLink to="/login">Login</CustomLink>
+          </div>
           {/* <CustomLink to="/signuptest">Sign up Test</CustomLink> */}
         </ul>
       </nav>
