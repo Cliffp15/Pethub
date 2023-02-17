@@ -14,58 +14,10 @@ body{
 
 /* Nav Bar */
 
-.nav{
-  background-color: #BCE0FD;
-  color: #e63946;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  padding: 20px;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-}
 
-
-.nav ul {
-  padding: 5px;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-}
-
-
-.nav a{
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: .25rem;
-  /* display:inline-block; */
-   padding-left:50px;
-  padding-right:50px;
-}
-
-
-
-.nav li:hover {
-  background-color: white;
-  opacity: .8;
-}
-
-.logo {
-   
-    width: 154px;
-    height: 79px;
-    /* margin: 10px 15px 15px 10px; */
-    padding-top: 10px;
-}
 
 /* Home Page */
-.herosection{
+/* .herosection{
   
   height: 500px;
   position: relative;
@@ -81,11 +33,11 @@ object-fit: cover;
 filter: saturate(1.6);
 filter: blur(2px);
 /* filter: contrast(1); */
-border-radius: 0px 0px 0px 0px;
+/* border-radius: 0px 0px 0px 0px;
 
-}
+} */
 
-.herosection h1{
+/* .herosection h1{
   position: absolute;
   background-color: #9f5c0946;
   border-radius: 10px 10px 0px 0px;
@@ -147,12 +99,7 @@ border-radius: 0px 0px 0px 0px;
   filter: brightness(4px);
 }
 
-/* .favoritebutton img{
-  position: relative;
-  right: 200px;
-  bottom: 400px;
-  height: 80px;
-} */
+
 
 .peticon{
   position: absolute;
@@ -176,38 +123,9 @@ border-radius: 0px 0px 0px 0px;
 
 .petdetails h1{
   font-size: 20px;
-}
+} */ 
 
 
-/* form */
-
-
-/* .form {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-
-.form-field {
-width: 30%;
-margin: 10px 0;
-}
-
-.form-input {
-padding: 10px;
-border-radius: 5px;
-border: 1px solid #E63946;
-font-size: 16px;
-}
-
-.form-button {
-background-color: #E63946;
-color: white;
-padding: 10px 20px;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-} */
 
 
 
