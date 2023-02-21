@@ -50,20 +50,21 @@ const Home = () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
-
-        <div className="search-for-animal">
-          <input placeholder="City" type="text" id="cityinput" />
-          {/* create a dropdown for state */}
-          <input placeholder="State" type="text" id="stateinput" />
-          <input placeholder="Animal" type="text" id="animalinput" />
-          <input placeholder="Breed" type="text" id="breedinput" />
-          <button className="searchbutton"> Search </button>
+        <div className="search-container">
+          <div className="search-for-animal">
+            <input placeholder="City" type="text" id="cityinput" />
+            {/* create a dropdown for state */}
+            <input placeholder="State" type="text" id="stateinput" />
+            <input placeholder="Animal" type="text" id="animalinput" />
+            <input placeholder="Breed" type="text" id="breedinput" />
+            <button className="search-button"> Search </button>
+          </div>
         </div>
       </div>
       <div className="featured-section">
         <h1 className="featured-banner">Featured Pets</h1>
         {petcard?.length > 0 ? (
-          <div className="petcardcontainer">
+          <div className="pet-card-container">
             {petcard.map((petinfo, index) => (
               <PetCard key={index} petinfo={petinfo} />
             ))}

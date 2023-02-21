@@ -1,7 +1,7 @@
 /* Set global font family */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: white;
+  background-color:  #f8fafb;
   margin: 0;
   padding: 0;
 }
@@ -25,15 +25,15 @@ body {
   object-fit: cover;
   filter: saturate(1.6) blur(2px);
   border-radius: 0;
-  z-index: -1;
+  z-index: -1; /*this is so the input fields will show */
   margin-bottom: 2rem;
 }
 
 .hero-section h1 {
   /* background-color: #BCE0FD; */
   border-radius: 10px;
-  padding: 5rem;
-  color: #c2e9ff;
+  padding: 1rem;
+  color: #c7ecee;
   margin: 0 auto;
   text-align: center;
   font-size: clamp(3rem, 10vw, 5rem);
@@ -43,49 +43,60 @@ body {
 }
 
 /* Search for animal section */
-.search-for-animal {
+/* .search-for-animal {
   margin: 2rem auto;
   display: flex;
-  flex-direction: column; /* change flex-direction */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   margin-top: 50px;
-  padding: 50px 0 50px 0;
+  padding: 50px 0;
   background-color: #BCE0FD;
   width: 50%;
+  max-width: 900px;
   border: solid black 1px;
+} */
+
+.search-container {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
 }
+
 .input {
-  margin: 1rem;
+  margin: 1rem 0;
   border-radius: 6px;
   padding: 1rem 1.5rem;
   font-size: clamp(1rem, 2vw, 1.5rem);
-  width: 100%;
-  max-width: 400px; /* adjust this value as needed */
+  width: 75%;
+  max-width: 400px;
   box-sizing: border-box;
-  border: none;
+  border: 1px solid black;
   text-align: center;
 }
 
-
 .search-button {
   padding: 1rem 1.5rem;
-  border-radius: 4px;
-  margin-top: 2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
   height: 57px;
   width: 140px;
   border: none;
-  background-color: #e63946;
+  background-color: #2ecc71;
   color: #f8fafb;
   cursor: pointer;
   font-size: clamp(1rem, 2vw, 1.5rem);
   transition: background-color 0.2s ease-in-out;
-  text-align: center; 
+  text-align: center;
 }
 
 .search-button:hover {
-  background-color: lightcoral;
+  background-color: #c7ecee;
 }
 
 /* Featured pets section */
@@ -95,13 +106,24 @@ body {
 }
 
 .featured-banner {
-  background-color: #BCE0FD;
-  height: max-content;
+  background-color: #c2e9ff;
   padding: 2rem;
   border-radius: 8px;
- border: solid black 1px;
-  margin: 0;
+  border: solid black 1px;
+  margin: 2rem 0;
   color: #e63946;
+  text-align: center;
+}
+
+.featured-pet-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  
 }
 
 .featured-pet-image-section {
@@ -112,19 +134,6 @@ body {
   gap: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  
-}
-
-.featured-pet-image {
-  background-color: white;
-  border-radius: 8px;
-  width: clamp(200px, 30%, 500px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  border: solid black 1px;
 }
 
 .pet-image img {
@@ -154,4 +163,16 @@ body {
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+
+/* add styles to prevent overlapping */
+@media (max-width: 768px) {
+  .search-container {
+    margin-top: 2rem;
+  }
+
+  .search-for-animal {
+    padding: 20px;
+  }
 }

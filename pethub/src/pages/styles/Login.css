@@ -1,41 +1,60 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
 .formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  margin: 50px;
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 10px; /* Add rounded corners */
+  padding: 20px;
+  width: 33vw;
+ 
 }
 
 .formInput {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
   width: 300px;
   height: 40px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 10px;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
 .formButton {
-  width: 300px;
-  height: 40px;
-  padding: 10px;
-  background-color: #0097a7;
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: #BCE0FD;
   color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .formButton:hover {
-  background-color: #00b0b9;
+  background-color: #0062cc;
 }
