@@ -4,6 +4,7 @@ import caticon from "../photos/cat.png";
 import kitten from "../photos/kitten.jpg";
 import heart from "../photos/heart.png";
 import "./styles/homepage.css";
+import StateSelector from "../components/StateSelector";
 import { useState, useEffect } from "react";
 
 // import heart from "../photos/heart.png"
@@ -15,6 +16,11 @@ const API_URL = "https://api.petfinder.com/v2/animals?type=";
 const Home = () => {
   let firstcall = true;
   const [petcard, setpetcard] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
 
   const Fetchpets = async (animal) => {
     const response = await fetch(`${API_URL}${animal}`, {
@@ -52,11 +58,18 @@ const Home = () => {
         <h1>Find the purrfect pet for you!</h1>
         <div className="search-container">
           <div className="search-for-animal">
-            <input placeholder="City" type="text" id="cityinput" />
             {/* create a dropdown for state */}
-            <input placeholder="State" type="text" id="stateinput" />
+
+            {/* <input placeholder="State" type="text" id="stateinput" /> */}
             <input placeholder="Animal" type="text" id="animalinput" />
             <input placeholder="Breed" type="text" id="breedinput" />
+            <input placeholder="City" type="text" id="cityinput" />
+            <StateSelector
+              value={selectedState}
+              onChange={handleStateChange}
+              id="stateinput"
+            />
+
             <button className="search-button"> Search </button>
           </div>
         </div>
