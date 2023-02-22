@@ -15,7 +15,7 @@ const PetCard = ({petinfo}) => {
         };
         
         return(
-        <div >
+        <div className='petcardarea'>
             <div className="petimage" onClick={handleCardClick}> 
             <img src={imgURL} alt="No image available" />
             </div>
@@ -31,7 +31,8 @@ const PetCard = ({petinfo}) => {
                 <h2 className="Breed&Age">{petinfo.breeds.primary}, {petinfo.age}</h2>
                 {/* <h2 className="Age"></h2> */}
                 <h2 className="Gender">{petinfo.gender}</h2>
-                <h2 className="location">{petinfo.city}, {petinfo.state}</h2>
+                <h2 className="location">{petinfo.contact.address.city}, {petinfo.contact.address.state}</h2>
+                {/* <h2 className="location">{petinfo.city}, {petinfo.state}</h2> */}
             </div> 
         </div>
         );
