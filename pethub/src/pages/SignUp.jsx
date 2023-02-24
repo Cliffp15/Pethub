@@ -107,12 +107,11 @@ const SignUp = (props) => {
 
   return (
     <div className="form-container">
+      <h1>Sign Up</h1>
       <form onSubmit={(e) => onSubmit(e)}>
-        <h1 className="sign-up-text">Sign Up</h1>
         <div className="form-group">
           {/* <label htmlFor="name">First Name</label> */}
           <input
-            className="sign-up-input"
             placeholder="First Name"
             type="text"
             name="firstName"
@@ -125,7 +124,6 @@ const SignUp = (props) => {
         <div className="form-group">
           {/* <label htmlFor="email">Email Address</label> */}
           <input
-            className="sign-up-input"
             placeholder="Last Name"
             type="text"
             name="lastName"
@@ -138,9 +136,8 @@ const SignUp = (props) => {
         <div className="form-group">
           {/* <label htmlFor="email">Email Address</label> */}
           <input
-            className="sign-up-input"
             placeholder="Email"
-            type="text"
+            type="email"
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
@@ -150,7 +147,6 @@ const SignUp = (props) => {
         <div className="form-group">
           {/* <label htmlFor="email">Email Address</label> */}
           <input
-            className="sign-up-input"
             placeholder="Username"
             type="text"
             name="userName"
@@ -163,9 +159,8 @@ const SignUp = (props) => {
         <div className="form-group">
           {/* <label htmlFor="password">Password</label> */}
           <input
-            className="sign-up-input"
             placeholder="Password"
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={(e) => onChange(e)}
@@ -173,77 +168,66 @@ const SignUp = (props) => {
             minLength="6"
           />
         </div>
-
         <div className="form-group">
           {/* <label htmlFor="password2">Confirm Password</label> */}
           <input
-            className="sign-up-input"
             placeholder="Confirm Password"
-            type="text"
+            type="password"
             name="password2"
             value={password2}
             onChange={(e) => onChange(e)}
             required
             minLength="6"
           />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="phone"> Phone Number</label> */}
-          <input
-            className="sign-up-input"
-            placeholder="Phone Number"
-            type="text"
-            name="phone"
-            value={phone}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="city">City</label> */}
-          <input
-            className="sign-up-input"
-            placeholder="City"
-            type="text"
-            name="city"
-            value={city}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="state">State</label> */}
-          <input
-            className="sign-up-input"
-            placeholder="State"
-            type="text"
-            name="state"
-            value={state}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="zip">Zip Code</label> */}
-          <input
-            className="sign-up-input"
-            placeholder="Zip"
-            type="text"
-            name="zip"
-            value={zip}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
 
-        <input
-          className="sign-up-button"
-          type="submit"
-          value="Sign Up"
-          onClick={onChange}
-        />
+          <div className="form-group">
+            {/* <label htmlFor="phone"> Phone Number</label> */}
+            <input
+              placeholder="Phone Number"
+              type="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="city">City</label> */}
+            <input
+              placeholder="City"
+              type="text"
+              name="city"
+              value={city}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="state">State</label> */}
+            <input
+              placeholder="State"
+              type="text"
+              name="state"
+              value={state}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="zip">Zip Code</label> */}
+            <input
+              placeholder="Zip"
+              type="text"
+              name="zip"
+              value={zip}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+        </div>
+        <input type="submit" value="Sign Up" onClick={onChange} />
       </form>
-      <p className="text-below-button">
+      <p>
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </div>

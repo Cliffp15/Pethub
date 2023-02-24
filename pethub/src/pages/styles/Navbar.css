@@ -1,6 +1,6 @@
 .nav {
-  background-color: #6ac0ff;
-  color: #000000;
+  background-color: #BCE0FD;
+  color: #e63946;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +28,7 @@
 }
 
 .nav li:hover {
-  background-color: #ff7f50;
+  background-color: white;
   opacity: 0.8;
 }
 
@@ -38,7 +38,6 @@
   padding: 0;
   margin: 0;
   height: 100px;
-  border: #000000 1px solid;
 }
 .signup-login {
   display: flex;
