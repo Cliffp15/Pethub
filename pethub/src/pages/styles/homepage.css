@@ -1,8 +1,8 @@
 /* Set global font family */
 /* Set global font family */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8fafb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
 }
@@ -15,7 +15,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 1rem 0 1rem 0;
+  margin: 0 0 1rem 0;
 }
 
 .hero-section img {
@@ -33,7 +33,7 @@ body {
 .hero-section h1 {
   border-radius: 10px;
   padding: 1rem;
-  color: #c7ecee;
+  color: #333333;
   margin: 0 auto;
   text-align: center;
   font-size: clamp(3rem, 10vw, 5rem);
@@ -44,25 +44,28 @@ body {
 
 .search-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 500px;
+  max-width: 900px;
   margin-top: 2rem;
+  background-color: #333333;
+  opacity: 0.9;
+  padding: 1rem;
 }
 .search-for-animal {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: self-start;
   margin-top: 2rem;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
 }
 
 .input {
-  margin: 1rem 0;
+  margin: rem 0;
   border-radius: 6px;
   padding: 1rem 1.5rem;
   font-size: clamp(1rem, 2vw, 1.5rem);
@@ -71,46 +74,50 @@ body {
   box-sizing: border-box;
   border: 1px solid black;
   text-align: center;
+  color: #333333;
 }
 
-#stateinput {
-  margin: 1rem 0;
+/* #stateinput {
+   margin: 1rem 0;
   border-radius: 6px;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem;
   font-size: clamp(1rem, 2vw, 1.5rem);
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
   border: 1px solid black;
   text-align: center;
+  color: #333333;
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
 
 }
 .StateSelector {
-  display: flex;
+   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
-}
-
+  position: relative;
+} */
 
 .search-button {
-
   padding: 1rem 1.5rem;
   border-radius: 10px;
   margin-top: 1rem;
-  /* height: 57px;
-  width: 140px; */
+  margin: 0 auto; /* Center the button horizontally */
   border: none;
-  background-color: #2ecc71;
+  background-color: #ff7f50;
   color: #f8fafb;
   cursor: pointer;
   font-size: clamp(1rem, 2vw, 1.5rem);
   transition: background-color 0.2s ease-in-out;
   text-align: center;
+  margin-left: 1rem;
 }
 
 .search-button:hover {
-  background-color: #c7ecee;
+  background-color: #0077c2;
 }
 
 /* Featured pets section */
@@ -120,12 +127,12 @@ body {
 }
 
 .featured-banner {
-  background-color: #c2e9ff;
+  background-color: #6ac0ff;
   padding: 2rem;
   border-radius: 8px;
   border: solid black 1px;
   margin: 1rem 0;
-  color: #e63946;
+  color: black;
   text-align: center;
   width: 100%;
 }

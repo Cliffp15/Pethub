@@ -64,11 +64,11 @@ const Home = () => {
             <input placeholder="Animal" type="text" id="animalinput" />
             <input placeholder="Breed" type="text" id="breedinput" />
             <input placeholder="City" type="text" id="cityinput" />
-            <StateSelector
+            {/* <StateSelector
               value={selectedState}
               onChange={handleStateChange}
               id="stateinput"
-            />
+            /> */}
 
             <button className="search-button"> Search </button>
           </div>
