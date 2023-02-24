@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <div className="container"> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/findshelter" element={<FindShelter />} />
@@ -27,7 +27,6 @@ function App() {
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
-      {/* </div> */}
     </>
   );
 }
