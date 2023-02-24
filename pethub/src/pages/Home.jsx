@@ -4,7 +4,6 @@ import caticon from "../photos/cat.png";
 import kitten from "../photos/kitten.jpg";
 import heart from "../photos/heart.png";
 import "./styles/homepage.css";
-import StateSelector from "../components/StateSelector";
 import { useState, useEffect } from "react";
 
 // import heart from "../photos/heart.png"
@@ -12,16 +11,6 @@ import PetCard from "../components/PetImageSelection";
 
 
 const API_URL = "https://api.petfinder.com/v2/animals?type=";
-
-
-// const Home = () => {
-//   let firstcall = true;
-//   const [petcard, setpetcard] = useState([]);
-//   const [selectedState, setSelectedState] = useState("");
-
-//   const handleStateChange = (event) => {
-//     setSelectedState(event.target.value);
-//   };
 
 
 
@@ -141,10 +130,6 @@ useEffect ( () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
-        <div className="search-container">
-          <div className="search-for-animal">
-            {/* create a dropdown for state */}
-
 
         <div className="search-for-animal">
           {/* <input placeholder="City" type="text" id="cityinput" /> */}
@@ -155,13 +140,12 @@ useEffect ( () => {
           <input placeholder="Breed" type="text" id="breedinput" />
           <button className="searchbutton" onClick={SearchPets}> Search </button>
           
-
         </div>
       </div>
       <div className="featured-section">
         <h1 className="featured-banner" id="bannerid">Featured Pets</h1>
         {petcard?.length > 0 ? (
-          <div className="pet-card-container">
+          <div className="petcardcontainer">
             {petcard.map((petinfo, index) => (
               <PetCard key={index} petinfo={petinfo} />
             ))}
