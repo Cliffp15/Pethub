@@ -178,6 +178,7 @@ body {
   transform: translateX(-50%);
 }
 
+
 /* add styles to prevent overlapping */
 @media (max-width: 768px) {
   .search-container {
@@ -188,3 +189,10 @@ body {
     padding: 20px;
   }
 }
+
+.petcardarea{
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  
+}
+
