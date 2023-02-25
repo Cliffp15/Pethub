@@ -22,9 +22,11 @@ const ComponentDetails = () => {
         //Bearer token needs to be updated every hour for access to api
         // or it will produce 401 Error
         Authorization:
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ6VXdsUUxkYnB3eUZhbHpCQ1dFZVl5aWpKS1JPOVl6WndzQWtCQ0VBR25LUmFQTjM0YiIsImp0aSI6IjJhZmRiZDMzODVlNzY2NmJkZjA4NGIxYzFlZmZkMThmZjJhZWE3MWVhMWE2MGY0MzRjMDRhZjQ2NTZjZWZiOTJkM2QyODBhZWY5Y2E4OWUwIiwiaWF0IjoxNjc3MDEyOTM0LCJuYmYiOjE2NzcwMTI5MzQsImV4cCI6MTY3NzAxNjUzNCwic3ViIjoiIiwic2NvcGVzIjpbXX0.IWqBFmQMT1PSNUjYJywPG1X2Q8pJLrKh_bWgyGMFKh0ILxrJk_tRCuNodtFPlH0qy7ZwvSM41vAscVvwfdsthQxR-o3Oc5vf540fOLsRY_jqOtyXbo9-N_aeCdT-X_IguRp8wZRWSbX2XcwxAnWchaUqyn0E-n8OicaRz0o4-RTpyWzlS7g67NsD31znuPePJaPmNkXJv4fQf3oFGOHH_071-hNLdgbeYnAG9b5vtmkOUhIl25-7ynec7jfBvDzDokMKDiV3ooq8-VpJT8Ajp85iPs4eMbcTBWvyiD_1nZTDje3AYk32tdmB-tzvq1KWY7etYqcRXm0Snb5FQkVqdA"
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6ImI4MDQyZDczNTdjNTNlNzUyYTMwN2U4ODU0NWJlZTllMDRiNTBiYjA4OGYzMjFkMDU0OGRiOTRhOTc4M2E0YjRiYjljYzViYmM2MTMzNmExIiwiaWF0IjoxNjc3MTA2NjQ3LCJuYmYiOjE2NzcxMDY2NDcsImV4cCI6MTY3NzExMDI0Nywic3ViIjoiIiwic2NvcGVzIjpbXX0.sNE8Mw4nWzsy14XbfdJQSaeswzCy5TbhjG4iShN2KCce_YqRD9dFKFcWmYKdHys6YlZb4AU4LBFOquCBOA9-PK45J9fNGO_qmtzb7bfPkLuAR1l4nKL0bZEIJvX7LLXDg_y07lldKstTrIWHJyXiDfp4c6e_vscIfp6CZwS-JvMfLwOYe7P1YH8dKVlYIG0FeUa8ZNvSLQiZRLrQbjcSKRC7VROlQelZ9CzMqGNZDJKAIv98OInbc7TEddv2CocnC8DVjrtpUbcR3eV7wHIid3uGI0_OS0srNcM8jGvjkACtcf281pxSDLYr08EidSyn74lNmcO3OuclNWbwZvBmiw"
       },
     });
+
+
 
     const data = await response.json();
 
@@ -34,9 +36,14 @@ const ComponentDetails = () => {
     console.log(component);
   };
 
+  let firstcall = true;
+
   useEffect(() => {
-    Fetchpets();
-  });
+    if (firstcall) {
+      Fetchpets("dog");
+      firstcall = false;
+    }
+  }, component);
 
   if (!component) {
     return <div>Loading...</div>;
