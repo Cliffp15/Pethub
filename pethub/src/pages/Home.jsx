@@ -5,49 +5,54 @@ import kitten from "../photos/kitten.jpg";
 import heart from "../photos/heart.png";
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
-
+import  {fetchToken} from '../api/petFinderToken';
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
 
 const API_URL = "https://api.petfinder.com/v2/animals?type=";
 
-
-
-  
 const Home = () => {
-    
-  
-    const Fetchpets = async (animal) => {
+  const [data, setData] = useState([]);
+  const [petcard, setpetcard] = useState([]);
+  const [firstcall, setfirstcall] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const token = await fetchToken();
+      const response = await fetch(`${API_URL}cat`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      setpetcard(data.animals);
+      setfirstcall(false);
+    }, 3600000); // 1 hour = 3,600,000 milliseconds
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const Fetchpets = async (animal) => {
+    const token = await fetchToken();
     const response = await fetch(`${API_URL}${animal}`, {
       method: "GET",
       mode: "cors",
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        //Bearer token needs to be updated every hour for access to api
-        // or it will produce 401 Error
-        Authorization:
-          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6ImI4MDQyZDczNTdjNTNlNzUyYTMwN2U4ODU0NWJlZTllMDRiNTBiYjA4OGYzMjFkMDU0OGRiOTRhOTc4M2E0YjRiYjljYzViYmM2MTMzNmExIiwiaWF0IjoxNjc3MTA2NjQ3LCJuYmYiOjE2NzcxMDY2NDcsImV4cCI6MTY3NzExMDI0Nywic3ViIjoiIiwic2NvcGVzIjpbXX0.sNE8Mw4nWzsy14XbfdJQSaeswzCy5TbhjG4iShN2KCce_YqRD9dFKFcWmYKdHys6YlZb4AU4LBFOquCBOA9-PK45J9fNGO_qmtzb7bfPkLuAR1l4nKL0bZEIJvX7LLXDg_y07lldKstTrIWHJyXiDfp4c6e_vscIfp6CZwS-JvMfLwOYe7P1YH8dKVlYIG0FeUa8ZNvSLQiZRLrQbjcSKRC7VROlQelZ9CzMqGNZDJKAIv98OInbc7TEddv2CocnC8DVjrtpUbcR3eV7wHIid3uGI0_OS0srNcM8jGvjkACtcf281pxSDLYr08EidSyn74lNmcO3OuclNWbwZvBmiw'
-      },
-      
+        Authorization: `Bearer ${token}`
+      }
     });
-    console.log(`${API_URL}${animal}`);
     const data = await response.json();
-
-    
-    console.log(data);
-    console.log(data.animals);
     setpetcard(data.animals);
     setfirstcall(false);
-    // console.log(petcard);
     return data;
   };
 
-
-  const [petcard, setpetcard] = useState([]);
-  const [firstcall, setfirstcall] = useState(true);
-  
 
 const SearchPets=async () =>{
     // debugger;
