@@ -46,6 +46,7 @@ const LogInPage = () => {
         <div className="formInput">
           <p className="login-text">Log in</p>
           <input
+            className="formInputLogin"
             placeholder="User Name"
             type="text"
             id="userName"
@@ -53,6 +54,7 @@ const LogInPage = () => {
             onChange={(e) => setUserName(e.target.value)}
           />
           <input
+            className="formInputLogin"
             placeholder="Password"
             type="text"
             id="password"
