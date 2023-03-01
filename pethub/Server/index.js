@@ -79,19 +79,66 @@ app.post("/signup", (req, res) => {
     console.log(req.body);
 
     // const profilePicture = req.file.path;
-    const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
+
+    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("EmailEntered", sql.VarChar, email);
+
+    const userNameEmailQuery = "SELECT UserName, Email FROM Users WHERE Username = @UserNameEntered OR Email = @EmailEntered";
+    let duplicateUserNameOrEmail = false;
+    request.query(userNameEmailQuery, (err, result2) => {
+      console.log(result2);
+      if(result2.rowsAffected > 0)
+      {
+        duplicateUserNameOrEmail = true;
+      }
+      if(duplicateUserNameOrEmail == true)
+      {
+        if(result2.recordset[0].UserName == userName &&  result2.recordset[0].Email == email)
+        {
+          console.log("Username and Email are taken");
+          res.status(400).send("Username and Email are taken");
+        }
+        else if(result2.rowsAffected > 1)
+        {
+          console.log("Username and Email are taken");
+          res.status(400).send("Username and Email are taken");
+        }
+        else if(result2.recordset[0].UserName == userName)
+        {
+          console.log("Username is taken");
+          res.status(400).send("Username is taken");
+        }
+        else if(result2.recordset[0].Email == email)
+        {
+          console.log("Email is taken");
+          res.status(400).send("Email is taken");
+        }
+
+
+
+
+        console.log(err);
+      }
+      else
+      {
+        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
                 VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
 
-    request.query(query, (err, result) => {
-      if (err) {
-        console.log(err);
-        console.log("User sign up failed");
-        res.status(400).send("User sign up failed");
-      } else {
-        console.log("User signed up successfully");
-        res.status(200).send("User signed up successfully");
+        request.query(query, (err, result) => {
+          if (err) {
+            console.log(err);
+            console.log("User sign up failed");
+            res.status(400).send("User sign up failed");
+          } else {
+            console.log("User signed up successfully");
+            res.status(200).send("User signed up successfully");
+          }
+        });
       }
     });
+
+
+    
   });
 });
 
