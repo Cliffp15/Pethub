@@ -5,15 +5,76 @@ import caticon from "../photos/cat.png";
 
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
-
+import  {fetchToken} from '../api/petFinderToken';
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
 const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 
+
+const API_URL = "https://api.petfinder.com/v2/animals?type=";
+
 const Home = () => {
+  const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const token = await fetchToken();
+      const response = await fetch(`${API_URL}cat`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      setpetcard(data.animals);
+      setfirstcall(false);
+    }, 3600000); // 1 hour = 3,600,000 milliseconds
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const Fetchpets = async (animal) => {
+    const token = await fetchToken();
+    const response = await fetch(`${API_URL}${animal}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const data = await response.json();
+    setpetcard(data.animals);
+    setfirstcall(false);
+    return data;
+  };
+
+
+const SearchPets=async () =>{
+    // debugger;
+
+// const cityinput = document.getElementById("cityinput").value;
+const zipcodeinput = document.getElementById("zipcodeinput").value;
+// const stateinput = document.getElementById("stateinput").value;
+const animalinput = document.getElementById("animalinput").value;
+const breedinput = document.getElementById("breedinput").value;
+
+Fetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
+}
+
+useEffect ( () => {
+  if (firstcall) {
+    Fetchpets("");
+  }
+}, [petcard, firstcall]);
+// const SearchPets=async () =>{
+
 
   const Fetchpets = async (animal) => {
     let petsWithPhotos = [];
