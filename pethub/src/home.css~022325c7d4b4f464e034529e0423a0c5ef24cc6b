@@ -6,7 +6,7 @@
   } */
 
 /* Home Page */
-.herosection{
+/* .herosection{
     height: 500px;
     position: relative;
   }
@@ -20,10 +20,10 @@
   object-fit: cover;
   filter: saturate(1.6);
   filter: blur(2px);
-  /* filter: contrast(1); */
-  border-radius: 0px 0px 0px 0px;
-  }
   
+  border-radius: 0px 0px 0px 0px;
+  } */
+/*   
   .herosection h1{
     position: absolute;
     background-color: #9f5c0946;
@@ -87,15 +87,15 @@
     height: 450px;
     filter: brightness(4px);
   }
-  
-  /* .favoritebutton img{
+   */
+/* .favoritebutton img{
     position: relative;
     right: 200px;
     bottom: 400px;
     height: 80px;
   } */
-  
-  .peticon{
+
+/* .peticon{
     position: absolute;
     bottom: 404px;
     left: 675px;
@@ -107,7 +107,7 @@
   }
   
   .petdetails{
-    /* position: absolute; */
+   
     background-color: #84c5fa;
     margin-left: 663px;
     margin-bottom: 100px;
@@ -117,4 +117,4 @@
   
   .petdetails h1{
     font-size: 20px;
-  }
+  } */

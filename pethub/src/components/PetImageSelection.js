@@ -6,6 +6,7 @@ import dog from "../photos/dog.png"
 
 
 const PetCard = ({petinfo}) => {
+
         const imgURL =petinfo.photos[0]?.medium;
 
         const navigate = useNavigate();
