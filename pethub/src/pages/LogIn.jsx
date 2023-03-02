@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./styles/Login.css";
+import caticon from "../photos/cat.png";
 
 const LogInPage = () => {
   //useState is a hook that allows you to have state variables in functional components.
@@ -41,11 +42,13 @@ const LogInPage = () => {
       });
   };
   return (
+
     <div className="container">
       <form onSubmit={handleSubmit} className="formContainer">
         <div className="formInput">
           <p className="login-text">Log in</p>
           <input
+            className="formInputLogin"
             placeholder="User Name"
             type="text"
             id="userName"
@@ -53,6 +56,7 @@ const LogInPage = () => {
             onChange={(e) => setUserName(e.target.value)}
           />
           <input
+            className="formInputLogin"
             placeholder="Password"
             type="text"
             id="password"
@@ -62,10 +66,13 @@ const LogInPage = () => {
         </div>
 
         <button type="submit" className="formButton">
+          <img src={caticon} alt="dog icon" className="cat-icon" />
           Login
+          <img src={caticon} alt="dog icon" className="cat-icon" />
         </button>
       </form>
     </div>
+
   );
 };
 export default LogInPage;

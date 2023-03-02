@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../photos/Pet-Hub.png";
+import logo from "../photos/logo.jpg";
 
 function Header() {
   return (
