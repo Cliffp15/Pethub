@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { City, State} from "country-state-city";
+import { City, State } from "country-state-city";
 import "./styles/PostAPet.css";
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import { City, State } from "country-state-city";
-// import "./styles/PostAPet.css";
+
+import dogIcon from "../photos/dog.png";
+
 
 // const States = require("us-state-converter");
 
@@ -81,6 +80,7 @@ import "./styles/PostAPet.css";
 //     formData.append("color", color);
 
 //     console.log(...formData);
+
 
 //     axios({
 //       method: "post",
@@ -262,3 +262,4 @@ import "./styles/PostAPet.css";
 //   );
 // };
 // export default AdoptionPage;
+

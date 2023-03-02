@@ -1,13 +1,16 @@
 import React from "react";
 import HeroImage from "../photos/HeroImage.png";
+import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
-import kitten from "../photos/kitten.jpg";
-import heart from "../photos/heart.png";
+
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+
+
+
 
 const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 
@@ -47,6 +50,7 @@ const Home = () => {
 
     setfirstcall(false);
   };
+
 
   const SearchPets = async () => {
     // debugger;
@@ -123,6 +127,7 @@ const Home = () => {
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
 
+
         <div className="search-for-animal">
           {/* <input placeholder="City" type="text" id="cityinput" /> */}
           <input placeholder="Zip Code" type="text" id="zipcodeinput" />
@@ -134,11 +139,18 @@ const Home = () => {
             {" "}
             Search{" "}
           </button>
+
         </div>
       </div>
       <div className="featured-section">
         <h1 className="featured-banner" id="bannerid">
+
+          <img src={dogIcon} alt="dog icon" className="dog-icon" />
           Featured Pets
+          <img src={dogIcon} alt="dog icon" className="dog-icon" />
+
+          
+
         </h1>
         {petcard?.length > 0 ? (
           <div className="petcardcontainer">
