@@ -109,82 +109,95 @@ const SignUp = (props) => {
     <div className="form-container">
       <h1>Sign Up</h1>
       <form onSubmit={(e) => onSubmit(e)}>
-        <div className="form-group">
-          {/* <label htmlFor="name">First Name</label> */}
-          <input
-            placeholder="First Name"
-            type="text"
-            name="firstName"
-            id="firstName2"
-            value={firstName}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="email">Email Address</label> */}
-          <input
-            placeholder="Last Name"
-            type="text"
-            name="lastName"
-            id="lName2"
-            value={lastName}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="email">Email Address</label> */}
-          <input
-            placeholder="Email"
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="email">Email Address</label> */}
-          <input
-            placeholder="Username"
-            type="text"
-            name="userName"
-            id="userName2"
-            value={userName}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="password">Password</label> */}
-          <input
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => onChange(e)}
-            required
-            minLength="6"
-          />
-        </div>
-        <div className="form-group">
-          {/* <label htmlFor="password2">Confirm Password</label> */}
-          <input
-            placeholder="Confirm Password"
-            type="password"
-            name="password2"
-            value={password2}
-            onChange={(e) => onChange(e)}
-            required
-            minLength="6"
-          />
+        <div className="form-column">
+          <h1 className="sign-up-text">Sign Up</h1>
+          <div className="form-group">
+            {/* <label htmlFor="name">First Name</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="First Name"
+              type="text"
+              name="firstName"
+              id="firstName2"
+              value={firstName}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="email">Email Address</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="Last Name"
+              type="text"
+              name="lastName"
+              id="lName2"
+              value={lastName}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="email">Email Address</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="Email"
+              type="text"
+              name="email"
+              value={email}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="email">Email Address</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="Username"
+              type="text"
+              name="userName"
+              id="userName2"
+              value={userName}
+              onChange={(e) => onChange(e)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            {/* <label htmlFor="password">Password</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="Password"
+              type="text"
+              name="password"
+              value={password}
+              onChange={(e) => onChange(e)}
+              required
+              minLength="6"
+            />
+          </div>
 
+          <div className="form-group">
+            {/* <label htmlFor="password2">Confirm Password</label> */}
+            <input
+              className="sign-up-input"
+              placeholder="Confirm Password"
+              type="text"
+              name="password2"
+              value={password2}
+              onChange={(e) => onChange(e)}
+              required
+              minLength="6"
+            />
+          </div>
+        </div>
+        <div className="form-column">
           <div className="form-group">
             {/* <label htmlFor="phone"> Phone Number</label> */}
             <input
+              className="sign-up-input"
               placeholder="Phone Number"
-              type="phone"
+              type="text"
+
               name="phone"
               value={phone}
               onChange={(e) => onChange(e)}
@@ -194,6 +207,9 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="city">City</label> */}
             <input
+
+              className="sign-up-input"
+
               placeholder="City"
               type="text"
               name="city"
@@ -205,6 +221,9 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="state">State</label> */}
             <input
+
+              className="sign-up-input"
+
               placeholder="State"
               type="text"
               name="state"
@@ -216,6 +235,9 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
             <input
+
+              className="sign-up-input"
+
               placeholder="Zip"
               type="text"
               name="zip"
@@ -224,8 +246,16 @@ const SignUp = (props) => {
               required
             />
           </div>
+
+
+          <input
+            className="sign-up-button"
+            type="submit"
+            value="Sign Up"
+            onClick={onChange}
+          />
         </div>
-        <input type="submit" value="Sign Up" onClick={onChange} />
+
       </form>
       <p>
         Already have an account? <Link to="/login">Sign In</Link>

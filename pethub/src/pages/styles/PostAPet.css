@@ -1,110 +1,172 @@
 .adoption-form {
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 40px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5rem;
+  background-color: rgba(51, 51, 51, 0.1);
 }
 
-.adoption-form-section {
+.adoption-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto minmax(auto, 1fr) auto;
+  gap: 20px;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.adoption-form-section-one {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #BCE0FD;
-  border-radius: 8px;
-  padding: 20px;
-  width: 48%;
-  max-width: 800px;
-  border: solid black 1px;
-  opacity: 0.9;
+  align-items: top;
+}
+
+.adoption-form-section-two {
+  display: flex;
+  flex-direction: column;
+  align-items: top;
 }
 
 .adoption-form-heading {
-  color: #e63946;
-  font-size: 24px;
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 10px;
-  text-align: center;
 }
 
 .adoption-form-fields {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
+  gap: 10px;
 }
 
 .adoption-form-field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-  width: 100%;
+  gap: 5px;
+  margin-bottom: 1rem;
 }
 
-.adoption-form-field-input {
-  border-radius: 4px;
-  border: none;
+.adoption-form-field-label {
+  font-weight: bold;
+  color: #0069d9;
+}
+
+.adoption-form-field-input,
+.adoption-form-field-textarea,
+.adoption-form-field-select {
   padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
   width: 100%;
-  margin: 5px;
+  text-align: center; /* Center the text inside the input fields */
+  margin: 0 auto;
+}
+
+.adoption-form-field-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+
+.adoption-form-field-select:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px rgba(0, 123, 255, 0.25);
 }
 
 .adoption-form-field-textarea {
-  border-radius: 4px;
-  border: none;
-  padding: 8px;
-  width: 100%;
-  height: 100px;
+  resize: vertical;
 }
 
 .adoption-form-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  position: relative;
 }
 
 .adoption-form-image-input {
-  margin-bottom: 10px;
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
+
+  cursor: pointer;
 }
 
 .adoption-form-image-preview {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  margin-top: 10px;
 }
 
 .adoption-form-button {
-  background-color: #FFFFFF;
-  border-radius: 4px;
+  margin-top: 1rem;
+  padding: 10px;
+  background-color: #87ceeb;
+  color: black;
+  font-weight: bold;
   border: none;
-  color: #e63946;
-  font-size: 18px;
-  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  margin-top: 20px;
 }
 
 .adoption-form-button:hover {
-  background-color: #F0F0F0;
+  background-color: #0069d9;
 }
 
-input[type="file"]::-webkit-file-upload-button {
-  font-family: Arial, sans-serif;
-  color: #fff;
-  background-color: #57A2DE;
-  border: none;
-  padding: 8px 12px;
+.adoption-form .dog-icon {
+  display: block;
+  max-width: 50px;
+  margin: 1rem auto;
+}
+
+/* Additional styles for improved alignment */
+
+.adoption-form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.adoption-form-field-input[type="file"] {
+  display: none;
+}
+
+.adoption-form-field-input[type="file"] + label {
+  display: block;
+  padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-/* input[type="file"]:not(.has-files):before {
-  content: "No files chosen";
-  color: #999;
-} */
+.adoption-form-field-input[type="file"] + label:hover {
+  background-color: #f2f2f2;
+}
+
+.adoption-form-field-input[type="file"] + label:active {
+  background-color: #e6e6e6;
+}
+
+@media screen and (max-width: 768px) {
+  .adoption-form-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .adoption-form-section-one,
+  .adoption-form-section-two {
+    width: 100%;
+    max-width: none;
+  }
+
+  .adoption-form-section-two {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
