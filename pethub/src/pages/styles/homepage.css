@@ -112,8 +112,10 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .featured-banner .dog-icon {
+  display: flex;
   max-width: 50px;
   margin: 1rem auto;
 }

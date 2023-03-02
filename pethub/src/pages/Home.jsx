@@ -159,7 +159,7 @@ const Home = () => {
         <h1 className="featured-banner" id="bannerid">
           <img src={dogIcon} alt="dog icon" className="dog-icon" />
           Featured Pets
-          <img src={caticon} alt="dog icon" className="cat-icon" />
+          <img src={dogIcon} alt="dog icon" className="dog-icon" />
         </h1>
         {petcard?.length > 0 ? (
           <div className="pet-card-container">
