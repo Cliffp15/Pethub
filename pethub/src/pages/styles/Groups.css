@@ -1,0 +1,73 @@
+/* Set global font family */
+    body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    --group-background-height: 100%;
+    }
+
+    .Groupspage{
+        display: inline-block;
+        width: 100%;
+    }
+    .Grouppagetitle h1{ 
+    font-weight: 500;
+    }
+
+    .ExploreGroupsbackground{
+    display: flex;
+    justify-content:first baseline;
+    width:65%;
+    margin-left: 15%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    
+    }
+
+    .YourGroupssection{
+    display: inline-block;
+    height: var(--group-background-height);
+    border-right: 1px solid black;
+    /* border-left: 1px solid black; */
+    
+    }
+
+    .YourGroupssection h1{
+    padding: 0px;
+    display: inline-block;
+    
+    }
+
+    .YourgroupsTitlesection{
+    background-color: rgb(228, 227, 227);
+    border-radius: 10px 0 0 0;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    }
+
+    .ExploreGroupssection{
+    display: inline-block;
+    }
+
+    .grouparea{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-width: 1px;border-left: 1px solid black;
+    }
+
+    .groupinfo{
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid black;
+        border-width: 1px;border-left: 1px solid black;
+        }
+
+        
+    /* .grouparea div{
+    width: 400;
+    margin-left: 700px;
+    border-bottom: 1px solid black;
+    border-width: 1px;
+    }*/
