@@ -4,50 +4,53 @@ import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 
 import "./styles/homepage.css";
-import StateSelector from "../components/StateSelector";
 import { useState, useEffect } from "react";
 
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
-const API_URL = "https://api.petfinder.com/v2/animals?type=";
 
-// const Home = () => {
-//   let firstcall = true;
-//   const [petcard, setpetcard] = useState([]);
-//   const [selectedState, setSelectedState] = useState("");
 
-//   const handleStateChange = (event) => {
-//     setSelectedState(event.target.value);
-//   };
+
+const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 
 const Home = () => {
-  const Fetchpets = async (animal) => {
-    const response = await fetch(`${API_URL}${animal}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-        //Bearer token needs to be updated every hour for access to api
-        // or it will produce 401 Error
-        Authorization:
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6ImI4MDQyZDczNTdjNTNlNzUyYTMwN2U4ODU0NWJlZTllMDRiNTBiYjA4OGYzMjFkMDU0OGRiOTRhOTc4M2E0YjRiYjljYzViYmM2MTMzNmExIiwiaWF0IjoxNjc3MTA2NjQ3LCJuYmYiOjE2NzcxMDY2NDcsImV4cCI6MTY3NzExMDI0Nywic3ViIjoiIiwic2NvcGVzIjpbXX0.sNE8Mw4nWzsy14XbfdJQSaeswzCy5TbhjG4iShN2KCce_YqRD9dFKFcWmYKdHys6YlZb4AU4LBFOquCBOA9-PK45J9fNGO_qmtzb7bfPkLuAR1l4nKL0bZEIJvX7LLXDg_y07lldKstTrIWHJyXiDfp4c6e_vscIfp6CZwS-JvMfLwOYe7P1YH8dKVlYIG0FeUa8ZNvSLQiZRLrQbjcSKRC7VROlQelZ9CzMqGNZDJKAIv98OInbc7TEddv2CocnC8DVjrtpUbcR3eV7wHIid3uGI0_OS0srNcM8jGvjkACtcf281pxSDLYr08EidSyn74lNmcO3OuclNWbwZvBmiw",
-      },
-    });
-    console.log(`${API_URL}${animal}`);
-    const data = await response.json();
-
-    console.log(data);
-    console.log(data.animals);
-    setpetcard(data.animals);
-    setfirstcall(false);
-    // console.log(petcard);
-    return data;
-  };
-
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
+
+  const Fetchpets = async (animal) => {
+    let petsWithPhotos = [];
+    while (petsWithPhotos.length < 20) {
+      const response = await fetch(`${API_URL}${animal}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          //Bearer token needs to be updated every hour for access to api
+          // or it will produce 401 Error
+          Authorization:
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6ImMyMTllNDhhYmFhMmUzOGViZGNlZTA1MWQzNWM5NzM5MmRiZDk1YmRiYmY5OGMxNDNlYjFiYzIxMTEyOWY5MTkzMDM5ZTk4MGFiM2JiOWYxIiwiaWF0IjoxNjc3Njk3NTEyLCJuYmYiOjE2Nzc2OTc1MTIsImV4cCI6MTY3NzcwMTExMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.ZhLik-LATAYGUhyZaVuo3UCqax4n1C-TlZ6K1BQDpWx11ABLCVoSsZLj0eDwqp9O36j0XnnhZyDLUeR2Sr-5Aa0ZNviNufrFmfTddlSuYWqLWk6NrPYePt_QrQvqBUnuq5SN4p2YTSU5b_OI9E5UiMIf3_eRbp0vUGUJPU4ugp8FlZ6-XCtBhqV64JzsQR5oBMaFIe3-zpkV64YvKxeihVthjh0pypPizeWT4AtbWXtxsETJJCrJPJcCISBJN9kZifr8ZGz8v1lfWURiKd5YvmXG6f536XJPDLDrZoqKG1_EgEFKdruIN-dJKEamikKBkISx5WLhgvrfO8Nw5rUAaw",
+        },
+      });
+      console.log(`${API_URL}${animal}`);
+
+      const data = await response.json();
+      console.log(data);
+
+      const filteredData = Object.values(data.animals);
+      const newPets = filteredData.filter(
+        (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+      );
+      petsWithPhotos = [...petsWithPhotos, ...newPets];
+      console.log(petsWithPhotos);
+    }
+
+    setpetcard(petsWithPhotos.slice(0, 20));
+
+    setfirstcall(false);
+  };
+
 
   const SearchPets = async () => {
     // debugger;
@@ -123,46 +126,34 @@ const Home = () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
-        <div className="search-container">
-          {/* create a dropdown for state */}
 
-          <div className="search-for-animal">
-            {/* <input placeholder="City" type="text" id="cityinput" /> */}
-            <input
-              className="home-input"
-              placeholder="Zip Code"
-              type="text"
-              id="zipcodeinput"
-            />
-            {/* create a dropdown for state */}
-            {/* <input placeholder="State" type="text" id="stateinput" /> */}
-            <input
-              className="home-input"
-              placeholder="Animal"
-              type="text"
-              id="animalinput"
-            />
-            <input
-              className="home-input"
-              placeholder="Breed"
-              type="text"
-              id="breedinput"
-            />
-            <button className="search-button" onClick={SearchPets}>
-              {" "}
-              Search{" "}
-            </button>
-          </div>
+
+        <div className="search-for-animal">
+          {/* <input placeholder="City" type="text" id="cityinput" /> */}
+          <input placeholder="Zip Code" type="text" id="zipcodeinput" />
+          {/* create a dropdown for state */}
+          {/* <input placeholder="State" type="text" id="stateinput" /> */}
+          <input placeholder="Animal" type="text" id="animalinput" />
+          <input placeholder="Breed" type="text" id="breedinput" />
+          <button className="searchbutton" onClick={SearchPets}>
+            {" "}
+            Search{" "}
+          </button>
+
         </div>
       </div>
       <div className="featured-section">
         <h1 className="featured-banner" id="bannerid">
+
           <img src={dogIcon} alt="dog icon" className="dog-icon" />
           Featured Pets
           <img src={dogIcon} alt="dog icon" className="dog-icon" />
+
+          
+
         </h1>
         {petcard?.length > 0 ? (
-          <div className="pet-card-container">
+          <div className="petcardcontainer">
             {petcard.map((petinfo, index) => (
               <PetCard key={index} petinfo={petinfo} />
             ))}
