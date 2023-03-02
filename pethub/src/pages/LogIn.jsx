@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./styles/Login.css";
+import caticon from "../photos/cat.png";
 
 const LogInPage = () => {
   //useState is a hook that allows you to have state variables in functional components.
@@ -64,7 +65,9 @@ const LogInPage = () => {
         </div>
 
         <button type="submit" className="formButton">
+          <img src={caticon} alt="dog icon" className="cat-icon" />
           Login
+          <img src={caticon} alt="dog icon" className="cat-icon" />
         </button>
       </form>
     </div>
