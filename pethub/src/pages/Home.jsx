@@ -1,8 +1,8 @@
 import React from "react";
 import HeroImage from "../photos/HeroImage.png";
+import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
-import kitten from "../photos/kitten.jpg";
-import heart from "../photos/heart.png";
+
 import "./styles/homepage.css";
 import StateSelector from "../components/StateSelector";
 import { useState, useEffect } from "react";
@@ -157,7 +157,9 @@ const Home = () => {
       </div>
       <div className="featured-section">
         <h1 className="featured-banner" id="bannerid">
+          <img src={dogIcon} alt="dog icon" className="dog-icon" />
           Featured Pets
+          <img src={caticon} alt="dog icon" className="dog-icon" />
         </h1>
         {petcard?.length > 0 ? (
           <div className="pet-card-container">

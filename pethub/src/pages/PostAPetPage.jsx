@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { City, State } from "country-state-city";
 import "./styles/PostAPet.css";
+import dogIcon from "../photos/dog.png";
 
 const States = require("us-state-converter");
 
@@ -99,22 +100,6 @@ const AdoptionPage = () => {
     <form onSubmit={handleSubmit} className="adoption-form">
       <div className="adoption-form-grid">
         <div className="adoption-form-section-one">
-          <div className="adoption-form-image">
-            <input
-              type="file"
-              multiple
-              onChange={handleImageChange}
-              className="adoption-form-image-input"
-            />
-            {imageUrl.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt=""
-                className="adoption-form-image-preview"
-              />
-            ))}
-          </div>
           <h2 className="adoption-form-heading">Animal</h2>
           <div className="adoption-form-fields">
             <label className="adoption-form-field">
@@ -253,9 +238,26 @@ const AdoptionPage = () => {
               className="adoption-form-field-textarea"
             ></textarea>
           </div>
+          <div className="adoption-form-image">
+            <input
+              type="file"
+              multiple
+              onChange={handleImageChange}
+              className="adoption-form-image-input"
+            />
+            {imageUrl.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt=""
+                className="adoption-form-image-preview"
+              />
+            ))}
+          </div>
           <button type="submit" className="adoption-form-button">
             Submit
           </button>
+          <img src={dogIcon} alt="dog icon" className="dog-icon" />
         </div>
       </div>
     </form>

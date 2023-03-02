@@ -110,6 +110,12 @@ body {
   color: black;
   text-align: center;
   width: 100%;
+  display: flex;
+  align-items: center;
+}
+.featured-banner .dog-icon {
+  max-width: 50px;
+  margin: 1rem auto;
 }
 
 .featured-pet-image-section {
