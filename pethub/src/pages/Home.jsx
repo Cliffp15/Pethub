@@ -121,18 +121,19 @@ const Home = () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
-
-        <div className="search-for-animal">
-          {/* <input placeholder="City" type="text" id="cityinput" /> */}
-          <input placeholder="Zip Code" type="text" id="zipcodeinput" />
-          {/* create a dropdown for state */}
-          {/* <input placeholder="State" type="text" id="stateinput" /> */}
-          <input placeholder="Animal" type="text" id="animalinput" />
-          <input placeholder="Breed" type="text" id="breedinput" />
-          <button className="searchbutton" onClick={SearchPets}>
-            {" "}
-            Search{" "}
-          </button>
+        <div className="search-container">
+          <div className="search-for-animal">
+            {/* <input placeholder="City" type="text" id="cityinput" /> */}
+            <input placeholder="Zip Code" type="text" id="zipcodeinput" />
+            {/* create a dropdown for state */}
+            {/* <input placeholder="State" type="text" id="stateinput" /> */}
+            <input placeholder="Animal" type="text" id="animalinput" />
+            <input placeholder="Breed" type="text" id="breedinput" />
+            <button className="searchbutton" onClick={SearchPets}>
+              {" "}
+              Search{" "}
+            </button>
+          </div>
         </div>
       </div>
       <div className="featured-section">
