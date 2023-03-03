@@ -124,12 +124,27 @@ const Home = () => {
         <div className="search-container">
           <div className="search-for-animal">
             {/* <input placeholder="City" type="text" id="cityinput" /> */}
-            <input placeholder="Zip Code" type="text" id="zipcodeinput" />
+            <input
+              placeholder="Zip Code"
+              type="text"
+              id="zipcodeinput"
+              className="home-input"
+            />
             {/* create a dropdown for state */}
             {/* <input placeholder="State" type="text" id="stateinput" /> */}
-            <input placeholder="Animal" type="text" id="animalinput" />
-            <input placeholder="Breed" type="text" id="breedinput" />
-            <button className="searchbutton" onClick={SearchPets}>
+            <input
+              placeholder="Animal"
+              type="text"
+              id="animalinput"
+              className="home-input"
+            />
+            <input
+              placeholder="Breed"
+              type="text"
+              id="breedinput"
+              className="home-input"
+            />
+            <button className="search-button" onClick={SearchPets}>
               {" "}
               Search{" "}
             </button>
