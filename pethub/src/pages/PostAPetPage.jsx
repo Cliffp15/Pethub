@@ -198,6 +198,7 @@ const AdoptionPage = () => {
             </select>
           </label>
         </div>
+
         <h2 className="adoption-form-heading">Location</h2>
         <div className="adoption-form-fields">
           <label className="adoption-form-field">
