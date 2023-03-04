@@ -74,29 +74,10 @@ const SignUp = (props) => {
         }
       } catch (error) {
         console.error(error);
-        alert("An error occurred. Please try again.");
+        console.log(error);
+        alert(error.response.data);
       }
     }
-  };
-
-  const makeSignUpRequest = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:3001/signup",
-      data: formData,
-      headers: { "Content-Type": "application/json" },
-    })
-      .then(function (response) {
-        //handle success
-        console.log(response);
-        alert("User signed up successfully");
-      })
-      .catch(function (response) {
-        //handle error
-        console.log(response);
-        alert("An error occurred. Please try again.");
-      });
-    makeSignUpRequest();
   };
 
   // const port = process.env.PORT || 3001;
