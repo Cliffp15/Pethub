@@ -1,6 +1,7 @@
 import { useState,useEffect, React} from 'react';
 import GoogleMapReact from 'google-map-react'
 import axios from 'axios';
+import  {fetchToken} from '../api/petFinderToken';
 
 const FindShelter = (props) => {
 
@@ -33,13 +34,14 @@ const FindShelter = (props) => {
   useEffect(() => {
     // Get a list of shelters from the Petfinder API
     const getShelters = async () => {
+      const token = fetchToken();
       const response = await axios.get(
         'https://api.petfinder.com/v2/organizations',
         {
           headers: {
             "Accept": "application/jason",
             "Content-type": "application/jason",
-            Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6Ijg3NzlmMjI4ZmI0YzAxOTExMWZlMzRlMjNhYWVjZTg0ODU3MGJhYzFhY2U3ODI5MzY3YzYyNTU2MWM2YWFlN2YzMzM1Nzk1NzQ4ZjgwOTViIiwiaWF0IjoxNjc2NTg4MjE5LCJuYmYiOjE2NzY1ODgyMTksImV4cCI6MTY3NjU5MTgxOSwic3ViIjoiIiwic2NvcGVzIjpbXX0.zjYSJA9FBEESs1a8V33LPP7yLY4cs2rL9LLm8IMFzTKIAocHlZ9ZmvycQsvEHWm4fD5Etyc4db064ob-xEkzYT8DAfg2mN9xL_F8k3DG564Ub196dNsFyfoT4A9yy0hMoru2gwfwqwPNA16dZAgm3i8NITN9WiK27pOhn3y_4iAD5tnD4U52BGjIOofpcLiES_0zT5X6Sz3rUWMfe-CWWx3PFETV0VyAWZhZzCsDzwPEVM_51WlqWfoH-BHAneNiQ3u-TH_eAjcsjvs3whsuD4DXdpFzs5JiIgDl_S7loz3fEWFMPYZVtCukdEEUZWVT7rIjtj93ChQokt8xKHZfhA"
+            Authorization: `Bearer ${token}`
           },
           params: {
             location: `${location.lat},${location.lng}`,
