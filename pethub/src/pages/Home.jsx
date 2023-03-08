@@ -2,13 +2,11 @@ import React from "react";
 import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 
-
-
 import caticon from "../photos/cat.png";
 
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
-import  {fetchToken} from '../api/petFinderToken';
+import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
@@ -30,8 +28,8 @@ const Home = () => {
         headers: {
           Accept: "application/json",
           "Content-type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const data = await response.json();
       setpetcard(data.animals);
@@ -53,8 +51,7 @@ const Home = () => {
           //Bearer token needs to be updated every hour for access to api
           // or it will produce 401 Error
 
-          Authorization: `Bearer ${token}` 
-
+          Authorization: `Bearer ${token}`,
         },
       });
       console.log(`${API_URL}${animal}`);
@@ -73,7 +70,7 @@ const Home = () => {
     setpetcard(petsWithPhotos.slice(0, 20));
 
     setfirstcall(false);
-//  return data;
+    //  return data;
   };
 
   const SearchPets = async () => {
@@ -93,7 +90,6 @@ const Home = () => {
       Fetchpets("");
     }
   }, [petcard, firstcall]);
-  
 
   return (
     <div className="home-page">
