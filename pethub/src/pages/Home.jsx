@@ -1,7 +1,11 @@
 import React from "react";
 import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
+
+
+
 import caticon from "../photos/cat.png";
+
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import  {fetchToken} from '../api/petFinderToken';
@@ -48,7 +52,9 @@ const Home = () => {
           "Content-type": "application/json",
           //Bearer token needs to be updated every hour for access to api
           // or it will produce 401 Error
+
           Authorization: `Bearer ${token}` 
+
         },
       });
       console.log(`${API_URL}${animal}`);
@@ -94,18 +100,34 @@ const Home = () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
-
-        <div className="search-for-animal">
-          {/* <input placeholder="City" type="text" id="cityinput" /> */}
-          <input placeholder="Zip Code" type="text" id="zipcodeinput" />
-          {/* create a dropdown for state */}
-          {/* <input placeholder="State" type="text" id="stateinput" /> */}
-          <input placeholder="Animal" type="text" id="animalinput" />
-          <input placeholder="Breed" type="text" id="breedinput" />
-          <button className="searchbutton" onClick={SearchPets}>
-            {" "}
-            Search{" "}
-          </button>
+        <div className="search-container">
+          <div className="search-for-animal">
+            {/* <input placeholder="City" type="text" id="cityinput" /> */}
+            <input
+              placeholder="Zip Code"
+              type="text"
+              id="zipcodeinput"
+              className="home-input"
+            />
+            {/* create a dropdown for state */}
+            {/* <input placeholder="State" type="text" id="stateinput" /> */}
+            <input
+              placeholder="Animal"
+              type="text"
+              id="animalinput"
+              className="home-input"
+            />
+            <input
+              placeholder="Breed"
+              type="text"
+              id="breedinput"
+              className="home-input"
+            />
+            <button className="search-button" onClick={SearchPets}>
+              {" "}
+              Search{" "}
+            </button>
+          </div>
         </div>
       </div>
       <div className="featured-section">

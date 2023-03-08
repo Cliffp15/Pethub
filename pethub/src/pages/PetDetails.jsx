@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import { fetchToken } from '../api/petFinderToken';
 
 const ComponentDetails = () => {
@@ -14,6 +15,7 @@ const ComponentDetails = () => {
 //       .catch(error => console.error(error));
 //   }, [id]);
 
+
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
 
@@ -23,6 +25,7 @@ const ComponentDetails = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
+
 
         Authorization: `Bearer ${token}`
 
@@ -50,12 +53,21 @@ const ComponentDetails = () => {
   }
 
   return (
-    <div className="component-details">
-      <img src={component.photos[0]?.medium}></img>
-      <h2>{component.name}</h2>
-      <img src={component.imageUrl} alt={component.title} />
-      <h2 className="Breed&Age">{component.breeds.primary}, {component.age}</h2>
-      <p>{component.description}</p>
+
+    <div className="pet-details-container">
+      <div variant="outlined" className="component-details">
+        <img
+          className="pet-details-img"
+          src={component.photos[0]?.medium}
+        ></img>
+        <h2 className="pet-details-header">{component.name}</h2>
+        <img src={component.imageUrl} alt={component.title} />
+        <h2 className="breed-age">
+          {component.breeds.primary}, {component.age}
+        </h2>
+        <p className="pet-details-para">{component.description}</p>
+      </div>
+
     </div>
   );
 };

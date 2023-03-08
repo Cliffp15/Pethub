@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 import "./styles/Login.css";
 import caticon from "../photos/cat.png";
 
@@ -42,7 +43,6 @@ const LogInPage = () => {
       });
   };
   return (
-
     <div className="container">
       <form onSubmit={handleSubmit} className="formContainer">
         <div className="formInput">
@@ -72,7 +72,6 @@ const LogInPage = () => {
         </button>
       </form>
     </div>
-
   );
 };
 export default LogInPage;
