@@ -2,19 +2,44 @@ import React from "react";
 import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 
+import caticon from "../photos/cat.png";
+
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
-
+import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
 const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 
+// const API_URL = "https://api.petfinder.com/v2/animals?type=";
+
 const Home = () => {
+  const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
 
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const token = await fetchToken();
+      const response = await fetch(`${API_URL}cat`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setpetcard(data.animals);
+      setfirstcall(false);
+    }, 3600000); // 1 hour = 3,600,000 milliseconds
+    return () => clearInterval(intervalId);
+  }, []);
+
   const Fetchpets = async (animal) => {
+    const token = await fetchToken();
     let petsWithPhotos = [];
     while (petsWithPhotos.length < 20) {
       const response = await fetch(`${API_URL}${animal}`, {
@@ -25,8 +50,8 @@ const Home = () => {
           "Content-type": "application/json",
           //Bearer token needs to be updated every hour for access to api
           // or it will produce 401 Error
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6ImY0MDFjZjQ1ZmFlZWRhYTY4ODdmY2FlYWM3YTE0NTI2YmQ2NTgzZmMwN2RlNmNmNDQwZmE0MGZkZWQ3NmIzMWRmZGFjMWMwNTRmYjM4ZGE5IiwiaWF0IjoxNjc4MjIxNzk4LCJuYmYiOjE2NzgyMjE3OTgsImV4cCI6MTY3ODIyNTM5OCwic3ViIjoiIiwic2NvcGVzIjpbXX0.ehD2EXrqcAOewZzKw3ikiRddEHKbdiJSU0RCYO9vttAV_y739mhT6uxML0gp_INr9Chi1OJwypZTdwyUyKr2YMY0YL86rQUhGT4UPQiFm0P6fU6vt_KHpTAjPBphqdGxbl_kHTq-vKqsMEFNg-mzorrz8Oxnfwrbnv-jJLImReXuKSNOkJllygMi-fQu6oqp94QspVw-ygIkugkEw-oV2pvvFiCGc9APYucH_clZUZw6R6ASPJbVQU7IWkJSQauSS9_1XHZ-tZdUxLfTVpWv_z04TVix6KwciIS28poY_qums50tbusTc_cFoqBto8kdGy_bE_Tgq2ZbLF0Ao8Gcpg",
+
+          Authorization: `Bearer ${token}`,
         },
       });
       console.log(`${API_URL}${animal}`);
@@ -45,6 +70,7 @@ const Home = () => {
     setpetcard(petsWithPhotos.slice(0, 20));
 
     setfirstcall(false);
+    //  return data;
   };
 
   const SearchPets = async () => {
@@ -64,57 +90,6 @@ const Home = () => {
       Fetchpets("");
     }
   }, [petcard, firstcall]);
-  // const SearchPets=async () =>{
-
-  // // const params = URLSearchParams({
-  // //   type: animalinput,
-  // //   breed: breedinput,
-  // //   city: cityinput,
-  // //   state: stateinput
-  // // });
-  // const params = new URLSearchParams({
-  //   type: animalinput,
-  //   breed: breedinput,
-  //   location: cityinput,stateinput
-  // });
-
-  // const SearchAPI_URL = `https://api.petfinder.com/v2/animals?type=${animalinput}&breeds=${breedinput}/location/${stateinput}/${cityinput}`;
-
-  // console.log(params);
-  // console.log(new URLSearchParams({
-  //   type: animalinput,
-  //   breeds: breedinput,
-  //   city: cityinput,
-  //   state: stateinput
-  // }));
-
-  //   const newresponse = await fetch(`${SearchAPI_URL}`, {
-  //     method: "GET",
-  //     mode: "cors",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-type": "application/json",
-  //       //Bearer token needs to be updated every hour for access to api
-  //       // or it will produce 401 Error
-  //       Authorization:
-  //         'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ6VXdsUUxkYnB3eUZhbHpCQ1dFZVl5aWpKS1JPOVl6WndzQWtCQ0VBR25LUmFQTjM0YiIsImp0aSI6ImYyODMyNmFlNzg2Mjg1NDRkMzc5Y2I2MWRhZDY3MDYxMWIxODA0ZDQwZjZiZDQyYzllYzZlZGRmNTAxZTA0YTMzYTgyN2EzZDQwOWVjYWU3IiwiaWF0IjoxNjc3MDk3MjgzLCJuYmYiOjE2NzcwOTcyODMsImV4cCI6MTY3NzEwMDg4Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.u-V6TiEPREl7PBef0MnGo_KnooAL4iXIrOAdP0856NVw5d0e4cKA-8Ja4XkZ1XdaeFpQqmaPMi_b8-3am884_4ByaoveMqdJVf01v1TsGO9pOfzd90ZfesKi-h5_fnhM_wnCKI4ymvkGf_OHUvT6rh4rAdX3kOI9CnYBsFF7-FEmBuILevoOwFmpi6reZFQg9S6qwKJ8PHD1ZTxwP4Hi55bCi9DooP8aiXK5I_HPFAQ4x8yzuFuDlmB3o10iv2uEsVp-dLBMIO-uSKASl2aD6vMRa0Gc7garoxNM208G5jjGwkTb4HIRgR-5P6f5Zr3iujQgs8_GmSWIaY_whJ7a9w'
-  //     },
-  //   });
-
-  //     const newdata = await newresponse.json();
-
-  //     console.log(newdata);
-  //     console.log(newdata.animals);
-  //     setpetcard(newdata.animals);
-  //     console.log(petcard);
-  // };
-
-  // useEffect(() => {
-  //   if (firstcall) {
-  //     SearchPets();
-  //     firstcall = false;
-  //   }
-  // }, petcard);
 
   return (
     <div className="home-page">
