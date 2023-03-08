@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { City, State } from "country-state-city";
 import "./styles/PostAPet.css";
 
 const States = require("us-state-converter");
+
 
 const AdoptionPage = () => {
   const [imageUrl, setImageUrl] = useState([]);
@@ -152,6 +154,7 @@ const AdoptionPage = () => {
               ></input>
             </label>
 
+
             <label className="adoption-form-field">
               Sex:
               <select
@@ -164,6 +167,7 @@ const AdoptionPage = () => {
                 <option value="female">Female</option>
               </select>
             </label>
+
 
             <label className="adoption-form-field">
               Color:
@@ -264,3 +268,4 @@ const AdoptionPage = () => {
   );
 };
 export default AdoptionPage;
+
