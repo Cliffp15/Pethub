@@ -88,7 +88,6 @@ const SignUp = (props) => {
 
   return (
     <div className="form-container">
-      <h1>Sign Up</h1>
       <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-column">
           <h1 className="sign-up-text">Sign Up</h1>
@@ -178,7 +177,6 @@ const SignUp = (props) => {
               className="sign-up-input"
               placeholder="Phone Number"
               type="text"
-
               name="phone"
               value={phone}
               onChange={(e) => onChange(e)}
@@ -188,9 +186,7 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="city">City</label> */}
             <input
-
               className="sign-up-input"
-
               placeholder="City"
               type="text"
               name="city"
@@ -202,9 +198,7 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="state">State</label> */}
             <input
-
               className="sign-up-input"
-
               placeholder="State"
               type="text"
               name="state"
@@ -216,9 +210,7 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
             <input
-
               className="sign-up-input"
-
               placeholder="Zip"
               type="text"
               name="zip"
@@ -228,7 +220,6 @@ const SignUp = (props) => {
             />
           </div>
 
-
           <input
             className="sign-up-button"
             type="submit"
@@ -236,7 +227,6 @@ const SignUp = (props) => {
             onClick={onChange}
           />
         </div>
-
       </form>
       <p>
         Already have an account? <Link to="/login">Sign In</Link>
