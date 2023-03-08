@@ -26,7 +26,7 @@ const Home = () => {
           //Bearer token needs to be updated every hour for access to api
           // or it will produce 401 Error
           Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjRiYWRjN2VkZjQ2YjJjM2I2Y2M0NGI3Njk2MjQ4ZDVlMmM1YzRkMjdjZTRjMDcwZTVkM2U2MGIwZTc5ZDJhYjA2NzQ4YjljYzI3OWFmYzNlIiwiaWF0IjoxNjc4MDYwNDk1LCJuYmYiOjE2NzgwNjA0OTUsImV4cCI6MTY3ODA2NDA5NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.HtHPKatWm45vVNekrMp4ZYjm0zchMEXuRnMo6wj3sUXpGZLJymI8FViZglxoMqvA-8O-KIPm6SVw1SUpV4UfSWZvvQjtjmkrPxNbMumT06JJUILGfBiBHzY6ACf_BcKNTUW8S_qKvpCW7AkwWPj5f_GO5KwGOXXbVE5pkab_E0aA9bt4jedbpzgyevMSmpPPGe0geX8F87gPNhWe2B142wW98TCCFvywmV-IjbN-Fc3yaUZ5D8vJuEnLpjNjwesSkxVQpqEoZ1-6LoGaL5mR8QKvWmhkUjpmOq_GbXLuXm-7l21QrHlQH6LMPO4JAwR4CUSD08CjS3EwqR8DQV0U7g",
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6ImY0MDFjZjQ1ZmFlZWRhYTY4ODdmY2FlYWM3YTE0NTI2YmQ2NTgzZmMwN2RlNmNmNDQwZmE0MGZkZWQ3NmIzMWRmZGFjMWMwNTRmYjM4ZGE5IiwiaWF0IjoxNjc4MjIxNzk4LCJuYmYiOjE2NzgyMjE3OTgsImV4cCI6MTY3ODIyNTM5OCwic3ViIjoiIiwic2NvcGVzIjpbXX0.ehD2EXrqcAOewZzKw3ikiRddEHKbdiJSU0RCYO9vttAV_y739mhT6uxML0gp_INr9Chi1OJwypZTdwyUyKr2YMY0YL86rQUhGT4UPQiFm0P6fU6vt_KHpTAjPBphqdGxbl_kHTq-vKqsMEFNg-mzorrz8Oxnfwrbnv-jJLImReXuKSNOkJllygMi-fQu6oqp94QspVw-ygIkugkEw-oV2pvvFiCGc9APYucH_clZUZw6R6ASPJbVQU7IWkJSQauSS9_1XHZ-tZdUxLfTVpWv_z04TVix6KwciIS28poY_qums50tbusTc_cFoqBto8kdGy_bE_Tgq2ZbLF0Ao8Gcpg",
         },
       });
       console.log(`${API_URL}${animal}`);
