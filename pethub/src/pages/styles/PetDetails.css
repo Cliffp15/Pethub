@@ -1,0 +1,43 @@
+.pet-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.component-details {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  margin: 16px;
+}
+
+.pet-details-img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.pet-details-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.breed-age {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.pet-details-para {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
