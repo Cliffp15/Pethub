@@ -10,7 +10,8 @@ import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
-const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
+// const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
+const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&page=";
 
 // const API_URL = "https://api.petfinder.com/v2/animals?type=";
 
@@ -38,11 +39,13 @@ const Home = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const Fetchpets = async (animal) => {
+  let pagination =1;
+  const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
+    
     while (petsWithPhotos.length < 20) {
-      const response = await fetch(`${API_URL}${animal}`, {
+      const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -54,7 +57,7 @@ const Home = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(`${API_URL}${animal}`);
+      console.log(`${API_URL}${pagination}`);
 
       const data = await response.json();
       console.log(data);
@@ -65,6 +68,7 @@ const Home = () => {
       );
       petsWithPhotos = [...petsWithPhotos, ...newPets];
       console.log(petsWithPhotos);
+      pagination++;
     }
 
     setpetcard(petsWithPhotos.slice(0, 20));
@@ -87,7 +91,7 @@ const Home = () => {
 
   useEffect(() => {
     if (firstcall) {
-      Fetchpets("");
+      Fetchpets("1");
     }
   }, [petcard, firstcall]);
 
