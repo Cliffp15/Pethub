@@ -80,6 +80,8 @@ const Home = () => {
   const searchFetchpets = async (animal) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
+    let phrase1 = "page="
+    let phrase2 = "&type="
     while (petsWithPhotos.length < 20) {
       const response = await fetch(`${searchAPI_URL}${animal}`, {
         method: "GET",
