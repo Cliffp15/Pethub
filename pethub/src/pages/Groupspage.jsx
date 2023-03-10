@@ -26,7 +26,7 @@ const groupsampledata = [
   },
   { 
       title: "Reptilian Regiment", 
-      description: "The best place to reptiles from all over!",
+      description: "The best place for reptiles from all over!",
       photos: `${snake}`, 
   },
   { 
@@ -70,7 +70,7 @@ const GroupsPage = () => {
             {/* //Turning these into functions later using
             //arraydata(groupsampledata) to map over,
             //component(GroupBannerCard), 
-            //and property(GroupBannerCard)
+            //and property(GroupBannerinfo)
             // as parameters */}
             {groupsampledata?.length > 0 ? (
                 <div className="groupbannercardcontainer">
@@ -96,8 +96,8 @@ const GroupsPage = () => {
 
           {/* //Turning these into functions using
             //arraydata(groupsampledata) to map over,
-            //component(GroupBannerCard), 
-            //and property(GroupBannerCard)
+            //component(GroupCard), 
+            //and property(GroupBannerinfo)
             // as parameters */}
                   {groupsampledata?.length > 0 ? (
                 <div className="groupcardcontainer">
