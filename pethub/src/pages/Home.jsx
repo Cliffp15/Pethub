@@ -10,10 +10,10 @@ import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
-// const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
-const API_URL = "https://api.petfinder.com/v2/animals?&limit=20&page=";
+// const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
+const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
 
-// const API_URL = "https://api.petfinder.com/v2/animals?type=";
+const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -43,7 +43,6 @@ const Home = () => {
   const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    
     while (petsWithPhotos.length < 20) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
@@ -77,6 +76,42 @@ const Home = () => {
     //  return data;
   };
 
+
+  const searchFetchpets = async (animal) => {
+    const token = await fetchToken();
+    let petsWithPhotos = [];
+    while (petsWithPhotos.length < 20) {
+      const response = await fetch(`${searchAPI_URL}${animal}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          //Bearer token needs to be updated every hour for access to api
+          // or it will produce 401 Error
+
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(`${API_URL}${animal}`);
+
+      const data = await response.json();
+      console.log(data);
+
+      const filteredData = Object.values(data.animals);
+      const newPets = filteredData.filter(
+        (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+      );
+      petsWithPhotos = [...petsWithPhotos, ...newPets];
+      console.log(petsWithPhotos);
+      pagination++;
+    }
+
+    setpetcard(petsWithPhotos.slice(0, 20));
+
+    setfirstcall(false);
+    //  return data;
+  };
   const SearchPets = async () => {
     // debugger;
 
@@ -86,7 +121,7 @@ const Home = () => {
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
 
-    Fetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
+    searchFetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
   };
 
   useEffect(() => {
