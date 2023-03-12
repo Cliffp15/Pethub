@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import "./styles/PetDetails.css";
 import { fetchToken } from "../api/petFinderToken";
 
 const ComponentDetails = () => {
@@ -61,6 +61,7 @@ const ComponentDetails = () => {
           {component.breeds.primary}, {component.age}
         </h2>
         <p className="pet-details-para">{component.description}</p>
+        <button className="adopt-button">Adopt {component.name}</button>
       </div>
     </div>
   );
