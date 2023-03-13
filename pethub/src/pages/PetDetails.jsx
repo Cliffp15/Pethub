@@ -9,6 +9,7 @@ const ComponentDetails = () => {
   const [component, setComponent] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  let firstcall = true;
 
   //   useEffect(() => {
   //     fetch(`https://api.petfinder.com/v2/animals/${id}`)
@@ -20,25 +21,27 @@ const ComponentDetails = () => {
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
 
-    const response = await fetch(`https://api.petfinder.com/v2/animals/${id}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://api.petfinder.com/v2/animals/${id}?fields=description&format=full`,
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
 
     console.log(data);
     console.log(data.animal);
+    const fullDescription = data.animal.description.replace(/\.\.\.$/, "");
+    data.animal.description = fullDescription;
     setComponent(data.animal);
   };
-
-  let firstcall = true;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -70,12 +73,48 @@ const ComponentDetails = () => {
           src={component.photos[0]?.medium}
           alt={component.name}
         ></img>
-        <h2 className="pet-details-header">{component.name}</h2>
-        <img src={component.imageUrl} alt={component.title} />
-        <h2 className="breed-age">
-          {component.breeds.primary}, {component.age}
-        </h2>
-        <p className="pet-details-para">{component.description}</p>
+        <ul className="pet-details-list">
+          {component.gender && (
+            <li className="pet-details-li">{component.gender}</li>
+          )}
+          {component.size && (
+            <li className="pet-details-li">{component.size}</li>
+          )}
+          {component.color && (
+            <li className="pet-details-li">{component.color}</li>
+          )}
+          {component.breeds.primary && (
+            <li className="pet-details-li">{component.breeds.primary}</li>
+          )}
+        </ul>
+        <div className="pet-details-about">
+          <h2 className="pet-details-about-heading">About {component.name}</h2>
+          <ul className="pet-details-about-list">
+            <li className="pet-details-about-li">Age: {component.age}</li>
+            <li className="pet-details-about-li">
+              Coat Length: {component.coat}
+            </li>
+            <li className="pet-details-about-li">
+              House-trained: {component.attributes.house_trained ? "Yes" : "No"}
+            </li>
+            <li className="pet-details-about-li">
+              Shots up to date:{" "}
+              {component.attributes.shots_current ? "Yes" : "No"}
+            </li>
+            <li className="pet-details-about-li">
+              Good with children:{" "}
+              {component.environment.children ? "Yes" : "No"}
+            </li>
+            <li className="pet-details-about-li">
+              Good with other dogs: {component.environment.dogs ? "Yes" : "No"}
+            </li>
+          </ul>
+          {component.fee && (
+            <p className="pet-details-about-fee">
+              Adoption fee: ${component.fee.amount}
+            </p>
+          )}
+        </div>
         <button className="adopt-button" onClick={handleAdoptClick}>
           Adopt {component.name}
         </button>

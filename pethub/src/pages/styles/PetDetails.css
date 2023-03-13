@@ -48,7 +48,7 @@
 .adopt-button {
   padding: 1rem 1.5rem;
   border-radius: 10px;
-  margin-top: 1rem;
+
   margin: 0 auto; /* Center the button horizontally */
   border: none;
   background-color: #ff7f50;
@@ -56,5 +56,68 @@
   cursor: pointer;
   font-size: clamp(1rem, 2vw, 1.5rem);
   transition: 0.2s ease-in-out;
+
   text-align: center;
+}
+/* list styles */
+.pet-details-list {
+  margin: 2rem 0 2rem 0;
+  list-style-type: none;
+
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pet-details-li {
+  margin: 0 8px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.pet-details-li:not(:last-child):after {
+  content: "·";
+  margin: 0 8px;
+  color: #333;
+}
+
+/* pet details about */
+.pet-details-about {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  margin: 16px;
+  padding: 16px;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+}
+
+.pet-details-about-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.pet-details-about-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pet-details-about-li {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.pet-details-about-li:last-child {
+  margin-bottom: 0;
+}
+
+.pet-details-about-fee {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 16px;
 }
