@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import "./styles/PetDetails.css";
 import { fetchToken } from "../api/petFinderToken";
 
 const ComponentDetails = () => {
   const { id } = useParams();
   const [component, setComponent] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   //   useEffect(() => {
   //     fetch(`https://api.petfinder.com/v2/animals/${id}`)
@@ -38,11 +41,22 @@ const ComponentDetails = () => {
   let firstcall = true;
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
     if (firstcall) {
       Fetchpets("dog");
       firstcall = false;
     }
   }, [id]);
+
+  function handleAdoptClick() {
+    if (isAuthenticated) {
+      // TODO: Implement adoption functionality
+    } else {
+      // Redirect to sign up page if not authenticated
+      navigate("/signup");
+    }
+  }
 
   if (!component) {
     return <div>Loading...</div>;
@@ -54,6 +68,7 @@ const ComponentDetails = () => {
         <img
           className="pet-details-img"
           src={component.photos[0]?.medium}
+          alt={component.name}
         ></img>
         <h2 className="pet-details-header">{component.name}</h2>
         <img src={component.imageUrl} alt={component.title} />
@@ -61,7 +76,9 @@ const ComponentDetails = () => {
           {component.breeds.primary}, {component.age}
         </h2>
         <p className="pet-details-para">{component.description}</p>
-        <button className="adopt-button">Adopt {component.name}</button>
+        <button className="adopt-button" onClick={handleAdoptClick}>
+          Adopt {component.name}
+        </button>
       </div>
     </div>
   );
