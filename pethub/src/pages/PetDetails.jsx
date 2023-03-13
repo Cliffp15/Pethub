@@ -87,27 +87,49 @@ const ComponentDetails = () => {
             <li className="pet-details-li">{component.breeds.primary}</li>
           )}
         </ul>
+        <div className="pet-details-about-divider"></div>
         <div className="pet-details-about">
           <h2 className="pet-details-about-heading">About {component.name}</h2>
           <ul className="pet-details-about-list">
-            <li className="pet-details-about-li">Age: {component.age}</li>
-            <li className="pet-details-about-li">
-              Coat Length: {component.coat}
-            </li>
-            <li className="pet-details-about-li">
-              House-trained: {component.attributes.house_trained ? "Yes" : "No"}
-            </li>
-            <li className="pet-details-about-li">
-              Shots up to date:{" "}
-              {component.attributes.shots_current ? "Yes" : "No"}
-            </li>
-            <li className="pet-details-about-li">
-              Good with children:{" "}
-              {component.environment.children ? "Yes" : "No"}
-            </li>
-            <li className="pet-details-about-li">
-              Good with other dogs: {component.environment.dogs ? "Yes" : "No"}
-            </li>
+            {component.age && (
+              <li className="pet-details-about-li">Age: {component.age}</li>
+            )}
+            {component.coat && (
+              <li className="pet-details-about-li">
+                Coat Length: {component.coat}
+              </li>
+            )}
+            {component.attributes && component.attributes.house_trained && (
+              <li className="pet-details-about-li">House-trained: Yes</li>
+            )}
+            {component.attributes && !component.attributes.house_trained && (
+              <li className="pet-details-about-li">House-trained: No</li>
+            )}
+            {component.attributes && component.attributes.shots_current && (
+              <li className="pet-details-about-li">Shots up to date: Yes</li>
+            )}
+            {component.attributes && !component.attributes.shots_current && (
+              <li className="pet-details-about-li">Shots up to date: No</li>
+            )}
+            {component.environment && component.environment.children && (
+              <li className="pet-details-about-li">Good with children: Yes</li>
+            )}
+            {component.environment && !component.environment.children && (
+              <li className="pet-details-about-li">Good with children: No</li>
+            )}
+            {component.environment && component.environment.dogs && (
+              <li className="pet-details-about-li">
+                Good with other dogs: Yes
+              </li>
+            )}
+            {component.environment && !component.environment.dogs && (
+              <li className="pet-details-about-li">Good with other dogs: No</li>
+            )}
+            {component.characteristics && (
+              <li className="pet-details-about-li">
+                Characteristics: {component.characteristics}
+              </li>
+            )}
           </ul>
           {component.fee && (
             <p className="pet-details-about-fee">
