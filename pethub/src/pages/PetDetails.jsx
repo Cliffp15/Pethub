@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import SimilarPets from "../components/SimilarPets";
 import "./styles/PetDetails.css";
 import { fetchToken } from "../api/petFinderToken";
 
@@ -73,6 +73,7 @@ const ComponentDetails = () => {
           src={component.photos[0]?.medium}
           alt={component.name}
         ></img>
+        <div className="pet-details-about-divider"></div>
         <ul className="pet-details-list">
           {component.gender && (
             <li className="pet-details-li">{component.gender}</li>
@@ -91,6 +92,11 @@ const ComponentDetails = () => {
         <div className="pet-details-about">
           <h2 className="pet-details-about-heading">About {component.name}</h2>
           <ul className="pet-details-about-list">
+            <li className="pet-details-about-li">
+              Location: {component.contact.address.city},{" "}
+              {component.contact.address.state}
+            </li>
+
             {component.age && (
               <li className="pet-details-about-li">Age: {component.age}</li>
             )}
@@ -141,6 +147,7 @@ const ComponentDetails = () => {
           Adopt {component.name}
         </button>
       </div>
+      {/* <SimilarPets petinfo={component} /> */}
     </div>
   );
 };
