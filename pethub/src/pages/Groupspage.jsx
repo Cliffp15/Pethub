@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import GroupCard from "../components/Groups";
 import GroupBannerCard from "../components/GroupsBanners";
 
+
 //Need to use database info instead in future
 const groupsampledata = [
   {
