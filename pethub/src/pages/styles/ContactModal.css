@@ -1,0 +1,61 @@
+.contact-modal-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+}
+
+.contact-modal-title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.contact-modal-instructions {
+  margin-bottom: 1.5rem;
+}
+
+.contact-modal-details {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-modal-detail {
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-modal-detail-label {
+  font-weight: 600;
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}

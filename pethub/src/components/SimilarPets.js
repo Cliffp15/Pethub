@@ -1,47 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { fetchToken } from "../api/petFinderToken";
-import PetCard from "./PetImageSelection";
+import React from "react";
 
-const SimilarPets = () => {
-  const [similarPets, setSimilarPets] = useState([]);
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchSimilarPets = async () => {
-      const token = await fetchToken();
-      const response = await fetch(
-        `https://api.petfinder.com/v2/animals/${id}/similar`,
-        {
-          method: "GET",
-          mode: "cors",
-          headers: {
-            Accept: "application/json",
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.json();
-      if (data.animals) {
-        console.log(data.animals);
-        setSimilarPets(data.animals);
-      } else {
-        setSimilarPets([]);
-      }
-    };
-
-    fetchSimilarPets();
-  }, [id]);
-
+const SimilarPets = ({ pets }) => {
   return (
-    <div className="similar-pets">
-      <h1>Similar Pets</h1>
-      {similarPets.length > 0 ? (
-        similarPets.map((pet) => <PetCard key={pet.id} petinfo={pet} />)
-      ) : (
-        <p>No similar pets found</p>
-      )}
+    <div className="similar-pets-container">
+      <h2 className="similar-pets-title">Similar Pets</h2>
+      <div className="similar-pets-grid">
+        {pets.map((pet) => (
+          <a key={pet.id} href={`/petcard/${pet.id}`} className="similar-pet">
+            <img
+              src={pet.photos[0]?.medium}
+              alt={pet.name}
+              className="similar-pet-img"
+            />
+            <h3 className="similar-pet-name">{pet.name}</h3>
+            <p className="similar-pet-breed">{pet.breeds.primary}</p>
+          </a>
+        ))}
+      </div>
     </div>
   );
 };
