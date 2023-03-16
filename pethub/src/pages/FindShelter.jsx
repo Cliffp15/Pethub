@@ -8,6 +8,7 @@ const FindShelter = (props) => {
   const [error, setError] = useState(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
+  const [isSheltersVisible, setIsSheltersVisible] = useState(false);
 
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
@@ -39,7 +40,7 @@ const FindShelter = (props) => {
           headers: {
             Accept: "application/jason",
             "Content-type": "application/jason",
-            Authorization: ` Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6ImJkNjkxYmVkNTFjNzQ3YjU3YTdlZWNiY2Y4ZTc4NzBmOGQ5MDg5YWJjNzkzZjliZjY4N2JkOWQ5NGFlNWFkZDhkNjc2NWU3OTFjYTM4ZDQ1IiwiaWF0IjoxNjc4Mzk1NDYxLCJuYmYiOjE2NzgzOTU0NjEsImV4cCI6MTY3ODM5OTA2MSwic3ViIjoiIiwic2NvcGVzIjpbXX0.Li7PLnwyuTd3R74O6ovcRIgH-8pUeUcw9RAzjecsA-IeAJaX71zUiXvtWgHxfAGWp3NnOPzk9GLsF1toGhZiLoTed1VcNmOhqXzH3BcoYEhVn1B2Ss2wfcZkGND6oz8Oc3DM9Nef7UCVkh35sKsnV_v_6TeMVnqtiJcG-PRpVzdI0Dtnf88ZnefDZ9CzFqkxp8N0qG4gzsQiYuBSUvauGMIOfhr34hnx_t2yR7Vr_WQ-F6IfvcQ0rBifbj4pxbD2QWR4t0AK4kP13J7owl8uouBSAPAu6uXNc3UUvNMpv047MgwMxz0P8nDsp2iPoPpWL7PyzQJWzSQ_0LdK49x82g`,
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6IjUyYzc4ODIyZjcxODhhOTZhZmIzMWY3MTc0NjY5MGQ4YTlhZTM5ZDI0ZTVkYjJiYjZkYTk3OGU5NGZhZThlZGI0MjQ3OGJhNGNmZGNkNTUxIiwiaWF0IjoxNjc4OTQxODkyLCJuYmYiOjE2Nzg5NDE4OTIsImV4cCI6MTY3ODk0NTQ5Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.X2BBvVOSj8mxfFVkyDr4ZwnDJWGUrgMitsLTb0O_kvsZqgq9Z8ukMD0KTOQhGMdTwuOPeWfyY9qu_Ec10gDAKEi7uoZr-JoZbjGk-hkg2VXfzQx_zTN--K8a51R-xWSjduS0TKyCAkfxNd9nOdNzmT9a7WJNtrXkExWtqpuvvqO6YvBN5oKzB_9_89S-h9ZT1Swtz0WUSUAQy8vAQBKGATcptoujtKFIv0iyS2PkkgWzhp81zKIGVcI7hnUR3BiIAcK9xT5oj6E8WbHH__7JbGBRUS6GWKYxfegZqIvf2mo8l1unnOP8KgwhUyP7AKN_dU-MNKe6ylyLhWJVhyG8Yw`,
           },
           params: {
             location: `${userLocation.lat},${userLocation.lng}`,
@@ -55,39 +56,60 @@ const FindShelter = (props) => {
       getShelters();
     }
   }, [userLocation]);
-  
- 
- useEffect(() => {
-   if (userLocation) {
-     const initMap = () => {
-       const map = new window.google.maps.Map(document.getElementById("map"), {
-         center: userLocation,
-         zoom: 12,
-       });
-       const marker = new window.google.maps.Marker({
-         position: userLocation,
-         map: map,
-       });
-       setMap(map);
-       setMarker(marker);
 
-       marker.addListener("click", () => {
-        map.panTo(marker.getPosition());
-        // map.setZoom(15);
-      });
-     
+  useEffect(() => {
+    if (userLocation) {
+      const initMap = () => {
+        const map = new window.google.maps.Map(document.getElementById("map"), {
+          center: userLocation,
+          zoom: 12,
+        });
+        const marker = new window.google.maps.Marker({
+          position: userLocation,
+          map: map,
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            fillColor: "blue", // Set the fill color to red
+            fillOpacity: 1,
+            strokeWeight: 0,
+            scaledSize: new window.google.maps.Size(35, 35), // Set the size of the marker
+          },
+        });
+        setMap(map);
+        setMarker(marker);
 
-     };
-     if (window.google) {
-       initMap();
-     } else {
-       const script = document.createElement("script");
-       script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
-       script.onload = () => initMap();
-       document.body.appendChild(script);
-     }
-   }
- }, [userLocation]);
+        const infowindow = new window.google.maps.InfoWindow({
+          content: "You",
+        });
+
+        marker.addListener("click", () => {
+          map.panTo(marker.getPosition());
+        });
+
+        marker.addListener("mouseover", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        });
+
+        marker.addListener("mouseout", () => {
+          infowindow.close({
+            anchor: marker,
+            map,
+          });
+        });
+      };
+      if (window.google) {
+        initMap();
+      } else {
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+        script.onload = () => initMap();
+        document.body.appendChild(script);
+      }
+    }
+  }, [userLocation]);
 
   function getShelterCoordinates(shelters) {
     return new Promise((resolve, reject) => {
@@ -101,7 +123,7 @@ const FindShelter = (props) => {
         const lat = userLocation.lat;
         const lng = userLocation.lng;
         const options = {
-          query: shelters,
+          query: shelters.name,
           fields: ["name", "geometry"],
           locationBias: { radius: 50, center: { lat: lat, lng: lng } },
         };
@@ -112,11 +134,37 @@ const FindShelter = (props) => {
                 position: results[i].geometry.location,
                 map: map,
               });
-              
+
+              const infoContent =
+                '<div id="content">' +
+                "<hi>" +
+                shelters.name +
+                "</hi>" +
+                "<p>" +
+                shelters.phone +
+                "</p>" +
+                "</div>";
+
+              const infowindow = new window.google.maps.InfoWindow({
+                content: infoContent,
+              });
+
               marker.addListener("click", () => {
                 map.panTo(marker.getPosition());
                 // map.setZoom(15);
+                infowindow.open({
+                  anchor: marker,
+                  map,
+                });
               });
+
+              marker.addListener("center_changed", () => {
+                infowindow.close({
+                  anchor: marker,
+                  map,
+                });
+              });
+
               markers.push(marker);
               setMarker(marker);
             }
@@ -138,32 +186,39 @@ const FindShelter = (props) => {
     });
   }
   const populateShelterMarkers = () => {
-    const shelterNames = shelters.map((shelter) => shelter.name);
+    const shelterNames = shelters.map((shelter) => shelter);
     getShelterCoordinates(shelterNames);
   };
   return (
     <div style={{ height: "700px", width: "100%" }}>
       {error && <div>{error}</div>}
       {userLocation && (
-        <div id="map"  style={{ height: "100%", width: "100%" }}></div>
+        <div id="map" style={{ height: "100%", width: "100%" }}></div>
       )}
       <div>
-        <button onClick={populateShelterMarkers}>Locate Shelters</button>
+        <button onClick={()=>{
+          populateShelterMarkers();
+          setIsSheltersVisible(true)
+        }}>
+          Locate Shelters Near You
+        </button>
       </div>
-      <div>
-        <h1>Shelters</h1>
-        <ul>
-          {shelters.map((shelter) => (
-            <li key={shelter.id}>
-              <strong>{shelter.name}</strong>
-              <br />
-              Phone: {shelter.phone}
-              <br />
-              Distance: {shelter.distance}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {isSheltersVisible && (
+        <div>
+          <h1>Shelters</h1>
+          <ul>
+            {shelters.map((shelter) => (
+              <li key={shelter.id}>
+                <strong>{shelter.name}</strong>
+                <br />
+                Phone: {shelter.phone}
+                <br />
+                Distance: {shelter.distance}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
