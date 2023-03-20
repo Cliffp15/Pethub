@@ -51,7 +51,7 @@ const ComponentDetails = () => {
     const token = await fetchToken();
     const breed = encodeURIComponent(component.breeds.primary);
     const response = await fetch(
-      `https://api.petfinder.com/v2/animals?type=${component.type}&breed=${breed}&size=${component.size}&limit=5`,
+      `https://api.petfinder.com/v2/animals?type=${component.type}&breed=${breed}&size=${component.size}&limit=6`,
       {
         method: "GET",
         mode: "cors",
@@ -65,7 +65,8 @@ const ComponentDetails = () => {
 
     const data = await response.json();
     console.log(data);
-    setSimilarPets(data.animals);
+    const filteredPets = data.animals.filter((pet) => pet.id !== component.id);
+    setSimilarPets(filteredPets);
   };
 
   useEffect(() => {
