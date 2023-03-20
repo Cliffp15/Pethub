@@ -6,7 +6,7 @@ const SimilarPets = ({ pets }) => {
       <h2 className="similar-pets-title">Similar Pets</h2>
       <div className="similar-pets-grid">
         {pets.map((pet) => (
-          <a key={pet.id} href={`/petcard/${pet.id}`} className="similar-pet">
+          <a key={pet.id} href={`/component/${pet.id}`} className="similar-pet">
             <img
               src={pet.photos[0]?.medium}
               alt={pet.name}
