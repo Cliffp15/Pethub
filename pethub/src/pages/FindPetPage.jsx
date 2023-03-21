@@ -10,7 +10,7 @@ import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
 
-const API_URL = "https://api.petfinder.com/v2/animals?&limit=50&type=";
+const API_URL = "https://api.petfinder.com/v2/animals?&limit=50";
 
 const FindPetPage = () => {
   const [data, setData] = useState([]);
@@ -34,8 +34,6 @@ const FindPetPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(`${API_URL}${animal}`);
-
       const data = await response.json();
       console.log(data);
 
@@ -54,17 +52,37 @@ const FindPetPage = () => {
     setfirstcall(false);
   };
 
-  const SearchPets = async () => {
-    // debugger;
+  const FetchFilteredPets = async (animal) =>{
+    let petsWithPhotos = [];
+    const token = await fetchToken();
+    const response = await fetch(`${API_URL}${animal}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(`${API_URL}${animal}`);
 
-    // const cityinput = document.getElementById("cityinput").value;
-    const zipcodeinput = document.getElementById("zipcodeinput").value;
-    // const stateinput = document.getElementById("stateinput").value;
-    const animalinput = document.getElementById("animalinput").value;
-    const breedinput = document.getElementById("breedinput").value;
+    const data = await response.json();
+    console.log(data);
 
-    Fetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
-  };
+    const animals = Object.values(data.animals);
+
+
+    const animalsWithPotos = animals.filter(
+      (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+    );
+
+    petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
+
+    console.log(animalsWithPotos, petsWithPhotos);
+
+    setpetcard(petsWithPhotos.slice(0, 20));
+
+  }
 
   const filterPets = async () => {
     const animalInput = document.getElementById("animalinput").value;
@@ -73,8 +91,36 @@ const FindPetPage = () => {
     const genderInput = document.getElementById("genderinput").value;
     const ageInput = document.getElementById("ageinput").value
 
+    // if (animalInput === ""){
+    //   alert("Please Select An Animal")
+    // }
 
-    Fetchpets(`${animalInput}&breed=${breedInput}&location=${zipcodeInput}&age=${ageInput}&gender=${genderInput}`);
+    console.log(animalInput);
+
+    let queryString = "";
+
+    if (animalInput !== "" && animalInput !== "other") {
+      queryString += `&type=${animalInput}`;
+    }
+  
+    if (breedInput !== "") {
+      queryString += `&breed=${breedInput}`;
+    }
+  
+    if (zipcodeInput !== "") {
+      queryString += `&location=${zipcodeInput}`;
+    }
+  
+    if (genderInput !== "") {
+      queryString += `&gender=${genderInput}`;
+    }
+  
+    if (ageInput !== "") {
+      queryString += `&age=${ageInput}`;
+    }
+  
+    await FetchFilteredPets(queryString);
+    
   };
 
   useEffect(() => {
@@ -138,6 +184,7 @@ const FindPetPage = () => {
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
           >
+            <option value="">Select</option>
             {petBreeds.map((breed) => (
               <option key={breed} value={breed}>
                 {breed.charAt(0).toUpperCase() + breed.slice(1)}
@@ -168,6 +215,7 @@ const FindPetPage = () => {
 
           <label for="ageinput">Age:</label>
           <select id="ageinput">
+            <option value="">Select</option>
             <option value="baby">Baby</option>
             <option value="young">Young</option>
             <option value="adult">Adult</option>
