@@ -1,7 +1,7 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import { createContext, useState } from "react";
+
 import FindShelter from "./pages/FindShelter";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -11,6 +11,8 @@ import FindPetPage from "./pages/FindPetPage";
 import LogInPage from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import PetDetails from "./pages/PetDetails";
+import Footer from "./components/Footer";
+
 export const UserContext = createContext();
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <Footer />
     </>
   );
 }
