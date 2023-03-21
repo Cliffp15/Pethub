@@ -8,13 +8,14 @@
 
 .pet-details-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: #f5f5f5;
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 16px;
+  flex-wrap: wrap;
 }
 
 .similar-pets-container {
@@ -35,14 +36,12 @@
 }
 
 .similar-pets-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
 .similar-pet {
-  width: 30%;
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 8px;
@@ -70,6 +69,15 @@
   font-size: 16px;
   color: #666;
   margin-bottom: 16px;
+}
+
+.similar-pets-section {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
 }
 
 .pet-details-container {
