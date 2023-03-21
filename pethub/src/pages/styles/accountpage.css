@@ -1,0 +1,170 @@
+/* Set global font family */
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    --group-background-height: 100%;
+    }
+
+    .Groupspage{
+    display: inline-block;
+    width: 80%;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 50px;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    border-left: 4px solid black; 
+    border-right: 4px solid black;
+    border-radius: 10px 10px 10px 10px;
+    }
+
+    .Grouppagetitle { 
+    font-size: 150%;
+    margin-left: 1%;
+    margin-bottom: 50px;
+    font-weight: 500;
+    color: rgb(4, 192, 249);
+    border-bottom: 4px solid black;
+    }
+
+    
+    .ExploreGroupsbackground{
+    display: flex;
+    justify-content:first baseline;
+    width:35%;
+    margin-left: 10%;
+    border-right: 4px solid black;
+    /* border-left: 1px solid black; */
+    /* border-top: 1px solid black; */
+    /* border-bottom: 1px solid black; */
+    /* border-left: 1px solid black; */
+    /* border-radius: 10px 10px 10px 10px; */
+    }
+
+    .YourGroupssection{
+    display: inline-block;
+    width: 700px;
+    height: var(--group-background-height);
+    }
+
+    .form-container {
+        display: grid;
+        justify-content:flex-start;
+        width: 100%;
+        max-width: 100%;
+        margin: 0rem 0;
+        margin: 0 auto;
+        padding: 01rem;
+        border-radius: 15px;
+        /* border-color: black; */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #010000;
+        background-color: #f5f5f5;
+        background-color: rgba(51, 51, 51, 0.1);
+    }
+
+
+    .ExploreGroupssection{
+    display: inline-block;
+    }
+
+    .profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 200%;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    width: 100%;
+    max-width: 450px;
+    }
+
+    .profile-card h1{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center;
+        margin-top: 10%;
+        margin-left: 200%;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+        width: 100%;
+        max-width: 450px; */
+        }
+    
+    .profile-card:hover {
+    transform: translateY(-5px);
+    }
+    
+    .profile-card__image {
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    }
+    
+    .profile-card__image img {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    }
+    
+    .profile-card__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    }
+    .profile-card__details h2{
+    font-size: 17px;
+    /* font-weight: bold; */
+    margin: 0;
+    }
+    
+    .profile-card__username {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    }
+    
+    .profile-card__bio {
+    font-size: 16px;
+    margin: 0;
+    }
+    
+    .profile-card__phonenumber {
+    font-size: 16px;
+    margin: 0;
+    }
+    
+    .profile-card__location {
+    font-size: 16px;
+    margin: 0;
+    }
+
+    .profile-card__Petamount{
+    font-size: 16px;
+    margin: 0;
+    }
+    
+
+    .grouparea{
+    display: flex;
+    width: 100%;
+    color: rgb(34, 121, 221);
+    border-width: 1px;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black; */
+    border-radius: 10px 10px 10px 10px;
+    }
+        

@@ -1,4 +1,4 @@
-/* Set global font family */
+Set global font family
     body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: white;
@@ -18,7 +18,7 @@
     color: rgb(4, 192, 249);
     }
 
-    .ExploreGroupsbackground{
+    /* .ExploreGroupsbackground{
     display: flex;
     justify-content:first baseline;
     width:55%;
@@ -27,22 +27,20 @@
     border-left: 1px solid black;
     border-radius: 10px 0 0 0;
     border-right: 1px solid black;
-    
-    }
+    } */
 
-    .YourGroupssection{
+    /* .YourGroupssection{
     display: inline-block;
     height: var(--group-background-height);
     border-right: 1px solid black;
-    
-    }
+    } */
 
-    .YourGroupssection h1{
+    /* .YourGroupssection h1{
     padding: 0px;
     display: inline-block;
-    }
+    } */
 
-    .YourgroupsTitlesection{
+    /* .YourgroupsTitlesection{
     padding-left: 30%;
     color: rgb(4, 192, 249);
     background-color: rgb(235, 233, 233);
@@ -50,54 +48,54 @@
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
-    }
+    } */
 
-    .ExploreGroupssection{
+    /* .ExploreGroupssection{
     display: inline-block;
-    }
+    } */
 
-    .grouparea{
+    /* .grouparea{
     display: flex;
     width: 100%;
     color: rgb(34, 121, 221);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     border-width: 1px;border-left: 1px solid black;
-    }
+    } */
 
-    .grouparea img{
+    /* .grouparea img{
     display: flex;
     justify-content: center;
     padding: 25px;
     width: 25%;
-    }
+    } */
 
-    .grouparea h2{
+    /* .grouparea h2{
     display:grid;
     color: rgb(60, 69, 79);
-    }
+    } */
 
-    .Groupimagesection{
+    /* .Groupimagesection{
         display: contents;
         justify-content: center;
-    }
+    } */
 
-    .groupinfo{
+    /* .groupinfo{
     display: contents;
     justify-content: center;
     width: 100%;
-    }
+    } */
 
-    .followbuttonsection{
+    /* .followbuttonsection{
     display:flex;
     justify-content: center;
     padding: 25px;
     padding-top: 80px;
     height: 50%;
     color: blue;
-    }
+    } */
 
-    .followbuttonsection button{
+    /* .followbuttonsection button{
     background-color: rgba(16, 19, 228, 0.859);
     color: rgb(255, 255, 255);
     border-radius: 8px;
@@ -107,5 +105,5 @@
     padding-right: 27px;
     border-color: aliceblue;
     border-style: none;
-    }
+    } */
         
