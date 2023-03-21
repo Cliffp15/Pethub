@@ -13,13 +13,11 @@ import PetCard from "../components/PetImageSelection";
 const API_URL = "https://api.petfinder.com/v2/animals?&limit=50";
 
 const FindPetPage = () => {
-  const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
   const [breed, setBreed] = useState("");
   const [petBreeds, setPetBreeds] = useState([]);
   const [species, setSpecies] = useState("");
-  const [gender, setGender] = useState("");
 
   const Fetchpets = async (animal) => {
     let petsWithPhotos = [];

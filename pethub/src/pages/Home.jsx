@@ -58,7 +58,7 @@ const Home = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  let pagination =1;
+  let pagination = 1;
   const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
@@ -98,8 +98,6 @@ const Home = () => {
   const searchFetchpets = async (animal) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    let phrase1 = "page="
-    let phrase2 = "&type="
     while (petsWithPhotos.length < 20) {
       const response = await fetch(`${searchAPI_URL}${animal}`, {
         method: "GET",
@@ -120,7 +118,7 @@ const Home = () => {
       const animalsWithPotos = animals.filter(
         (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
       );
-      petsWithPhotos = [...petsWithPhotos, ...newPets];
+      petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
       console.log(petsWithPhotos);
       pagination++;
     }
