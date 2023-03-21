@@ -52,7 +52,7 @@ const FindPetPage = () => {
     setfirstcall(false);
   };
 
-  const FetchFilteredPets = async (animal) =>{
+  const FetchFilteredPets = async (animal) => {
     let petsWithPhotos = [];
     const token = await fetchToken();
     const response = await fetch(`${API_URL}${animal}`, {
@@ -69,58 +69,57 @@ const FindPetPage = () => {
     const data = await response.json();
     console.log(data);
 
-    const animals = Object.values(data.animals);
+    if (Object.keys(data.animals).length === 0) {
+      alert("No pets found!");
+    } else {
+      const animals = Object.values(data.animals);
 
+      const animalsWithPotos = animals.filter(
+        (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+      );
 
-    const animalsWithPotos = animals.filter(
-      (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
-    );
+      petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
 
-    petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
+      console.log(animalsWithPotos, petsWithPhotos);
 
-    console.log(animalsWithPotos, petsWithPhotos);
-
-    setpetcard(petsWithPhotos.slice(0, 20));
-
-  }
+      setpetcard(petsWithPhotos.slice(0, 20));
+    }
+  };
 
   const filterPets = async () => {
     const animalInput = document.getElementById("animalinput").value;
     const breedInput = document.getElementById("breedinput").value;
     const zipcodeInput = document.getElementById("zipcodeinput").value;
     const genderInput = document.getElementById("genderinput").value;
-    const ageInput = document.getElementById("ageinput").value
-
-    // if (animalInput === ""){
-    //   alert("Please Select An Animal")
-    // }
-
-    console.log(animalInput);
+    const ageInput = document.getElementById("ageinput").value;
 
     let queryString = "";
 
     if (animalInput !== "" && animalInput !== "other") {
       queryString += `&type=${animalInput}`;
     }
-  
+
     if (breedInput !== "") {
       queryString += `&breed=${breedInput}`;
     }
-  
+
     if (zipcodeInput !== "") {
       queryString += `&location=${zipcodeInput}`;
     }
-  
+
     if (genderInput !== "") {
       queryString += `&gender=${genderInput}`;
     }
-  
+
     if (ageInput !== "") {
       queryString += `&age=${ageInput}`;
     }
-  
-    await FetchFilteredPets(queryString);
-    
+
+    if (queryString === "") {
+      alert("Please Select A Filter");
+    } else {
+      await FetchFilteredPets(queryString);
+    }
   };
 
   useEffect(() => {
@@ -175,7 +174,8 @@ const FindPetPage = () => {
             <option value="">Select</option>
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
-            <option value="other">Other</option>
+            <option value="bird">Bird</option>
+            <option value="rabbit">Rabbit</option>
           </select>
 
           <label for="breedinput">Breed:</label>
