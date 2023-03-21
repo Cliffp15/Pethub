@@ -1,202 +1,144 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import cat from "../photos/cat.png";
-import dog from "../photos/dog.png";
-import fish from "../photos/fish.png";
-import snake from "../photos/snake.png";
-import nicecat from "../photos/smilingcaticon.png";
-import shiba from "../photos/shiba.png";
-import cattoy from "../photos/cattoy.png";
 import "./styles/accountpage.css";
-// import "./styles/GroupBanners.css";
 import { useState, useEffect } from "react";
-import GroupCard from "../components/Groups";
-import GroupBannerCard from "../components/GroupsBanners";
-import PetCard from "../components/PetImageSelection";
-
-
-//Need to use database info instead in future
-const groupsampledata = [
-  {
-  title: "Cute Kitten Club", 
-  description: "A place where all cute kittens from across the world!",
-  photos: `${cat}`,
-  },
-  {
-      title: "Canine Crew", 
-      description: "Collections of cool canines!",
-      photos: `${dog}`,
-  },
-  { 
-      title: "Reptilian Regiment", 
-      description: "The best place for reptiles from all over!",
-      photos: `${snake}`, 
-  },
-  { 
-      title: "Golden Guppies", 
-      description: "Glorious golden guppies!",
-      photos: `${fish}`,
-  }
-]
-
-const groupbannersampledata = [
-  {
-  title: "Username", 
-  description: "Playground's for feline pals!",
-  photos: `${cattoy}`,
-  },
-  // {
-  //     title: "Profile Picture", 
-  //     description: "Collections of cool canines!",
-  //     photos: `${shiba}`,
-  // },
-  // {
-  //     title: "Phone Number", 
-  //     description: "Collections of cool canines!",
-  //     photos: `${shiba}`,
-  // },
-  {
-      title: "Location", 
-      description: "Collections of cool canines!",
-      photos: `${shiba}`,
-  },
-  { 
-      title: "Manage list of pets you posted", 
-      description: "Cats that just want to !",
-      photos: `${nicecat}`,
-  }
-]
-
-const imgURL = {cat};
-
-
-
-
-// Add scrollable feature to the list for "your groups" and "explorable groups"
+import { City, State } from "country-state-city";
+const States = require("us-state-converter");
 const Accountpage = () => {
   
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  //profileformdata should input users info by default instead of empty string
+  const [tempuserName, settempusername] =useState("george");
+  const [tempdescription, settempDescription] = useState();
+  const [imageUrl, setImageUrl] = useState([]);
+  const [tempphone, settempphone] = useState("4078889999"); 
+  const [tempcity, settempcity] =useState("boston");
+  const [tempstate, settempstate] = useState("MA");
+  const [tempzip, settempzip] = useState("33945");
   
-    const axios = require("axios");
+  
 
-
-    const onSubmit = async (e) => {
-      // Prevent the form from submitting
-      e.preventDefault();
-  
-      // Check if the passwords match
-      if (password !== password2) {
-        console.log("Passwords do not match");
-        alert("Passwords do not match");
-      } else {
-        // Create a newUser object with the values from the form
-        const newUser = {
-          userName,
-          phone,
-          city,
-          state,
-          zip,
-        };
-  
-        // Use axios to make a POST request to the signup route
-        try {
-          const response = await axios({
-            method: "post",
-            url: "http://localhost:3001/signup",
-            data: newUser,
-            headers: { "Content-Type": "application/json" },
-          });
-  
-          // If the response is successful, redirect to the home page
-          if (response.status === 200) {
-            navigate("/");
-          }
-        } catch (error) {
-          console.error(error);
-          console.log(error);
-          alert(error.response.data);
-        }
-      }
-    };
-
-    let navigate = useNavigate();
-    
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
     userName: "",
-    password: "",
-    password2: "",
+    description: "",
+    photo: "",
     phone: "",
     city: "",
     state: "",
     zip: "",
+    manage: "",
+    password: "",
+    password2: "",
   });
 
-const {
-  firstName,
-  lastName,
+  const {
   userName,
-  email,
-  password,
-  password2,
+  description,
+  photo,
   phone,
   city,
   state,
   zip,
+  manage,
+  password,
+  password2,
 } = formData;
 
+const handleImageChange = (e) => {
+
+  
+  let newImages = [...imageUrl];
+    for (let i = 0; i < e.target.files.length; i++) {
+      if (newImages.length < 5) {
+        newImages.push(URL.createObjectURL(e.target.files[i]));
+      }
+    }
+    setImageUrl(newImages);
+};
+
+const updateinfo =()=>{
+  if(userName !== ""){settempusername(userName);}
+  if(phone !== ""){settempphone(phone);}
+  if(city !== ""){settempcity(city);}
+  if(state !== ""){settempstate(state);}
+  if(zip !== ""){settempzip(zip);}
+  if(photo !== ""){setImageUrl(photo);}
+  if(description !== ""){settempDescription(description);}
+  
+    // settempphone(phone);
+    // settempcity(city);
+    // settempstate(state);
+    // settempzip(zip);
+  }
+  
+  const onChange = (e) =>{
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+    
+    const axios = require("axios");
 
 
+    // const onSubmit = async (e) => {
+    //   // Prevent the form from submitting
+    //   e.preventDefault();
+  
+    //   // Check if the passwords match
+    //   if (password !== password2) {
+    //     console.log("Passwords do not match");
+    //     alert("Passwords do not match");
+    //   } else {
+    //     // Create a newUser object with the values from the form
+    //     const newUser = {
+    //       userName,
+    //       phone,
+    //       city,
+    //       state,
+    //       zip,
+    //     };
+  
+    //     // Use axios to make a POST request to the signup route
+    //     try {
+    //       const response = await axios({
+    //         method: "post",
+    //         url: "http://localhost:3001/signup",
+    //         data: newUser,
+    //         headers: { "Content-Type": "application/json" },
+    //       });
+  
+    //       // If the response is successful, redirect to the home page
+    //       if (response.status === 200) {
+    //         navigate("/");
+    //       }
+    //     } catch (error) {
+    //       console.error(error);
+    //       console.log(error);
+    //       alert(error.response.data);
+    //     }
+    //   }
+    // };
+
+    let navigate = useNavigate();
+    
   return (
     <div className="Groupspage">
       <div className="Grouppagetitle">
         <h1>Manage Account</h1>
       </div>
       <div className="ExploreGroupsbackground">
-          <div className="YourGroupssection">
-            {/* <div className="YourgroupsTitlesection">
-              <h1>Manage Account</h1>
-            </div> */}
-            {/* <div className="YourGroupslist">
-
-            {/* //Turning these into functions later using
-            //arraydata(groupsampledata) to map over,
-            //component(GroupBannerCard), 
-            //and property(GroupBannerinfo)
-            // as parameters */}
-            {/* {groupsampledata?.length > 0 ? (
-                <div className="groupbannercardcontainer">
-                  {groupbannersampledata.map((groupbannerinfo, index) => (
-                    <GroupBannerCard key={index} groupbannerinfo={groupbannerinfo} />
-                  ))}
-                </div>
-              ) : (
-                <div className="emptybanners">
-                  <h2>
-                    {" "}
-                    <span>
-                      No groups found.
-                    </span>{" "}
-                  </h2>
-                </div>
-              )}
-            </div> } */}
-            
+        <div className="YourGroupssection">
 
     <div className="form-container">
-      <form onSubmit={(e) => onSubmit(e)}>
+      {/* <form onSubmit={(e) => onSubmit(e)}> */}
         <div className="form-column">
           <div className="form-group">
             {/* <label htmlFor="email">Email Address</label> */}
+            <h3>Username: {tempuserName}</h3> 
             <input
               className="sign-up-input"
               placeholder="Username"
+              id="usernameid"
               type="text"
               name="userName"
-              id="userName2"
               value={userName}
               onChange={(e) => onChange(e)}
               required
@@ -204,10 +146,26 @@ const {
           </div>
         </div>
         <div className="form-column">
+        <div className="form-group">
+          <label className="adoption-form-field">
+           <h3>Description:</h3> 
+            <textarea
+              value={tempdescription}
+              placeholder="Enter Bio"
+              id="description"
+              name= "description"
+              type= "text"
+              onChange={(e) => settempDescription(e.target.value)}
+              className="adoption-form-field-textarea"
+            ></textarea>
+          </label>
+          </div>
           <div className="form-group">
             {/* <label htmlFor="phone"> Phone Number</label> */}
+            <h3>Phone Number: {tempphone}</h3> 
             <input
               className="sign-up-input"
+              id="phonenumber"
               placeholder="Phone Number"
               type="text"
               name="phone"
@@ -216,23 +174,29 @@ const {
               required
             />
           </div>
+          
           <div className="form-group">
             {/* <label htmlFor="city">City</label> */}
+             <h3>City: {tempcity}</h3> 
             <input
               className="sign-up-input"
               placeholder="City"
+              id="cityid"
               type="text"
               name="city"
               value={city}
-              onChange={(e) => onChange(e)}
+              onChange={onChange}
               required
             />
           </div>
+         
           <div className="form-group">
             {/* <label htmlFor="state">State</label> */}
+            <h3>State: {tempstate}</h3> 
             <input
               className="sign-up-input"
               placeholder="State"
+              id="stateid"
               type="text"
               name="state"
               value={state}
@@ -242,9 +206,11 @@ const {
           </div>
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
+            <h3>Zip Code: {tempzip}</h3> 
             <input
               className="sign-up-input"
               placeholder="Zip"
+              id="zipcodeid"
               type="text"
               name="zip"
               value={zip}
@@ -254,87 +220,82 @@ const {
           </div>
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
+            <h3>Manage Pets</h3> 
             <input
               className="sign-up-input"
               placeholder="Manage pets youve posted"
+              id="Managepetsid"
               type="text"
-              name="zip"
-              value={zip}
+              name="manage"
+              value={manage}
               onChange={(e) => onChange(e)}
               required
             />
           </div>
+          <div className="form-group">
+            <h3>Profile Photo</h3>
+            <input
+              type="file"
+              multiple
+              onChange={handleImageChange}
+              className="adoption-form-image-input"
+            />
+          </div>
+          <input
+            className="update-button"
+            id="updatebuttonid"
+            type="submit"
+            value="Update Info"
+            onClick={updateinfo}
+          />
           <input
             className="sign-up-button"
+            id="logoutbuttonid"
             type="submit"
             value="Log out"
             onClick={onChange}
           />
         </div>
-      </form>
+      {/* </form> */}
     </div>
         </div>
-      
         <div className="ExploreGroupssection">
 
     <div className="profile-card">
       <div className="profile-card__image" >
-        <img src={cat}  />
+        <img src={imageUrl}  />
       </div>
       <div className="profile-card__details">
         <h2 className="profile-card__username">
         <h1>Username:</h1>
-          Cat lover123</h2>
+          {userName}</h2>
         <h2 className="profile-card__bio">
         <h1>Bio:</h1>
-          I am a cat owner that love tabby's.
-          Dogs suck.
+          {tempdescription}
         </h2>
         <h2 className="profile-card__phonenumber">
         <h1>Phone Number:</h1>
-          1234567890</h2>
+          {phone}</h2>
         <h2 className="profile-card__location">
         <span>
           <h1>Location:</h1>
-          Winston, GA
+          {city}, {state}
+        </span> 
+        </h2>
+        <h2 className="profile-card__zip">
+        <span>
+          <h1>Zip:</h1>
+          {zip}
         </span> 
         </h2>
         <h2 className="profile-card__Petamount">
           <span> 
             <h1>Pets Posted:</h1>  
-            4 pets posted
+            {manage}
           </span>
         </h2>
       </div>
     </div>
-
-
-
-          {/* <div className="ExploreGroupslist"> */}
-
-          {/* //Turning these into functions using
-            //arraydata(groupsampledata) to map over,
-            //component(GroupCard), 
-            //and property(GroupBannerinfo)
-            // as parameters */}
-                  {/* {groupsampledata?.length > 0 ? (
-                <div className="groupcardcontainer">
-                  {groupsampledata.map((groupinfo, index) => (
-                    <GroupCard key={index} groupinfo={groupinfo} />
-                  ))}
-                </div>
-              ) : (
-                <div className="emptygroupcards">
-                  <h2>
-                    {" "}
-                    <span>
-                      No groups found.
-                    </span>{" "}
-                  </h2>
-                </div>
-              )}
-          </div> */}
-
         </div>
       </div>
     </div>
