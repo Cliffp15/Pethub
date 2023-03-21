@@ -17,7 +17,6 @@ const Accountpage = () => {
   const [tempzip, settempzip] = useState("33945");
   
   
-
   const [formData, setFormData] = useState({
     userName: "",
     description: "",
@@ -221,6 +220,7 @@ const updateinfo =()=>{
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
             <h3>Manage Pets</h3> 
+            <button>Manage pets</button>
             <input
               className="sign-up-input"
               placeholder="Manage pets youve posted"
