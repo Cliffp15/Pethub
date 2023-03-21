@@ -1,42 +1,34 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import caticon from "../photos/cat.png"
-import dog from "../photos/dog.png"
+import caticon from "../photos/cat.png";
+import dog from "../photos/dog.png";
 
+const PetCard = ({ petinfo }) => {
+  const imgURL = petinfo.photos[0]?.medium || "/path/to/placeholder-image.jpg";
 
+  const navigate = useNavigate();
 
-const PetCard = ({petinfo}) => {
+  const handleCardClick = () => {
+    navigate(`/component/${petinfo.id}`);
+  };
 
-        const imgURL =petinfo.photos[0]?.medium;
-
-        const navigate = useNavigate();
-
-        const handleCardClick = () => {
-          navigate(`/component/${petinfo.id}`);
-        };
-        
-        return(
-        <div className='petcardarea'>
-            <div className="petimage" onClick={handleCardClick}> 
-            <img src={imgURL} alt="No image available" />
-            </div>
-            {/* <div className="peticon">
-              <img src={caticon} alt="caticon" />
-              </div> */}
-              {/* <div className="favoritebutton">
-                <img src={heart} alt="caticon" />
-              </div> */}
-              <div className="petdetails">
-                <h1 className="Name">{petinfo.name}</h1>
-                <h1 className='id'>{petinfo.id}</h1>
-                <h2 className="Breed&Age">{petinfo.breeds.primary}, {petinfo.age}</h2>
-                {/* <h2 className="Age"></h2> */}
-                <h2 className="Gender">{petinfo.gender}</h2>
-                <h2 className="location">{petinfo.contact.address.city}, {petinfo.contact.address.state}</h2>
-                {/* <h2 className="location">{petinfo.city}, {petinfo.state}</h2> */}
-            </div> 
-        </div>
-        );
-}
+  return (
+    <div className="pet-card">
+      <div className="pet-card__image" onClick={handleCardClick}>
+        <img src={imgURL} alt="No image available" />
+      </div>
+      <div className="pet-card__details">
+        <h1 className="pet-card__name">{petinfo.name}</h1>
+        <h2 className="pet-card__breed">
+          {petinfo.breeds.primary}, {petinfo.age}
+        </h2>
+        <h2 className="pet-card__gender">{petinfo.gender}</h2>
+        <h2 className="pet-card__location">
+          {petinfo.contact.address.city}, {petinfo.contact.address.state}
+        </h2>
+      </div>
+    </div>
+  );
+};
 
 export default PetCard;
