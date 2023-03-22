@@ -46,9 +46,6 @@ const SignUp = (props) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // Import axios module
-  const axios = require("axios");
-
   // Create a function that runs when the form is submitted
   const onSubmit = async (e) => {
     // Prevent the form from submitting
