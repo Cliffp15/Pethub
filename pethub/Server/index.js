@@ -68,6 +68,9 @@ app.post("/signup", (req, res) => {
     const city = req.body.city;
     const state = req.body.state;
     const zip = req.body.zip;
+    const securityQuestion = req.body.securityQuestion;
+    const securityAnswer = req.body.securityAnswer;
+    const encryptSecurityAnswer = await bcrypt.hash(securityAnswer, salt);
     const today = new Date();
     const dd = today.getDate();
     const mm = today.getMonth() + 1;
@@ -121,8 +124,8 @@ app.post("/signup", (req, res) => {
       }
       else
       {
-        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
-                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
+        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated, SecurityQuestion, SecurityAnswer) 
+                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}', '${securityQuestion}', '${encryptSecurityAnswer}')`;
 
         request.query(query, (err, result) => {
           if (err) {
