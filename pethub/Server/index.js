@@ -68,7 +68,10 @@ app.post("/signup", (req, res) => {
     const city = req.body.city;
     const state = req.body.state;
     const zip = req.body.zip;
-    const today = new Date();
+    const securityQuestion = req.body.securityQuestion;
+    const securityAnswer = req.body.securityAnswer;
+    const encryptSecurityAnswer = await bcrypt.hash(securityAnswer, salt);
+    let today = new Date();
     const dd = today.getDate();
     const mm = today.getMonth() + 1;
     const hh = today.getHours();
@@ -121,8 +124,8 @@ app.post("/signup", (req, res) => {
       }
       else
       {
-        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated) 
-                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}')`;
+        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated, SecurityQuestion, SecurityAnswer) 
+                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${today}', '${securityQuestion}', '${encryptSecurityAnswer}')`;
 
         request.query(query, (err, result) => {
           if (err) {
@@ -212,6 +215,84 @@ app.post("/postapet", (req, res) => {
       } else {
         console.log("Pet posted succesfully");
         res.send("Pet posted succesfully");
+      }
+    });
+  });
+});
+
+app.post("/resetpassword", (req, res) => {
+  sql.connect(config, async (err) => {
+    if (err) console.log(err);
+
+    const request = new sql.Request();
+
+    const emailAddress = req.body.emailAddress;
+    const userName = req.body.userName;
+    const securityQuestion = req.body.securityQuestion;
+    const securityAnswer = req.body.securityAnswer;
+    const newPassword = req.body.newPassword;
+    const salt = await bcrypt.genSalt(saltRounds)
+    const encryptNewPassword = await bcrypt.hash(newPassword, salt);
+
+
+    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("EmailEntered", sql.VarChar, emailAddress);
+
+    const correctInfoQuery = "SELECT UserName, Email, SecurityQuestion, SecurityAnswer FROM Users WHERE Username = @UserNameEntered AND Email = @EmailEntered";
+
+    request.query(correctInfoQuery, async (err, result) => {
+      console.log(result);
+      if (err) {
+        console.log(err);
+        res.status(400).send("Query failed");
+      }
+      if(result.rowsAffected == 0)
+      {
+        console.log("Username or email do not exist");
+        res.status(400).send("Username or email do not exist");
+      }
+      else
+      {
+        const hash = result.recordset[0].SecurityAnswer;
+        const resultBool = await bcrypt.compare(securityAnswer, hash);
+        console.log(resultBool);
+        if(result.recordset[0].Email != emailAddress)
+        {
+          console.log("Email is incorrect");
+          res.status(400).send("Email is incorrect");
+        }
+        else if(result.recordset[0].UserName != userName)
+        {
+          console.log("Username is incorrect");
+          res.status(400).send("Username is incorrect");
+        }
+        else if(result.recordset[0].SecurityQuestion != securityQuestion)
+        {
+          console.log("Security question is incorrect");
+          res.status(400).send("Security question is incorrect");
+        }
+        else if(resultBool == false)
+        {
+          console.log("Security answer is incorrect");
+          res.status(400).send("Security answer is incorrect");
+        }
+        else
+        {
+          const updateQuery = `UPDATE Users SET Password = '${encryptNewPassword}' WHERE Username = @UserNameEntered AND Email = @EmailEntered`;
+          request.query(updateQuery, (err, result) => {
+            if (err)
+            {
+              console.log(err);
+              console.log("Update failed");
+              res.status(400).send("Update failed");
+            }
+            else
+            {
+              console.log("New Password is created! Please sign in with it.");
+              res.status(200).send("New Password is created! Please sign in with it.");
+            }
+          });
+        }
       }
     });
   });
