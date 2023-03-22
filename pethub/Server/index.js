@@ -220,5 +220,83 @@ app.post("/postapet", (req, res) => {
   });
 });
 
+app.post("/resetpassword", (req, res) => {
+  sql.connect(config, async (err) => {
+    if (err) console.log(err);
+
+    const request = new sql.Request();
+
+    const emailAddress = req.body.emailAddress;
+    const userName = req.body.userName;
+    const securityQuestion = req.body.securityQuestion;
+    const securityAnswer = req.body.securityAnswer;
+    const newPassword = req.body.newPassword;
+    const salt = await bcrypt.genSalt(saltRounds)
+    const encryptNewPassword = await bcrypt.hash(newPassword, salt);
+
+
+    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("EmailEntered", sql.VarChar, emailAddress);
+
+    const correctInfoQuery = "SELECT UserName, Email, SecurityQuestion, SecurityAnswer FROM Users WHERE Username = @UserNameEntered AND Email = @EmailEntered";
+
+    request.query(correctInfoQuery, async (err, result) => {
+      console.log(result);
+      if (err) {
+        console.log(err);
+        res.status(400).send("Query failed");
+      }
+      if(result.rowsAffected == 0)
+      {
+        console.log("Username or email do not exist");
+        res.status(400).send("Username or email do not exist");
+      }
+      else
+      {
+        const hash = result.recordset[0].SecurityAnswer;
+        const resultBool = await bcrypt.compare(securityAnswer, hash);
+        console.log(resultBool);
+        if(result.recordset[0].Email != emailAddress)
+        {
+          console.log("Email is incorrect");
+          res.status(400).send("Email is incorrect");
+        }
+        else if(result.recordset[0].UserName != userName)
+        {
+          console.log("Username is incorrect");
+          res.status(400).send("Username is incorrect");
+        }
+        else if(result.recordset[0].SecurityQuestion != securityQuestion)
+        {
+          console.log("Security question is incorrect");
+          res.status(400).send("Security question is incorrect");
+        }
+        else if(resultBool == false)
+        {
+          console.log("Security answer is incorrect");
+          res.status(400).send("Security answer is incorrect");
+        }
+        else
+        {
+          const updateQuery = `UPDATE Users SET Password = '${encryptNewPassword}' WHERE Username = @UserNameEntered AND Email = @EmailEntered`;
+          request.query(updateQuery, (err, result) => {
+            if (err)
+            {
+              console.log(err);
+              console.log("Update failed");
+              res.status(400).send("Update failed");
+            }
+            else
+            {
+              console.log("New Password is created! Please sign in with it.");
+              res.status(200).send("New Password is created! Please sign in with it.");
+            }
+          });
+        }
+      }
+    });
+  });
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server started on port ${port}`));

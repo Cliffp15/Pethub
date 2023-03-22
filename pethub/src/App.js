@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp";
 import Accountpage from "./pages/Accountpage";
 import PetDetails from "./pages/PetDetails";
 import Footer from "./components/Footer";
+import ResetPassword from "./pages/ResetPassword";
 
 export const UserContext = createContext();
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
       <Footer />
     </>

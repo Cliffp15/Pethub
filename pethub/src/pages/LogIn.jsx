@@ -70,6 +70,15 @@ const LogInPage = () => {
           Login
           <img src={caticon} alt="dog icon" className="cat-icon" />
         </button>
+
+        <p>
+          Need to Create an Account? <Link to="/signup">Sign Up</Link>
+        </p>
+
+        <p>
+          Forgot your Password? <Link to="/resetpassword">Reset Password</Link>
+        </p>
+
       </form>
     </div>
   );
