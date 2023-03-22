@@ -190,20 +190,6 @@ const FindPetPage = () => {
             ))}
           </select>
 
-          {/* <label for="sizeinput">Size:</label>
-          <input type="checkbox" id="sizeinput_small" value="Small"></input>
-          <label for="sizeinput_small">Small</label>
-          <input type="checkbox" id="sizeinput_medium" value="Medium"></input>
-          <label for="sizeinput_medium">Medium</label>
-          <input type="checkbox" id="sizeinput_large" value="Large"></input>
-          <label for="sizeinput_large">Large</label>
-          <input
-            type="checkbox"
-            id="sizeinput_xlarge"
-            value="Extra Large"
-          ></input>
-          <label for="sizeinput_xlarge">Extra Large</label> */}
-
           <label for="genderinput">Gender:</label>
           <select id="genderinput">
             <option value="">Select</option>
