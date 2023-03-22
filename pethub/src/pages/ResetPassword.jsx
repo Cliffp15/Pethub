@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select";
+import "./styles/SignUp.css"
 
 
 const ResetPassword = () => {
@@ -83,6 +84,7 @@ const ResetPassword = () => {
             <form onSubmit={(e) => onSubmit(e)}>
                 <div className="form-group"> 
                     <input 
+                        className="sign-up-input"
                         placeholder="Email"
                         type="text"
                         name="emailAddress"
@@ -93,6 +95,7 @@ const ResetPassword = () => {
                 </div>
                 <div className="form-group">
                     <input 
+                        className="sign-up-input"
                         placeholder="Username"
                         type="text"
                         name="userName"
@@ -113,6 +116,7 @@ const ResetPassword = () => {
                 </div>
                 <div className="form-group">
                     <input
+                        className="sign-up-input"
                         placeholder="Security Answer"
                         type="text"
                         name="securityAnswer"
@@ -124,6 +128,7 @@ const ResetPassword = () => {
                 <label>New Password</label>
                 <div className="form-group"> 
                     <input 
+                        className="sign-up-input"
                         placeholder="Password"
                         type="password"
                         name="newPassword"
@@ -134,6 +139,7 @@ const ResetPassword = () => {
                 </div>
                 <div className="form-group">
                     <input 
+                        className="sign-up-input"
                         placeholder="Confirm Password"
                         type="password"
                         name="confirmPassword"

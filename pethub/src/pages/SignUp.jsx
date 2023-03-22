@@ -252,6 +252,7 @@ const SignUp = (props) => {
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
             <input
+              className="sign-up-input"
               placeholder="Security Answer"
               type="text"
               name="securityAnswer"
