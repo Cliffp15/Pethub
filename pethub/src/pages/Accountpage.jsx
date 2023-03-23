@@ -3,66 +3,83 @@ import { Link, useNavigate } from "react-router-dom";
 import cat from "../photos/cat.png";
 import "./styles/accountpage.css";
 import { useState, useEffect } from "react";
-import { City, State } from "country-state-city";
-const States = require("us-state-converter");
+import axios from "axios";
+
 const Accountpage = () => {
-  
-  //profileformdata should input users info by default instead of empty string
-  const [tempuserName, settempusername] =useState("george");
+//profileformdata should input users info by default instead of empty string
+  const [tempuserName, settempusername] =useState("");
   const [tempdescription, settempDescription] = useState();
   const [imageUrl, setImageUrl] = useState([]);
-  const [tempphone, settempphone] = useState("4078889999"); 
-  const [tempcity, settempcity] =useState("boston");
-  const [tempstate, settempstate] = useState("MA");
-  const [tempzip, settempzip] = useState("33945");
+  const [tempphone, settempphone] = useState(""); 
+  const [tempcity, settempcity] =useState("");
+  const [tempstate, settempstate] = useState("");
+  const [tempzip, settempzip] = useState("");
+
+  const userId = localStorage.getItem("userId");
+
+  const data = {
+    userId: userId
+  }
+  
+  axios({
+    method: "post",
+    url: "http://localhost:3001/users",
+    data: data,
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      // handle the response from the server
+      console.log(response);
+      settempusername(response.data.userName);
+      settempzip(response.data.zip);
+      settempphone(response.data.phone);
+      // setImageUrl(response.data.profilePicture);
+      
+    })
+    .catch(function (response) {
+      // handle an error from the server
+      console.log(response);
+      // alert("An error occurred. Please try again.");
+    }); 
   
   
   const [formData, setFormData] = useState({
     userName: "",
-    description: "",
+    // description: "",
     photo: "",
     phone: "",
-    city: "",
-    state: "",
+    // city: "",
+    // state: "",
     zip: "",
-    manage: "",
-    password: "",
-    password2: "",
+    userId: userId,
   });
 
   const {
   userName,
-  description,
+  // description,
   photo,
   phone,
-  city,
-  state,
+  // city,
+  // state,
   zip,
-  manage,
-  password,
-  password2,
 } = formData;
 
-const handleImageChange = (e) => {
 
-  
-  let newImages = [...imageUrl];
-    for (let i = 0; i < e.target.files.length; i++) {
-      if (newImages.length < 5) {
-        newImages.push(URL.createObjectURL(e.target.files[i]));
-      }
-    }
-    setImageUrl(newImages);
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    setImageUrl(imageUrl);
+    console.log(imageUrl)
 };
 
 const updateinfo =()=>{
   if(userName !== ""){settempusername(userName);}
   if(phone !== ""){settempphone(phone);}
-  if(city !== ""){settempcity(city);}
-  if(state !== ""){settempstate(state);}
+  // if(city !== ""){settempcity(city);}
+  // if(state !== ""){settempstate(state);}
   if(zip !== ""){settempzip(zip);}
   if(photo !== ""){setImageUrl(photo);}
-  if(description !== ""){settempDescription(description);}
+  // if(description !== ""){settempDescription(description);}
   
     // settempphone(phone);
     // settempcity(city);
@@ -74,49 +91,42 @@ const updateinfo =()=>{
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
     
-    const axios = require("axios");
 
+    const onSubmit = async (e) => {
+      // Prevent the form from submitting
+      e.preventDefault();
+  
+        // Create a newUser object with the values from the form
+        const updatedUser = {
+          userName,
+          phone,
+          zip,
+          photo,
+          userId,
+        };
+  
+        // Use axios to make a POST request to the update route
+        try {
+          const response = await axios({
+            method: "post",
+            url: "http://localhost:3001/updateUser",
+            data: updatedUser,
+            headers: { "Content-Type": "application/json" },
+          });
+  
+          // If the response is successful, redirect to the home page
+          if (response.status === 200) {
+           
+          }
+        } catch (error) {
+          console.error(error);
+          console.log(error);
+          alert(error.response.data);
+        }
+      
+    };
 
-    // const onSubmit = async (e) => {
-    //   // Prevent the form from submitting
-    //   e.preventDefault();
-  
-    //   // Check if the passwords match
-    //   if (password !== password2) {
-    //     console.log("Passwords do not match");
-    //     alert("Passwords do not match");
-    //   } else {
-    //     // Create a newUser object with the values from the form
-    //     const newUser = {
-    //       userName,
-    //       phone,
-    //       city,
-    //       state,
-    //       zip,
-    //     };
-  
-    //     // Use axios to make a POST request to the signup route
-    //     try {
-    //       const response = await axios({
-    //         method: "post",
-    //         url: "http://localhost:3001/signup",
-    //         data: newUser,
-    //         headers: { "Content-Type": "application/json" },
-    //       });
-  
-    //       // If the response is successful, redirect to the home page
-    //       if (response.status === 200) {
-    //         navigate("/");
-    //       }
-    //     } catch (error) {
-    //       console.error(error);
-    //       console.log(error);
-    //       alert(error.response.data);
-    //     }
-    //   }
-    // };
-
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
     
   return (
     <div className="Groupspage">
@@ -127,7 +137,7 @@ const updateinfo =()=>{
         <div className="YourGroupssection">
 
     <div className="form-container">
-      {/* <form onSubmit={(e) => onSubmit(e)}> */}
+      <form onSubmit={(e) => onSubmit(e)}>
         <div className="form-column">
           <div className="form-group">
             {/* <label htmlFor="email">Email Address</label> */}
@@ -145,7 +155,7 @@ const updateinfo =()=>{
           </div>
         </div>
         <div className="form-column">
-        <div className="form-group">
+        {/* <div className="form-group">
           <label className="adoption-form-field">
            <h3>Description:</h3> 
             <textarea
@@ -158,7 +168,7 @@ const updateinfo =()=>{
               className="adoption-form-field-textarea"
             ></textarea>
           </label>
-          </div>
+          </div> */}
           <div className="form-group">
             {/* <label htmlFor="phone"> Phone Number</label> */}
             <h3>Phone Number: {tempphone}</h3> 
@@ -174,8 +184,8 @@ const updateinfo =()=>{
             />
           </div>
           
-          <div className="form-group">
-            {/* <label htmlFor="city">City</label> */}
+          {/* <div className="form-group">
+            
              <h3>City: {tempcity}</h3> 
             <input
               className="sign-up-input"
@@ -190,7 +200,7 @@ const updateinfo =()=>{
           </div>
          
           <div className="form-group">
-            {/* <label htmlFor="state">State</label> */}
+            
             <h3>State: {tempstate}</h3> 
             <input
               className="sign-up-input"
@@ -202,7 +212,8 @@ const updateinfo =()=>{
               onChange={(e) => onChange(e)}
               required
             />
-          </div>
+          </div> */}
+          
           <div className="form-group">
             {/* <label htmlFor="zip">Zip Code</label> */}
             <h3>Zip Code: {tempzip}</h3> 
@@ -217,8 +228,8 @@ const updateinfo =()=>{
               required
             />
           </div>
-          <div className="form-group">
-            {/* <label htmlFor="zip">Zip Code</label> */}
+          {/* <div className="form-group">
+            
             <h3>Manage Pets</h3> 
             <button>Manage pets</button>
             <input
@@ -231,12 +242,11 @@ const updateinfo =()=>{
               onChange={(e) => onChange(e)}
               required
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <h3>Profile Photo</h3>
             <input
               type="file"
-              multiple
               onChange={handleImageChange}
               className="adoption-form-image-input"
             />
@@ -256,7 +266,7 @@ const updateinfo =()=>{
             onClick={onChange}
           />
         </div>
-      {/* </form> */}
+      </form>
     </div>
         </div>
         <div className="ExploreGroupssection">
@@ -268,32 +278,32 @@ const updateinfo =()=>{
       <div className="profile-card__details">
         <h2 className="profile-card__username">
         <h1>Username:</h1>
-          {userName}</h2>
-        <h2 className="profile-card__bio">
+          {tempuserName}</h2>
+        {/* <h2 className="profile-card__bio">
         <h1>Bio:</h1>
           {tempdescription}
-        </h2>
+        </h2> */}
         <h2 className="profile-card__phonenumber">
         <h1>Phone Number:</h1>
-          {phone}</h2>
-        <h2 className="profile-card__location">
+          {tempphone}</h2>
+        {/* <h2 className="profile-card__location">
         <span>
           <h1>Location:</h1>
           {city}, {state}
         </span> 
-        </h2>
+        </h2> */}
         <h2 className="profile-card__zip">
         <span>
           <h1>Zip:</h1>
-          {zip}
+          {tempzip}
         </span> 
         </h2>
-        <h2 className="profile-card__Petamount">
+        {/* <h2 className="profile-card__Petamount">
           <span> 
             <h1>Pets Posted:</h1>  
             {manage}
           </span>
-        </h2>
+        </h2> */}
       </div>
     </div>
         </div>

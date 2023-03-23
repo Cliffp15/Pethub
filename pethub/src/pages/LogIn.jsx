@@ -33,6 +33,7 @@ const LogInPage = () => {
       .then(function (response) {
         // handle the response from the server
         console.log(response);
+        localStorage.setItem("userId", response.data.userId)
         alert("User logged in successfully");
         navigate("/");
       })

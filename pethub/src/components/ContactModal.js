@@ -15,7 +15,9 @@ const ContactModal = ({ show, onClose, contact, petName }) => {
         </p>
         <ul className="contact-modal-details">
           <li className="contact-modal-detail">Email: {contact.email}</li>
-          <li className="contact-modal-detail">Phone: {contact.phone}</li>
+          {contact.phone && (
+            <li className="contact-modal-detail">Phone: {contact.phone}</li>
+          )}
         </ul>
         <button className="contact-modal-close" onClick={onClose}>
           &times;
