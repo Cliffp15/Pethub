@@ -75,6 +75,19 @@ body {
   text-align: center;
   color: #333333;
 }
+.zip-input {
+  margin: 1rem 1rem;
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  font-size: clamp(0.5rem, 1vw, 1.5rem);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #333;
+  background-color: #fff;
+}
 
 .search-button {
   padding: 1rem 1.5rem;
@@ -199,6 +212,57 @@ body {
 .pet-card__location {
   font-size: 16px;
   margin: 0;
+}
+
+/* filters Container for find pets page */
+.filtersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: #f0f4f8;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.find-pet-select {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.filter-select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid #a3daff;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  min-width: 100px;
+  max-width: 200px;
+  appearance: none;
+}
+
+.filter-button {
+  background-color: #4db6ac;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #26a69a;
+  transform: scale(1.05);
 }
 
 /* add styles to prevent overlapping */

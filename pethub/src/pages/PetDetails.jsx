@@ -50,23 +50,38 @@ const ComponentDetails = () => {
   const fetchSimilarPets = async () => {
     const token = await fetchToken();
     const breed = encodeURIComponent(component.breeds.primary);
-    const response = await fetch(
-      `https://api.petfinder.com/v2/animals?type=${component.type}&breed=${breed}&size=${component.size}&limit=6`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    let similarPetsWithPhotos = [];
+    let page = 1;
 
-    const data = await response.json();
-    console.log(data);
-    const filteredPets = data.animals.filter((pet) => pet.id !== component.id);
-    setSimilarPets(filteredPets);
+    while (similarPetsWithPhotos.length < 6) {
+      const response = await fetch(
+        `https://api.petfinder.com/v2/animals?type=${component.type}&breed=${breed}&size=${component.size}&limit=100&page=${page}`,
+        {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      const filteredData = data.animals.filter(
+        (pet) => pet.id !== component.id
+      );
+      const newPets = filteredData.filter(
+        (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+      );
+
+      similarPetsWithPhotos = [...similarPetsWithPhotos, ...newPets];
+      page++;
+    }
+
+    setSimilarPets(similarPetsWithPhotos.slice(0, 6));
   };
 
   useEffect(() => {
