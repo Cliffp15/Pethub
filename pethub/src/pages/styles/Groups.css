@@ -1,109 +1,123 @@
-Set global font family
-    body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
-    --group-background-height: 100%;
-    }
+.Groupspage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-    .Groupspage{
-    display: inline-block;
-    width: 100%;
-    }
+.Grouppagetitle {
+  font-size: 150%;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: rgb(4, 192, 249);
+  text-align: center;
+}
 
-    .Grouppagetitle { 
-    font-size: 150%;
-    margin-left: 45%;
-    margin-bottom: 50px;
-    font-weight: 500;
-    color: rgb(4, 192, 249);
-    }
+.ExploreGroupsbackground {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-    /* .ExploreGroupsbackground{
-    display: flex;
-    justify-content:first baseline;
-    width:55%;
-    margin-left: 20%;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    border-radius: 10px 0 0 0;
-    border-right: 1px solid black;
-    } */
+.YourGroupssection,
+.ExploreGroupssection {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  box-sizing: border-box;
+}
 
-    /* .YourGroupssection{
-    display: inline-block;
-    height: var(--group-background-height);
-    border-right: 1px solid black;
-    } */
+.YourgroupsTitlesection,
+.ExploreGroupsTitlesection {
+  text-align: center;
+  color: rgb(4, 192, 249);
+  margin-bottom: 10px;
+}
 
-    /* .YourGroupssection h1{
-    padding: 0px;
-    display: inline-block;
-    } */
+.grouparea,
+.bannergrouparea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
-    /* .YourgroupsTitlesection{
-    padding-left: 30%;
-    color: rgb(4, 192, 249);
-    background-color: rgb(235, 233, 233);
-    border-radius: 10px 0 0 0;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    } */
+.grouparea img,
+.bannergrouparea img {
+  width: 100%;
+  cursor: pointer;
+}
 
-    /* .ExploreGroupssection{
-    display: inline-block;
-    } */
+.groupNamesection,
+.groupdescriptionsection,
+.bannergroupNamesection {
+  padding: 10px 20px;
+}
 
-    /* .grouparea{
-    display: flex;
-    width: 100%;
-    color: rgb(34, 121, 221);
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-width: 1px;border-left: 1px solid black;
-    } */
+.Name,
+.bannerName {
+  font-size: 18px;
+  color: rgb(60, 69, 79);
+  margin-bottom: 5px;
+}
 
-    /* .grouparea img{
-    display: flex;
-    justify-content: center;
-    padding: 25px;
-    width: 25%;
-    } */
+.Description {
+  font-size: 14px;
+  color: rgb(34, 121, 221);
+  margin-bottom: 5px;
+}
 
-    /* .grouparea h2{
-    display:grid;
-    color: rgb(60, 69, 79);
-    } */
+.followbuttonsection {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgba(16, 19, 228, 0.859);
+  color: rgb(255, 255, 255);
+}
 
-    /* .Groupimagesection{
-        display: contents;
-        justify-content: center;
-    } */
+.follow {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 7px 27px;
+  border: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
 
-    /* .groupinfo{
-    display: contents;
-    justify-content: center;
-    width: 100%;
-    } */
+.follow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
-    /* .followbuttonsection{
-    display:flex;
-    justify-content: center;
-    padding: 25px;
-    padding-top: 80px;
-    height: 50%;
-    color: blue;
-    } */
+.bannergrouparea {
+  display: flex;
+  width: 100%;
+  color: rgb(34, 121, 221);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-width: 1px;
+  border-left: 1px solid black;
+}
 
-    /* .followbuttonsection button{
-    background-color: rgba(16, 19, 228, 0.859);
-    color: rgb(255, 255, 255);
-    border-radius: 8px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-left: 27px;
-    padding-right: 27px;
-    border-color: aliceblue;
-    border-style: none;
-    } */
-        
+.bannergrouparea img {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  width: 25%;
+}
+.bannerGroupimagesection {
+  display: contents;
+  justify-content: center;
+}
+.bannerGroupinfo {
+  width: 100%;
+  margin-top: 5%;
+}

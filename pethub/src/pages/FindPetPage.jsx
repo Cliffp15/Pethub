@@ -162,7 +162,9 @@ const FindPetPage = () => {
           <img src={dogIcon} alt="dog icon" className="dog-icon" />
         </h1>
         <div className="filtersContainer">
-          <label for="animalinput">Animal:</label>
+          <label className="find-pet-select" for="animalinput">
+            Animal:
+          </label>
           <select
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
@@ -176,7 +178,9 @@ const FindPetPage = () => {
             <option value="rabbit">Rabbit</option>
           </select>
 
-          <label for="breedinput">Breed:</label>
+          <label className="find-pet-select" for="breedinput">
+            Breed:
+          </label>
           <select
             id="breedinput"
             value={breed}
@@ -190,14 +194,18 @@ const FindPetPage = () => {
             ))}
           </select>
 
-          <label for="genderinput">Gender:</label>
+          <label className="find-pet-select" for="genderinput">
+            Gender:
+          </label>
           <select id="genderinput">
             <option value="">Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
 
-          <label for="ageinput">Age:</label>
+          <label className="find-pet-select" for="ageinput">
+            Age:
+          </label>
           <select id="ageinput">
             <option value="">Select</option>
             <option value="baby">Baby</option>
@@ -206,10 +214,14 @@ const FindPetPage = () => {
             <option value="Senior">Senior</option>
           </select>
 
-          <label for="zipcodeinput">Zipcode:</label>
+          <label className="find-pet-select" for="zipcodeinput">
+            Zipcode:
+          </label>
           <input type="text" id="zipcodeinput"></input>
 
-          <button onClick={filterPets}>Filter Pets</button>
+          <button className="filter-button" onClick={filterPets}>
+            Filter Pets
+          </button>
         </div>
         {petcard?.length > 0 ? (
           <div className="petcardcontainer">

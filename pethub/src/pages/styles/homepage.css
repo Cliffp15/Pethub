@@ -219,9 +219,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  background-color: #87ceeb;
-  padding: 16px;
-  border-radius: 8px;
+  background-color: #f0f4f8;
+  padding: 24px;
+  border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-content: center;
@@ -230,7 +230,7 @@ body {
   margin-bottom: 16px;
 }
 
-.filter-label {
+.find-pet-select {
   font-weight: bold;
   color: #333;
   margin-bottom: 8px;
@@ -239,12 +239,13 @@ body {
 .filter-select {
   padding: 8px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 2px solid #a3daff;
   background-color: #fff;
   color: #333;
   font-size: 16px;
   min-width: 100px;
   max-width: 200px;
+  appearance: none;
 }
 
 .filter-button {
@@ -256,11 +257,12 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .filter-button:hover {
   background-color: #26a69a;
+  transform: scale(1.05);
 }
 
 /* add styles to prevent overlapping */
