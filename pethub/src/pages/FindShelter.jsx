@@ -1,6 +1,9 @@
 import { useState, useEffect, React } from "react";
 import axios from "axios";
-// import fetchToken from '../api/petFinderToken';
+import "./styles/Findshelter.css";
+import { Divider } from "@chakra-ui/layout";
+import Findshelterinfo from "../components/FindShelters";
+// import { fetchToken } from "../api/petFinderToken";
 
 const FindShelter = (props) => {
   const [shelters, setShelters] = useState([]);
@@ -9,7 +12,7 @@ const FindShelter = (props) => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const [isSheltersVisible, setIsSheltersVisible] = useState(false);
-
+  const [firstcall, setfirstcall] = useState(true);
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
     if (navigator.geolocation) {
@@ -40,8 +43,7 @@ const FindShelter = (props) => {
           headers: {
             Accept: "application/jason",
             "Content-type": "application/jason",
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6IjUyYzc4ODIyZjcxODhhOTZhZmIzMWY3MTc0NjY5MGQ4YTlhZTM5ZDI0ZTVkYjJiYjZkYTk3OGU5NGZhZThlZGI0MjQ3OGJhNGNmZGNkNTUxIiwiaWF0IjoxNjc4OTQxODkyLCJuYmYiOjE2Nzg5NDE4OTIsImV4cCI6MTY3ODk0NTQ5Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.X2BBvVOSj8mxfFVkyDr4ZwnDJWGUrgMitsLTb0O_kvsZqgq9Z8ukMD0KTOQhGMdTwuOPeWfyY9qu_Ec10gDAKEi7uoZr-JoZbjGk-hkg2VXfzQx_zTN--K8a51R-xWSjduS0TKyCAkfxNd9nOdNzmT9a7WJNtrXkExWtqpuvvqO6YvBN5oKzB_9_89S-h9ZT1Swtz0WUSUAQy8vAQBKGATcptoujtKFIv0iyS2PkkgWzhp81zKIGVcI7hnUR3BiIAcK9xT5oj6E8WbHH__7JbGBRUS6GWKYxfegZqIvf2mo8l1unnOP8KgwhUyP7AKN_dU-MNKe6ylyLhWJVhyG8Yw`,
-          },
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjM5Nzc0ZjU2ZThjM2EzZTE5NTI4ODMxZmUzMTFmODNjOWE2NmMzZWFlNmM2ZjBkYmFjYzViZGVkNDQzOWZkMTAwZDkxMWQzYWU3OThkMzQzIiwiaWF0IjoxNjc5NTc3MzYzLCJuYmYiOjE2Nzk1NzczNjMsImV4cCI6MTY3OTU4MDk2Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.n9yiWGyY_Fvn6VJezzwUETLVOJGEc0XiGEhe2MaluYlqtBK6JkN0TLxihaAjxIC5-bEpUFPCVq9N3we_LG2K7K5vpv7fvSamQ3X8GN-Ph7BK6zoh-G41kVo9WIW7ukQ0rreHg0zNjRUj08oejSbPPArBVRNFEKROfuRLXJVhDDNxjnfP9t0685NJymofqfbNqqydZhiZWkuYUlddPBN88PEBuPRhB1gL1Aorod9rVDfBq4Y6QHlcFG6JNkuhxmKb0-LtJdDeQW0_xU1Uunz-Hc0Q0HSsaRQZVlndJg3kfmr2A-oreeRJXt5Tw0V6AL8S6mKeBvjjldXfS94uYpr6Lg`},
           params: {
             location: `${userLocation.lat},${userLocation.lng}`,
             distance: 25,
@@ -108,7 +110,7 @@ const FindShelter = (props) => {
         script.onload = () => initMap();
         document.body.appendChild(script);
       }
-    }
+    } setfirstcall(false);
   }, [userLocation]);
 
   function getShelterCoordinates(shelters) {
@@ -189,36 +191,43 @@ const FindShelter = (props) => {
     const shelterNames = shelters.map((shelter) => shelter);
     getShelterCoordinates(shelterNames);
   };
+
+  useEffect(() => {
+    if(firstcall){
+      populateShelterMarkers();
+      setIsSheltersVisible(true);}
+  }, [firstcall]);
+
+  
   return (
-    <div style={{ height: "700px", width: "100%" }}>
-      {error && <div>{error}</div>}
-      {userLocation && (
-        <div id="map" style={{ height: "100%", width: "100%" }}></div>
-      )}
-      <div>
-        <button onClick={()=>{
-          populateShelterMarkers();
-          setIsSheltersVisible(true)
-        }}>
-          Locate Shelters Near You
-        </button>
-      </div>
-      {isSheltersVisible && (
-        <div>
-          <h1>Shelters</h1>
-          <ul>
-            {shelters.map((shelter) => (
-              <li key={shelter.id}>
-                <strong>{shelter.name}</strong>
-                <br />
-                Phone: {shelter.phone}
-                <br />
-                Distance: {shelter.distance}
-              </li>
-            ))}
-          </ul>
+
+    // style={{ height: "900px", width: "100%" }}
+    <div className= "FindShelter-page-container" >
+        {error && <div>{error}</div>}
+        {userLocation && (
+          // style={{ height: "400px", width: "100%" }}
+          <div className= "Map-area"id="map"> </div>
+        )}
+      <div className="page-flex">
+        <div className="ShelterSearch-area">
+          <div className="Shelter-title">
+            <h1>Shelters Near You</h1>
+              <div className="Searchbutton-area">
+                <button onClick={()=>{
+                  populateShelterMarkers();
+                  setIsSheltersVisible(true)
+                }}>
+                  Highlight Shelter Locations
+                </button>
+              </div>
+          </div>
+            <div className="Shelterresults-area">
+              {shelters.map((shelterinfo, index) => (
+                <Findshelterinfo key={index} shelterinfo={shelterinfo}/>
+              ))}
+            </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
