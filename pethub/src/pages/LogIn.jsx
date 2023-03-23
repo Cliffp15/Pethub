@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "./styles/Login.css";
 import caticon from "../photos/cat.png";
@@ -39,7 +39,7 @@ const LogInPage = () => {
       .catch(function (response) {
         // handle an error from the server
         console.log(response);
-        // alert("An error occurred. Please try again.");
+        alert(response.response.data);
       });
   };
   return (
@@ -70,6 +70,15 @@ const LogInPage = () => {
           Login
           <img src={caticon} alt="dog icon" className="cat-icon" />
         </button>
+
+        <p>
+          Need to Create an Account? <Link to="/signup">Sign Up</Link>
+        </p>
+
+        <p>
+          Forgot your Password? <Link to="/resetpassword">Reset Password</Link>
+        </p>
+
       </form>
     </div>
   );
