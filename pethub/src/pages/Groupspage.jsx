@@ -57,10 +57,11 @@ const groupbannersampledata = [
 const GroupsPage = () => {
   return (
     <div className="Groupspage">
-      <div className="Grouppagetitle">
+      {/* <div className="Grouppagetitle">
         <h1>Explore Groups</h1>
-      </div>
-      <div className="ExploreGroupsbackground">
+      </div> */}
+
+      <div className="groupContainer">
         <div className="YourGroupssection">
           <div className="YourgroupsTitlesection">
             <h1>Your Groups</h1>

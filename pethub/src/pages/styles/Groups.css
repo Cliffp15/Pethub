@@ -1,32 +1,25 @@
 .Groupspage {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  margin: auto;
+  font-family: Arial, sans-serif;
 }
 
-.Grouppagetitle {
-  font-size: 150%;
-  margin-bottom: 30px;
-  font-weight: 500;
-  color: rgb(4, 192, 249);
-  text-align: center;
-}
-
-.ExploreGroupsbackground {
+.groupContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
+  gap: 20px;
 }
 
 .YourGroupssection,
 .ExploreGroupssection {
   display: flex;
   flex-direction: column;
-  width: 49%;
+  width: calc(50% - 20px);
   box-sizing: border-box;
 }
 
@@ -35,6 +28,13 @@
   text-align: center;
   color: rgb(4, 192, 249);
   margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.grouparea {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .grouparea,
@@ -42,17 +42,22 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 33%;
   background-color: #fff;
   margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  padding: 20px;
 }
 
 .grouparea img,
 .bannergrouparea img {
   width: 100%;
+  max-height: 200px;
+  object-fit: contain;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .groupNamesection,
@@ -66,6 +71,7 @@
   font-size: 18px;
   color: rgb(60, 69, 79);
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .Description {
@@ -80,6 +86,7 @@
   padding: 10px;
   background-color: rgba(16, 19, 228, 0.859);
   color: rgb(255, 255, 255);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .follow {
@@ -101,10 +108,8 @@
   display: flex;
   width: 100%;
   color: rgb(34, 121, 221);
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  border-width: 1px;
-  border-left: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .bannergrouparea img {
@@ -113,10 +118,12 @@
   padding: 25px;
   width: 25%;
 }
+
 .bannerGroupimagesection {
   display: contents;
   justify-content: center;
 }
+
 .bannerGroupinfo {
   width: 100%;
   margin-top: 5%;
