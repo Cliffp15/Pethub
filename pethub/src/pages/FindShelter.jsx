@@ -13,6 +13,8 @@ const FindShelter = (props) => {
   const [marker, setMarker] = useState(null);
   const [isSheltersVisible, setIsSheltersVisible] = useState(false);
   const [firstcall, setfirstcall] = useState(true);
+
+
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
     if (navigator.geolocation) {
@@ -33,6 +35,29 @@ const FindShelter = (props) => {
     }
   }, []);
 
+    const API_URL = "https://api.petfinder.com/v2/organizations";
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     // const token = await fetchToken();
+  //     const response = await fetch(`${API_URL}`, {
+  //       method: "GET",
+  //       mode: "cors",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjAyY2FhYzllZDQxZGUxMWNkZjVmMGY1YWM5YWEzODYyNmM1YzUxMmQ1NGQ2ZDY1MTFmMjhjNzc0NzFmNTk0NDY5NGU0ZmQ3YWVmYTk1NjMwIiwiaWF0IjoxNjc5NjUxODgyLCJuYmYiOjE2Nzk2NTE4ODIsImV4cCI6MTY3OTY1NTQ4Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.PSHnvzj1Y9XdVMwVEF5sgVc4LctykcESuJJWC3mzbGaPUJCdbXywBm1ZNaOh55OPvAMt0xmraYuyAOJln6h_nPfFZdU2pW8LGdtyJGGRBGh8IgwhOR7aATkPwM4z4901nmJnMClkEIwo0JAi23RuF0dTcOeot6UCueFjYtNE3lrAGaMzdabM5jVkmCVXYk4xs9UdQQP1CPhgVj2V70ikOSLbQ8NDH0XunH1T2d6cXL-405DV4ayxW2BcUqNfdjhUua1d6kX9pdenP08-i7l_SSffcoNfD-JGozEpUDEE9OrnHZpTNyie_huNHdY4pCA1apqNOJzPbh0JzMQV_QaZeg`,
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setShelters(data.organizations);
+  //     console.log(data.organizations);
+  //     console.log(response.data);
+  //     setfirstcall(false);
+  //   }, 3600000); // 1 hour = 3,600,000 milliseconds
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
   useEffect(() => {
     // Get a list of shelters from the Petfinder API
     const getShelters = async () => {
@@ -43,7 +68,8 @@ const FindShelter = (props) => {
           headers: {
             Accept: "application/jason",
             "Content-type": "application/jason",
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjM5Nzc0ZjU2ZThjM2EzZTE5NTI4ODMxZmUzMTFmODNjOWE2NmMzZWFlNmM2ZjBkYmFjYzViZGVkNDQzOWZkMTAwZDkxMWQzYWU3OThkMzQzIiwiaWF0IjoxNjc5NTc3MzYzLCJuYmYiOjE2Nzk1NzczNjMsImV4cCI6MTY3OTU4MDk2Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.n9yiWGyY_Fvn6VJezzwUETLVOJGEc0XiGEhe2MaluYlqtBK6JkN0TLxihaAjxIC5-bEpUFPCVq9N3we_LG2K7K5vpv7fvSamQ3X8GN-Ph7BK6zoh-G41kVo9WIW7ukQ0rreHg0zNjRUj08oejSbPPArBVRNFEKROfuRLXJVhDDNxjnfP9t0685NJymofqfbNqqydZhiZWkuYUlddPBN88PEBuPRhB1gL1Aorod9rVDfBq4Y6QHlcFG6JNkuhxmKb0-LtJdDeQW0_xU1Uunz-Hc0Q0HSsaRQZVlndJg3kfmr2A-oreeRJXt5Tw0V6AL8S6mKeBvjjldXfS94uYpr6Lg`},
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjQ2NTM3YmJjYjhiZmZhZDhlYmMwMDlhNDFjNjkyMzg4ZWNiN2IxOWE1OWE4MDllMmQ4MzIxODRhOWE5NDgxZTM5YWM3NTdmYTZiNjliZWQzIiwiaWF0IjoxNjc5NjUzNTUzLCJuYmYiOjE2Nzk2NTM1NTMsImV4cCI6MTY3OTY1NzE1Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.L3SRx_7QO8D29MjPlIfTMj-cDT_VIcm-ijswmXo5KJ1mag9pRYXioudNq8EaB1GFV8kwC1RFxC22SvtE2j9fPwIxewzHWzRmQP81nzhL3ur_YJlTAO8R9R9OJ8br3OSQaqLEhkiVMV0Z4c-7_ItmO4fmp0FE6fZM-hNkzehmv3Dkes8dYYcBvfcOL-U3SeBEiUqASutX8LuyX-OgdHxmoqxOWXnr4MZEBHzfIQhKAq813KAdmByJfEahQdekkyboUAtWPRnVw-J9kj4lv5OIOIeN8Nl6L6qq7L7NA2LnyqhzGG3Q9dq4Ec5lyipmdu0-qWe_RCPt6aKnMZyGhud5Bw`,
+          },
           params: {
             location: `${userLocation.lat},${userLocation.lng}`,
             distance: 25,
@@ -198,7 +224,7 @@ const FindShelter = (props) => {
       setIsSheltersVisible(true);}
   }, [firstcall]);
 
-  
+
   return (
 
     // style={{ height: "900px", width: "100%" }}

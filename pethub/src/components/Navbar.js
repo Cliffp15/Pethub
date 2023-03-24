@@ -14,7 +14,6 @@ export default function Navbar() {
           <CustomLink to="/findapet">Find Pets</CustomLink>
           <CustomLink to="/findshelter">Find Shelter</CustomLink>
           <CustomLink to="/postapet">Post A Pet</CustomLink>
-          <CustomLink to="/groups">Groups</CustomLink>
           <CustomLink to="/signedin">Signedin</CustomLink>
 
           <div className="signup-login">

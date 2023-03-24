@@ -5,7 +5,6 @@ import "./App.css";
 import FindShelter from "./pages/FindShelter";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import GroupsPage from "./pages/Groupspage";
 import PostAPet from "./pages/PostAPetPage";
 import FindPetPage from "./pages/FindPetPage";
 import LogInPage from "./pages/LogIn";
@@ -28,7 +27,6 @@ function App() {
         <Route path="/signedin" element={<Accountpage />} />
         <Route path="/findapet" element={<FindPetPage />} />
         <Route path="/postapet" element={<PostAPet />} />
-        <Route path="/groups" element={<GroupsPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
