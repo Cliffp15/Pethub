@@ -11,7 +11,6 @@ const Findshelterinfo = ({ shelterinfo }) => {
         <div className="sheltercontents">
             <div className="sheltername"> <strong>{shelterinfo.name}</strong>
             </div> 
-               {/* <br /> */}
             <div className="shelterphone">   Phone: {shelterinfo.phone}
                {/* <h1 className="phonetitle"></h1> */}
             </div> 

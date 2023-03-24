@@ -20,25 +20,6 @@ const Home = () => {
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
   
-  // useEffect(() => {
-  //   const intervalId = setInterval(async () => {
-  //     const token = await fetchToken();
-  //     const response = await fetch(`${API_URL}cat`, {
-  //       method: "GET",
-  //       mode: "cors",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-type": "application/json",
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     });
-  //     const data = await response.json();
-  //     setpetcard(data.animals);
-  //     setfirstcall(false);
-  //   }, 3600000); // 1 hour = 3,600,000 milliseconds
-  //   return () => clearInterval(intervalId);
-  // }, []);
-
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const token = await fetchToken();
@@ -69,9 +50,6 @@ const Home = () => {
         headers: {
           Accept: "application/json",
           "Content-type": "application/json",
-          //Bearer token needs to be updated every hour for access to api
-          // or it will produce 401 Error
-
           Authorization: `Bearer ${token}`,
         },
       });
