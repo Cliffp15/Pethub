@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { fetchToken } from "../api/petFinderToken";
+import Share from "../components/Share";
+import WebShare from "../components/WebShare";
 
 const ComponentDetails = () => {
   const { id } = useParams();
   const [component, setComponent] = useState(null);
 
-  //   useEffect(() => {
+   //   useEffect(() => {
   //     fetch(`https://api.petfinder.com/v2/animals/${id}`)
   //       .then(response => response.json())
   //       .then(data => setComponent(data))
   //       .catch(error => console.error(error));
   //   }, [id]);
-
+  
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
 
@@ -61,6 +62,9 @@ const ComponentDetails = () => {
           {component.breeds.primary}, {component.age}
         </h2>
         <p className="pet-details-para">{component.description}</p>
+        <Share />
+        <WebShare url={window.location.href} title={component.name} text={component.description} />
+     
       </div>
     </div>
   );
