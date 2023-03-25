@@ -1,6 +1,7 @@
 import { useImperativeHandle } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Header from "./Header";
+import SignInButton from "../components/SignInButton";
 
 import "../pages/styles/Navbar.css";
 export default function Navbar() {
@@ -16,9 +17,10 @@ export default function Navbar() {
           <CustomLink to="/postapet">Post A Pet</CustomLink>
           <CustomLink to="/groups">Groups</CustomLink>
           <CustomLink to="/signedin">Signedin</CustomLink>
-
+          <SignInButton />
           <div className="signup-login">
             <CustomLink to="/signup">Sign up</CustomLink>
+
             <span className="slash">/</span>
             <CustomLink to="/login">Login</CustomLink>
           </div>
