@@ -2,8 +2,6 @@ import React from "react";
 import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 
-import caticon from "../photos/cat.png";
-
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
@@ -16,10 +14,10 @@ const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
-  
+
   // useEffect(() => {
   //   const intervalId = setInterval(async () => {
   //     const token = await fetchToken();
@@ -137,7 +135,9 @@ const Home = () => {
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
 
-    searchFetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
+    searchFetchpets(
+      `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`
+    );
   };
 
   useEffect(() => {

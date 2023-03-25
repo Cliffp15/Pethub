@@ -114,7 +114,7 @@ export default function SignInDialog({ open, onClose }) {
                 <Link
                   onClick={() => {
                     onClose();
-                    navigate("/resetpassword");
+                    setTimeout(() => navigate("/resetpassword"), 100);
                   }}
                   variant="body2"
                   style={{ cursor: "pointer" }}
@@ -126,7 +126,7 @@ export default function SignInDialog({ open, onClose }) {
                 <Link
                   onClick={() => {
                     onClose();
-                    navigate("/signup");
+                    setTimeout(() => navigate("/signup"), 100);
                   }}
                   variant="body2"
                   style={{ cursor: "pointer" }}

@@ -32,7 +32,6 @@ function App() {
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
-
         <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
       <Footer />
