@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../photos/logo.jpg";
+import logo from "../photos/PetHub.png";
 
-function Header() {
+function Header({ className }) {
+  // Add className prop
   return (
-    // header component returning the logo of the website
     <header>
       <Link to="/" rel="noreferrer">
-        <img src={logo} alt="logo" className="logo" />
+        <img src={logo} alt="logo" className={className || "logo"} />
       </Link>
     </header>
   );
