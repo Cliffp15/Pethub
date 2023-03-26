@@ -36,11 +36,11 @@ import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
-  Typography,
   IconButton,
   MenuItem,
   Menu,
-  Hidden,
+  Box,
+  Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
@@ -54,21 +54,25 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
   navLinks: {
     display: "flex",
     justifyContent: "space-between",
   },
   logo: {
     margin: "1rem 0 0 0",
-    maxWidth: "100px", // Adjust the width as desired
-    maxHeight: "auto", // Adjust the height as desired
+    maxWidth: "100px",
+    maxHeight: "auto",
   },
   logoLink: {
     textDecoration: "none",
-    display: "inline-block", // Add this to remove any extra space around the logo
+    display: "inline-block",
+  },
+  authLinks: {
+    display: "flex",
+    alignItems: "center",
+  },
+  appBar: {
+    backgroundColor: "royalblue",
   },
 }));
 
@@ -95,24 +99,25 @@ function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/" className={classes.logoLink}>
-              <Header className={classes.logo} />
-            </Link>
-          </Typography>
+          <Link to="/" className={classes.logoLink}>
+            <Header className={classes.logo} />
+          </Link>
 
           <IconButton color="inherit" onClick={handleMenuClick}>
             <MenuIcon />
-            <Typography variant="subtitle1">Menu</Typography>
           </IconButton>
+          <Typography variant="subtitle1" onClick={handleMenuClick}>
+            Menu
+          </Typography>
           <Menu
             anchorEl={menuAnchorEl}
             keepMounted
             open={Boolean(menuAnchorEl)}
             onClose={handleMenuClose}
           >
+            {" "}
             <MenuItem component={Link} to="/findapet" onClick={handleMenuClose}>
               Find Pets
             </MenuItem>
@@ -133,9 +138,13 @@ function Navbar() {
               Signedin
             </MenuItem>
           </Menu>
-          <SignInButton />
-          <Link to="/signup">Sign up</Link>
-          <Link to="/login">Login</Link>
+
+          <Box flexGrow={1}></Box>
+
+          <Box className={classes.authLinks}>
+            <SignInButton />
+            <Link to="/signup">Sign up</Link>
+          </Box>
         </Toolbar>
       </AppBar>
     </div>

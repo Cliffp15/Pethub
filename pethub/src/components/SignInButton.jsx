@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import { Typography } from "@material-ui/core";
 import SignInDialog from "../pages/SignInDialog";
 
 function SignInButton() {
@@ -15,9 +15,13 @@ function SignInButton() {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+      <Typography
+        variant="subtitle1"
+        style={{ color: "white", cursor: "pointer" }}
+        onClick={handleClickOpen}
+      >
         Sign in
-      </Button>
+      </Typography>
       <SignInDialog open={open} onClose={handleClose} />
     </div>
   );
