@@ -41,6 +41,7 @@ import {
   Menu,
   Box,
   Typography,
+  Divider,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   logo: {
-    margin: "1rem 0 0 0",
+    margin: "1rem 0 0.5rem 0",
     maxWidth: "100px",
     maxHeight: "auto",
   },
@@ -70,9 +71,35 @@ const useStyles = makeStyles((theme) => ({
   authLinks: {
     display: "flex",
     alignItems: "center",
+    textDecoration: "none",
+    "& a": {
+      color: "white",
+      textDecoration: "none",
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
   },
   appBar: {
     backgroundColor: "royalblue",
+  },
+  verticalDivider: {
+    backgroundColor: "white",
+    width: "2px",
+    height: "60%",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+  authLink: {
+    color: "white",
+    cursor: "pointer",
+    fontWeight: theme.typography.fontWeightRegular, // Add this line to set the font weight
+  },
+  authLinkSeparator: {
+    color: "white",
+    margin: theme.spacing(0, 1),
+  },
+  squareIconButton: {
+    borderRadius: 0, // To make it a square shape
   },
 }));
 
@@ -105,12 +132,18 @@ function Navbar() {
             <Header className={classes.logo} />
           </Link>
 
-          <IconButton color="inherit" onClick={handleMenuClick}>
-            <MenuIcon />
+          <Box className={classes.verticalDivider}></Box>
+
+          <IconButton
+            color="inherit"
+            onClick={handleMenuClick}
+            className={classes.squareIconButton}
+          >
+            <Box display="flex" alignItems="center">
+              <MenuIcon />
+              <Typography variant="subtitle1">Menu</Typography>
+            </Box>
           </IconButton>
-          <Typography variant="subtitle1" onClick={handleMenuClick}>
-            Menu
-          </Typography>
           <Menu
             anchorEl={menuAnchorEl}
             keepMounted
@@ -142,8 +175,21 @@ function Navbar() {
           <Box flexGrow={1}></Box>
 
           <Box className={classes.authLinks}>
-            <SignInButton />
-            <Link to="/signup">Sign up</Link>
+            <SignInButton className={classes.authLink} />
+            <Typography
+              variant="subtitle1"
+              className={classes.authLinkSeparator}
+            >
+              /
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              component={Link} // Use the "component" prop to render the Typography as a Link
+              to="/signup"
+              className={classes.authLink} // Apply the authLink class
+            >
+              Sign up
+            </Typography>
           </Box>
         </Toolbar>
       </AppBar>

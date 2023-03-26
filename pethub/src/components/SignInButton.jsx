@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 import SignInDialog from "../pages/SignInDialog";
 
-function SignInButton() {
+function SignInButton({ className }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -17,6 +17,7 @@ function SignInButton() {
     <div>
       <Typography
         variant="subtitle1"
+        className={className}
         style={{ color: "white", cursor: "pointer" }}
         onClick={handleClickOpen}
       >
