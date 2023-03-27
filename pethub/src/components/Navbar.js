@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "black",
   },
   navLinks: {
     display: "flex",
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "1rem 0 0.5rem 0",
     maxWidth: "100px",
     maxHeight: "auto",
+    border: "1px solid black",
   },
   logoLink: {
     textDecoration: "none",
@@ -73,14 +75,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textDecoration: "none",
     "& a": {
-      color: "white",
+      color: "black",
       textDecoration: "none",
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
     },
   },
   appBar: {
-    backgroundColor: "#4169e1",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
   },
   verticalDivider: {
     backgroundColor: "white",
@@ -90,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   authLink: {
-    color: "white",
+    color: "black",
     cursor: "pointer",
     fontWeight: theme.typography.fontWeightRegular, // Add this line to set the font weight
   },
@@ -100,6 +102,9 @@ const useStyles = makeStyles((theme) => ({
   },
   squareIconButton: {
     borderRadius: 0, // To make it a square shape
+  },
+  menuIcon: {
+    color: "black",
   },
 }));
 
@@ -140,8 +145,10 @@ function Navbar() {
             className={classes.squareIconButton}
           >
             <Box display="flex" alignItems="center">
-              <MenuIcon />
-              <Typography variant="subtitle1">Menu</Typography>
+              <MenuIcon className={classes.menuIcon} />
+              <Typography className={classes.menuIcon} variant="subtitle1">
+                Menu
+              </Typography>
             </Box>
           </IconButton>
           <Menu
@@ -149,6 +156,7 @@ function Navbar() {
             keepMounted
             open={Boolean(menuAnchorEl)}
             onClose={handleMenuClose}
+            className={classes.menu}
           >
             {" "}
             <MenuItem component={Link} to="/findapet" onClick={handleMenuClose}>

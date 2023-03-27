@@ -18,7 +18,7 @@ function SignInButton({ className }) {
       <Typography
         variant="subtitle1"
         className={className}
-        style={{ color: "white", cursor: "pointer" }}
+        style={{ color: "black", cursor: "pointer" }}
         onClick={handleClickOpen}
       >
         Sign in
