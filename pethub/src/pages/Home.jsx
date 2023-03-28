@@ -1,6 +1,8 @@
 import React from "react";
-import HeroImage from "../photos/HeroImage.png";
+import HeroImage from "../photos/DogBlueBackground.jpg";
 import dogIcon from "../photos/dog.png";
+
+
 
 import caticon from "../photos/cat.png";
 
@@ -128,7 +130,8 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
-        <h1>Find the purrfect pet for you!</h1>
+        <h1>Find <br/> the purfect <br/> pet for you!</h1>
+        <h2 >Enter your location and pet of choice.</h2>
         <div className="search-container">
           <div className="search-for-animal">
             {/* <input placeholder="City" type="text" id="cityinput" /> */}
