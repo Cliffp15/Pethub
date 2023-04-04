@@ -4,6 +4,9 @@ const sql = require("mssql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const jwt = require("jsonwebtoken");
+const secretKey = "adjafhdohfodsahfaiaisjd"
+
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -161,10 +164,11 @@ app.post("/login", (req, res) => {
 
       if (resultBool === true) {
         const userId = result.recordset[0].ID;
+        const token = jwt.sign({ userId: userId }, secretKey);
         console.log("User logged in successfully");
         res
           .status(200)
-          .send({ message: "User logged in successfully", userId: userId });
+          .send({ message: "User logged in successfully", token: token });
       } else {
         console.log("Username or password is incorrect");
         res.status(401).send("Username or password is incorrect");
