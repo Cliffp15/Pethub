@@ -5,8 +5,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
-const secretKey = "adjafhdohfodsahfaiaisjd"
-
+const secretKey = "adjafhdohfodsahfaiaisjd";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -159,19 +158,23 @@ app.post("/login", (req, res) => {
         res.status(400).send("User sign up failed");
       }
 
-      const hash = result.recordset[0].Password;
-      const resultBool = await bcrypt.compare(password, hash);
-
-      if (resultBool === true) {
-        const userId = result.recordset[0].ID;
-        const token = jwt.sign({ userId: userId }, secretKey);
-        console.log("User logged in successfully");
-        res
-          .status(200)
-          .send({ message: "User logged in successfully", token: token });
-      } else {
+      if (result.rowsAffected == 0) {
         console.log("Username or password is incorrect");
         res.status(401).send("Username or password is incorrect");
+      } else {
+        const hash = result.recordset[0].Password;
+        const resultBool = await bcrypt.compare(password, hash);
+        if (resultBool === true) {
+          const userId = result.recordset[0].ID;
+          const token = jwt.sign({ userId: userId }, secretKey);
+          console.log("User logged in successfully");
+          res
+            .status(200)
+            .send({ message: "User logged in successfully", token: token });
+        } else {
+          console.log("Username or password is incorrect");
+          res.status(401).send("Username or password is incorrect");
+        }
       }
     });
   });
@@ -190,7 +193,7 @@ app.post("/users", (req, res) => {
     // console.log(userId);
 
     const query = "SELECT * FROM Users WHERE ID = @userIdRecieved";
-    
+
     // console.log(query);
 
     request.query(query, async (err, result) => {
@@ -220,20 +223,19 @@ app.post("/updateUser", (req, res) => {
     if (err) console.log(err);
 
     const request = new sql.Request();
-    
-    const userId = req.body.userId
-    const userName = req.body.userName
+
+    const userId = req.body.userId;
+    const userName = req.body.userName;
     const photo = req.body.photo;
     const zip = req.body.zip;
-    const phone = req.body.phone
- 
+    const phone = req.body.phone;
 
     console.log(req.body);
 
     const query = `UPDATE Users 
     SET UserName = '${userName}', ProfilePicture = '${photo}', Zip = '${zip}', Phone = '${phone}'
     WHERE ID = '${userId}'`;
-    
+
     request.query(query, (err, result) => {
       if (err) {
         console.log(err);
@@ -294,14 +296,14 @@ app.post("/resetpassword", (req, res) => {
     const securityQuestion = req.body.securityQuestion;
     const securityAnswer = req.body.securityAnswer;
     const newPassword = req.body.newPassword;
-    const salt = await bcrypt.genSalt(saltRounds)
+    const salt = await bcrypt.genSalt(saltRounds);
     const encryptNewPassword = await bcrypt.hash(newPassword, salt);
-
 
     request.input("UserNameEntered", sql.VarChar, userName);
     request.input("EmailEntered", sql.VarChar, emailAddress);
 
-    const correctInfoQuery = "SELECT UserName, Email, SecurityQuestion, SecurityAnswer FROM Users WHERE Username = @UserNameEntered AND Email = @EmailEntered";
+    const correctInfoQuery =
+      "SELECT UserName, Email, SecurityQuestion, SecurityAnswer FROM Users WHERE Username = @UserNameEntered AND Email = @EmailEntered";
 
     request.query(correctInfoQuery, async (err, result) => {
       console.log(result);
@@ -309,50 +311,37 @@ app.post("/resetpassword", (req, res) => {
         console.log(err);
         res.status(400).send("Query failed");
       }
-      if(result.rowsAffected == 0)
-      {
+      if (result.rowsAffected == 0) {
         console.log("Username or email do not exist");
         res.status(400).send("Username or email do not exist");
-      }
-      else
-      {
+      } else {
         const hash = result.recordset[0].SecurityAnswer;
         const resultBool = await bcrypt.compare(securityAnswer, hash);
         console.log(resultBool);
-        if(result.recordset[0].Email != emailAddress)
-        {
+        if (result.recordset[0].Email != emailAddress) {
           console.log("Email is incorrect");
           res.status(400).send("Email is incorrect");
-        }
-        else if(result.recordset[0].UserName != userName)
-        {
+        } else if (result.recordset[0].UserName != userName) {
           console.log("Username is incorrect");
           res.status(400).send("Username is incorrect");
-        }
-        else if(result.recordset[0].SecurityQuestion != securityQuestion)
-        {
+        } else if (result.recordset[0].SecurityQuestion != securityQuestion) {
           console.log("Security question is incorrect");
           res.status(400).send("Security question is incorrect");
-        }
-        else if(resultBool == false)
-        {
+        } else if (resultBool == false) {
           console.log("Security answer is incorrect");
           res.status(400).send("Security answer is incorrect");
-        }
-        else
-        {
+        } else {
           const updateQuery = `UPDATE Users SET Password = '${encryptNewPassword}' WHERE Username = @UserNameEntered AND Email = @EmailEntered`;
           request.query(updateQuery, (err, result) => {
-            if (err)
-            {
+            if (err) {
               console.log(err);
               console.log("Update failed");
               res.status(400).send("Update failed");
-            }
-            else
-            {
+            } else {
               console.log("New Password is created! Please sign in with it.");
-              res.status(200).send("New Password is created! Please sign in with it.");
+              res
+                .status(200)
+                .send("New Password is created! Please sign in with it.");
             }
           });
         }
