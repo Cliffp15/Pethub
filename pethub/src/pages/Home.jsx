@@ -1,9 +1,6 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
 import dogIcon from "../photos/dog.png";
-
-
-
 import caticon from "../photos/cat.png";
 
 import "./styles/homepage.css";
@@ -21,31 +18,33 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
-  
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const token = await fetchToken();
-      const response = await fetch(`${API_URL}cat`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      setpetcard(data.animals);
-      setfirstcall(false);
-    }, 3600000); // 1 hour = 3,600,000 milliseconds
-    return () => clearInterval(intervalId);
-  }, []);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     const token = await fetchToken();
+  //     const response = await fetch(`${API_URL}cat`, {
+  //       method: "GET",
+  //       mode: "cors",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setpetcard(data.animals);
+  //     setfirstcall(false);
+  //   }, 3600000); // 1 hour = 3,600,000 milliseconds
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   let pagination = 1;
   const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 21) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -69,16 +68,19 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 21));
 
     setfirstcall(false);
     //  return data;
+
+    setTotalPages(Math.ceil(data.pagination.total_count / 20));
   };
 
   const searchFetchpets = async (animal) => {
+    setCurrentPage(1);
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 21) {
       const response = await fetch(`${searchAPI_URL}${animal}`, {
         method: "GET",
         mode: "cors",
@@ -103,7 +105,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 21));
 
     setfirstcall(false);
     //  return data;
@@ -117,12 +119,24 @@ const Home = () => {
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
 
-    searchFetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
+    searchFetchpets(
+      `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`
+    );
   };
+
+  const handleNextPage = async () => {
+    setCurrentPage((prev) => prev + 1);
+    Fetchpets(currentPage);
+  };
+
+  const handlePrevPage = async () => {
+    setCurrentPage((prev) => prev - 1);
+    Fetchpets(currentPage);
+  }
 
   useEffect(() => {
     if (firstcall) {
-      Fetchpets("1");
+      Fetchpets(currentPage);
     }
   }, [petcard, firstcall]);
 
@@ -130,8 +144,10 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
-        <h1>Find <br/> the purfect <br/> pet for you!</h1>
-        <h2 >Enter your location and pet of choice.</h2>
+        <h1>
+          Find <br /> the purfect <br /> pet for you!
+        </h1>
+        <h2>Enter your location and pet of choice.</h2>
         <div className="search-container">
           <div className="search-for-animal">
             {/* <input placeholder="City" type="text" id="cityinput" /> */}
@@ -185,6 +201,23 @@ const Home = () => {
             </h2>
           </div>
         )}
+        <button
+          className="pagination-button"
+          onClick={() => {handlePrevPage();
+          window.scrollTo(0, 950);}}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        <button
+          className="pagination-button"
+          onClick={() => {handleNextPage();
+          window.scrollTo(0, 950);}}
+        >
+          Next
+        </button>
+        <h3> page: {currentPage}</h3>
       </div>
     </div>
   );
