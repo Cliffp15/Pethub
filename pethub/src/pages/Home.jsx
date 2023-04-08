@@ -263,26 +263,6 @@ const Home = () => {
         <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
-      <div className="Mission-statement">
-        <div className="Mission-statement-text">
-        <h2>What we do</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Pellentesque auctor odio ac scelerisque tincidunt. 
-          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
-          Maecenas tincidunt convallis erat vitae commodo. 
-          Maecenas pulvinar eros vel lacus faucibus congue. 
-          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
-          porttitor nec, convallis non nisl. Mauris et lacus mattis, 
-          pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. 
-          Donec eu euismod dolor. Aliquam erat volutpat. 
-          Sed maximus leo purus, vitae rhoncus nisi ultrices eget. 
-          Donec molestie blandit bibendum.
-        </p>
-        </div>
-        <div className="Mission-statement-image">
-        <img src={shiba} alt="shiba icon" className="shiba-icon" />
-        </div>
-      </div>
     </div>
   );
 };
