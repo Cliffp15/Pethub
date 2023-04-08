@@ -3,7 +3,7 @@ import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 import axios from "axios";
-
+import CircularProgress from "@mui/joy/CircularProgress";
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
@@ -20,8 +20,10 @@ const FindPetPage = () => {
   const [species, setSpecies] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const Fetchpets = async (animal) => {
+    setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
     while (petsWithPhotos.length < 21) {
@@ -50,9 +52,11 @@ const FindPetPage = () => {
     setpetcard(petsWithPhotos.slice(0, 21));
 
     setfirstcall(false);
+    setIsLoading(false);
   };
 
   const FetchFilteredPets = async (query, page) => {
+    setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
     const response = await fetch(`${API_URL}${query}&page=${page}`, {
@@ -83,6 +87,7 @@ const FindPetPage = () => {
       console.log(animalsWithPotos, petsWithPhotos);
 
       setpetcard(petsWithPhotos.slice(0, 21));
+      setIsLoading(false);
     }
   };
 
@@ -236,23 +241,21 @@ const FindPetPage = () => {
             Filter Pets
           </button>
         </div>
-        {petcard?.length > 0 ? (
-          <div className="petcardcontainer">
-            {petcard.map((petinfo, index) => (
-              <PetCard key={index} petinfo={petinfo} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">
-            <h2>
-              {" "}
-              <span>
-                No pet found. <br />
-                Hint: Make sure API key/Authorization is up to date{" "}
-              </span>{" "}
-            </h2>
-          </div>
-        )}
+        {isLoading ? (
+        <div className="loading">
+          <CircularProgress size="lg" />
+        </div>
+      ) : petcard?.length > 0 ? (
+        <div className="petcardcontainer">
+          {petcard.map((petinfo, index) => (
+            <PetCard key={index} petinfo={petinfo} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          No pets found.
+        </div>
+      )}
          <button
           className="pagination-button"
           onClick={() => {handlePreviousPage();
