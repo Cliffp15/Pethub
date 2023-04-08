@@ -18,11 +18,13 @@ const FindPetPage = () => {
   const [breed, setBreed] = useState("");
   const [petBreeds, setPetBreeds] = useState([]);
   const [species, setSpecies] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState("");
 
   const Fetchpets = async (animal) => {
     let petsWithPhotos = [];
     const token = await fetchToken();
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 21) {
       const response = await fetch(`${API_URL}${animal}`, {
         method: "GET",
         mode: "cors",
@@ -45,15 +47,15 @@ const FindPetPage = () => {
       console.log(animalsWithPotos, petsWithPhotos);
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 21));
 
     setfirstcall(false);
   };
 
-  const FetchFilteredPets = async (animal) => {
+  const FetchFilteredPets = async (query, page) => {
     let petsWithPhotos = [];
     const token = await fetchToken();
-    const response = await fetch(`${API_URL}${animal}`, {
+    const response = await fetch(`${API_URL}${query}&page=${page}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -62,7 +64,7 @@ const FindPetPage = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(`${API_URL}${animal}`);
+    console.log(`${API_URL}${query}&page=${page}`);
 
     const data = await response.json();
     console.log(data);
@@ -80,9 +82,19 @@ const FindPetPage = () => {
 
       console.log(animalsWithPotos, petsWithPhotos);
 
-      setpetcard(petsWithPhotos.slice(0, 20));
+      setpetcard(petsWithPhotos.slice(0, 21));
     }
   };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+    FetchFilteredPets(query, currentPage);
+  }
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => prev - 1);
+    FetchFilteredPets(query, currentPage);
+  }
 
   const filterPets = async () => {
     const animalInput = document.getElementById("animalinput").value;
@@ -116,7 +128,8 @@ const FindPetPage = () => {
     if (queryString === "") {
       alert("Please Select A Filter");
     } else {
-      await FetchFilteredPets(queryString);
+      setQuery(queryString);
+      await FetchFilteredPets(queryString, currentPage);
     }
   };
 
@@ -240,6 +253,23 @@ const FindPetPage = () => {
             </h2>
           </div>
         )}
+         <button
+          className="pagination-button"
+          onClick={() => {handlePreviousPage();
+          window.scrollTo(0, 950);}}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        <button
+          className="pagination-button"
+          onClick={() => {handleNextPage();
+          window.scrollTo(0, 950);}}
+        >
+          Next
+        </button>
+        <h3> page: {currentPage}</h3>
       </div>
     </div>
   );

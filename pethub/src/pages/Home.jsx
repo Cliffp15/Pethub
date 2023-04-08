@@ -25,25 +25,27 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
-  
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const token = await fetchToken();
-      const response = await fetch(`${API_URL}cat`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      setpetcard(data.animals);
-      setfirstcall(false);
-    }, 3600000); // 1 hour = 3,600,000 milliseconds
-    return () => clearInterval(intervalId);
-  }, []);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     const token = await fetchToken();
+  //     const response = await fetch(`${API_URL}cat`, {
+  //       method: "GET",
+  //       mode: "cors",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setpetcard(data.animals);
+  //     setfirstcall(false);
+  //   }, 3600000); // 1 hour = 3,600,000 milliseconds
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   let pagination = 1;
   const Fetchpets = async (pagination) => {
@@ -77,9 +79,12 @@ const Home = () => {
 
     setfirstcall(false);
     //  return data;
+
+    setTotalPages(Math.ceil(data.pagination.total_count / 20));
   };
 
   const searchFetchpets = async (animal) => {
+    setCurrentPage(1);
     const token = await fetchToken();
     let petsWithPhotos = [];
     while (petsWithPhotos.length < 6) {
@@ -120,12 +125,25 @@ const Home = () => {
     // const stateinput = document.getElementById("stateinput").value;
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
-    searchFetchpets(`${animalinput}&breed=${breedinput}&location=${zipcodeinput}`);
+
+    searchFetchpets(
+      `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`
+    );
   };
+
+  const handleNextPage = async () => {
+    setCurrentPage((prev) => prev + 1);
+    Fetchpets(currentPage);
+  };
+
+  const handlePrevPage = async () => {
+    setCurrentPage((prev) => prev - 1);
+    Fetchpets(currentPage);
+  }
 
   useEffect(() => {
     if (firstcall) {
-      Fetchpets("1");
+      Fetchpets(currentPage);
     }
   }, [petcard, firstcall]);
 
@@ -207,6 +225,43 @@ const Home = () => {
             </h2>
           </div>
         )}
+        <button
+          className="pagination-button"
+          onClick={() => {handlePrevPage();
+          window.scrollTo(0, 950);}}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        <button
+          className="pagination-button"
+          onClick={() => {handleNextPage();
+          window.scrollTo(0, 950);}}
+        >
+          Next
+        </button>
+        <h3> page: {currentPage}</h3>
+      </div>
+      <div className="Mission-statement">
+        <div className="Mission-statement-text">
+        <h2>What we do</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Pellentesque auctor odio ac scelerisque tincidunt. 
+          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
+          Maecenas tincidunt convallis erat vitae commodo. 
+          Maecenas pulvinar eros vel lacus faucibus congue. 
+          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
+          porttitor nec, convallis non nisl. Mauris et lacus mattis, 
+          pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. 
+          Donec eu euismod dolor. Aliquam erat volutpat. 
+          Sed maximus leo purus, vitae rhoncus nisi ultrices eget. 
+          Donec molestie blandit bibendum.
+        </p>
+        </div>
+        <div className="Mission-statement-image">
+        <img src={shiba} alt="shiba icon" className="shiba-icon" />
+        </div>
       </div>
       <div className="Mission-statement">
         <div className="Mission-statement-text">
