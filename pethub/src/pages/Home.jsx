@@ -167,23 +167,23 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="featured-banner" id="bannerid">
+      <div className="benefit-banner" id="bannerid">
           <div className="benefit-1">
-            <h3>Save Time</h3>
+            <h1>Save Time</h1>
             <img src={clock} alt="dog icon" className="dog-icon" />
             <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
             </p>
           </div>
           <div className="benefit-2">
-          <h3>Save A Life</h3>
+          <h1>Save A Life</h1>
             <img src={animalcarecolor} alt="dog icon" className="dog-icon" />
-            <p>Help Save a Life: By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
+            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
             </p>
           </div>
           <div className="benefit-3">
-          <h3>Access tons of options</h3>
+          <h1>Convenient Access to Information</h1>
             <img src={animalinformation} alt="dog icon" className="dog-icon" />
-            <p>Convenient Access to Information: Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, size, age, and location to find the perfect match for you and your family.
+            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, size, age, and location to find the perfect match for you and your family.
             </p>
           </div>
       </div>
