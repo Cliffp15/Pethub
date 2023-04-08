@@ -201,37 +201,25 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="featured-banner" id="bannerid">
-        <div className="benefit-1">
-          <h3>Save Time</h3>
-          <img src={clock} alt="dog icon" className="dog-icon" />
-          <p>
-            Instead of spending hours driving around to different shelters, you
-            can browse through multiple pets available for adoption in one
-            place. This saves time and energy while increasing your chances of
-            finding the perfect pet.
-          </p>
-        </div>
-        <div className="benefit-2">
-          <h3>Save A Life</h3>
-          <img src={animalcarecolor} alt="dog icon" className="dog-icon" />
-          <p>
-            Help Save a Life: By adopting a pet from a shelter or rescue group,
-            you are helping to save a life. Many pets in shelters are euthanized
-            each year due to overcrowding, so adopting a pet can make a real
-            difference.
-          </p>
-        </div>
-        <div className="benefit-3">
-          <h3>Access tons of options</h3>
-          <img src={animalinformation} alt="dog icon" className="dog-icon" />
-          <p>
-            Convenient Access to Information: Pet adoption sites allow you to
-            easily access information about pets available for adoption. You can
-            filter pets by breed, size, age, and location to find the perfect
-            match for you and your family.
-          </p>
-        </div>
+      <div className="benefit-banner" id="bannerid">
+          <div className="benefit-1">
+            <h1>Save Time</h1>
+            <img src={clock} alt="dog icon" className="dog-icon" />
+            <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
+            </p>
+          </div>
+          <div className="benefit-2">
+          <h1>Save A Life</h1>
+            <img src={animalcarecolor} alt="dog icon" className="dog-icon" />
+            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
+            </p>
+          </div>
+          <div className="benefit-3">
+          <h1>Convenient Access to Information</h1>
+            <img src={animalinformation} alt="dog icon" className="dog-icon" />
+            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, size, age, and location to find the perfect match for you and your family.
+            </p>
+          </div>
       </div>
 
       <div className="featured-section">
@@ -272,21 +260,22 @@ const Home = () => {
       </div>
       <div className="Mission-statement">
         <div className="Mission-statement-text">
-          <h2>What we do</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque auctor odio ac scelerisque tincidunt. Nunc maximus
-            auctor nunc, id faucibus magna interdum eget. Maecenas tincidunt
-            convallis erat vitae commodo. Maecenas pulvinar eros vel lacus
-            faucibus congue. Integer eu ultrices elit. Nunc leo metus, accumsan
-            quis porttitor nec, convallis non nisl. Mauris et lacus mattis,
-            pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. Donec eu
-            euismod dolor. Aliquam erat volutpat. Sed maximus leo purus, vitae
-            rhoncus nisi ultrices eget. Donec molestie blandit bibendum.
-          </p>
+        <h2>What we do</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Pellentesque auctor odio ac scelerisque tincidunt. 
+          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
+          Maecenas tincidunt convallis erat vitae commodo. 
+          Maecenas pulvinar eros vel lacus faucibus congue. 
+          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
+          porttitor nec, convallis non nisl. Mauris et lacus mattis, 
+          pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. 
+          Donec eu euismod dolor. Aliquam erat volutpat. 
+          Sed maximus leo purus, vitae rhoncus nisi ultrices eget. 
+          Donec molestie blandit bibendum.
+        </p>
         </div>
         <div className="Mission-statement-image">
-          <img src={shiba} alt="shiba icon" className="shiba-icon" />
+        <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
     </div>
