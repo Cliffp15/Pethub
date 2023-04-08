@@ -16,6 +16,13 @@ body {
   justify-content: left;
   align-items: left;
   position: relative;
+  /* border-top: none; */
+  /* border-bottom-style: solid; */
+  /* border-bottom: #00ABE4; */
+  border-style: none none solid none;
+  border-color: #00ABE4;
+  border-bottom-width: 1px;
+  /* border-width: 1rem; */
   /* margin: 0 0 0rem 0; */
 }
 
@@ -31,10 +38,23 @@ body {
   z-index: -1;
 }
 
+.hero-section-content-wrapper{
+  height: 50vh;
+  width: 70%;
+  top:25%;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+}
+
 .hero-section h1 {
   display:flex;
   flex-direction: row;
-  /* border-radius: 10px; */
+  position: absolute;
+  top: 4%;
+  height:max-content ;
   padding-top: 1rem;
   color: #4169e1f4;
   margin-left: 3%;
@@ -42,24 +62,34 @@ body {
   margin-right: 0%;
   margin-bottom: 0%;
   text-align: left;
-  font-size: clamp(3rem, 10vw, 5rem);
-  max-width: 49%;
+  font-size: clamp(3rem, 5vw, 15rem);
+  max-width: 59%;
   box-sizing: border-box;
   z-index: 1;
 }
 
+@media screen and (max-width: 1024px) {
+  .hero-section h1 {
+    width: 90%;
+    font-size:clamp(1rem, 10vw, 20rem) ; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+
 .hero-section h2 {
   display:flex;
+  justify-content: left;
+  align-items: left;
   flex-direction: row;
-  /* border-radius: 10px; */
+  position: absolute;
+  bottom: 30%;
   padding-top: 1.5rem;
   margin-left: 3%;
   margin-top: 0%;
   margin-right: 0%;
   margin-bottom: 0%;
-  text-align: center;
-  font-size: clamp(1rem, 2vw, 2rem);
-  max-width: 49%;
+  text-align: left;
+  font-size: clamp(1rem, 1.3vw, 3rem);
+  max-width: 100%;
   box-sizing: border-box;
   z-index: 1;
   text-decoration: underline;
@@ -68,15 +98,24 @@ body {
   color: #4169e1f4;
 }
 
+@media screen and (max-width: 1024px) {
+  .hero-section h2 {
+    width: 100%;
+    font-size:clamp(1rem, 5vw, 20rem) ; /* The width is 100%, when the viewport is 800px or smaller */
+    text-decoration: none;
+  }
+}
+
 .search-container {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  bottom: 20%;
   justify-content: center;
   margin-left: 2%;
   width: 100%;
   max-width: 650px;
   margin-top: 2rem;
-  /* background-color: rgba(55, 75, 118, 0.7); */
   opacity: 0.8;
   padding-top: 1rem;
 }
@@ -84,6 +123,8 @@ body {
 .search-for-animal {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  
   justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
@@ -137,25 +178,22 @@ body {
 }
 
 .search-button:hover {
-  background-color: rgba(135, 206, 235);
+  background-color: rgb(195, 229, 243);
+  /* background-color:#00ABE4; */
+   color:#4169e1f4;
+  border-color: #4169e1f4;
+  border-style: solid; 
 }
 
-/* Featured pets section */
-.featured-section {
-  background-color: white;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .featured-banner {
-  background-color: #87ceeb;
+  /* background-color: #87ceeb; */
+  background-image: linear-gradient( #A2DCEA,#4169e1c0,#4169e1c0);
   padding: 2rem;
   border-radius: 8px;
-  border: solid black 1px;
-  margin: 1rem 0;
+  /* border: solid black 1px; */
+  /* margin: 1rem 0; */
   color: black;
   text-align: center;
   width: 100%;
@@ -173,6 +211,15 @@ body {
   margin-top: 20px;
 }
 
+/* Featured pets section */
+.featured-section {
+  background-color: white;
+  /* padding: 2rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* PetCard */
 .petcardcontainer {
   display: grid;
@@ -244,6 +291,41 @@ body {
 .pet-card__location {
   font-size: 16px;
   margin: 0;
+}
+
+.Mission-statement{
+  display: flex;
+  justify-content: left;
+  background: rgb(195, 229, 243);
+}
+
+.Mission-statement-text{
+  display: block;
+  justify-content: center;
+  width: 100%;
+}
+
+.Mission-statement-text h2{
+  display: flex;
+  justify-content:center;
+  
+  width: 100%;
+  font-size: clamp(1rem, 4vw, 5rem);
+  padding-left: 10%;
+  
+}
+
+.Mission-statement-text p{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: clamp(1rem, 1.3vw, 5rem);
+  padding-left: 1rem;
+}
+
+.Mission-statement-image{
+  display: contents;
+  justify-content: end;
 }
 
 /* filters Container for find pets page */
