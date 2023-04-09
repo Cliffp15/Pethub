@@ -20,7 +20,7 @@ body {
   /* border-top: none; */
   /* border-bottom-style: solid; */
   /* border-bottom: #00ABE4; */
-  background-image: linear-gradient( #ffffff00,#b4e6f300,#b4e6f300, #b4e6f300,#ccecf415,#ffffff);
+  background-image: linear-gradient( #ffffff00,#b4e6f300,#b4e6f300, #b4e6f300,#98d5e100,#98d5e1);
   /* border-style: none none solid none; */
   /* border-bottom-width: 10px; */
   /* border-width: 1rem; */
@@ -37,7 +37,7 @@ body {
   filter: saturate(1.2);
   border-radius: 0;
   z-index: -1;
-  filter:blur(1px 1px 1px 1px);
+  /* filter:blur(1px 1px 1px 1px); */
 }
 
 .hero-section-content-wrapper{
@@ -182,20 +182,15 @@ body {
 .search-button:hover {
   background-color: rgb(195, 229, 243);
   /* background-color:#00ABE4; */
-   color:#4169e1f4;
+  color:#4169e1f4;
   border-color: #4169e1f4;
   border-style: solid; 
 }
 
-
-
 .benefit-banner {
-  /* background-color: #87cfeb53; */
-  background-image: linear-gradient( #b4e6f304,#b4e6f31d, #b4e6f30f);
-  /* padding: 0rem 1rem 1rem 1rem; */
-  /* border-radius: 09px; */
-  /* border: solid black 1px; */
-  margin: 1rem 0;
+  background-image: linear-gradient( #98d5e1fa,#98d5e1d7,#b4e6f383,#98d5e136, #b4e6f300);
+  /* background: #98D5E1; */
+  /* margin: 1rem 0; */
   color: #4169e1f4;
   text-align: center;
   width: 100%;
@@ -204,21 +199,46 @@ body {
   justify-content: center;
 }
 
+.benefit {
+  width:100%;
+  /* border-style: none solid none solid; */
+}
+
 .benefit-2 {
   width:100%;
   border-style: none solid none solid;
 }
 
 .benefit-banner p{
+  width: 75%;
+  margin: 1rem 1rem 1rem 5rem;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  font-weight:700;
+  padding: 1rem 1rem 1rem 1rem;
   color: #000000f4;
 }
 
 .benefit-banner .dog-icon {
   display: flex;
-  max-width: 30px;
+  max-width: 20%;
   margin: 1rem auto;
 }
 
+.featured-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  /* padding: 2rem; */
+  width: 100%;
+  /* margin-left: 3%; */
+  color: #4169e1f4;
+  /* text-decoration: underline;
+  text-underline-offset: 30px; */
+}
 
 /* Featured pets section */
 .featured-section {
@@ -229,14 +249,18 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+
+
 /* PetCard */
 .petcardcontainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 0.5rem;
+  grid-template-columns: auto;
+  gap: 10px;
+  /* margin: 0.5rem 1rem 0.5rem 1rem; */
+  padding-left: 20px;
   width: 100%;
-  max-width: 900px;
+  max-width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -246,14 +270,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-
-  border-radius: 5px;
+  /* padding: 20px; */
+  /* margin: 0rem 10rem 0rem 10rem; */
+  border-radius: 17px;
   box-shadow: 0 2px 4px rgba(208, 15, 15, 0.851);
   transition: transform 0.2s ease-in-out;
   width: 100%;
   max-width: 400px;
 }
+
 .pet-card:hover {
   transform: translateY(-5px);
   box-shadow: 2px 2px 2px rgba(135, 206, 235, 0.8);
@@ -302,6 +327,65 @@ body {
   margin: 0;
 }
 
+.Pagination-Button-Area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.Left-Button{
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin: 3px 4px 3px 4px; 
+  background-color: #00ABE4;
+  color: #f8fafb;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.2s ease-in-out;
+  text-align: center;
+  margin-left: 1rem;
+}
+
+.Right-button{
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin: 3px 4px 3px 4px; 
+  background-color: #00ABE4;
+  color: #f8fafb;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.2s ease-in-out;
+  text-align: center;
+  margin-left: 1rem;
+}
+
+
+.pagination-button-1{
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #00ABE4;
+  color: #f8fafb;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.2s ease-in-out;
+  text-align: center;
+}
+
+.pagination-button-2{
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #00ABE4;
+  color: #f8fafb;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.2s ease-in-out;
+  text-align: center;
+}
+
 .Mission-statement{
   display: flex;
   justify-content: left;
@@ -310,31 +394,34 @@ body {
 
 .Mission-statement-text{
   display: block;
-  justify-content: center;
+  justify-content: left;
   width: 100%;
 }
 
 .Mission-statement-text h2{
   display: flex;
   justify-content:center;
-  
   width: 100%;
   font-size: clamp(1rem, 4vw, 5rem);
-  padding-left: 10%;
-  
+  /* padding-left: 10%; */
+  /* margin-left: 3%; */
 }
 
 .Mission-statement-text p{
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   font-size: clamp(1rem, 1.3vw, 5rem);
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
+  margin-left: 3%;
+
 }
 
 .Mission-statement-image{
   display: contents;
   justify-content: end;
+  margin: 1rem;
+  width: 75%;
 }
 
 /* filters Container for find pets page */

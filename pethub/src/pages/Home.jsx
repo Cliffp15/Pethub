@@ -5,6 +5,7 @@ import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
+import arrowright from "../photos/animalinformation.png";
 
 
 
@@ -51,7 +52,7 @@ const Home = () => {
   const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 6) {
+    while (petsWithPhotos.length < 4) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -75,7 +76,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 6));
+    setpetcard(petsWithPhotos.slice(0, 4));
 
     setfirstcall(false);
     //  return data;
@@ -87,7 +88,7 @@ const Home = () => {
     setCurrentPage(1);
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 6) {
+    while (petsWithPhotos.length < 4) {
       const response = await fetch(`${searchAPI_URL}${animal}`, {
         method: "GET",
         mode: "cors",
@@ -112,7 +113,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 6));
+    setpetcard(petsWithPhotos.slice(0, 4));
 
     setfirstcall(false);
     //  return data;
@@ -186,28 +187,31 @@ const Home = () => {
         </div>
       </div>
       <div className="benefit-banner" id="bannerid">
-          <div className="benefit-1">
-            <h1>Save Time</h1>
+          <div className="benefit">
             <img src={clock} alt="dog icon" className="dog-icon" />
+            <h1>Save Time</h1>
             <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
             </p>
           </div>
-          <div className="benefit-2">
-          <h1>Save A Life</h1>
+          <div className="benefit">
             <img src={animalcarecolor} alt="dog icon" className="dog-icon" />
+          <h1>Save A Life</h1>
             <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
             </p>
           </div>
-          <div className="benefit-3">
-          <h1>Convenient Access to Information</h1>
+          <div className="benefit">
             <img src={animalinformation} alt="dog icon" className="dog-icon" />
+          <h1>Convenient Access to Information</h1>
             <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, size, age, and location to find the perfect match for you and your family.
             </p>
           </div>
       </div>
-      
+      <div className="featured-title">
+          <h1> 
+            Featured Pets
+          </h1>
+      </div>
       <div className="featured-section">
-        
         {petcard?.length > 0 ? (
           <div className="petcardcontainer">
             {petcard.map((petinfo, index) => (
@@ -225,23 +229,30 @@ const Home = () => {
             </h2>
           </div>
         )}
+        <div className="Pagination-Button-Area">
+        <div className="Left-Button" onClick={() => {handleNextPage();
+          }}>
         <button
-          className="pagination-button"
+          className="pagination-button-1"
           onClick={() => {handlePrevPage();
-          window.scrollTo(0, 950);}}
-          disabled={currentPage === 1}
+            }}
+            disabled={currentPage === 1}
         >
           Previous
         </button>
-
+        </div>
+        <div className="Right-button" onClick={() => {handleNextPage();
+        }}>
         <button
-          className="pagination-button"
+          className="pagination-button-2"
           onClick={() => {handleNextPage();
-          window.scrollTo(0, 950);}}
+          }}
         >
           Next
         </button>
-        <h3> page: {currentPage}</h3>
+        </div>
+        </div>
+        {/* <h3> page: {currentPage}</h3> */}
       </div>
       <div className="Mission-statement">
         <div className="Mission-statement-text">
