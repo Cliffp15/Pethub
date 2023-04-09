@@ -4,7 +4,7 @@ import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 import axios from "axios";
 import CircularProgress from "@mui/joy/CircularProgress";
-import "./styles/homepage.css";
+import "./styles/FindPets.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
@@ -246,7 +246,7 @@ const FindPetPage = () => {
           <CircularProgress size="lg" />
         </div>
       ) : petcard?.length > 0 ? (
-        <div className="petcardcontainer">
+        <div className="findpetcardcontainer">
           {petcard.map((petinfo, index) => (
             <PetCard key={index} petinfo={petinfo} />
           ))}

@@ -7,10 +7,7 @@ import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
 import arrowright from "../photos/animalinformation.png";
 import CircularProgress from "@mui/joy/CircularProgress";
-
-
 import caticon from "../photos/cat.png";
-
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
@@ -227,53 +224,57 @@ const Home = () => {
             </p>
           </div>
       </div>
-{/* <<<<<<< HEAD */}
-      <div className="featured-title">
-          <h1> 
-            Featured Pets
-          </h1>
-      </div>
-      <div className="featured-section">
-        {isLoading ? (
-          <div className="loading">
-            <CircularProgress size="lg" />
+      <div className="Featured-content-area">
+        <div className="featured-title">
+            <h1> 
+              Featured Pets
+            </h1>
+            <h3> 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Pellentesque auctor odio ac scelerisque tincidunt. 
+          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
+          Maecenas tincidunt convallis erat vitae commodo. 
+          Maecenas pulvinar eros vel lacus faucibus congue. 
+          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
+          porttitor nec, convallis non nisl.
+            </h3>
+        </div>
+          <div className="featured-section">
+            {isLoading ? (
+              <div className="loading">
+                <CircularProgress size="lg" />
+              </div>
+            ) : petcard?.length > 0 ? (
+            
+              <div className="petcardcontainer">
+                {petcard.map((petinfo, index) => (
+                  <PetCard key={index} petinfo={petinfo} />
+                ))}
+              </div>
+            ) : (
+              <div className="empty">No pets found.</div>
+            )}
+            <div className="Pagination-Button-Area">
+            <button
+              className="pagination-button-1"
+              onClick={() => {handlePrevPage();
+                window.scrollTo(0,950);}}
+                disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <button
+              className="pagination-button-2"
+              onClick={() => {handleNextPage();
+              window.scrollTo(0,950);}}
+            >
+              Next
+            </button>
+            </div>
+            <div className="pagination-counter">
+              <h3> page: {currentPage}</h3>
+            </div>
           </div>
-        ) : petcard?.length > 0 ? (
-
-          <div className="petcardcontainer">
-            {petcard.map((petinfo, index) => (
-              <PetCard key={index} petinfo={petinfo} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">No pets found.</div>
-        )}
-        <div className="Pagination-Button-Area">
-        <div className="Left-Button" onClick={() => {handleNextPage();
-          }}>
-        <button
-
-          className="pagination-button-1"
-          onClick={() => {handlePrevPage();
-            }}
-            disabled={currentPage === 1}
-
-        >
-          Previous
-        </button>
-        </div>
-        <div className="Right-button" onClick={() => {handleNextPage();
-        }}>
-        <button
-          className="pagination-button-2"
-          onClick={() => {handleNextPage();
-          }}
-        >
-          Next
-        </button>
-        </div>
-        </div>
-        {/* <h3> page: {currentPage}</h3> */}
       </div>
       <div className="Mission-statement">
         <div className="Mission-statement-text">
