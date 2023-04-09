@@ -6,7 +6,7 @@ import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
 import arrowright from "../photos/animalinformation.png";
-
+import CircularProgress from "@mui/joy/CircularProgress";
 
 
 import caticon from "../photos/cat.png";
@@ -28,6 +28,8 @@ const Home = () => {
   const [firstcall, setfirstcall] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // useEffect(() => {
   //   const intervalId = setInterval(async () => {
@@ -50,6 +52,7 @@ const Home = () => {
 
   let pagination = 1;
   const Fetchpets = async (pagination) => {
+    setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
     while (petsWithPhotos.length < 4) {
@@ -79,17 +82,22 @@ const Home = () => {
     setpetcard(petsWithPhotos.slice(0, 4));
 
     setfirstcall(false);
+    setIsLoading(false);
     //  return data;
 
-    setTotalPages(Math.ceil(data.pagination.total_count / 20));
+    setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
 
-  const searchFetchpets = async (animal) => {
-    setCurrentPage(1);
+  const searchFetchpets = async (animal, page) => {
+    setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 4) {
-      const response = await fetch(`${searchAPI_URL}${animal}`, {
+// <<<<<<< HEAD
+//     while (petsWithPhotos.length < 4) {
+//       const response = await fetch(`${searchAPI_URL}${animal}`, {
+// =======
+    while (petsWithPhotos.length < 6) {
+      const response = await fetch(`${searchAPI_URL}${animal}&page=${page}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -98,7 +106,7 @@ const Home = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(`${API_URL}${animal}`);
+      console.log(`${API_URL}${animal}&page=${page}`);
 
       const data = await response.json();
       console.log(data);
@@ -116,7 +124,9 @@ const Home = () => {
     setpetcard(petsWithPhotos.slice(0, 4));
 
     setfirstcall(false);
-    //  return data;
+    setIsLoading(false);
+
+    setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
   const SearchPets = async () => {
     // debugger;
@@ -127,20 +137,29 @@ const Home = () => {
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
 
-    searchFetchpets(
-      `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`
-    );
+    const query = `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`;
+    setSearchQuery(query);
+    console.log(query);
+    searchFetchpets(query);
   };
 
   const handleNextPage = async () => {
     setCurrentPage((prev) => prev + 1);
-    Fetchpets(currentPage);
+    if (searchQuery !== "") {
+      searchFetchpets(searchQuery, currentPage);
+    } else {
+      Fetchpets(currentPage);
+    }
   };
 
   const handlePrevPage = async () => {
     setCurrentPage((prev) => prev - 1);
-    Fetchpets(currentPage);
-  }
+    if (searchQuery !== "") {
+      searchFetchpets(searchQuery, currentPage);
+    } else {
+      Fetchpets(currentPage);
+    }
+  };
 
   useEffect(() => {
     if (firstcall) {
@@ -152,9 +171,11 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
-          <h1>Find <br/> the purfect <br/> pet for you!</h1>
-          <div className="hero-section-content-wrapper">
-          <h2 >Enter your location and pet of choice to find a pet near you.</h2>
+        <h1>
+          Find <br /> the purfect <br /> pet for you!
+        </h1>
+        <div className="hero-section-content-wrapper">
+          <h2>Enter your location and pet of choice to find a pet near you.</h2>
           <div className="search-container">
             <div className="search-for-animal">
               {/* <input placeholder="City" type="text" id="cityinput" /> */}
@@ -206,37 +227,37 @@ const Home = () => {
             </p>
           </div>
       </div>
+{/* <<<<<<< HEAD */}
       <div className="featured-title">
           <h1> 
             Featured Pets
           </h1>
       </div>
       <div className="featured-section">
-        {petcard?.length > 0 ? (
+        {isLoading ? (
+          <div className="loading">
+            <CircularProgress size="lg" />
+          </div>
+        ) : petcard?.length > 0 ? (
+
           <div className="petcardcontainer">
             {petcard.map((petinfo, index) => (
               <PetCard key={index} petinfo={petinfo} />
             ))}
           </div>
         ) : (
-          <div className="empty">
-            <h2>
-              {" "}
-              <span>
-                No pet found. <br />
-                Hint: Make sure API key/Authorization is up to date{" "}
-              </span>{" "}
-            </h2>
-          </div>
+          <div className="empty">No pets found.</div>
         )}
         <div className="Pagination-Button-Area">
         <div className="Left-Button" onClick={() => {handleNextPage();
           }}>
         <button
+
           className="pagination-button-1"
           onClick={() => {handlePrevPage();
             }}
             disabled={currentPage === 1}
+
         >
           Previous
         </button>
