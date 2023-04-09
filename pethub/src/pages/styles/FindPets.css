@@ -322,6 +322,8 @@ body {
     transition: transform 0.2s ease-in-out;
     width: 100%;
     max-width: 500px;
+    background-color: white;
+    /* color: white; */
   }
   
   .pet-card:hover {

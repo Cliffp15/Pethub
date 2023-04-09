@@ -316,12 +316,13 @@ body {
   align-items: center;
   justify-content: center;
   /* padding: 20px; */
-  margin: 0rem 2rem 5rem 2rem;
+  margin: 0rem 2rem 3rem 2rem;
   border-radius: 17px;
   box-shadow: 0 2px 4px rgba(208, 15, 15, 0.851);
   transition: transform 0.2s ease-in-out;
   width: 100%;
   max-width: 500px;
+  background-color: white;
 }
 
 .pet-card:hover {
@@ -371,6 +372,14 @@ body {
   font-size: 16px;
   margin: 0;
 }
+
+
+/* .loading{
+  display: contents;
+  width: 100%;
+  background-color: #edf9fd;
+
+} */
 
 .Pagination-Button-Area{
   display: flex;
