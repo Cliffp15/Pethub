@@ -59,18 +59,18 @@ app.post("/signup", (req, res) => {
 
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
-    const userName = req.body.userName;
+    //const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
     const salt = await bcrypt.genSalt(saltRounds);
     const encryptPassword = await bcrypt.hash(password, salt);
-    const phone = req.body.phone;
-    const city = req.body.city;
-    const state = req.body.state;
-    const zip = req.body.zip;
-    const securityQuestion = req.body.securityQuestion;
-    const securityAnswer = req.body.securityAnswer;
-    const encryptSecurityAnswer = await bcrypt.hash(securityAnswer, salt);
+    //const phone = req.body.phone;
+    //const city = req.body.city;
+    //const state = req.body.state;
+    //const zip = req.body.zip;
+    //const securityQuestion = req.body.securityQuestion;
+    //const securityAnswer = req.body.securityAnswer;
+    //const encryptSecurityAnswer = await bcrypt.hash(securityAnswer, salt);
     let today = new Date();
     const dd = today.getDate();
     const mm = today.getMonth() + 1;
@@ -83,11 +83,10 @@ app.post("/signup", (req, res) => {
 
     // const profilePicture = req.file.path;
 
-    request.input("UserNameEntered", sql.VarChar, userName);
     request.input("EmailEntered", sql.VarChar, email);
 
     const userNameEmailQuery =
-      "SELECT UserName, Email FROM Users WHERE Username = @UserNameEntered OR Email = @EmailEntered";
+      "SELECT Email FROM Users WHERE Email = @EmailEntered";
     let duplicateUserNameOrEmail = false;
     request.query(userNameEmailQuery, (err, result2) => {
       console.log(result2);
@@ -95,27 +94,15 @@ app.post("/signup", (req, res) => {
         duplicateUserNameOrEmail = true;
       }
       if (duplicateUserNameOrEmail === true) {
-        if (
-          result2.recordset[0].UserName === userName &&
-          result2.recordset[0].Email === email
-        ) {
-          console.log("Username and Email are taken");
-          res.status(400).send("Username and Email are taken");
-        } else if (result2.rowsAffected > 1) {
-          console.log("Username and Email are taken");
-          res.status(400).send("Username and Email are taken");
-        } else if (result2.recordset[0].UserName == userName) {
-          console.log("Username is taken");
-          res.status(400).send("Username is taken");
-        } else if (result2.recordset[0].Email == email) {
+        if (result2.recordset[0].Email == email) {
           console.log("Email is taken");
           res.status(400).send("Email is taken");
         }
 
         console.log(err);
       } else {
-        const query = `INSERT INTO Users (FirstName, LastName, Username, Email, Password, Phone, City, State, Zip, DateCreated, SecurityQuestion, SecurityAnswer) 
-                VALUES ('${firstName}', '${lastName}','${userName}', '${email}', '${encryptPassword}','${phone}', '${city}', '${state}', '${zip}', '${todaysDate}', '${securityQuestion}', '${encryptSecurityAnswer}')`;
+        const query = `INSERT INTO Users (FirstName, LastName, Email, Password, DateCreated) 
+                VALUES ('${firstName}', '${lastName}', '${email}', '${encryptPassword}', '${todaysDate}')`;
 
         request.query(query, (err, result) => {
           if (err) {
@@ -132,21 +119,21 @@ app.post("/signup", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/signindialog", (req, res) => {
   sql.connect(config, (err) => {
     if (err) console.log(err);
 
     const request = new sql.Request();
 
-    const userName = req.body.userName;
+    const email = req.body.email;
     const password = req.body.password;
 
-    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("EmailEntered", sql.VarChar, email);
 
     console.log(req.body);
 
     const query =
-      "SELECT Password, ID FROM Users WHERE Username = @UserNameEntered";
+      "SELECT Password, ID FROM Users WHERE Email = @EmailEntered";
 
     request.query(query, async (err, result) => {
       console.log(result);

@@ -21,7 +21,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 export default function SignInDialog({ open, onClose }) {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // ... rest of the SignIn component logic ...
@@ -34,14 +34,14 @@ export default function SignInDialog({ open, onClose }) {
 
     // create the data object to send to the server
     const data = {
-      userName: userName,
+      email: email,
       password: password,
     };
 
     // send the data to the server
     axios({
       method: "post",
-      url: "http://localhost:3001/login",
+      url: "http://localhost:3001/signindialog",
       data: data,
       headers: { "Content-Type": "application/json" },
     })
@@ -85,6 +85,8 @@ export default function SignInDialog({ open, onClose }) {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
@@ -95,6 +97,8 @@ export default function SignInDialog({ open, onClose }) {
               label="Password"
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <FormControlLabel
