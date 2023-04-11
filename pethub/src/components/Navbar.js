@@ -82,7 +82,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    // backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(65, 105, 225, 0.4)",
   },
   verticalDivider: {
     backgroundColor: "white",

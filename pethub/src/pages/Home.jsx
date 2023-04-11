@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+import WhoWeAre from "../components/WhoWeAre";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
@@ -60,7 +61,7 @@ const Home = () => {
   const Fetchpets = async (pagination) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 6) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -87,7 +88,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 6));
 
     setfirstcall(false);
     //  return data;
@@ -96,7 +97,7 @@ const Home = () => {
   const searchFetchpets = async (animal) => {
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 6) {
       const response = await fetch(`${searchAPI_URL}${animal}`, {
         method: "GET",
         mode: "cors",
@@ -121,7 +122,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 6));
 
     setfirstcall(false);
     //  return data;
@@ -151,6 +152,7 @@ const Home = () => {
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
         <h1>Find the purrfect pet for you!</h1>
+
         <div className="search-container">
           <div className="search-for-animal">
             {/* <input placeholder="City" type="text" id="cityinput" /> */}
@@ -205,6 +207,9 @@ const Home = () => {
           </div>
         )}
       </div>
+      <React.Fragment>
+        <WhoWeAre />
+      </React.Fragment>
     </div>
   );
 };
