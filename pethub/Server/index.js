@@ -119,21 +119,21 @@ app.post("/signup", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/signindialog", (req, res) => {
   sql.connect(config, (err) => {
     if (err) console.log(err);
 
     const request = new sql.Request();
 
-    const userName = req.body.userName;
+    const email = req.body.email;
     const password = req.body.password;
 
-    request.input("UserNameEntered", sql.VarChar, userName);
+    request.input("EmailEntered", sql.VarChar, email);
 
     console.log(req.body);
 
     const query =
-      "SELECT Password, ID FROM Users WHERE Username = @UserNameEntered";
+      "SELECT Password, ID FROM Users WHERE Email = @EmailEntered";
 
     request.query(query, async (err, result) => {
       console.log(result);
