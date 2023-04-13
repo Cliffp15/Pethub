@@ -4,7 +4,8 @@ import SimilarPets from "../components/SimilarPets";
 import "./styles/PetDetails.css";
 import { fetchToken } from "../api/petFinderToken";
 import ContactModal from "../components/ContactModal";
-import CircularProgress from "@mui/joy/CircularProgress";
+// import CircularProgress from "@mui/joy/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ComponentDetails = () => {
   const { id } = useParams();

@@ -3,7 +3,9 @@ import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 import axios from "axios";
-import CircularProgress from "@mui/joy/CircularProgress";
+// import CircularProgress from "@mui/joy/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import "./styles/FindPets.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
@@ -94,12 +96,12 @@ const FindPetPage = () => {
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
     FetchFilteredPets(query, currentPage);
-  }
+  };
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => prev - 1);
     FetchFilteredPets(query, currentPage);
-  }
+  };
 
   const filterPets = async () => {
     const animalInput = document.getElementById("animalinput").value;
@@ -242,24 +244,24 @@ const FindPetPage = () => {
           </button>
         </div>
         {isLoading ? (
-        <div className="loading">
-          <CircularProgress size="lg" />
-        </div>
-      ) : petcard?.length > 0 ? (
-        <div className="findpetcardcontainer">
-          {petcard.map((petinfo, index) => (
-            <PetCard key={index} petinfo={petinfo} />
-          ))}
-        </div>
-      ) : (
-        <div className="empty">
-          No pets found.
-        </div>
-      )}
-         <button
+          <div className="loading">
+            <CircularProgress size="lg" />
+          </div>
+        ) : petcard?.length > 0 ? (
+          <div className="findpetcardcontainer">
+            {petcard.map((petinfo, index) => (
+              <PetCard key={index} petinfo={petinfo} />
+            ))}
+          </div>
+        ) : (
+          <div className="empty">No pets found.</div>
+        )}
+        <button
           className="pagination-button"
-          onClick={() => {handlePreviousPage();
-          window.scrollTo(0, 950);}}
+          onClick={() => {
+            handlePreviousPage();
+            window.scrollTo(0, 950);
+          }}
           disabled={currentPage === 1}
         >
           Previous
@@ -267,8 +269,10 @@ const FindPetPage = () => {
 
         <button
           className="pagination-button"
-          onClick={() => {handleNextPage();
-          window.scrollTo(0, 950);}}
+          onClick={() => {
+            handleNextPage();
+            window.scrollTo(0, 950);
+          }}
         >
           Next
         </button>
