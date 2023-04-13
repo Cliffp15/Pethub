@@ -27,7 +27,6 @@ export default function Navbar() {
               <CustomLink to="/findshelter">Find Shelter</CustomLink>
               <CustomLink to="/signup">Sign up</CustomLink>
               <SignInButton className="sign-in" />
-              <CustomLink to="/login">Login</CustomLink>
             </>
           )}
         </ul>
