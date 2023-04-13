@@ -88,7 +88,7 @@ const Home = () => {
     setIsLoading(false);
     //  return data;
 
-    setTotalPages(Math.ceil(data.pagination.total_count / 6));
+    // setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
 
   const searchFetchpets = async (animal, page) => {
@@ -134,7 +134,7 @@ const Home = () => {
     setfirstcall(false);
     setIsLoading(false);
 
-    setTotalPages(Math.ceil(data.pagination.total_count / 6));
+    // setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
   const SearchPets = async () => {
     // debugger;

@@ -1,20 +1,17 @@
-
-import { useImperativeHandle, useContext} from "react";
-import { Link, useMatch, useResolvedPath, } from "react-router-dom";
+import { useImperativeHandle, useContext } from "react";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Header from "./Header";
 import SignInButton from "../components/SignInButton";
 import AuthContext from "../contexts/AuthContext";
 
-
 import "../pages/styles/Navbar.css";
 export default function Navbar() {
-  const { isAuthenticated, logout, } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
   return (
     <div className="header-nav">
       <nav className="nav">
         <Header className="logo" />
         <ul className="nav-links">
-
           {isAuthenticated && (
             <>
               <CustomLink to="/findapet">Find Pets</CustomLink>
@@ -33,7 +30,6 @@ export default function Navbar() {
               <CustomLink to="/login">Login</CustomLink>
             </>
           )}
-
         </ul>
       </nav>
     </div>
