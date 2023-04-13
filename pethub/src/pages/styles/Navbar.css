@@ -1,9 +1,11 @@
 .nav {
 
+
   /* background-color: #8AE3F6; */
   background-color: #A2DCEA;
   /* background-color: #4169e1c0; */
   /* background-image: linear-gradient( #4169e1c0,#4169e1c0,#A2DCEA); */
+
   color: #000000;
   height: 100px;
   display: flex;
@@ -92,6 +94,17 @@
   margin-right: 0;
 }
 
-.login {
-  margin-left: 0;
+.sign-in {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 0.35rem 0 0.35rem;
+}
+
+.sign-in:hover {
+  background-color: white;
+  opacity: 0.8;
 }

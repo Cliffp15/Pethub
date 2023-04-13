@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+
 import "./styles/Login.css";
 import caticon from "../photos/cat.png";
 
@@ -33,7 +33,9 @@ const LogInPage = ({ handleLogin }) => {
       .then(function (response) {
         // handle the response from the server
         console.log(response);
+
         handleLogin(response.data.token);
+
         alert("User logged in successfully");
         navigate("/");
       })
@@ -79,7 +81,6 @@ const LogInPage = ({ handleLogin }) => {
         <p>
           Forgot your Password? <Link to="/resetpassword">Reset Password</Link>
         </p>
-
       </form>
     </div>
   );

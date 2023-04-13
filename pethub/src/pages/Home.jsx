@@ -1,6 +1,7 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
 import dogIcon from "../photos/dog.png";
+
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
@@ -8,11 +9,13 @@ import animalinformation from "../photos/animalinformation.png";
 import arrowright from "../photos/animalinformation.png";
 import CircularProgress from "@mui/joy/CircularProgress";
 import caticon from "../photos/cat.png";
+
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+import WhoWeAre from "../components/WhoWeAre";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
@@ -20,13 +23,15 @@ const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
+
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
 
   // useEffect(() => {
   //   const intervalId = setInterval(async () => {
@@ -52,7 +57,9 @@ const Home = () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
+
     while (petsWithPhotos.length < 4) {
+
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -76,7 +83,9 @@ const Home = () => {
       pagination++;
     }
 
+
     setpetcard(petsWithPhotos.slice(0, 4));
+
 
     setfirstcall(false);
     setIsLoading(false);
@@ -89,12 +98,14 @@ const Home = () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
-// <<<<<<< HEAD
+
+// 
 //     while (petsWithPhotos.length < 4) {
 //       const response = await fetch(`${searchAPI_URL}${animal}`, {
 // =======
     while (petsWithPhotos.length < 6) {
       const response = await fetch(`${searchAPI_URL}${animal}&page=${page}`, {
+
         method: "GET",
         mode: "cors",
         headers: {
@@ -118,7 +129,9 @@ const Home = () => {
       pagination++;
     }
 
+
     setpetcard(petsWithPhotos.slice(0, 4));
+
 
     setfirstcall(false);
     setIsLoading(false);
@@ -133,6 +146,7 @@ const Home = () => {
     // const stateinput = document.getElementById("stateinput").value;
     const animalinput = document.getElementById("animalinput").value;
     const breedinput = document.getElementById("breedinput").value;
+
 
     const query = `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`;
     setSearchQuery(query);
@@ -156,6 +170,7 @@ const Home = () => {
     } else {
       Fetchpets(currentPage);
     }
+
   };
 
   useEffect(() => {
@@ -168,6 +183,7 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
+
         <h1>
           Find <br /> the purfect <br /> pet for you!
         </h1>
@@ -201,6 +217,7 @@ const Home = () => {
                 Search{" "}
               </button>
             </div>
+
           </div>
         </div>
       </div>
@@ -296,6 +313,9 @@ const Home = () => {
         <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
+      <React.Fragment>
+        <WhoWeAre />
+      </React.Fragment>
     </div>
   );
 };
