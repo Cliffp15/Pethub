@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../photos/PetHub.png";
+
+import logo from "../photos/Logo-All-White.png";
+
 
 function Header({ className }) {
   // Add className prop

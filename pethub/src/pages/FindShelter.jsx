@@ -1,6 +1,9 @@
 import { useState, useEffect, React } from "react";
 import axios from "axios";
-// import fetchToken from '../api/petFinderToken';
+import "./styles/Findshelter.css";
+import { Divider } from "@chakra-ui/layout";
+import Findshelterinfo from "../components/FindShelters";
+// import { fetchToken } from "../api/petFinderToken";
 
 const FindShelter = (props) => {
   const [shelters, setShelters] = useState([]);
@@ -9,6 +12,8 @@ const FindShelter = (props) => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const [isSheltersVisible, setIsSheltersVisible] = useState(false);
+  const [firstcall, setfirstcall] = useState(true);
+
 
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
@@ -30,6 +35,29 @@ const FindShelter = (props) => {
     }
   }, []);
 
+    const API_URL = "https://api.petfinder.com/v2/organizations";
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     // const token = await fetchToken();
+  //     const response = await fetch(`${API_URL}`, {
+  //       method: "GET",
+  //       mode: "cors",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6IjAyY2FhYzllZDQxZGUxMWNkZjVmMGY1YWM5YWEzODYyNmM1YzUxMmQ1NGQ2ZDY1MTFmMjhjNzc0NzFmNTk0NDY5NGU0ZmQ3YWVmYTk1NjMwIiwiaWF0IjoxNjc5NjUxODgyLCJuYmYiOjE2Nzk2NTE4ODIsImV4cCI6MTY3OTY1NTQ4Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.PSHnvzj1Y9XdVMwVEF5sgVc4LctykcESuJJWC3mzbGaPUJCdbXywBm1ZNaOh55OPvAMt0xmraYuyAOJln6h_nPfFZdU2pW8LGdtyJGGRBGh8IgwhOR7aATkPwM4z4901nmJnMClkEIwo0JAi23RuF0dTcOeot6UCueFjYtNE3lrAGaMzdabM5jVkmCVXYk4xs9UdQQP1CPhgVj2V70ikOSLbQ8NDH0XunH1T2d6cXL-405DV4ayxW2BcUqNfdjhUua1d6kX9pdenP08-i7l_SSffcoNfD-JGozEpUDEE9OrnHZpTNyie_huNHdY4pCA1apqNOJzPbh0JzMQV_QaZeg`,
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     setShelters(data.organizations);
+  //     console.log(data.organizations);
+  //     console.log(response.data);
+  //     setfirstcall(false);
+  //   }, 3600000); // 1 hour = 3,600,000 milliseconds
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
   useEffect(() => {
     // Get a list of shelters from the Petfinder API
     const getShelters = async () => {
@@ -40,7 +68,7 @@ const FindShelter = (props) => {
           headers: {
             Accept: "application/jason",
             "Content-type": "application/jason",
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyRURlcDRuVW5abGRmS21FVUc4ajNZSmxKY01HM2RBbFVaVUE4SUplUkE0QnZiSjR6OSIsImp0aSI6IjUyYzc4ODIyZjcxODhhOTZhZmIzMWY3MTc0NjY5MGQ4YTlhZTM5ZDI0ZTVkYjJiYjZkYTk3OGU5NGZhZThlZGI0MjQ3OGJhNGNmZGNkNTUxIiwiaWF0IjoxNjc4OTQxODkyLCJuYmYiOjE2Nzg5NDE4OTIsImV4cCI6MTY3ODk0NTQ5Miwic3ViIjoiIiwic2NvcGVzIjpbXX0.X2BBvVOSj8mxfFVkyDr4ZwnDJWGUrgMitsLTb0O_kvsZqgq9Z8ukMD0KTOQhGMdTwuOPeWfyY9qu_Ec10gDAKEi7uoZr-JoZbjGk-hkg2VXfzQx_zTN--K8a51R-xWSjduS0TKyCAkfxNd9nOdNzmT9a7WJNtrXkExWtqpuvvqO6YvBN5oKzB_9_89S-h9ZT1Swtz0WUSUAQy8vAQBKGATcptoujtKFIv0iyS2PkkgWzhp81zKIGVcI7hnUR3BiIAcK9xT5oj6E8WbHH__7JbGBRUS6GWKYxfegZqIvf2mo8l1unnOP8KgwhUyP7AKN_dU-MNKe6ylyLhWJVhyG8Yw`,
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6Ijc5ZTQ4OTQxMmNiZTZlYTQ4MGI0OTcxYmQ2NTg5M2VhMmY1YTBkMzJkNTJjZWI1M2NiOWI5YjZmOTE5M2FiMjU3NzllZTA0ZTRlMGM3YmRmIiwiaWF0IjoxNjc5ODgxNTg5LCJuYmYiOjE2Nzk4ODE1ODksImV4cCI6MTY3OTg4NTE4OCwic3ViIjoiIiwic2NvcGVzIjpbXX0.Sxcxef11yDmM3Y-e1Xe969i3D_J9DJLOgcXQ4iLIILOtGyLLMnnoc55EtXwWa__eQo0joLVnoKJMsGs8J9Ef7BdHmyASsG_0clGuKnLh-6t_VQTmboKdwQMlz15gwadcxIIRjh360aA6CW95pvJoCEyosi9uktcCUMNe-ZWq7JSyxK0W8b6jURwyklako7jX-PX6JezVyTxSYRjJ5ysF0xmcquDr-Ezh3tM9uDLSsF4nOrcELRKeMPW7NQTXoqpINch3I4zT8V2nSyQto-_nGnlxO3G4Sy2xgwUTo6ryBv4H6bpjR4HhXKDMr2FdqoIhlCjBrgC0qmzRR3d2xAQbLQ`,
           },
           params: {
             location: `${userLocation.lat},${userLocation.lng}`,
@@ -108,7 +136,7 @@ const FindShelter = (props) => {
         script.onload = () => initMap();
         document.body.appendChild(script);
       }
-    }
+    } setfirstcall(false);
   }, [userLocation]);
 
   function getShelterCoordinates(shelters) {
@@ -189,36 +217,43 @@ const FindShelter = (props) => {
     const shelterNames = shelters.map((shelter) => shelter);
     getShelterCoordinates(shelterNames);
   };
+
+  useEffect(() => {
+    if(firstcall){
+      populateShelterMarkers();
+      setIsSheltersVisible(true);}
+  }, [firstcall]);
+
+
   return (
-    <div style={{ height: "700px", width: "100%" }}>
-      {error && <div>{error}</div>}
-      {userLocation && (
-        <div id="map" style={{ height: "100%", width: "100%" }}></div>
-      )}
-      <div>
-        <button onClick={()=>{
-          populateShelterMarkers();
-          setIsSheltersVisible(true)
-        }}>
-          Locate Shelters Near You
-        </button>
-      </div>
-      {isSheltersVisible && (
-        <div>
-          <h1>Shelters</h1>
-          <ul>
-            {shelters.map((shelter) => (
-              <li key={shelter.id}>
-                <strong>{shelter.name}</strong>
-                <br />
-                Phone: {shelter.phone}
-                <br />
-                Distance: {shelter.distance}
-              </li>
-            ))}
-          </ul>
+
+    // style={{ height: "900px", width: "100%" }}
+    <div className= "FindShelter-page-container" >
+        {error && <div>{error}</div>}
+        {userLocation && (
+          // style={{ height: "400px", width: "100%" }}
+          <div className= "Map-area"id="map"> </div>
+        )}
+      <div className="page-flex">
+        <div className="ShelterSearch-area">
+          <div className="Shelter-title">
+            <h1>Shelters Near You</h1>
+              <div className="Searchbutton-area">
+                <button onClick={()=>{
+                  populateShelterMarkers();
+                  setIsSheltersVisible(true)
+                }}>
+                  Highlight Shelter Locations
+                </button>
+              </div>
+          </div>
+            <div className="Shelterresults-area">
+              {shelters.map((shelterinfo, index) => (
+                <Findshelterinfo key={index} shelterinfo={shelterinfo}/>
+              ))}
+            </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

@@ -328,7 +328,13 @@ export default function SignUp() {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  let navigate = useNavigate();
+
+ let navigate = useNavigate();
+  // Create a function that runs when the form is submitted
+  const onSubmit = async (e) => {
+    // Prevent the form from submitting
+    e.preventDefault();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();

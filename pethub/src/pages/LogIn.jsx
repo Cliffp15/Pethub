@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./styles/Login.css";
 import caticon from "../photos/cat.png";
 
-const LogInPage = () => {
+const LogInPage = ({ handleLogin }) => {
   //useState is a hook that allows you to have state variables in functional components.
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,9 @@ const LogInPage = () => {
       .then(function (response) {
         // handle the response from the server
         console.log(response);
-        localStorage.setItem("userId", response.data.userId);
+
+        handleLogin(response.data.token);
+
         alert("User logged in successfully");
         navigate("/");
       })

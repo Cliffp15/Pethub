@@ -3,8 +3,8 @@ import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 import axios from "axios";
-
-import "./styles/homepage.css";
+import CircularProgress from "@mui/joy/CircularProgress";
+import "./styles/FindPets.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
@@ -18,11 +18,15 @@ const FindPetPage = () => {
   const [breed, setBreed] = useState("");
   const [petBreeds, setPetBreeds] = useState([]);
   const [species, setSpecies] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const Fetchpets = async (animal) => {
+    setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
-    while (petsWithPhotos.length < 20) {
+    while (petsWithPhotos.length < 21) {
       const response = await fetch(`${API_URL}${animal}`, {
         method: "GET",
         mode: "cors",
@@ -45,15 +49,17 @@ const FindPetPage = () => {
       console.log(animalsWithPotos, petsWithPhotos);
     }
 
-    setpetcard(petsWithPhotos.slice(0, 20));
+    setpetcard(petsWithPhotos.slice(0, 21));
 
     setfirstcall(false);
+    setIsLoading(false);
   };
 
-  const FetchFilteredPets = async (animal) => {
+  const FetchFilteredPets = async (query, page) => {
+    setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
-    const response = await fetch(`${API_URL}${animal}`, {
+    const response = await fetch(`${API_URL}${query}&page=${page}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -62,7 +68,7 @@ const FindPetPage = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(`${API_URL}${animal}`);
+    console.log(`${API_URL}${query}&page=${page}`);
 
     const data = await response.json();
     console.log(data);
@@ -80,9 +86,20 @@ const FindPetPage = () => {
 
       console.log(animalsWithPotos, petsWithPhotos);
 
-      setpetcard(petsWithPhotos.slice(0, 20));
+      setpetcard(petsWithPhotos.slice(0, 21));
+      setIsLoading(false);
     }
   };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+    FetchFilteredPets(query, currentPage);
+  }
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => prev - 1);
+    FetchFilteredPets(query, currentPage);
+  }
 
   const filterPets = async () => {
     const animalInput = document.getElementById("animalinput").value;
@@ -116,7 +133,8 @@ const FindPetPage = () => {
     if (queryString === "") {
       alert("Please Select A Filter");
     } else {
-      await FetchFilteredPets(queryString);
+      setQuery(queryString);
+      await FetchFilteredPets(queryString, currentPage);
     }
   };
 
@@ -223,23 +241,38 @@ const FindPetPage = () => {
             Filter Pets
           </button>
         </div>
-        {petcard?.length > 0 ? (
-          <div className="petcardcontainer">
-            {petcard.map((petinfo, index) => (
-              <PetCard key={index} petinfo={petinfo} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">
-            <h2>
-              {" "}
-              <span>
-                No pet found. <br />
-                Hint: Make sure API key/Authorization is up to date{" "}
-              </span>{" "}
-            </h2>
-          </div>
-        )}
+        {isLoading ? (
+        <div className="loading">
+          <CircularProgress size="lg" />
+        </div>
+      ) : petcard?.length > 0 ? (
+        <div className="findpetcardcontainer">
+          {petcard.map((petinfo, index) => (
+            <PetCard key={index} petinfo={petinfo} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          No pets found.
+        </div>
+      )}
+         <button
+          className="pagination-button"
+          onClick={() => {handlePreviousPage();
+          window.scrollTo(0, 950);}}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        <button
+          className="pagination-button"
+          onClick={() => {handleNextPage();
+          window.scrollTo(0, 950);}}
+        >
+          Next
+        </button>
+        <h3> page: {currentPage}</h3>
       </div>
     </div>
   );
