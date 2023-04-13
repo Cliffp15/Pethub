@@ -8,6 +8,9 @@ import Typography from "../components/Typography";
 import PetsIcon from "@mui/icons-material/Pets";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Wave from "react-wavify";
+
+import CustomButton from "../components/Button";
 
 const item = {
   display: "flex",
@@ -32,17 +35,6 @@ function WhoWeAre() {
           alignItems: "center",
         }}
       >
-        <Box
-          component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
-          alt="curvy lines"
-          sx={{
-            pointerEvents: "none",
-            position: "absolute",
-            top: -180,
-            opacity: 0.7,
-          }}
-        />
         <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
           Who We Are
         </Typography>
@@ -87,7 +79,7 @@ function WhoWeAre() {
           </Grid>
         </div>
         <Button
-          color="secondary"
+          color="inherit"
           size="large"
           variant="contained"
           component="a"
