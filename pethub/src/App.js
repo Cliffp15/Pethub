@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import PostAPet from "./pages/PostAPetPage";
 import FindPetPage from "./pages/FindPetPage";
+import SignIn from "./pages/SignIn";
 import LogInPage from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import Accountpage from "./pages/Accountpage";

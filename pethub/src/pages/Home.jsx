@@ -1,6 +1,7 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
 import dogIcon from "../photos/dog.png";
+
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
@@ -9,11 +10,13 @@ import arrowright from "../photos/animalinformation.png";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import caticon from "../photos/cat.png";
+
 import "./styles/homepage.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+import WhoWeAre from "../components/WhoWeAre";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
@@ -21,9 +24,10 @@ const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
+
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +57,7 @@ const Home = () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
+
     while (petsWithPhotos.length < 4) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
@@ -90,6 +95,11 @@ const Home = () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
+
+    //
+    //     while (petsWithPhotos.length < 4) {
+    //       const response = await fetch(`${searchAPI_URL}${animal}`, {
+    // =======
     // <<<<<<< HEAD
     //     while (petsWithPhotos.length < 4) {
     //       const response = await fetch(`${searchAPI_URL}${animal}`, {
@@ -169,6 +179,7 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
+
         <h1>
           Find <br /> the purfect <br /> pet for you!
         </h1>
@@ -306,6 +317,9 @@ const Home = () => {
           <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
+      <React.Fragment>
+        <WhoWeAre />
+      </React.Fragment>
     </div>
   );
 };
