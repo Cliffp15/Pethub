@@ -62,7 +62,7 @@ export default function SignInDialog({ open, onClose }) {
     <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose} maxWidth="xs">
         <DialogTitle>
-          <Avatar sx={{ bgcolor: "#4169e1", mx: "auto", mt: 2 }}>
+          <Avatar sx={{ bgcolor: "#87ceeb", mx: "auto", mt: 2 }}>
             <PetsIcon />
           </Avatar>
           <Typography component="h1" variant="h5" align="center">
@@ -109,7 +109,7 @@ export default function SignInDialog({ open, onClose }) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor: "#4169e1", opacity: 0.8 }}
+              sx={{ mt: 3, mb: 2, bgcolor: "#87ceeb", opacity: 0.8 }}
             >
               Sign In
             </Button>
@@ -121,7 +121,7 @@ export default function SignInDialog({ open, onClose }) {
                     setTimeout(() => navigate("/resetpassword"), 100);
                   }}
                   variant="body2"
-                  style={{ cursor: "pointer", color: "#4169e1" }}
+                  style={{ cursor: "pointer", color: "#87ceeb" }}
                 >
                   Forgot password?
                 </Link>
@@ -133,7 +133,7 @@ export default function SignInDialog({ open, onClose }) {
                     setTimeout(() => navigate("/signup"), 100);
                   }}
                   variant="body2"
-                  style={{ cursor: "pointer", color: "#4169e1" }}
+                  style={{ cursor: "pointer", color: "#87ceeb" }}
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>

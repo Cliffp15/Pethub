@@ -23,7 +23,7 @@ function WhoWeAre() {
   return (
     <Box
       component="section"
-      sx={{ display: "flex", bgcolor: "#4169e1", overflow: "hidden" }}
+      sx={{ display: "flex", bgcolor: "#87ceeb", overflow: "hidden" }}
     >
       <Container
         sx={{

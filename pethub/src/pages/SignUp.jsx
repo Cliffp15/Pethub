@@ -370,7 +370,7 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#4169e1" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#87ceeb" }}>
             <PetsIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -438,7 +438,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor: "cd" }}
+              sx={{ mt: 3, mb: 2, bgcolor: "#87ceeb" }}
             >
               Sign Up
             </Button>
