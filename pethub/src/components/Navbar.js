@@ -22,7 +22,7 @@ export default function Navbar() {
             <CustomLink to="/signup">Sign up</CustomLink>
 
             <span className="slash">/</span>
-            <SignInButton />
+            <SignInButton className="sign-in" />
             {/* <CustomLink to="/login">Login</CustomLink> */}
           </div>
           {/* <CustomLink to="/signuptest">Sign up Test</CustomLink> */}

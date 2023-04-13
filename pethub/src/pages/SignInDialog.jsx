@@ -65,7 +65,12 @@ export default function SignInDialog({ open, onClose }) {
           <Avatar sx={{ bgcolor: "#87ceeb", mx: "auto", mt: 2 }}>
             <PetsIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" align="center">
+          <Typography
+            component="h1"
+            variant="h5"
+            align="center"
+            fontWeight="bold"
+          >
             Sign in
           </Typography>
         </DialogTitle>
