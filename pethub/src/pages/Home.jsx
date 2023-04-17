@@ -9,6 +9,8 @@ import arrowright from "../photos/animalinformation.png";
 import CircularProgress from "@mui/joy/CircularProgress";
 import caticon from "../photos/cat.png";
 import "./styles/homepage.css";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
@@ -16,10 +18,19 @@ import PetCard from "../components/PetImageSelection";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
-
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
+
+
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const handleSeeMorePetsClick = () => {
+    navigate(`/findapet`);
+  };
+
+
   const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
@@ -52,7 +63,7 @@ const Home = () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 4) {
+    while (petsWithPhotos.length < 6) {
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -76,7 +87,7 @@ const Home = () => {
       pagination++;
     }
 
-    setpetcard(petsWithPhotos.slice(0, 4));
+    setpetcard(petsWithPhotos.slice(0, 6));
 
     setfirstcall(false);
     setIsLoading(false);
@@ -220,7 +231,7 @@ const Home = () => {
           <div className="benefit">
             <img src={animalinformation} alt="dog icon" className="dog-icon" />
           <h1>Convenient Access to Information</h1>
-            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, size, age, and location to find the perfect match for you and your family.
+            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
             </p>
           </div>
       </div>
@@ -230,16 +241,11 @@ const Home = () => {
               Featured Pets
             </h1>
             <h3> 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Pellentesque auctor odio ac scelerisque tincidunt. 
-          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
-          Maecenas tincidunt convallis erat vitae commodo. 
-          Maecenas pulvinar eros vel lacus faucibus congue. 
-          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
-          porttitor nec, convallis non nisl.
+            Welcome to our "Featured Pets" section! Here you will find a curated selection of some of the most adorable and lovable pets around. We showcase a variety of different animals, from cute and cuddly cats and dogs to exotic birds and rabbits.
             </h3>
+            <button className="See-more-Pets-Button" onClick={handleSeeMorePetsClick}>See more Pets</button>
         </div>
-          <div className="featured-section">
+          <div className="featured-pets-section">
             {isLoading ? (
               <div className="loading">
                 <CircularProgress size="lg" />
@@ -258,7 +264,7 @@ const Home = () => {
             <button
               className="pagination-button-1"
               onClick={() => {handlePrevPage();
-                window.scrollTo(0,950);}}
+                window.scrollTo(0,1400);}}
                 disabled={currentPage === 1}
             >
               Previous
@@ -266,7 +272,7 @@ const Home = () => {
             <button
               className="pagination-button-2"
               onClick={() => {handleNextPage();
-              window.scrollTo(0,950);}}
+              window.scrollTo(0,1400);}}
             >
               Next
             </button>
@@ -279,17 +285,7 @@ const Home = () => {
       <div className="Mission-statement">
         <div className="Mission-statement-text">
         <h2>What we do</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Pellentesque auctor odio ac scelerisque tincidunt. 
-          Nunc maximus auctor nunc, id faucibus magna interdum eget. 
-          Maecenas tincidunt convallis erat vitae commodo. 
-          Maecenas pulvinar eros vel lacus faucibus congue. 
-          Integer eu ultrices elit. Nunc leo metus, accumsan quis 
-          porttitor nec, convallis non nisl. Mauris et lacus mattis, 
-          pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. 
-          Donec eu euismod dolor. Aliquam erat volutpat. 
-          Sed maximus leo purus, vitae rhoncus nisi ultrices eget. 
-          Donec molestie blandit bibendum.
+        <p>Our goal is to find loving and responsible homes for each of our animals. Our animals have been rescued from shelters, foster homes, or have been surrendered by previous owners. They have all been thoroughly examined by our veterinarians, received necessary vaccinations, and have been spayed or neutered. We believe that adopting a pet is a lifetime commitment, and we strive to ensure that each of our animals finds their perfect forever home.
         </p>
         </div>
         <div className="Mission-statement-image">

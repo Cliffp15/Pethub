@@ -24,8 +24,8 @@ export default function Navbar() {
             <>
               <CustomLink to="/findapet">Find Pets</CustomLink>
               <CustomLink to="/findshelter">Find Shelter</CustomLink>
-              <CustomLink to="/signup">Sign up</CustomLink>
-              <CustomLink to="/login">Login</CustomLink>
+              <CustomLink  to="/login">Login</CustomLink>
+              <CustomLink className="signup-button" to="/signup">Sign up</CustomLink>
             </>
           )}
         </ul>
