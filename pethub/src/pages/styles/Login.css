@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   margin: 50px;
@@ -11,8 +11,8 @@
   justify-content: center;
 
   margin: 50px;
-  border: 1px solid #ccc; /* Add border */
-  border-radius: 10px; /* Add rounded corners */
+  border: 1px solid #ccc; 
+  border-radius: 10px; 
   padding: 20px;
   width: 33vw;
   background-color: rgba(51, 51, 51, 0.1);
@@ -42,9 +42,9 @@
   border: none;
   border-radius: 5px;
   font-size: 18px;
-}
+} */
 
-.formButton {
+/* .formButton {
   width: 200px;
   height: 50px;
   margin-top: 20px;
@@ -59,8 +59,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
+} */
+/* 
 .formButton:hover {
   background-color: #c2e9ff;
 }
@@ -70,14 +70,14 @@
   height: 20px;
   margin-left: 10px;
   margin-right: 10px;
-}
+} */
 
 /* Sign in Page MUI */
-
+/* 
 .MuiIcon-colorPrimary {
   background-color: #87ceeb;
 }
 
 .MuiIcon-colorSecondary {
   background-color: #87ceeb;
-}
+} */

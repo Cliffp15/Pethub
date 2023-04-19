@@ -1,12 +1,30 @@
-import { useImperativeHandle, useContext } from "react";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
-import SignInButton from "../components/SignInButton";
 import AuthContext from "../contexts/AuthContext";
-
+import SignInButton from "../components/SignInButton";
+import { Typography } from "@material-ui/core";
 import "../pages/styles/Navbar.css";
+
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
+
+  const CustomLink = ({ to, children }) => (
+    <li>
+      <Link to={to} className="nav-link">
+        {children}
+      </Link>
+    </li>
+  );
+
+  const CustomSignIn = ({ children, handleClickOpen }) => (
+    <li>
+      <span className="nav-link" onClick={handleClickOpen}>
+        {children}
+      </span>
+    </li>
+  );
+
   return (
     <div className="header-nav">
       <nav className="nav">
@@ -26,7 +44,17 @@ export default function Navbar() {
               <CustomLink to="/findapet">Find Pets</CustomLink>
               <CustomLink to="/findshelter">Find Shelter</CustomLink>
               <CustomLink to="/signup">Sign up</CustomLink>
-              <SignInButton className="sign-in" />
+              <SignInButton>
+                {({ handleClickOpen }) => (
+                  <Typography
+                    variant="subtitle1"
+                    className="sign-in"
+                    onClick={handleClickOpen}
+                  >
+                    Sign in
+                  </Typography>
+                )}
+              </SignInButton>
             </>
           )}
         </ul>
@@ -212,14 +240,14 @@ export default function Navbar() {
 
 // export default Navbar;
 
-function CustomLink({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
-  return (
-    <li className={isActive ? "active" : ""}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
-  );
-}
+// function CustomLink({ to, children, ...props }) {
+//   const resolvedPath = useResolvedPath(to);
+//   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+//   return (
+//     <li className={isActive ? "active" : ""}>
+//       <Link to={to} {...props}>
+//         {children}
+//       </Link>
+//     </li>
+//   );
+// }

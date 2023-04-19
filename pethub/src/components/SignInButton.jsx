@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Typography } from "@material-ui/core";
+
 import SignInDialog from "../pages/SignInDialog";
 
-function SignInButton({ className }) {
+function SignInButton({ className, children }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -15,14 +15,7 @@ function SignInButton({ className }) {
 
   return (
     <div>
-      <Typography
-        variant="subtitle1"
-        className={className}
-        style={{ color: "black", cursor: "pointer" }}
-        onClick={handleClickOpen}
-      >
-        Sign in
-      </Typography>
+      {children({ handleClickOpen })}
       <SignInDialog open={open} onClose={handleClose} />
     </div>
   );
