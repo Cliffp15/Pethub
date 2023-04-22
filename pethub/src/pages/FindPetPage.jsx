@@ -26,6 +26,9 @@ const FindPetPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [zip, setZip] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
 
   const Fetchpets = async (animal) => {
     setIsLoading(true);
@@ -107,11 +110,19 @@ const FindPetPage = () => {
   };
 
   const filterPets = async () => {
-    const animalInput = document.getElementById("animalinput").value;
-    const breedInput = document.getElementById("breedinput").value;
-    const zipcodeInput = document.getElementById("zipcodeinput").value;
-    const genderInput = document.getElementById("genderinput").value;
-    const ageInput = document.getElementById("ageinput").value;
+    // const animalInput = document.getElementById("animalinput").value;
+    // const breedInput = document.getElementById("breedinput").value;
+    // const zipcodeInput = document.getElementById("zipcodeinput").value;
+    // const genderInput = document.getElementById("genderinput").value;
+    // const ageInput = document.getElementById("ageinput").value;
+
+    const animalInput = species;
+    const breedInput = breed;
+    const zipcodeInput = zip;
+    const genderInput = gender;
+    const ageInput = age;
+    
+    console.log(animalInput, breedInput, zipcodeInput, genderInput, ageInput);
 
     let queryString = "";
 
@@ -194,6 +205,19 @@ const FindPetPage = () => {
     }
   };
 
+  const handleAgechange = (event) => {
+    setAge(event.target.innerText);
+  }
+
+  const handleGenderChange = (event) => {
+    setGender(event.target.innerText);
+  }
+
+  const handleZipChange = (event) => {
+    setZip(event.target.value);
+  }
+
+
   return (
     <div className="home-page">
       <div className="featured-section">
@@ -207,7 +231,6 @@ const FindPetPage = () => {
             </label>
             <Select
               onChange={handleSpeciesChange}
-              defaultValue=""
               id="animalinput"
               placeholder="Select"
               indicator={<KeyboardArrowDown />}
@@ -221,7 +244,6 @@ const FindPetPage = () => {
                 },
               }}
             >
-              <Option value="">Select</Option>
               <Option value="dog">Dog</Option>
               <Option value="cat">Cat</Option>
               <Option value="bird">Bird</Option>
@@ -232,7 +254,6 @@ const FindPetPage = () => {
             </label>
             <Select
               placeholder="Select"
-              defaultValue="Select"
               id="breedinput"
               onChange={handleBreedChange}
               indicator={<KeyboardArrowDown />}
@@ -260,6 +281,7 @@ const FindPetPage = () => {
               id="genderinput"
               placeholder="Select"
               indicator={<KeyboardArrowDown />}
+              onChange={handleGenderChange}
               sx={{
                 width: 240,
                 [`& .${selectClasses.indicator}`]: {
@@ -282,6 +304,7 @@ const FindPetPage = () => {
               id="ageinput"
               placeholder="Select"
               indicator={<KeyboardArrowDown />}
+              onChange={handleAgechange}
               sx={{
                 width: 240,
                 [`& .${selectClasses.indicator}`]: {
@@ -303,7 +326,9 @@ const FindPetPage = () => {
               Zipcode
             </label>
             <Input type="text" id="zip-input"
-            sx={{width: 240}} placeholder="Enter a zip code"></Input>
+            sx={{width: 240}} placeholder="Enter a zip code"
+            onChange={handleZipChange}
+            ></Input>
             <Button className="filter-button" onClick={filterPets}
             sx={{width: 240}}>
               Filter Pets
