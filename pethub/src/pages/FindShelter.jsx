@@ -3,7 +3,7 @@ import axios from "axios";
 import "./styles/Findshelter.css";
 import { Divider } from "@chakra-ui/layout";
 import Findshelterinfo from "../components/FindShelters";
-// import { fetchToken } from "../api/petFinderToken";
+import { fetchToken } from "../api/petFinderToken";
 
 const FindShelter = (props) => {
   const [shelters, setShelters] = useState([]);
@@ -61,14 +61,14 @@ const FindShelter = (props) => {
   useEffect(() => {
     // Get a list of shelters from the Petfinder API
     const getShelters = async () => {
-      // const token = fetchToken();
+      const token = await fetchToken();
       const response = await axios.get(
         "https://api.petfinder.com/v2/organizations",
         {
           headers: {
             Accept: "application/jason",
             "Content-type": "application/jason",
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJUUjhqVjg3NTl6aU82d1gxQ0pjUmRYWDN5WU9iWWNmZ1ZvUWt6UmhyMVlPbktmV0VtTSIsImp0aSI6Ijc5ZTQ4OTQxMmNiZTZlYTQ4MGI0OTcxYmQ2NTg5M2VhMmY1YTBkMzJkNTJjZWI1M2NiOWI5YjZmOTE5M2FiMjU3NzllZTA0ZTRlMGM3YmRmIiwiaWF0IjoxNjc5ODgxNTg5LCJuYmYiOjE2Nzk4ODE1ODksImV4cCI6MTY3OTg4NTE4OCwic3ViIjoiIiwic2NvcGVzIjpbXX0.Sxcxef11yDmM3Y-e1Xe969i3D_J9DJLOgcXQ4iLIILOtGyLLMnnoc55EtXwWa__eQo0joLVnoKJMsGs8J9Ef7BdHmyASsG_0clGuKnLh-6t_VQTmboKdwQMlz15gwadcxIIRjh360aA6CW95pvJoCEyosi9uktcCUMNe-ZWq7JSyxK0W8b6jURwyklako7jX-PX6JezVyTxSYRjJ5ysF0xmcquDr-Ezh3tM9uDLSsF4nOrcELRKeMPW7NQTXoqpINch3I4zT8V2nSyQto-_nGnlxO3G4Sy2xgwUTo6ryBv4H6bpjR4HhXKDMr2FdqoIhlCjBrgC0qmzRR3d2xAQbLQ`,
+            Authorization: `Bearer ${token}`,
           },
           params: {
             location: `${userLocation.lat},${userLocation.lng}`,
