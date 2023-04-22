@@ -242,6 +242,21 @@ body {
     background-color: #edf9fd;
   }
   
+  .featured-banner{
+    font-weight: lighter;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: xxx-large;
+  }
+
+  .petsReturnedText{
+    font-weight: 100;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: xxx-large;
+    margin-bottom: 40px;
+    align-self: center
+  }
   
   .featured-title {
     margin-left: 5%;
@@ -291,7 +306,6 @@ body {
     justify-content: center;
     align-items: center;
     /* background-color: #edf9fd; */
-    padding-top: 80px;
   }
   
   @media (min-width: 700px) {
@@ -316,7 +330,7 @@ body {
     align-items: center;
     justify-content: center;
     /* padding: 20px; */
-    margin: 0rem 2rem 5rem 2rem;
+    margin: 10px;
     border-radius: 17px;
     box-shadow: 0 2px 4px rgba(208, 15, 15, 0.851);
     transition: transform 0.2s ease-in-out;
@@ -476,23 +490,37 @@ body {
   /* filters Container for find pets page */
   .filtersContainer {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    flex-direction: column;
     background-color: #f0f4f8;
-    padding: 24px;
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 900px;
-    margin: 0 auto;
-    margin-bottom: 16px;
+    height: fit-content;
+    margin-top: 10px;
+  }
+
+  .filterAndCards{
+    display: flex;
+    flex-direction: row;
   }
   
+  .pageButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: 290PX;
+  }
+
   .find-pet-select {
-    font-weight: bold;
+    font-weight: lighter;
     color: #333;
     margin-bottom: 8px;
+    font-size: x-large;
+    align-self: start;
   }
   
   .filter-select {
@@ -507,6 +535,23 @@ body {
     appearance: none;
   }
   
+  .loadingScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #edf9fd;
+  }
+
+  .loadingText{
+    font-weight: lighter;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: xxx-large;
+  }
+  
   .filter-button {
     background-color: #4db6ac;
     color: #fff;
@@ -517,6 +562,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    margin-top: 28px;
   }
   
   .filter-button:hover {
@@ -540,8 +586,21 @@ body {
     border-top: 1px solid black;
   }
   
+  .petCardDisplay{
+    display: flex;
+  }
+  
   /* Media Query if screen is bigger than 700 px */
   
+  .loading{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 250px;
+    padding-left: 350px;
+    width: 100%;
+    
+  }
   
   .pet-card {
     display: flex;
