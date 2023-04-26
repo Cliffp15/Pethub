@@ -3,12 +3,12 @@ import HeroImage from "../photos/HeroImage.png";
 import dogIcon from "../photos/dog.png";
 import caticon from "../photos/cat.png";
 import axios from "axios";
-import CircularProgress from '@mui/joy/CircularProgress';
+import CircularProgress from "@mui/joy/CircularProgress";
 import Select, { selectClasses } from "@mui/joy/Select";
-import Option from '@mui/joy/Option';
-import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import Option from "@mui/joy/Option";
+import Input from "@mui/joy/Input";
+import Button from "@mui/joy/Button";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import "./styles/FindPets.css";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
@@ -364,7 +364,6 @@ const FindPetPage = () => {
                 <div className="empty">No pets found.</div>
               )}
             </div>
-            
           </div>
         )}
         <div className="pageButtonsContainer">
