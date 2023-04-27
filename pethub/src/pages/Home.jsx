@@ -9,6 +9,7 @@ import arrowright from "../photos/animalinformation.png";
 import CircularProgress from "@mui/joy/CircularProgress";
 import caticon from "../photos/cat.png";
 import "./styles/homepage.css";
+import "./styles/Navbar.css";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
@@ -179,62 +180,24 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-section">
         <img src={HeroImage} alt="heroimage" />
-        <h1>
-          Find <br /> the purfect <br /> pet for you!
-        </h1>
         <div className="hero-section-content-wrapper">
-          <h2>Enter your location and pet of choice to find a pet near you.</h2>
-          <div className="search-container">
-            <div className="search-for-animal">
-              {/* <input placeholder="City" type="text" id="cityinput" /> */}
-              <input
-                placeholder="Zip Code"
-                type="text"
-                id="zipcodeinput"
-                className="home-input"
-              />
-              {/* create a dropdown for state */}
-              {/* <input placeholder="State" type="text" id="stateinput" /> */}
-              <input
-                placeholder="Animal"
-                type="text"
-                id="animalinput"
-                className="home-input"
-              />
-              <input
-                placeholder="Breed"
-                type="text"
-                id="breedinput"
-                className="home-input"
-              />
-              <button className="search-button" onClick={SearchPets}>
-                {" "}
-                Search{" "}
-              </button>
+          <div className="hero-section-content-container">
+          <h1>
+          Adopt  a <br /> new pet and<br /> change a life!
+        </h1>
+            <div className="search-container">
+              <div className="search-for-animal">
+                <button className="search-button" onClick={SearchPets}>
+                  {" "}
+                  Find your new pet{" "}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="benefit-banner" id="bannerid">
-          <div className="benefit">
-            <img src={clock} alt="dog icon" className="dog-icon" />
-            <h1>Save Time</h1>
-            <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={animalcarecolor} alt="dog icon" className="dog-icon" />
-          <h1>Save A Life</h1>
-            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={animalinformation} alt="dog icon" className="dog-icon" />
-          <h1>Convenient Access to Information</h1>
-            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
-            </p>
-          </div>
-      </div>
+    <div className="Gutter">
+    <div className="Featured-Content-wrapper">
       <div className="Featured-content-area">
         <div className="featured-title">
             <h1> 
@@ -282,6 +245,31 @@ const Home = () => {
             </div>
           </div>
       </div>
+    </div>
+
+    <div className="Benefit-Wrapper">
+      <div className="benefit-banner" id="bannerid">
+          <div className="benefit">
+            <img src={clock} alt="benefit-icon" className="benefit-icon" />
+            <h1>Save Time</h1>
+            <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
+            </p>
+          </div>
+          <div className="benefit">
+            <img src={animalcarecolor} alt="benefit-icon" className="benefit-icon" />
+          <h1>Save A Life</h1>
+            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
+            </p>
+          </div>
+          <div className="benefit">
+            <img src={animalinformation} alt="benefit-icon" className="benefit-icon" />
+          <h1>Convenient Access to Information</h1>
+            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
+            </p>
+          </div>
+      </div>
+    </div>
+    <div className="Mission-statement-wrapper">
       <div className="Mission-statement">
         <div className="Mission-statement-text">
         <h2>What we do</h2>
@@ -292,6 +280,8 @@ const Home = () => {
         <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

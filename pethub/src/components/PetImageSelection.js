@@ -17,7 +17,7 @@ const PetCard = ({ petinfo }) => {
         {/* <img className="pet-card_image-backdrop" src={imgURL} alt="No image available" /> */}
       <div className="pet-card__image" onClick={handleCardClick}>
         {/* <picture src={imgURL}></picture> */}
-        <h3 className="See-Profile">See Profile</h3>
+        <h3 className="See-Pet-Profile">See Profile</h3>
         <img src={imgURL} alt="No image available" />
       </div>
       <div className="pet-card__details">

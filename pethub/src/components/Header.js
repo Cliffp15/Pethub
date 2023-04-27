@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../photos/Logo-All-White.png";
+import logo from "../photos/LogoWhite.png";
 
 function Header() {
   return (
