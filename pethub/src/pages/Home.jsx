@@ -250,12 +250,12 @@ const Home = () => {
         <div className="featured-title">
           <h1>Featured Pets</h1>
           <h3>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque auctor odio ac scelerisque tincidunt. Nunc maximus
-            auctor nunc, id faucibus magna interdum eget. Maecenas tincidunt
-            convallis erat vitae commodo. Maecenas pulvinar eros vel lacus
-            faucibus congue. Integer eu ultrices elit. Nunc leo metus, accumsan
-            quis porttitor nec, convallis non nisl.
+            Discover your new furry friend with ease on our pet adoption
+            website. Our featured section showcases adorable and adoptable pets,
+            all of which are up-to-date on vaccinations and ready for a forever
+            home. With our comprehensive database and filters, finding your
+            perfect match has never been easier. Start your search today and
+            find your new best friend!
           </h3>
         </div>
         <div className="featured-section">
@@ -302,15 +302,17 @@ const Home = () => {
         <div className="Mission-statement-text">
           <h2>What we do</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque auctor odio ac scelerisque tincidunt. Nunc maximus
-            auctor nunc, id faucibus magna interdum eget. Maecenas tincidunt
-            convallis erat vitae commodo. Maecenas pulvinar eros vel lacus
-            faucibus congue. Integer eu ultrices elit. Nunc leo metus, accumsan
-            quis porttitor nec, convallis non nisl. Mauris et lacus mattis,
-            pharetra sapien sed, euismod ipsum. Nam quis nisl nisl. Donec eu
-            euismod dolor. Aliquam erat volutpat. Sed maximus leo purus, vitae
-            rhoncus nisi ultrices eget. Donec molestie blandit bibendum.
+            At our pet adoption website, our goal is to connect adoptable pets
+            with loving families and find them their forever homes. We work with
+            reputable animal rescues and shelters to ensure that all of the pets
+            on our website are healthy, up-to-date on vaccinations, and ready to
+            join their new families. Our website provides a user-friendly
+            platform that makes it easy for potential adopters to search for and
+            discover their perfect pet. We believe that every pet deserves a
+            loving home, and we are committed to making the adoption process as
+            easy and enjoyable as possible for both pets and adopters. Join us
+            in our mission to find homes for all these amazing animals by
+            adopting your new furry friend today!
           </p>
         </div>
         <div className="Mission-statement-image">

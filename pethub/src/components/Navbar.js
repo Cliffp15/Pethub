@@ -44,7 +44,7 @@ export default function Navbar() {
             <>
               <CustomLink to="/findapet">Find Pets</CustomLink>
               <CustomLink to="/findshelter">Find Shelter</CustomLink>
-              <CustomLink to="/signup">Sign up</CustomLink>
+              {/* <CustomLink to="/signup">Sign up</CustomLink> */}
               <SignInButton>
                 {({ handleClickOpen }) => (
                   <Typography
