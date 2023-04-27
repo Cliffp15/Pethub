@@ -1,13 +1,16 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
 import dogIcon from "../photos/dog.png";
+
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
 import arrowright from "../photos/animalinformation.png";
-import CircularProgress from "@mui/joy/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import caticon from "../photos/cat.png";
+
 import "./styles/homepage.css";
 import "./styles/Navbar.css";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
@@ -16,6 +19,7 @@ import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+import WhoWeAre from "../components/WhoWeAre";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
@@ -35,6 +39,7 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
   const [firstcall, setfirstcall] = useState(true);
+
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -94,17 +99,22 @@ const Home = () => {
     setIsLoading(false);
     //  return data;
 
-    setTotalPages(Math.ceil(data.pagination.total_count / 6));
+    // setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
 
   const searchFetchpets = async (animal, page) => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
-// <<<<<<< HEAD
-//     while (petsWithPhotos.length < 4) {
-//       const response = await fetch(`${searchAPI_URL}${animal}`, {
-// =======
+
+    //
+    //     while (petsWithPhotos.length < 4) {
+    //       const response = await fetch(`${searchAPI_URL}${animal}`, {
+    // =======
+    // <<<<<<< HEAD
+    //     while (petsWithPhotos.length < 4) {
+    //       const response = await fetch(`${searchAPI_URL}${animal}`, {
+    // =======
     while (petsWithPhotos.length < 6) {
       const response = await fetch(`${searchAPI_URL}${animal}&page=${page}`, {
         method: "GET",
@@ -135,7 +145,7 @@ const Home = () => {
     setfirstcall(false);
     setIsLoading(false);
 
-    setTotalPages(Math.ceil(data.pagination.total_count / 6));
+    // setTotalPages(Math.ceil(data.pagination.total_count / 6));
   };
   const SearchPets = async () => {
     // debugger;
@@ -204,9 +214,14 @@ const Home = () => {
               Featured Pets
             </h1>
             <h3> 
-            Welcome to our "Featured Pets" section! Here you will find a curated selection of some of the most adorable and lovable pets around. We showcase a variety of different animals, from cute and cuddly cats and dogs to exotic birds and rabbits.
+            Discover your new furry friend with ease on our pet adoption
+            website. Our featured section showcases adorable and adoptable pets,
+            all of which are up-to-date on vaccinations and ready for a forever
+            home. With our comprehensive database and filters, finding your
+            perfect match has never been easier. Start your search today and
+            find your new best friend!Welcome to our "Featured Pets" section! Here you will find a curated selection of some of the most adorable and lovable pets around. We showcase a variety of different animals, from cute and cuddly cats and dogs to exotic birds and rabbits.
+            
             </h3>
-            <button className="See-more-Pets-Button" onClick={handleSeeMorePetsClick}>See more Pets</button>
         </div>
           <div className="featured-pets-section">
             {isLoading ? (
@@ -229,9 +244,17 @@ const Home = () => {
               onClick={() => {handlePrevPage();
                 window.scrollTo(0,1400);}}
                 disabled={currentPage === 1}
+              onClick={() => {
+                handlePrevPage();
+                window.scrollTo(0, 1400);
+              }}
+              disabled={currentPage === 1}
             >
               Previous
             </button>
+            <div className="pagination-counter">
+            <h3> page {currentPage}</h3>
+          </div>
             <button
               className="pagination-button-2"
               onClick={() => {handleNextPage();
@@ -239,11 +262,9 @@ const Home = () => {
             >
               Next
             </button>
-            </div>
-            <div className="pagination-counter">
-              <h3> page: {currentPage}</h3>
-            </div>
           </div>
+          
+        </div>
       </div>
     </div>
 
@@ -273,13 +294,29 @@ const Home = () => {
       <div className="Mission-statement">
         <div className="Mission-statement-text">
         <h2>What we do</h2>
-        <p>Our goal is to find loving and responsible homes for each of our animals. Our animals have been rescued from shelters, foster homes, or have been surrendered by previous owners. They have all been thoroughly examined by our veterinarians, received necessary vaccinations, and have been spayed or neutered. We believe that adopting a pet is a lifetime commitment, and we strive to ensure that each of our animals finds their perfect forever home.
+        <p>  At our pet adoption website, our goal is to connect adoptable pets
+            with loving families and find them their forever homes. We work with
+            reputable animal rescues and shelters to ensure that all of the pets
+            on our website are healthy, up-to-date on vaccinations, and ready to
+            join their new families. Our website provides a user-friendly
+            platform that makes it easy for potential adopters to search for and
+            discover their perfect pet. We believe that every pet deserves a
+            loving home, and we are committed to making the adoption process as
+            easy and enjoyable as possible for both pets and adopters. Join us
+            in our mission to find homes for all these amazing animals by
+            adopting your new furry friend today!Our goal is to find loving and responsible homes for each of our animals. Our animals have been rescued from shelters, foster homes, or have been surrendered by previous owners. They have all been thoroughly examined by our veterinarians, received necessary vaccinations, and have been spayed or neutered. We believe that adopting a pet is a lifetime commitment, and we strive to ensure that each of our animals finds their perfect forever home.
+       
         </p>
         </div>
         <div className="Mission-statement-image">
-        <img src={shiba} alt="shiba icon" className="shiba-icon" />
+          <img src={shiba} alt="shiba icon" className="shiba-icon" />
         </div>
       </div>
+      <React.Fragment>
+        <WhoWeAre />
+      </React.Fragment>
+    </div>
+    </div>
     </div>
     </div>
     </div>

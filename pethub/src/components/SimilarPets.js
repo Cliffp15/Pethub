@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "./Typography";
 
 const SimilarPets = ({ pets }) => {
   return (
@@ -12,6 +13,7 @@ const SimilarPets = ({ pets }) => {
               alt={pet.name}
               className="similar-pet-img"
             />
+
             <h3 className="similar-pet-name">{pet.name}</h3>
             <p className="similar-pet-breed">{pet.breeds.primary}</p>
           </a>

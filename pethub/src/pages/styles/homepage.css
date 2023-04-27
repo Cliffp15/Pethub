@@ -2548,7 +2548,7 @@ width: 100%;
   appearance: none;
 }
 
-.filter-button {
+/* .filter-button {
   background-color: #4db6ac;
   color: #fff;
   font-size: 16px;
@@ -2558,7 +2558,7 @@ width: 100%;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-}
+} */
 
 .filter-button:hover {
   background-color: #26a69a;
