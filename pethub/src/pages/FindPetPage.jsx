@@ -378,7 +378,7 @@ const FindPetPage = () => {
           >
             Previous
           </Button>
-          <h3>{currentPage}</h3>
+          <h3>page {currentPage}</h3>
           <Button
             className="pagination-button"
             onClick={() => {

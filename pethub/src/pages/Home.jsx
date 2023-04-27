@@ -283,6 +283,9 @@ const Home = () => {
             >
               Previous
             </button>
+            <div className="pagination-counter">
+            <h3> page {currentPage}</h3>
+          </div>
             <button
               className="pagination-button-2"
               onClick={() => {
@@ -293,9 +296,7 @@ const Home = () => {
               Next
             </button>
           </div>
-          <div className="pagination-counter">
-            <h3> page: {currentPage}</h3>
-          </div>
+          
         </div>
       </div>
       <div className="Mission-statement">
