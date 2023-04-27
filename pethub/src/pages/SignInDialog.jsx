@@ -144,8 +144,6 @@ export default function SignInDialog({ open, onClose }) {
                 </Link>
               </Grid>
             </Grid>
-
-            {/* ... rest of the form elements ... */}
           </Box>
         </DialogContent>
       </Dialog>

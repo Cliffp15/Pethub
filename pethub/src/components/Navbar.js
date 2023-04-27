@@ -5,6 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import SignInButton from "../components/SignInButton";
 import { Typography } from "@material-ui/core";
 import "../pages/styles/Navbar.css";
+import SignUpButton from "./SignUpButton";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -55,6 +56,17 @@ export default function Navbar() {
                   </Typography>
                 )}
               </SignInButton>
+              <SignUpButton>
+                {({ handleClickOpen }) => (
+                  <Typography
+                    variant="subtitle1"
+                    className="sign-in"
+                    onClick={handleClickOpen}
+                  >
+                    Sign Up
+                  </Typography>
+                )}
+              </SignUpButton>
             </>
           )}
         </ul>
