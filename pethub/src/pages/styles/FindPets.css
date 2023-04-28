@@ -278,16 +278,16 @@ body {
   } */
   
   /* Featured pets section */
-  /* .featured-section {
+   .featured-section {
     background-color: #edf9fd;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: center;
-  } */
+  }
   
   /* PetCard */
-  /* .findpetcardcontainer{
+   .findpetcardcontainer{
     display: grid;
     grid-template-columns: repeat(3, 2fr); 
     grid-gap: 0px;
@@ -295,7 +295,8 @@ body {
     max-width: 100%;
     justify-content: center;
     align-items: center;
-  } */
+    margin-top: 10px;
+  } 
   
   /* @media (min-width: 700px) {
      .featured-section {
@@ -471,7 +472,7 @@ body {
   } */
   
   /* filters Container for find pets page */
-  /* .filtersContainer {
+   .filtersContainer {
     display: flex;
     flex-direction: column;
     background-color: #f0f4f8;
@@ -506,7 +507,7 @@ body {
     align-self: start;
   }
   
-  /* .filter-select {
+   .filter-select {
     padding: 8px;
     border-radius: 4px;
     border: 2px solid #a3daff;
@@ -518,7 +519,7 @@ body {
     appearance: none;
   }
   
-  .loadingScreen{
+   .loadingScreen{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -554,7 +555,7 @@ body {
   } */
   
   /* add styles to prevent overlapping */
-  /* @media (max-width: 768px) {
+   @media (max-width: 768px) {
     .search-container {
       margin-top: 2rem;
     }
