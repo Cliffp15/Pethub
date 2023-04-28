@@ -28,6 +28,7 @@ function App() {
         <Route path="/groups" element={<GroupsPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/*" element={<Footer />} />
       </Routes>
       <Footer />
     </>
