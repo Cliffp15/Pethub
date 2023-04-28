@@ -1,77 +1,101 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Row,
-  Column,
-  FooterLink,
-  Heading,
-} from "./FooterStyles";
+
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Container, Grid, Link, Typography } from "@material-ui/core";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#212121",
+    color: "#fff",
+    padding: theme.spacing(6, 0),
+  },
+  logo: {
+    height: 50,
+  },
+  heading: {
+    fontWeight: 600,
+    marginBottom: theme.spacing(2),
+  },
+  link: {
+    color: "#fff",
+    marginRight: "1rem",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
+  column: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  horizontalColumn: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
+
 
 function Footer() {
+  const classes = useStyles();
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
   return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "40vh",
-      }}
-    >
-      <h1 style={{ color: "#ffffff", textAlign: "center" }}></h1>
-      <Container>
-        <Row>
-          <Column>
-            <Heading>About Us</Heading>
-            <p style={{ color: "#ffffff", textAlign: "center" }}>
+
+    <Box className={classes.root}>
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up">
+            <Typography variant="h6" className={classes.heading}>
+              Quick Links
+            </Typography>
+            <Box className={classes.horizontalColumn}>
+              <Link href="/" variant="body1" className={classes.link}>
+                Home
+              </Link>
+              <Link href="/findapet" variant="body1" className={classes.link}>
+                Find a Pet
+              </Link>
+              <Link href="/postapet" variant="body1" className={classes.link}>
+                Post a Pet
+              </Link>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up">
+            <Typography variant="h6" className={classes.heading}>
+              About Us
+            </Typography>
+            <Typography variant="body1">
               A Junior Development Team Project Collaboration Effort
-            </p>
-          </Column>
-          <Column>
-            <Heading>Quick Links</Heading>
-            <ul>
-              <li>
-                <FooterLink href="/">Home</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/findapet">Find a Pet</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/postapet">Post a Pet</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/contact">Contact Us</FooterLink>
-              </li>
-            </ul>
-          </Column>
-          <Column>
-            <Heading>Contact Us</Heading>
-            <ul>
-              <li style={{ color: "#ffffff", textAlign: "center" }}>
-                <i className="fa fa-envelope"></i> info@pethub.com
-              </li>
-              <li style={{ color: "#ffffff", textAlign: "center" }}>
-                <i className="fa fa-phone"></i> (123) 456-7890
-              </li>
-              <li style={{ color: "#ffffff", textAlign: "center" }}>
-                <i className="fa fa-map-marker"></i> 123 Main St, Anytown USA
-              </li>
-            </ul>
-          </Column>
-        </Row>
-        <hr />
-        <Row>
-          <p style={{ textAlign: "center" }}>
-            <img
-              src="https://cdn-us.icons8.com/BSDWpG-URUi1u809sSrJ0g/-Sv0Dr6OWU-lYx_uKg34lQ/PetHubLogo.png"
-              alt="PetHub Logo"
-              height="50"
-            />
-          </p>
-          <p style={{ textAlign: "center", color: "#fff" }}>
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up">
+            <Typography variant="h6" className={classes.heading}>
+              Contact Us
+            </Typography>
+            <Typography variant="body1">
+              <i className="fa fa-envelope"></i> info@pethub.com
+            </Typography>
+            <Typography variant="body1">
+              <i className="fa fa-phone"></i> (123) 456-7890
+            </Typography>
+            <Typography variant="body1">
+              <i className="fa fa-map-marker"></i> 123 Main St, Anytown USA
+            </Typography>
+          </Grid>
+        </Grid>
+        <Box mt={4}>
+          <Typography variant="body2" align="center" color="#ffff">
+
             © {new Date().getFullYear()} PetHub. All rights reserved.
-          </p>
-        </Row>
+          </Typography>
+        </Box>
       </Container>
     </Box>
   );
