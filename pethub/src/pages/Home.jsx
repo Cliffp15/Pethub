@@ -198,7 +198,7 @@ const Home = () => {
               <div className="search-for-animal">
                 <button className="search-button" onClick={handleSeeMorePetsClick}>
                   {" "}
-                  Find your new pet{" "}
+                  Find your new pet →{" "}
                 </button>
               </div>
             </div>
@@ -215,7 +215,9 @@ const Home = () => {
             <h3> 
             Discover your new furry friend with ease on our pet adoption website. Our featured section showcases adorable and adoptable pets, all of which are up-to-date on vaccinations and ready for a forever home. With our comprehensive database and filters, finding your perfect match has never been easier. Start your search today and find your new best friend!
             </h3>
-            <button className="See-more-Pets-Button" onClick={handleSeeMorePetsClick}>See More Pets</button>
+            <button className="See-more-Pets-Button" 
+            onClick={handleSeeMorePetsClick}
+            >See More Pets →</button>
         </div>
           <div className="featured-pets-section">
             {isLoading ? (
