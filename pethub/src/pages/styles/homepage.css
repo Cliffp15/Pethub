@@ -268,7 +268,7 @@ body {
 .pet-card:hover {
   transform: translateY(-5px); 
   box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224);
+  /* background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224); */
   cursor: pointer;
 }
 
@@ -315,7 +315,8 @@ body {
   text-align: left;
   width: 100%;
   color: #044293;
-
+  position:relative;
+  max-height: 180px;
   /* color: rgb(0, 0, 0); */
 }
 
@@ -352,14 +353,16 @@ body {
   margin-left: 13%;
   padding-top: 0px;
   padding-bottom: 4px;
-  top: 55%;
+  top: 40%;
   font-size: 27px;
-  border: 1px solid white;
-  background-image:linear-gradient( #fbfdfdae,#04617b74,#0a62626f,#037b7b6f,#195d867d); ;
+  border: 3px solid #044293;
+  /* background-image: white; */
+  background-image:linear-gradient( #fbfdfd,#fcfcfc,#fcfffff5,#fdfffff9,#fffffff5); 
   border-radius: 25px;
   transition: 0.5s;
-  color: rgb(231, 248, 253);
-  transform: translateY(40px);
+  color: #044293;
+  /* color: rgb(231, 248, 253); */
+  transform: translateY(20px);
   opacity: 0;
 }
 
@@ -779,16 +782,17 @@ body {
   border-right: 1px solid rgba(0, 180, 200, 0.03);
   border-bottom: 2px solid rgb(0, 222, 247);
   box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
-  background-color: rgb(148, 205, 244);
+  background-color: rgb(255, 255, 255);
   transition: 0.2s ease-in-out;
   width: 100%;
   max-width: 300px;
+  max-height: 400px;
 }
 
 .pet-card:hover {
   transform: translateY(-5px); 
   box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224);
+  /* background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224); */
   cursor: pointer;
 }
 
@@ -821,7 +825,8 @@ body {
   text-align: left;
   width: 100%;
   margin-top: 10px;
-  color: rgb(255, 255, 255);
+  color: #044293;
+  /* color: rgb(0, 0, 0); */
   background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
 }
 
@@ -833,7 +838,10 @@ body {
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
-  color: white;
+  color: #044293;
+  position:relative;
+  max-height: 180px;
+  /* color: rgb(0, 0, 0); */
 }
 
 .pet-card__name {
@@ -1254,76 +1262,80 @@ background-color: #cd683600;
 padding-top: 80px;
 }
 
-
 .pet-card {
-margin: 0rem 2rem 3rem 2rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-/* position:relative; */
-padding: 20px;
-border-radius: 15px;
-border-top: 2px solid rgba(255, 255, 255, 0.876);
-border-left: 1px solid rgba(255, 255, 255, 0.5);
-border-right: 1px solid rgba(0, 180, 200, 0.03);
-border-bottom: 2px solid rgb(0, 222, 247);
-box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
-background-color: rgb(148, 205, 244);
-transition: 0.2s ease-in-out;
-width: 100%;
-max-width: 300px;
+  margin: 0rem 2rem 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* position:relative; */
+  padding: 20px;
+  border-radius: 15px;
+  border-top: 2px solid rgba(255, 255, 255, 0.876);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(0, 180, 200, 0.03);
+  border-bottom: 2px solid rgb(0, 222, 247);
+  box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
+  background-color: rgb(255, 255, 255);
+  transition: 0.2s ease-in-out;
+  width: 100%;
+  max-width: 300px;
+  max-height: 400px;
 }
 
 .pet-card:hover {
-transform: translateY(-5px); 
-box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
-background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224);
-cursor: pointer;
+  transform: translateY(-5px); 
+  box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
+  /* background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224); */
+  cursor: pointer;
 }
 
 .pet-card:hover .See-Pet-Profile {
-transform: translateY(0px);
-opacity: 1;
-cursor: pointer;
+  transform: translateY(0px);
+  opacity: 1;
+  cursor: pointer;
 }
 
 /* Media Query if screen is bigger than 700 px */
 
 .pet-card__image {
-width: 100%; 
-height: 300px;
-border-radius: 5px;
-overflow: hidden;
+  width: 100%; 
+  height: 300px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .pet-card__image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pet-card__details {
-display: flex;
-flex-direction: column;
-align-items: left;
-justify-content: left;
-text-align: left;
-width: 100%;
-margin-top: 10px;
-color: rgb(255, 255, 255);
-background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+  color: #044293;
+  /* color: rgb(0, 0, 0); */
+  background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
 }
 
 .pet-card__details h1{
-display: flex;
-flex-direction: column;
-align-items: left;
-justify-content: left;
-margin-bottom: 15px;
-text-align: left;
-width: 100%;
-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 15px;
+  text-align: left;
+  width: 100%;
+  color: #044293;
+  position:relative;
+  max-height: 180px;
+  /* color: rgb(0, 0, 0); */
 }
 
 .pet-card__name {
@@ -1746,7 +1758,6 @@ width: 100%;
   padding-top: 80px;
 }
 
-
 .pet-card {
   margin: 0rem 2rem 3rem 2rem;
   display: flex;
@@ -1761,16 +1772,17 @@ width: 100%;
   border-right: 1px solid rgba(0, 180, 200, 0.03);
   border-bottom: 2px solid rgb(0, 222, 247);
   box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
-  background-color: rgb(148, 205, 244);
+  background-color: rgb(255, 255, 255);
   transition: 0.2s ease-in-out;
   width: 100%;
   max-width: 300px;
+  max-height: 400px;
 }
 
 .pet-card:hover {
   transform: translateY(-5px); 
   box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224);
+  /* background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224); */
   cursor: pointer;
 }
 
@@ -1803,7 +1815,8 @@ width: 100%;
   text-align: left;
   width: 100%;
   margin-top: 10px;
-  color: rgb(255, 255, 255);
+  color: #044293;
+  /* color: rgb(0, 0, 0); */
   background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
 }
 
@@ -1815,7 +1828,10 @@ width: 100%;
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
-  color: white;
+  color: #044293;
+  position:relative;
+  max-height: 180px;
+  /* color: rgb(0, 0, 0); */
 }
 
 .pet-card__name {
@@ -2233,7 +2249,6 @@ width: 100%;
   padding-top: 80px;
 }
 
-
 .pet-card {
   margin: 0rem 2rem 3rem 2rem;
   display: flex;
@@ -2248,16 +2263,17 @@ width: 100%;
   border-right: 1px solid rgba(0, 180, 200, 0.03);
   border-bottom: 2px solid rgb(0, 222, 247);
   box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
-  background-color: rgb(148, 205, 244);
+  background-color: rgb(255, 255, 255);
   transition: 0.2s ease-in-out;
   width: 100%;
   max-width: 300px;
+  max-height: 400px;
 }
 
 .pet-card:hover {
   transform: translateY(-5px); 
   box-shadow: 35px 30px 30px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224);
+  /* background-image: linear-gradient( #0cd2fa00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df232, #076df226,#076df224); */
   cursor: pointer;
 }
 
@@ -2290,7 +2306,8 @@ width: 100%;
   text-align: left;
   width: 100%;
   margin-top: 10px;
-  color: rgb(255, 255, 255);
+  color: #044293;
+  /* color: rgb(0, 0, 0); */
   background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
 }
 
@@ -2302,7 +2319,10 @@ width: 100%;
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
-  color: white;
+  color: #044293;
+  position:relative;
+  max-height: 180px;
+  /* color: rgb(0, 0, 0); */
 }
 
 .pet-card__name {
