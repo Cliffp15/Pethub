@@ -13,7 +13,7 @@ const FindShelter = (props) => {
   const [marker, setMarker] = useState(null);
   const [isSheltersVisible, setIsSheltersVisible] = useState(false);
   const [firstcall, setfirstcall] = useState(true);
-
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
@@ -152,7 +152,7 @@ const FindShelter = (props) => {
         const lng = userLocation.lng;
         const options = {
           query: shelters.name,
-          fields: ["name", "geometry"],
+          fields: ["name", "geometry", "formatted_address"],
           locationBias: { radius: 50, center: { lat: lat, lng: lng } },
         };
         service.findPlaceFromQuery(options, (results, status) => {
@@ -163,6 +163,9 @@ const FindShelter = (props) => {
                 map: map,
               });
 
+              console.log(results[i]);
+              setAddress(results[i].formatted_address);
+
               const infoContent =
                 '<div id="content">' +
                 "<hi>" +
@@ -170,6 +173,9 @@ const FindShelter = (props) => {
                 "</hi>" +
                 "<p>" +
                 shelters.phone +
+                "</p>" +
+                "<p>" +
+                results[i].formatted_address +
                 "</p>" +
                 "</div>";
 
