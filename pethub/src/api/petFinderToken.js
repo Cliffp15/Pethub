@@ -11,7 +11,8 @@ const fetchToken = async () => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    body: 'grant_type=client_credentials&client_id=vC7X1vhN9jbvoTSc3g38nWIy0CErKzGlDInoDomrsgdQoSvsow&client_secret=Omxt7yRyl6k6Pn4tkkoeXYmdKhHcbPuBaDQPHhDh'
+
+    body: 'grant_type=client_credentials&client_id=TR8jV8759ziO6wX1CJcRdXX3yYObYcfgVoQkzRhr1YOnKfWEmM&client_secret=70jGW9TISM6xLAdCQOeiDyZa0XFXvj8j5LkW1EVW'
   });
 
   const json = await response.json();

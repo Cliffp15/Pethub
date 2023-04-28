@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./styles/Login.css";
 import caticon from "../photos/cat.png";
 
-const LogInPage = () => {
+const LogInPage = ({ handleLogin }) => {
   //useState is a hook that allows you to have state variables in functional components.
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -33,13 +33,16 @@ const LogInPage = () => {
       .then(function (response) {
         // handle the response from the server
         console.log(response);
+
+        handleLogin(response.data.token);
+
         alert("User logged in successfully");
         navigate("/");
       })
       .catch(function (response) {
         // handle an error from the server
         console.log(response);
-        // alert("An error occurred. Please try again.");
+        alert(response.response.data);
       });
   };
   return (
@@ -70,6 +73,14 @@ const LogInPage = () => {
           Login
           <img src={caticon} alt="dog icon" className="cat-icon" />
         </button>
+
+        <p>
+          Need to Create an Account? <Link to="/signup">Sign Up</Link>
+        </p>
+
+        <p>
+          Forgot your Password? <Link to="/resetpassword">Reset Password</Link>
+        </p>
       </form>
     </div>
   );
