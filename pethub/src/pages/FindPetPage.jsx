@@ -398,7 +398,7 @@ const FindPetPage = () => {
             disabled={currentPage === 1}
             sx={{ width: 75, margin: 2 }}
           >
-            Previous
+            ←
           </Button>
           <h3>page {currentPage}</h3>
           <Button
@@ -409,7 +409,7 @@ const FindPetPage = () => {
             }}
             sx={{ width: 75, margin: 2 }}
           >
-            Next
+            →
           </Button>
         </div>
       </div>
