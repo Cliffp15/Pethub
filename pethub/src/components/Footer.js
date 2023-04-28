@@ -2,8 +2,10 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container, Grid, Link, Typography } from "@material-ui/core";
+import logo from "../photos/LogoWhite.png";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { Block } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +96,7 @@ function Footer() {
         <Box mt={4}>
   <Grid container alignItems="center" justify="center" spacing={2}>
     <Grid item>
-      <img src="pethub\src\photos\logo.jpg" alt="PetHub Logo" height="50" />
+      <img src={logo} alt="PetHub Logo" height="50" />
     </Grid>
     <Grid item>
       <Typography variant="body2" align="center" color="#ffff">
