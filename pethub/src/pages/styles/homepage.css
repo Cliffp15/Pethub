@@ -262,7 +262,7 @@ body {
   transition: 0.2s ease-in-out;
   width: 100%;
   max-width: 300px;
-  max-height: 450px;
+  max-height: 400px;
 }
 
 .pet-card:hover {
