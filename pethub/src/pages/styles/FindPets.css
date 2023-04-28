@@ -475,8 +475,11 @@ body {
    .filtersContainer {
     display: flex;
     flex-direction: column;
-    background-color: #f0f4f8;
+    background-color: rgb(255, 255, 255);
     border-radius: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(2, 104, 144, 0.8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: flex-start;
