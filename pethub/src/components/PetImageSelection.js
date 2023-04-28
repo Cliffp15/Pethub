@@ -24,7 +24,7 @@ const PetCard = ({ petinfo }) => {
         <img src={imgURL} alt="No image available" />
       </div>
       <div className="pet-card__details">
-        <h1 className="pet-card__name">{this.truncate{petinfo.name}}</h1>
+        <h1 className="pet-card__name">{petinfo.name}</h1>
         <h2 className="pet-card__breed">
           {petinfo.breeds.primary}, {petinfo.age}
         </h2>
