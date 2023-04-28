@@ -46,20 +46,29 @@
 /* } */
 
 /*For the tabs on the navbar*/
-.nav ul li a {
+.MuiTypography-root.nav-link {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal; /* Reset the font-weight from Typography component */
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.nav-link {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffffc0;
   text-decoration: none;
   display: flex;
   align-items: center;
   padding: 0.35rem;
   margin: 0 1rem;
-  font-size: larger;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-.nav ul li a:hover {
+.nav-link:hover {
   color: #4169e1c0;
   text-decoration: underline;
-  /* border-bottom: #4169e1; */
   text-decoration-color: #4169e1;
   text-underline-offset: 10px;
   opacity: 8;
@@ -89,24 +98,4 @@
 
 .signup {
   margin-right: 0;
-}
-
-.sign-in {
-  color: #ffffffc0;
-  text-decoration: none !important;
-  display: flex;
-  align-items: center;
-  padding: 0.35rem;
-  margin: 0 1rem;
-  font-weight: 500;
-  font-size: larger;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.sign-in:hover {
-  color: #4169e1c0;
-  text-decoration: underline;
-  text-decoration-color: #4169e1;
-  text-underline-offset: 10px;
-  opacity: 8;
 }

@@ -130,16 +130,18 @@ const ComponentDetails = () => {
           <div className="pet-details-about-divider"></div>
           <ul className="pet-details-list">
             {component.gender && (
-              <li className="pet-details-li">{component.gender}</li>
+              <li className="pet-details-li">Gender: {component.gender}</li>
             )}
             {component.size && (
-              <li className="pet-details-li">{component.size}</li>
+              <li className="pet-details-li">Size: {component.size}</li>
             )}
             {component.color && (
-              <li className="pet-details-li">{component.color}</li>
+              <li className="pet-details-li">Color: {component.color}</li>
             )}
             {component.breeds.primary && (
-              <li className="pet-details-li">{component.breeds.primary}</li>
+              <li className="pet-details-li">
+                Breed: {component.breeds.primary}
+              </li>
             )}
           </ul>
           <div className="pet-details-about-divider"></div>

@@ -1,14 +1,21 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import AuthContext from "../contexts/AuthContext";
 import SignInButton from "../components/SignInButton";
 import { Typography } from "@material-ui/core";
 import "../pages/styles/Navbar.css";
 import SignUpButton from "./SignUpButton";
+import { useHistory } from "react-router-dom";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   const CustomLink = ({ to, children }) => (
     <li>
@@ -42,17 +49,29 @@ export default function Navbar() {
           )}
           {!isAuthenticated && (
             <>
-              <CustomLink to="/findapet">Find Pets</CustomLink>
-              <CustomLink to="/findshelter">Find Shelter</CustomLink>
+              <Typography
+                variant="subtitle1"
+                className="nav-link"
+                onClick={() => handleNavigation("/findapet")}
+              >
+                Find Pets
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                className="nav-link"
+                onClick={() => handleNavigation("/findshelter")}
+              >
+                Find Shelter
+              </Typography>
               {/* <CustomLink to="/signup">Sign up</CustomLink> */}
               <SignInButton>
                 {({ handleClickOpen }) => (
                   <Typography
                     variant="subtitle1"
-                    className="sign-in"
+                    className="nav-link"
                     onClick={handleClickOpen}
                   >
-                    Sign in
+                    Sign In
                   </Typography>
                 )}
               </SignInButton>
@@ -60,7 +79,7 @@ export default function Navbar() {
                 {({ handleClickOpen }) => (
                   <Typography
                     variant="subtitle1"
-                    className="sign-in"
+                    className="nav-link"
                     onClick={handleClickOpen}
                   >
                     Sign Up
