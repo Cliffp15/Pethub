@@ -16,6 +16,8 @@ body {
     position:absolute;
     height: 100%;
     width: 100%;
+    border-radius: 3px;
+    border-color: #000;
 }
 
 .page-flex{
@@ -65,33 +67,34 @@ body {
 
 
 .Shelter-title{
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     width:100%;
     z-index: 1px;
-    border-bottom: 1px solid black;
+    border-bottom: 1.5px solid black;
 }
 
 .Shelter-title h1{
-    display: block;
-    margin-top:15px;
-    margin-left: 3%;
+    display: flex;
     justify-content: center;
-    font-size: 200%;
+    font-size: 350%;
     width:100%;
     padding: 4px;
+    font-weight: lighter;
 }
 
 .Searchbutton-area{
-    display: inline-block;
+    display: flex;
     justify-content: center;
     border-radius: 4px;
     width: 400px;
     padding: 1rem auto;
+    margin: 0 auto;
 }
 
 .Searchbutton-area button{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    /* margin-top: 1rem; */
+    margin-bottom: 2rem;
     padding: 15px;
     background-color: #4169e1f4;
     width: 90%;
@@ -119,10 +122,13 @@ body {
 .sheltercontents{
     display: block;
     background-color: #ffffff;
-    border-bottom: 1px solid rgb(218, 220, 224);
-    border-radius: 0px 0px 00px 00px;
-    
+    border:  solid;
+    border-width: 5px;
+    border-radius: 15px;
+    border-color: #4169e1f4;
+    margin: 20px;
     padding-left: 3%;
+    box-shadow: 3px 5px 5px  rgba(145, 145, 145, 0.851);
 }
 
 
@@ -140,3 +146,5 @@ div.ShelterSearch-area,
 }
 
 
+.map-container{
+}

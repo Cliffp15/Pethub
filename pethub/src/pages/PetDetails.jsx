@@ -227,7 +227,7 @@ const ComponentDetails = () => {
           <SimilarPets pets={similarPets} />
         </div>
         </div>
-      )}
+      )
    </div>
   );
 };

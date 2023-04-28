@@ -238,7 +238,9 @@ const FindShelter = (props) => {
         {error && <div>{error}</div>}
         {userLocation && (
           // style={{ height: "400px", width: "100%" }}
-          <div className= "Map-area"id="map"> </div>
+          <div className="map-container">
+            <div className= "Map-area"id="map"> </div>
+          </div>
         )}
       <div className="page-flex">
         <div className="ShelterSearch-area">
