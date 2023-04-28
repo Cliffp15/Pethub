@@ -5,14 +5,14 @@ import "./styles/PetDetails.css";
 import { fetchToken } from "../api/petFinderToken";
 import ContactModal from "../components/ContactModal";
 // import CircularProgress from "@mui/joy/CircularProgress";
-import CircularProgress from "@mui/material/CircularProgress";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 const ComponentDetails = () => {
   const { id } = useParams();
   const [component, setComponent] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [similarPets, setSimilarPets] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
 
@@ -25,9 +25,13 @@ const ComponentDetails = () => {
   //       .catch(error => console.error(error));
   //   }, [id]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
-
+    setIsLoading(true);
     const response = await fetch(
       `https://api.petfinder.com/v2/animals/${id}?fields=description&format=full`,
       {
@@ -48,6 +52,7 @@ const ComponentDetails = () => {
     const fullDescription = data.animal.description.replace(/\.\.\.$/, "");
     data.animal.description = fullDescription;
     setComponent(data.animal);
+    setIsLoading(false);
   };
   const fetchSimilarPets = async () => {
     const token = await fetchToken();
@@ -115,7 +120,12 @@ const ComponentDetails = () => {
   }
 
   if (!component) {
-    return <CircularProgress size="lg"></CircularProgress>;
+    return <div className="loadingScreen">
+    <h1 className="loadingText">
+      Stay put while we fetch our furry friends
+    </h1>
+    <CircularProgress classname="loading" size="lg" />
+  </div>;
   }
 
   return (
@@ -216,8 +226,9 @@ const ComponentDetails = () => {
         <div className="similar-pets-section">
           <SimilarPets pets={similarPets} />
         </div>
-      </div>
-    </div>
+        </div>
+      )}
+   </div>
   );
 };
 
