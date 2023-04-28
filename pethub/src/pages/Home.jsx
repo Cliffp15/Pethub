@@ -213,12 +213,7 @@ const Home = () => {
               Featured Pets
             </h1>
             <h3> 
-            Discover your new furry friend with ease on our pet adoption
-            website. Our featured section showcases adorable and adoptable pets,
-            all of which are up-to-date on vaccinations and ready for a forever
-            home. With our comprehensive database and filters, finding your
-            perfect match has never been easier. Start your search today and
-            find your new best friend!Welcome to our "Featured Pets" section! Here you will find a curated selection of some of the most adorable and lovable pets around. We showcase a variety of different animals, from cute and cuddly cats and dogs to exotic birds and rabbits.
+            Discover your new furry friend with ease on our pet adoption website. Our featured section showcases adorable and adoptable pets, all of which are up-to-date on vaccinations and ready for a forever home. With our comprehensive database and filters, finding your perfect match has never been easier. Start your search today and find your new best friend!
             </h3>
             <button className="See-more-Pets-Button" onClick={handleSeeMorePetsClick}>See More Pets</button>
         </div>
@@ -244,17 +239,17 @@ const Home = () => {
                 window.scrollTo(0,1100);}}
                 disabled={currentPage === 1}
             >
-              Previous
+            ←
             </button>
             <div className="pagination-counter">
-            <h3> page {currentPage}</h3>
+            <h3> {currentPage}</h3>
           </div>
             <button
               className="pagination-button-2"
               onClick={() => {handleNextPage();
               window.scrollTo(0,1100);}}
             >
-              Next
+              →
             </button>
           </div>
           

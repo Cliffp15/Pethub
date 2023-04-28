@@ -32,6 +32,7 @@ body {
   /* padding: 0; */
   overflow-x: hidden;
   width: 100%;
+  font-weight: lighter;
 }
 
 /* Hero section */
@@ -194,6 +195,7 @@ body {
   justify-content: left;
   align-items: left;
   font-size: 30px;
+  font-weight: 500;
 }
 
 .See-more-Pets-Button{
@@ -400,6 +402,7 @@ body {
   color: #ffffff;
   background-color: #064789;
   transition: 0.2s ease-in-out;
+  width: fit-content;
 }
 
 .pagination-button-1:hover {
@@ -437,7 +440,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #edf9fd00;
-  width: 100%;
+  width: fit-content;
 }
 
 .Benefit-Wrapper{
@@ -905,8 +908,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 50%;
   background-color: #edf9fd00;
+  margin-left: 50px;
+  margin-bottom: 10px;
+  margin-top: -px;
 }
 
 .pagination-button-1{
@@ -919,7 +925,7 @@ body {
   cursor: pointer;
   border: none;
   color: #ffffff;
-  background-color: #064789;
+  background-color: #4169e1;
   transition: 0.2s ease-in-out;
 }
 
@@ -941,7 +947,7 @@ body {
   cursor: pointer;
   border: none;
   color: #ffffff;
-  background-color: #064789;
+  background-color: #4169e1;
   transition: 0.3s ease-in-out; 
 }
 
@@ -958,7 +964,8 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #edf9fd00;
-  width: 100%;
+  width: 30px;
+  font-size: large;
 }
 
 .Benefit-Wrapper{
