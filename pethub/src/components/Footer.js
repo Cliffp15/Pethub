@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container, Grid, Link, Typography } from "@material-ui/core";
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function Footer() {
   const classes = useStyles();
 
@@ -45,6 +47,7 @@ function Footer() {
   }, []);
 
   return (
+
     <Box className={classes.root}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
@@ -89,6 +92,7 @@ function Footer() {
         </Grid>
         <Box mt={4}>
           <Typography variant="body2" align="center" color="#ffff">
+
             © {new Date().getFullYear()} PetHub. All rights reserved.
           </Typography>
         </Box>
@@ -98,3 +102,61 @@ function Footer() {
 }
 
 export default Footer;
+// import React from "react";
+// import { Box, Typography, Container, CssBaseline } from "@mui/material";
+// import Link from "@mui/material/Link";
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center">
+//       {"Copyright © "}
+//       <Link color="inherit" href="/">
+//         PetHub
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
+// export default function StickyFooter() {
+//   return (
+//     <>
+//       <CssBaseline />
+//       <Box
+//         sx={{
+//           position: "relative",
+//           display: "flex",
+//           flexDirection: "column",
+//           minHeight: "40vh",
+//         }}
+//       >
+//         <Box
+//           sx={{
+//             flexGrow: 1,
+//           }}
+//         >
+//           {/* Your main content goes here */}
+//         </Box>
+//         <Box
+//           component="footer"
+//           sx={{
+//             width: "100%",
+//             py: 3,
+//             px: 2,
+//             backgroundColor: (theme) =>
+//               theme.palette.mode === "light"
+//                 ? theme.palette.grey[200]
+//                 : theme.palette.grey[800],
+//           }}
+//         >
+//           <Container maxWidth="sm">
+//             <Typography variant="body1">
+//               My sticky footer can be found here.
+//             </Typography>
+//             <Copyright />
+//           </Container>
+//         </Box>
+//       </Box>
+//     </>
+//   );
+//}
