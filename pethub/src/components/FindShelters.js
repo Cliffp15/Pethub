@@ -3,9 +3,7 @@ import React from "react";
 import caticon from "../photos/cat.png";
 import dog from "../photos/dog.png";
 
-const Findshelterinfo = ({ shelterinfo }) => {
-
-
+const Findshelterinfo = ({ shelterinfo, address }) => {
 
     return (
         <div className="sheltercontents">
@@ -17,6 +15,7 @@ const Findshelterinfo = ({ shelterinfo }) => {
                 {/* <br /> */}
                 <div className="shelterdistance"> Distance: {shelterinfo.distance}
                 </div> 
+                <div className="shelteraddress"> Address: {address}</div>
                 <br />
         </div>
 );

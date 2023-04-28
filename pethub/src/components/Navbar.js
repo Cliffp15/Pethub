@@ -6,6 +6,7 @@ import SignInButton from "../components/SignInButton";
 import { Typography } from "@material-ui/core";
 import "../pages/styles/Navbar.css";
 import SignUpButton from "./SignUpButton";
+import { fontSize } from "@material-ui/system";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -51,7 +52,8 @@ export default function Navbar() {
               {/* <CustomLink to="/signup">Sign up</CustomLink> */}
               <SignInButton>
                 {({ handleClickOpen }) => (
-                  <Typography
+                  <Typography 
+                  // style={{fontSize: 35}}
                     variant="subtitle1"
                     className="sign-in"
                     onClick={handleClickOpen}
@@ -62,7 +64,8 @@ export default function Navbar() {
               </SignInButton>
               <SignUpButton>
                 {({ handleClickOpen }) => (
-                  <Typography
+                  <Typography 
+                  // style={{fontSize: 35}}
                     variant="subtitle1"
                     className="sign-in"
                     onClick={handleClickOpen}

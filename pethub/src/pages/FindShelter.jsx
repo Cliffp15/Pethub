@@ -255,8 +255,9 @@ const FindShelter = (props) => {
           </div>
             <div className="Shelterresults-area">
               {shelters.map((shelterinfo, index) => (
-                <Findshelterinfo key={index} shelterinfo={shelterinfo}/>
+                <Findshelterinfo key={index} address = {address} shelterinfo={shelterinfo}/>
               ))}
+                  
             </div>
         </div>
       </div>

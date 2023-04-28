@@ -1,5 +1,11 @@
-.nav {
+/* :root{ */
 
+
+
+
+/* } */
+.nav {
+--nav-font-size:35px;
 
   background-color: #A2DCEA;
 /* =======
@@ -17,11 +23,11 @@
   padding-right: 20px;
   padding-bottom: 20px;
 }
-.footer-logo{
+/* .footer-logo{
   display: flex;
   justify-content: center;  
   align-items: center;
-}
+} */
 .nav ul {
   margin: 0;
   padding: 0;
@@ -50,44 +56,37 @@
 
 .nav ul li a{
   color: #ffffff;
-
-/* .nav ul li a {
+}
+ /* .nav ul li a {
   color: #ffffffc0;
->>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af
+  font-weight: 500;
   text-decoration: none;
   display: flex;
   align-items: center;
   padding: 0.55rem;
   margin: 0 1rem;
-  font-size:25px; */
-}
+  font-size:var(--nav-font-size); 
+ */
 
 
 .nav ul li a:hover{
   color: #ffffff;
-
-/* .nav ul li a:hover {
-  color: #4169e1c0;
->>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af
+  /* opacity: 8; */
+  /* background-color: rgb(195, 229, 243); */
+  /* color:#4169e1f4; */
+  /* outline: #4169e1f4;
+  outline-width: 4px;
+  outline-style: solid; */
   text-decoration: underline;
-  
-  text-decoration-color: #4169e1;
-  text-underline-offset: 10px;
-  opacity: 8; */
+  text-decoration-color: #4169e1f4;
+  text-underline-offset: 19px;
 }
 
 .logo {
   display: flex;
   align-items: left;
-
   padding:20px;
   width:420px;
-/* =======
-  padding: 0;
-  margin: 0;
-  width: 420px;
->>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af
-  height: 100px; */
 }
 
 
@@ -175,13 +174,15 @@
   outline-style: solid;
   text-decoration: underline;
   text-decoration-color: #4169e1f4;
-  text-underline-offset: 19px;
+  text-underline-offset: 10px;
 }
 
 .nav-links {
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* font-size: var(--nav-font-size); */
+  
 }
 
 .signup {
@@ -197,13 +198,17 @@
   margin: 0 1rem;
   font-weight: 500;
   font-size: larger;
+
+  /* font-size: var(--nav-font-size); */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .sign-in:hover {
   color: #4169e1c0;
+  text-decoration-style: solid;
   text-decoration: underline;
   text-decoration-color: #4169e1;
   text-underline-offset: 10px;
   opacity: 8;
+  cursor:pointer;
 }

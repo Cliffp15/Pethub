@@ -14,8 +14,25 @@ import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
 // import heart from "../photos/heart.png"
 import PetCard from "../components/PetImageSelection";
+import {  createTheme } from "@mui/material";
+
+
 
 const API_URL = "https://api.petfinder.com/v2/animals?&limit=50";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#4169e1f4',
+      darker: '#455e85',
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+  },
+});
+
 
 const FindPetPage = () => {
   const [petcard, setpetcard] = useState([]);
@@ -347,8 +364,13 @@ const FindPetPage = () => {
               ></Input>
               <Button
                 className="filter-button"
+                style={{
+                  borderRadius: 10
+                    }}
+                  color="primary"
                 onClick={filterPets}
-                sx={{ width: 240 }}
+                sx={{ width: 240,
+                marginTop: 6 }}
               >
                 Filter Pets
               </Button>

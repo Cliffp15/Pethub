@@ -65,29 +65,35 @@ body {
 
 
 .Shelter-title{
-    display: inline;
+    display: inline-flex;
+    width:100%;
     z-index: 1px;
+    border-bottom: 1px solid black;
 }
 
 .Shelter-title h1{
-    display: flex;
-    margin: 4px;
+    display: block;
+    margin-top:15px;
+    margin-left: 3%;
     justify-content: center;
-    font-weight: lighter;
-    
+    font-size: 200%;
+    width:100%;
+    padding: 4px;
 }
 
 .Searchbutton-area{
-    display: flex;
+    display: inline-block;
     justify-content: center;
     border-radius: 4px;
+    width: 400px;
+    padding: 1rem auto;
 }
 
 .Searchbutton-area button{
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 10px;
-    background-color: #87ceeb;
+    padding: 15px;
+    background-color: #4169e1f4;
     width: 90%;
     color: black;
     font-weight: 'lighter';
@@ -95,8 +101,17 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    border-bottom: #87ceeb;
+    border-bottom: #4169e1f4;
     border: 1px;
+    color: white;
+}
+
+.Searchbutton-area:hover button{
+    background-color: rgb(195, 229, 243);
+    color:#4169e1f4;
+    outline: #4169e1f4;
+    outline-width: 3px;
+    outline-style: solid;
 }
 
 
