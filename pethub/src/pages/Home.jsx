@@ -1,15 +1,14 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
-import dogIcon from "../photos/dog.png";
+import Arrow from "../photos/Arrow.png";
+import Arrowright from "../photos/RightArrow.png";
 
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
 import arrowright from "../photos/animalinformation.png";
-import CircularProgress from "@mui/material/CircularProgress";
-
-import caticon from "../photos/cat.png";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 import "./styles/homepage.css";
 import "./styles/Navbar.css";
@@ -197,7 +196,7 @@ const Home = () => {
         </h1>
             <div className="search-container">
               <div className="search-for-animal">
-                <button className="search-button" onClick={SearchPets}>
+                <button className="search-button" onClick={handleSeeMorePetsClick}>
                   {" "}
                   Find your new pet{" "}
                 </button>
@@ -220,8 +219,8 @@ const Home = () => {
             home. With our comprehensive database and filters, finding your
             perfect match has never been easier. Start your search today and
             find your new best friend!Welcome to our "Featured Pets" section! Here you will find a curated selection of some of the most adorable and lovable pets around. We showcase a variety of different animals, from cute and cuddly cats and dogs to exotic birds and rabbits.
-            
             </h3>
+            <button className="See-more-Pets-Button" onClick={handleSeeMorePetsClick}>See More Pets</button>
         </div>
           <div className="featured-pets-section">
             {isLoading ? (
@@ -242,13 +241,8 @@ const Home = () => {
             <button
               className="pagination-button-1"
               onClick={() => {handlePrevPage();
-                window.scrollTo(0,1400);}}
+                window.scrollTo(0,1100);}}
                 disabled={currentPage === 1}
-              onClick={() => {
-                handlePrevPage();
-                window.scrollTo(0, 1400);
-              }}
-              disabled={currentPage === 1}
             >
               Previous
             </button>
@@ -258,7 +252,7 @@ const Home = () => {
             <button
               className="pagination-button-2"
               onClick={() => {handleNextPage();
-              window.scrollTo(0,1400);}}
+              window.scrollTo(0,1100);}}
             >
               Next
             </button>
@@ -304,8 +298,7 @@ const Home = () => {
             loving home, and we are committed to making the adoption process as
             easy and enjoyable as possible for both pets and adopters. Join us
             in our mission to find homes for all these amazing animals by
-            adopting your new furry friend today!Our goal is to find loving and responsible homes for each of our animals. Our animals have been rescued from shelters, foster homes, or have been surrendered by previous owners. They have all been thoroughly examined by our veterinarians, received necessary vaccinations, and have been spayed or neutered. We believe that adopting a pet is a lifetime commitment, and we strive to ensure that each of our animals finds their perfect forever home.
-       
+            adopting your new furry friend today!
         </p>
         </div>
         <div className="Mission-statement-image">

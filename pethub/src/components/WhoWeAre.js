@@ -11,7 +11,22 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Wave from "react-wavify";
 
 import CustomButton from "../components/Button";
+import { createMuiTheme, createTheme } from "@mui/material";
+import { color } from "@material-ui/system";
+import { borderRadius } from "@mui/system";
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#4169e1f4',
+      darker: '#455e85',
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+  },
+});
 const item = {
   display: "flex",
   flexDirection: "column",
@@ -79,7 +94,10 @@ function WhoWeAre() {
           </Grid>
         </div>
         <Button
-          color="inherit"
+        style={{
+          borderRadius: 10
+            }}
+          color="primary"
           size="large"
           variant="contained"
           component="a"

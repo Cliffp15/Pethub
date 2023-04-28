@@ -197,6 +197,7 @@ body {
 }
 
 .See-more-Pets-Button{
+  position : absolute;
   padding: 1rem 1.5rem;
   margin: 25px 4px 3px 0px; 
   text-align: center;
@@ -208,6 +209,7 @@ body {
   background-color: #4169e1;
   transition: 0.3s ease-in-out;
 }
+
 
 .See-more-Pets-Button:hover, .See-more-Pets-Button:focus {
   border-width: 2px;
@@ -256,10 +258,11 @@ body {
   border-right: 1px solid rgba(0, 180, 200, 0.03);
   border-bottom: 2px solid rgb(0, 222, 247);
   box-shadow: 10px 10px 20px rgba(2, 104, 144, 0.8);
-  background-color: rgb(148, 205, 244);
+  background-color: rgb(255, 255, 255);
   transition: 0.2s ease-in-out;
   width: 100%;
   max-width: 300px;
+  max-height: 450px;
 }
 
 .pet-card:hover {
@@ -298,7 +301,8 @@ body {
   text-align: left;
   width: 100%;
   margin-top: 10px;
-  color: rgb(255, 255, 255);
+  color: #044293;
+  /* color: rgb(0, 0, 0); */
   background-image: linear-gradient( #f7feff00,#03fefa00,#0dc9da00,#24b0d300,#03fefa06,#076df204, #076df200,#076df200);
 }
 
@@ -310,7 +314,9 @@ body {
   margin-bottom: 15px;
   text-align: left;
   width: 100%;
-  color: white;
+  color: #044293;
+
+  /* color: rgb(0, 0, 0); */
 }
 
 .pet-card__name {
@@ -356,6 +362,7 @@ body {
   transform: translateY(40px);
   opacity: 0;
 }
+
 
 .loading{
   display: block;
@@ -464,8 +471,9 @@ body {
   width:100%;
   font-size: 20px;
   display: flex;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
 }
 
 .benefit-2 {
@@ -474,13 +482,13 @@ body {
 }
 
 .benefit-banner p{
-  width: 500px;
-  margin: 1rem 1rem 1rem 5rem;
+  width: 600px;
+  margin: 1rem 1rem 1rem 1rem;
   display: block;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
   text-align: left;
-  font-weight:700;
+  /* font-weight:700; */
   padding: 1rem 1rem 1rem 1rem;
   color: white;
 }
