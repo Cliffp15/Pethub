@@ -15,7 +15,7 @@ const Findshelterinfo = ({ shelterinfo, address }) => {
                 {/* <br /> */}
                 <div className="shelterdistance"> Distance: {shelterinfo.distance}
                 </div> 
-                <div className="shelteraddress"> Address: {address}</div>
+                {/* <div className="shelteraddress"> Address: {address}</div> */}
                 <br />
         </div>
 );
