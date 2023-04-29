@@ -8,12 +8,17 @@ import Typography from "../components/Typography";
 import PetsIcon from "@mui/icons-material/Pets";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+
 import Wave from "react-wavify";
 
 import CustomButton from "../components/Button";
 import { createMuiTheme, createTheme } from "@mui/material";
 import { color } from "@material-ui/system";
 import { borderRadius } from "@mui/system";
+
+
+
 
 const theme = createTheme({
   palette: {
@@ -35,6 +40,13 @@ const item = {
 };
 
 function WhoWeAre() {
+  
+  
+  const navigate = useNavigate();
+
+  const handleSeeMorePetsClick = () => {
+    navigate(`/findapet`);
+  };
   return (
     <Box
       component="section"
@@ -93,7 +105,11 @@ function WhoWeAre() {
             </Grid>
           </Grid>
         </div>
-        <Button
+        <button className="What-we-do-search-button" onClick={handleSeeMorePetsClick}>
+                  {" "}
+                  Find your new pet →{" "}
+                </button>
+        {/* <Button
         style={{
           borderRadius: 10
             }}
@@ -105,7 +121,7 @@ function WhoWeAre() {
           sx={{ mt: 8 }}
         >
           Get started
-        </Button>
+        </Button> */}
       </Container>
     </Box>
   );
