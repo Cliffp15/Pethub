@@ -159,6 +159,13 @@ const FindShelter = (props) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             for (let i = 0; i < results.length; i++) {
               const marker = new window.google.maps.Marker({
+                label: {
+                  text: shelters.name,
+                  color: "#203334",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  className: "map-label",
+            },
                 position: results[i].geometry.location,
                 map: map,
               });
