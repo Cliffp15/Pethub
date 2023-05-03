@@ -184,8 +184,8 @@ const Home = () => {
   }, [petcard, firstcall]);
 
   return (
-    <div className="home-page">
-      <div className="hero-section">
+  <div className="home-page">
+    <div className="hero-section">
         <div className="hero-section-content-wrapper">
         <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
@@ -203,31 +203,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="Benefit-Wrapper">
-      <div className="benefit-banner" id="bannerid">
-          <div className="benefit">
-            <img src={cat} alt="benefit-icon" className="benefit-icon" />
-            <h1>Save Time</h1>
-            <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={dog} alt="benefit-icon" className="benefit-icon" />
-          <h1>Save A Life</h1>
-            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={rabbit} alt="benefit-icon" className="benefit-icon" />
-          <h1>Convenient Access to Information</h1>
-            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
-            </p>
-          </div>
-      </div>
-    </div> */}
-    <div className="Gutter">
-    <div className="Featured-Content-wrapper">
+    </div>
+      <div className="Featured-Content-wrapper">
       <div className="Featured-content-area">
         <div className="featured-title">
             <h1> 
@@ -278,10 +255,8 @@ const Home = () => {
           
         </div>
       </div>
-    </div>
-
-    
-    <div className="Mission-statement-wrapper">
+      </div>
+      <div className="Mission-statement-wrapper">
       <div className="Mission-statement">
         <div className="Mission-statement-image">
           <img src={shiba} alt="shiba icon" className="shiba-icon" />
@@ -307,32 +282,30 @@ const Home = () => {
         </div>
         
       </div>
-    </div><div className="Benefit-Wrapper">
-      <div className="benefit-banner" id="bannerid">
-          <div className="benefit">
-            <img src={clock} alt="benefit-icon" className="benefit-icon" />
-            <h1>Save Time</h1>
-            <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={animalcarecolor} alt="benefit-icon" className="benefit-icon" />
-          <h1>Save A Life</h1>
-            <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
-            </p>
-          </div>
-          <div className="benefit">
-            <img src={animalinformation} alt="benefit-icon" className="benefit-icon" />
-          <h1>Convenient Access to Information</h1>
-            <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
-            </p>
-          </div>
       </div>
-    </div>
-    </div>
-    </div>
-    // </div>
-    // </div>
+      <div className="Benefit-Wrapper">
+        <div className="benefit-banner" id="bannerid">
+            <div className="benefit">
+              <img src={clock} alt="benefit-icon" className="benefit-icon" />
+              <h1>Save Time</h1>
+              <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
+              </p>
+            </div>
+            <div className="benefit">
+              <img src={animalcarecolor} alt="benefit-icon" className="benefit-icon" />
+            <h1>Save A Life</h1>
+              <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
+              </p>
+            </div>
+            <div className="benefit">
+              <img src={animalinformation} alt="benefit-icon" className="benefit-icon" />
+            <h1>Convenient Access to Information</h1>
+              <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
+              </p>
+            </div>
+        </div>
+      </div>
+  </div>
   );
 };
 
