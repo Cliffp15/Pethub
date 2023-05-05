@@ -6,6 +6,7 @@ import { fetchToken } from "../api/petFinderToken";
 import ContactModal from "../components/ContactModal";
 // import CircularProgress from "@mui/joy/CircularProgress";
 import CircularProgress from "@mui/joy/CircularProgress";
+import PetCard from "../components/PetImageSelection";
 
 const ComponentDetails = () => {
   const { id } = useParams();
@@ -223,8 +224,13 @@ const ComponentDetails = () => {
             Details for Adopting {component.name}
           </button>
         </div>
+        <div>
+          <h2>Similar Pets</h2>
+        </div>
         <div className="similar-pets-section">
-          <SimilarPets pets={similarPets} />
+        {similarPets.map((petinfo, index) => (
+                  <PetCard key={index} petinfo={petinfo} />
+                ))}
         </div>
         </div>
       )
