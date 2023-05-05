@@ -47,49 +47,95 @@ const FindPetPage = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [petsReturned, setPetsReturned] = useState(0);
+  const [userLocation, setUserLocation] = useState({lat: null , lng: null});
+  const [fetchingUserLocation, setFetchingUserLocation] = useState(null);
 
-  const Fetchpets = async (animal) => {
+
+  const fetchPetsWithLocation = async (animal, location) => {
     setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
-    while (petsWithPhotos.length < 21) {
-      const response = await fetch(`${API_URL}${animal}`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      console.log(data);
+      while (petsWithPhotos.length < 21) {
+        const response = await fetch(`${API_URL}${animal}&location=${location.lat},${location.lng}`, {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        console.log(data);
 
-      const petsReturned = data.pagination.total_count;
-      const formattedPetsReturned = petsReturned.toLocaleString();
-      setPetsReturned(formattedPetsReturned);
+        const petsReturned = data.pagination.total_count;
+        const formattedPetsReturned = petsReturned.toLocaleString();
+        setPetsReturned(formattedPetsReturned);
 
-      const animals = Object.values(data.animals);
+        const animals = Object.values(data.animals);
 
-      const animalsWithPotos = animals.filter(
-        (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
-      );
+        const animalsWithPotos = animals.filter(
+          (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+        );
 
-      petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
-      console.log(animalsWithPotos, petsWithPhotos);
-    }
-
+        petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
+        console.log(animalsWithPotos, petsWithPhotos);
+    } 
     setpetcard(petsWithPhotos.slice(0, 21));
-
     setfirstcall(false);
     setIsLoading(false);
   };
 
-  const FetchFilteredPets = async (query, page) => {
+  const FetchPets = async (animal) => {
     setIsLoading(true);
     let petsWithPhotos = [];
     const token = await fetchToken();
-    const response = await fetch(`${API_URL}${query}&page=${page}`, {
+    const url = `https://api.petfinder.com/v2/animals?type=${animal}&limit=50`;
+      while (petsWithPhotos.length < 21) {
+        console.log(url);
+        const response = await fetch(`${url}${animal}`, {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+
+        const petsReturned = data.pagination.total_count;
+        const formattedPetsReturned = petsReturned.toLocaleString();
+        setPetsReturned(formattedPetsReturned);
+
+        const animals = Object.values(data.animals);
+
+        const animalsWithPotos = animals.filter(
+          (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+        );
+
+        petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
+        console.log(animalsWithPotos, petsWithPhotos);
+      }
+      setpetcard(petsWithPhotos.slice(0, 21));
+    setfirstcall(false);
+    setIsLoading(false);
+  };
+
+  const FetchFilteredPets = async (query, page, location) => {
+    setIsLoading(true);
+    let petsWithPhotos = [];
+    let fetchUrl = "";
+    const token = await fetchToken();
+    console.log(location);
+    if(location === undefined) {
+       fetchUrl = `${API_URL}${query}&page=${page}`;
+    }else{
+       fetchUrl = `${API_URL}${query}&page=${page}&location=${location.lat},${location.lng}`;
+    }
+
+    const response = await fetch(`${fetchUrl}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -120,18 +166,19 @@ const FindPetPage = () => {
       console.log(animalsWithPotos, petsWithPhotos);
 
       setpetcard(petsWithPhotos.slice(0, 21));
+      setfirstcall(false);
       setIsLoading(false);
     }
   };
 
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
-    FetchFilteredPets(query, currentPage);
+    FetchFilteredPets(query, currentPage, userLocation);
   };
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => prev - 1);
-    FetchFilteredPets(query, currentPage);
+    FetchFilteredPets(query, currentPage, userLocation);
   };
 
   const filterPets = async () => {
@@ -172,11 +219,13 @@ const FindPetPage = () => {
     }
 
     console.log("query", queryString);
+    setQuery(queryString);
 
     if (queryString === "") {
       alert("Please Select A Filter");
+    } else if (userLocation.lat !== null && userLocation.lat !== null) {
+      await FetchFilteredPets(queryString, currentPage, userLocation);
     } else {
-      setQuery(queryString);
       await FetchFilteredPets(queryString, currentPage);
     }
   };
@@ -209,10 +258,39 @@ const FindPetPage = () => {
   }, [species, petBreeds]);
 
   useEffect(() => {
-    if (firstcall) {
-      Fetchpets("");
+    // Get the user's location using the HTML5 Geolocation API
+    if (navigator.geolocation) {
+      setFetchingUserLocation(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords);
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          setFetchingUserLocation(false);
+        },
+        (error) => {
+          console.log("Unable to retrieve your location");
+          setFetchingUserLocation(false);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by your browser");
     }
-  }, [petcard, firstcall]);
+  }, []);
+
+  useEffect(() => {
+    if (userLocation.lat !== null && userLocation.lng !==null && firstcall) {
+      fetchPetsWithLocation("", userLocation);
+      console.log("called");
+    }
+    else if(fetchingUserLocation === false && firstcall){
+      FetchPets("");
+      console.log("called no location");
+    }
+
+  }, [petcard, firstcall, userLocation, fetchingUserLocation]);
 
   const handleSpeciesChange = (event) => {
     setSpecies(event.target.textContent);
@@ -243,9 +321,16 @@ const FindPetPage = () => {
   return (
     <div className="home-page">
       <div className="featured-section">
-        <h2 className="petsReturnedText">
+        {userLocation.lat !== null && userLocation.lat !== null?(
+            <h2 className="petsReturnedText">
+            We located {petsReturned} pets that are ready to be adopted near you!
+          </h2>
+        ):
+        (
+          <h2 className="petsReturnedText">
           We located {petsReturned} pets that are ready to be adopted!
         </h2>
+        )}
         {isLoading ? (
           <div className="loadingScreen">
             <h1 className="loadingText">
@@ -365,12 +450,11 @@ const FindPetPage = () => {
               <Button
                 className="filter-button"
                 style={{
-                  borderRadius: 10
-                    }}
-                  color="primary"
+                  borderRadius: 10,
+                }}
+                color="primary"
                 onClick={filterPets}
-                sx={{ width: 240,
-                marginTop: 6 }}
+                sx={{ width: 240, marginTop: 6 }}
               >
                 Filter Pets
               </Button>
