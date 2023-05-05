@@ -1,9 +1,6 @@
 import React from "react";
 import HeroImage from "../photos/DogBlueBackground.jpg";
 import shiba from "../photos/shiba.png";
-import cat from "../photos/cat.png";
-import dog from "../photos/dog.png";
-import rabbit from "../photos/rabbit.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
 import animalinformation from "../photos/animalinformation.png";
@@ -17,12 +14,9 @@ import "./styles/homepage.css";
 import "./styles/Navbar.css";
 
 
-
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
-
-
 
 const Home = () => {
 
@@ -31,7 +25,6 @@ const Home = () => {
   const handleSeeMorePetsClick = () => {
     navigate(`/findapet`);
   };
-
 
   const [data, setData] = useState([]);
   const [petcard, setpetcard] = useState([]);
@@ -61,12 +54,13 @@ const Home = () => {
   //   return () => clearInterval(intervalId);
   // }, []);
 
+  
   let pagination = 1;
-  const Fetchpets = async (pagination) => {
+  const Fetchpets = async (pagination) =>{
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
-    while (petsWithPhotos.length < 6) {
+    while (petsWithPhotos.length < 6){
       const response = await fetch(`${API_URL}${pagination}`, {
         method: "GET",
         mode: "cors",
@@ -190,17 +184,23 @@ const Home = () => {
         <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
           <h1>
-            {/*  <br /> */}
-          Adopt  a <br />new pet and change a life!
-        </h1>
-            <div className="search-container">
+            {/*   */}
+          Adopt a Pet Today!
+          </h1>
+          <h2>
+            {/* Adopt a new pet and <br /> change a life! */}
+            Take action today and give<br /> 
+            a pet the loving home they deserve. 
+        </h2>
+          
+            {/* <div className="search-container"> */}
               <div className="search-for-animal">
                 <button className="search-button" onClick={handleSeeMorePetsClick}>
                   {" "}
                   Find your new pet →{" "}
                 </button>
               </div>
-            </div>
+            {/* </div> */}
           </div>
         </div>
     </div>

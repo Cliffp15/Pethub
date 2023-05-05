@@ -241,7 +241,7 @@ const FindPetPage = () => {
   };
 
   return (
-    <div className="home-page">
+    <div className="findpets-home-page">
       <div className="featured-section">
         <h2 className="petsReturnedText">
           We located {petsReturned} pets that are ready to be adopted!
@@ -322,7 +322,7 @@ const FindPetPage = () => {
                   },
                 }}
               >
-                <Option value="">Select</Option>
+                {/* <Option value="">Select</Option> */}
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
               </Select>
@@ -345,7 +345,7 @@ const FindPetPage = () => {
                   },
                 }}
               >
-                <Option value="">Select</Option>
+                {/* <Option value="">Select</Option> */}
                 <Option value="baby">Baby</Option>
                 <Option value="young">Young</Option>
                 <Option value="adult">Adult</Option>
