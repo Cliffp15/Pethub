@@ -239,35 +239,41 @@ const FindShelter = (props) => {
 
 
   return (
-
     // style={{ height: "900px", width: "100%" }}
-    <div className= "FindShelter-page-container" >
-        {error && <div>{error}</div>}
-        {userLocation && (
-          // style={{ height: "400px", width: "100%" }}
-          <div className="map-container">
-            <div className= "Map-area"id="map"> </div>
-          </div>
-        )}
+    <div className="FindShelter-page-container">
       <div className="page-flex">
         <div className="ShelterSearch-area">
           <div className="Shelter-title">
             <h1>Shelters Near You</h1>
-              <div className="Searchbutton-area">
-                <button onClick={()=>{
+            <div className="Searchbutton-area">
+              <button
+                onClick={() => {
                   populateShelterMarkers();
-                  setIsSheltersVisible(true)
-                }}>
-                  Highlight Shelter Locations
-                </button>
-              </div>
-          </div>
-            <div className="Shelterresults-area">
-              {shelters.map((shelterinfo, index) => (
-                <Findshelterinfo key={index} address = {address} shelterinfo={shelterinfo}/>
-              ))}
-                  
+                  setIsSheltersVisible(true);
+                }}
+              >
+                Highlight Shelter Locations
+              </button>
             </div>
+          </div>{error && <div>{error}</div>}
+          {userLocation && (
+            // style={{ height: "400px", width: "100%" }}
+            <div className="map-container">
+              <div className="Map-area" id="map">
+                {" "}
+              </div>
+            </div>
+          )}
+          <div className="Shelterresults-area">
+            {shelters.map((shelterinfo, index) => (
+              <Findshelterinfo
+                key={index}
+                address={address}
+                shelterinfo={shelterinfo}
+              />
+            ))}
+          </div>
+          
         </div>
       </div>
     </div>

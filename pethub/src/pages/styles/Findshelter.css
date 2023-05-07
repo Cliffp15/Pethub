@@ -32,15 +32,16 @@ body {
     flex-direction: column;
     position: absolute;
     height: 100%;
-    width: 30%;
+    width: 100%;
     left: 0;
     display: block;
     background-color: #ffffff;
     box-shadow: -30px 100px 20px 0px  rgba(54, 54, 54, 0.851);
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-.ShelterSearch-area::-webkit-scrollbar-track{
+/* .ShelterSearch-area::-webkit-scrollbar-track{
     border: 1.5px solid #4169e1f4;
     padding: 2px 0;
     background-color: #ffffff;
@@ -56,7 +57,7 @@ body {
 
 .ShelterSearch-area::-webkit-scrollbar{
     width: 12px;
-}
+} */
 
 .Shelterinfo-area{
     position: absolute;
@@ -75,7 +76,7 @@ body {
     flex-direction: column;
     width:100%;
     z-index: 1px;
-    border-bottom: 1.5px solid black;
+    border-bottom: 2px solid black;
 }
 
 .Shelter-title h1{
@@ -138,8 +139,8 @@ body {
 }
 
 
-div.ShelterSearch-area,
-#Shelterresults-area{
+
+.Shelterresults-area{
     width: 30%;
     height: 100%;
     background-color: #ffffff;
@@ -151,6 +152,24 @@ div.ShelterSearch-area,
     /* padding: 0px; */
 }
 
+/* .Shelterresults-area::-webkit-scrollbar-track{
+    border: 1.5px solid #4169e1f4;
+    padding: 2px 0;
+    background-color: #ffffff;
+    
+} */
+
+.Shelterresults-area::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #4169e1f4;
+    border: 1px solid #000;
+}
+
+.Shelterresults-area::-webkit-scrollbar{
+    width: 12px;
+}
+
 .shelter-card{
   display: flex;
   flex-direction: column;
@@ -158,7 +177,7 @@ div.ShelterSearch-area,
   justify-content: center;
   /* position:relative; */
   margin-left: 3%;
-  margin-right: 3%;
+  margin-right: 0;
   padding: 15px;
   border-radius: 15px;
   border-top: 2px solid #4169e1f4;
@@ -179,15 +198,9 @@ div.ShelterSearch-area,
 
 .Map-area{
     display: flex;
+    flex-direction: row;
     width: 70%;
     height: 75%;
     margin-left: 30%;
-    margin-top: 10%;
-    border-radius: 20px;
-    border: 3px solid #4169e1f4;
-
-}
-
-.Shelterresults-area:we{
 
 }
