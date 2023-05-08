@@ -149,6 +149,7 @@ body {
     border-color: black;
     overflow-y:auto;
     font-weight: lighter;
+    padding-right: 1%;
     /* padding: 0px; */
 }
 

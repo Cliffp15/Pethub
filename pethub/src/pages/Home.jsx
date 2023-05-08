@@ -20,6 +20,7 @@ import "./styles/Navbar.css";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
+const locationAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&location=";
 const searchAPI_URL = "https://api.petfinder.com/v2/animals?type=";
 
 
@@ -41,7 +42,9 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [userLocation, setUserLocation] = useState({lat: null, lng: null});
+  const [fetchingUserLocation, setFetchingUserLocation] = useState(false);
+  const [pagination, setPagination] = useState(1);
   // useEffect(() => {
   //   const intervalId = setInterval(async () => {
   //     const token = await fetchToken();
@@ -61,8 +64,61 @@ const Home = () => {
   //   return () => clearInterval(intervalId);
   // }, []);
 
-  let pagination = 1;
-  const Fetchpets = async (pagination) => {
+  useEffect(() => {
+    // Get the user's location using the HTML5 Geolocation API
+    if (navigator.geolocation) {
+      setFetchingUserLocation(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords);
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          setFetchingUserLocation(false);
+        },
+        (error) => {
+          console.log("Unable to retrieve your location");
+          setFetchingUserLocation(false);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by your browser");
+    }
+  }, []);
+
+  const fetchPetsWithLocation = async (pagination, location) => {
+    setIsLoading(true);
+    let petsWithPhotos = [];
+    const token = await fetchToken();
+      while (petsWithPhotos.length < 6) {
+        const response = await fetch(`${locationAPI_URL}${location.lat},${location.lng}`, {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        console.log(data);
+
+        const animals = Object.values(data.animals);
+
+        const animalsWithPotos = animals.filter(
+          (pet) => !Array.isArray(pet.photos) || pet.photos.length > 0
+        );
+
+        petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
+        console.log(animalsWithPotos, petsWithPhotos);
+    } 
+    setpetcard(petsWithPhotos.slice(0, 6));
+    setfirstcall(false);
+    setIsLoading(false);
+  };
+
+  const Fetchpets = async () => {
     setIsLoading(true);
     const token = await fetchToken();
     let petsWithPhotos = [];
@@ -87,7 +143,7 @@ const Home = () => {
       );
       petsWithPhotos = [...petsWithPhotos, ...newPets];
       console.log(petsWithPhotos);
-      pagination++;
+      setPagination(pagination + 1);
     }
 
     setpetcard(petsWithPhotos.slice(0, 6));
@@ -134,7 +190,7 @@ const Home = () => {
       );
       petsWithPhotos = [...petsWithPhotos, ...animalsWithPotos];
       console.log(petsWithPhotos);
-      pagination++;
+      setPagination(pagination + 1);
     }
 
     setpetcard(petsWithPhotos.slice(0, 4));
@@ -143,20 +199,6 @@ const Home = () => {
     setIsLoading(false);
 
     // setTotalPages(Math.ceil(data.pagination.total_count / 6));
-  };
-  const SearchPets = async () => {
-    // debugger;
-
-    // const cityinput = document.getElementById("cityinput").value;
-    const zipcodeinput = document.getElementById("zipcodeinput").value;
-    // const stateinput = document.getElementById("stateinput").value;
-    const animalinput = document.getElementById("animalinput").value;
-    const breedinput = document.getElementById("breedinput").value;
-
-    const query = `${animalinput}&breed=${breedinput}&location=${zipcodeinput}`;
-    setSearchQuery(query);
-    console.log(query);
-    searchFetchpets(query);
   };
 
   const handleNextPage = async () => {
@@ -178,10 +220,16 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (firstcall) {
-      Fetchpets(currentPage);
+    console.log(userLocation.lat, userLocation.lng)
+    if (userLocation.lat !== null && userLocation.lng !==null && firstcall) {
+      fetchPetsWithLocation("", userLocation);
+      console.log("called");
     }
-  }, [petcard, firstcall]);
+    else if(fetchingUserLocation === false && firstcall){
+      Fetchpets("");
+      console.log("called no location");
+    }
+  }, [petcard, firstcall, userLocation, fetchingUserLocation]);
 
   return (
     <div className="home-page">
