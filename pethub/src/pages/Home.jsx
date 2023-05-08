@@ -243,7 +243,10 @@ const Home = () => {
         </h1>
             <div className="search-container">
               <div className="search-for-animal">
-                <button className="search-button" onClick={handleSeeMorePetsClick}>
+                <button className="search-button" onClick={() => {
+              handleSeeMorePetsClick();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}>
                   {" "}
                   Find your new pet →{" "}
                 </button>
@@ -285,7 +288,10 @@ const Home = () => {
             Discover your new furry friend with ease on our pet adoption website. Our featured section showcases adorable and adoptable pets, all of which are up-to-date on vaccinations and ready for a forever home. With our comprehensive database and filters, finding your perfect match has never been easier. Start your search today and find your new best friend!
             </p>
             <button className="See-more-Pets-Button" 
-            onClick={handleSeeMorePetsClick}
+            onClick={() => {
+              handleSeeMorePetsClick();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             >See More Pets →</button>
         </div>
           <div className="featured-pets-section">
@@ -348,7 +354,10 @@ const Home = () => {
             in our mission to find homes for all these amazing animals by
             adopting your new furry friend today! */}
         </p>
-        <button className="What-we-do-search-button" onClick={handleSeeMorePetsClick}>
+        <button className="What-we-do-search-button" onClick={() => {
+              handleSeeMorePetsClick();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}>
                   {" "}
                   Find your new pet →{" "}
                 </button>
