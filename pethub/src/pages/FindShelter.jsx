@@ -91,6 +91,9 @@ const FindShelter = (props) => {
         const map = new window.google.maps.Map(document.getElementById("map"), {
           center: userLocation,
           zoom: 12,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
         });
         const marker = new window.google.maps.Marker({
           position: userLocation,

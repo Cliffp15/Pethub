@@ -35,6 +35,10 @@ const Findshelterinfo = ({ shelterinfo, address }) => {
       </div>
         
       )}
+      {shelterinfo.website !== null && (
+        <div className="shelterwebsite">
+          <a href={shelterinfo.website}>{shelterinfo.website}</a>
+        </div>)}
     </div>
     
   );
