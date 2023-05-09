@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Container, Grid, Link, Typography } from "@material-ui/core";
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontWeight: 600,
     marginBottom: theme.spacing(2),
-    textAlign:"baseline"
+    textAlign: "baseline",
   },
   link: {
     color: "#fff",
@@ -35,12 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
   horizontalColumn: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "left",
   },
 }));
-
 
 function Footer() {
   const classes = useStyles();
@@ -50,27 +48,49 @@ function Footer() {
   }, []);
 
   return (
-    <Box className={classes.root} align-item= "stretch">
+    <Box className={classes.root} align-item="stretch">
       <Container maxWidth="lg">
-        <Grid container spacing={4} style={{ display: 'flex', alignItems: 'baseline' }}>
-      <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up" alignItems="baseline">
-  <Typography variant="h6" className={classes.heading}>
-    Quick Links
-  </Typography>
-  <Box className={classes.horizontalColumn}>
-    <Link href="/" variant="body1" className={classes.link}>
-      Home
-    </Link>
-    <Link href="/findapet" variant="body1" className={classes.link}>
-      Find a Pet
-    </Link>
-    <Link href="/findshelter" variant="body1" className={classes.link}>
-      Find a Shelter
-    </Link>
-  </Box>
-</Grid>
+        <Grid
+          container
+          spacing={4}
+          style={{ display: "flex", alignItems: "baseline" }}
+        >
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            className={classes.column}
+            data-aos="fade-up"
+            alignItems="baseline"
+          >
+            <Typography variant="h6" className={classes.heading}>
+              Quick Links
+            </Typography>
+            <Box className={classes.horizontalColumn}>
+              <Link href="/" variant="body1" className={classes.link}>
+                Home
+              </Link>
+              <Link href="/findapet" variant="body1" className={classes.link}>
+                Find a Pet
+              </Link>
+              <Link
+                href="/findshelter"
+                variant="body1"
+                className={classes.link}
+              >
+                Find a Shelter
+              </Link>
+            </Box>
+          </Grid>
 
-          <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up" alignItems="baseline">
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            className={classes.column}
+            data-aos="fade-up"
+            alignItems="baseline"
+          >
             <Typography variant="h6" className={classes.heading}>
               About Us
             </Typography>
@@ -78,7 +98,14 @@ function Footer() {
               A Junior Development Team Project Collaboration Effort
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4} className={classes.column} data-aos="fade-up" alignItems="baseline">
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            className={classes.column}
+            data-aos="fade-up"
+            alignItems="baseline"
+          >
             <Typography variant="h6" className={classes.heading}>
               Contact Us
             </Typography>
@@ -94,17 +121,17 @@ function Footer() {
           </Grid>
         </Grid>
         <Box mt={4}>
-  <Grid container alignItems="center" justify="center" spacing={2}>
-    <Grid item>
-      <img src={logo} alt="PetHub Logo" height="50" />
-    </Grid>
-    <Grid item>
-      <Typography variant="body2" align="center" color="#ffff">
-        © {new Date().getFullYear()} PetHub. All rights reserved.
-      </Typography>
-    </Grid>
-  </Grid>
-</Box>
+          <Grid container alignItems="center" justify="center" spacing={2}>
+            <Grid item>
+              <img src={logo} alt="PetHub Logo" height="50" />
+            </Grid>
+            <Grid item>
+              <Typography variant="body2" align="center" color="#ffff">
+                © {new Date().getFullYear()} PetHub. All rights reserved.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
       </Container>
     </Box>
   );
