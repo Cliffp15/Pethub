@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   background-color: #f5f5f5;
-  min-height: 100vh; /* Add this line to make sure the container occupies the entire viewport height */
+  min-height: 100vh;
+  padding-top: 2rem;
 }
 
 .pet-details-container {
@@ -16,16 +17,140 @@
   max-width: 1200px;
   margin: 16px;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.similar-pets-container {
+.similar-pets-section {
   width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px;
-  background-color: #f5f5f5;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  margin: 16px;
+  gap: 1rem;
+}
+
+.component-details {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: #fff;
+  padding: 16px;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  width: 100%;
+  margin: 16px;
+  flex-wrap: wrap;
+}
+.pet-image-section {
+  flex: 1;
+  max-width: 50%;
+  padding-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pet-details-img {
+  max-width: 100%;
+  display: block;
+  margin: 5rem auto;
+  border-radius: 8px; /* increased border-radius */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* more prominent box-shadow */
+  border: 2px solid #4169e1; /* added border */
+}
+
+.pet-info-section {
+  flex: 1;
+  max-width: 50%;
+  padding-left: 16px;
+}
+
+.pet-details-list {
+  margin: 2rem 0 2rem 0;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pet-details-li {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.pet-details-li:not(:last-child):after {
+  content: "·";
+  margin: 0 1rem;
+  color: #ccc;
+  vertical-align: middle;
+}
+
+.pet-details-about {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  padding: 24px;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+}
+
+.pet-details-about-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #044293;
+}
+
+.pet-details-about-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pet-details-about-li {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.pet-details-about-fee {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.adopt-button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  border: none;
+  background-color: #4169e1;
+
+  color: #f8fafb;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  transition: 0.2s ease-in-out;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.adopt-button:hover {
+  background-color: rgb(195, 229, 243);
+  color: #4169e1;
+  outline: #4169e1;
+  outline-width: 3px;
+  outline-style: solid;
 }
 
 .similar-pets-title {
@@ -37,7 +162,7 @@
 
 .similar-pets-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
 }
 
@@ -45,7 +170,7 @@
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   text-align: center;
 }
@@ -63,6 +188,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
+  color: #333;
 }
 
 .similar-pet-breed {
@@ -70,143 +196,3 @@
   color: #666;
   margin-bottom: 16px;
 }
-
-.similar-pets-section {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 16px;
-}
-
-.pet-details-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: #f5f5f5;
-}
-
-.component-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 100%;
-  margin: 16px;
-}
-
-.pet-details-img {
-  max-width: 100%;
-  display: block;
-  margin: 1rem auto;
-  border-radius: 4px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-.pet-details-header {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-
-.breed-age {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.pet-details-para {
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-/* button styling  */
-.adopt-button {
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-
-  margin: 0 auto; /* Center the button horizontally */
-  border: none;
-  background-color: rgba(51, 51, 51, 0.7);
-  color: #f8fafb;
-  cursor: pointer;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  transition: 0.2s ease-in-out;
-
-  text-align: center;
-}
-
-.adopt-button:hover {
-  background-color: rgba(135, 206, 235);
-}
-/* list styles horizontal*/
-.pet-details-list {
-  margin: 2rem 0 2rem 0;
-  list-style-type: none;
-
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pet-details-li {
-  margin: 0 8px;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.pet-details-li:not(:last-child):after {
-  content: "·";
-  margin: 0 1rem;
-  color: #333;
-  vertical-align: middle;
-}
-
-/* pet details about */
-.pet-details-about {
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  margin: 16px;
-  padding: 16px;
-  text-align: left;
-  width: 100%;
-  max-width: 600px;
-}
-
-.pet-details-about-heading {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-/* pet details list vertical*/
-.pet-details-about-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.pet-details-about-li {
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 8px;
-}
-
-.pet-details-about-li:last-child {
-  margin-bottom: 0;
-}
-
-.pet-details-about-fee {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 16px;
-}
-
-/* Similar Pets */
