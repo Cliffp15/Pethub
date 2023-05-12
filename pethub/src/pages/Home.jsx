@@ -187,11 +187,11 @@ const Home = () => {
             {/*   */}
           Adopt a Pet Today!
           </h1>
-          <h2>
-            {/* Adopt a new pet and <br /> change a life! */}
-            Take action today and give<br /> 
+          <p>
+            {/* Adopt a new pet and <br /> <br />change a life! */}
+            Take action today and give 
             a pet the loving home they deserve. 
-        </h2>
+        </p>
           
             {/* <div className="search-container"> */}
               <div className="search-for-animal">
@@ -269,11 +269,6 @@ const Home = () => {
             on our website are healthy, up-to-date on vaccinations, and ready to
             join their new families. Our website provides a user-friendly
             platform that makes it easy for potential adopters to search for and discover their perfect pet.
-            {/*  We believe that every pet deserves a
-            loving home, and we are committed to making the adoption process as
-            easy and enjoyable as possible for both pets and adopters. Join us
-            in our mission to find homes for all these amazing animals by
-            adopting your new furry friend today! */}
         </p>
         <button className="What-we-do-search-button" onClick={handleSeeMorePetsClick}>
                   {" "}

@@ -1,11 +1,13 @@
-/* :root{ */
+/* :root{ 
+font: "Roboto";
 
 
 
+} */
 
-/* } */
+
 .nav {
---nav-font-size:35px;
+--nav-font-size: 30px;
 
   background-color: #A2DCEA;
 /* =======
@@ -44,6 +46,7 @@
   display: flex;
   align-items: left;
   font-size: larger;
+  margin-right: 1rem;
 }
 
 /* .nav li:hover { */
@@ -56,30 +59,14 @@
 
 .nav ul li a{
   color: #ffffff;
-}
- /* .nav ul li a {
-  color: #ffffffc0;
-  font-weight: 500;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  padding: 0.55rem;
-  margin: 0 1rem;
-  font-size:var(--nav-font-size); 
- */
+  transition: 0.2s ease-in-out;
 
+}
 
 .nav ul li a:hover{
-  color: #ffffff;
-  /* opacity: 8; */
-  /* background-color: rgb(195, 229, 243); */
-  /* color:#4169e1f4; */
-  /* outline: #4169e1f4;
-  outline-width: 4px;
-  outline-style: solid; */
-  text-decoration: underline;
-  text-decoration-color: #4169e1f4;
-  text-underline-offset: 19px;
+  color:#4169e1f4;
+
+
 }
 
 .logo {
@@ -174,7 +161,7 @@
   outline-style: solid;
   text-decoration: underline;
   text-decoration-color: #4169e1f4;
-  text-underline-offset: 10px;
+  text-underline-offset: 19px;
 }
 
 .nav-links {
@@ -182,7 +169,8 @@
   flex-direction: row;
   align-items: center;
   font-size: var(--nav-font-size);
-  
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 1.75;
 }
 
 .signup {
@@ -190,25 +178,26 @@
 }
 
 .sign-in {
-  color: #ffffffc0;
+  color: #ffffff;
   text-decoration: none !important;
   display: flex;
   align-items: center;
   padding: 0.35rem;
-  margin: 0 1rem;
+  margin: 0 0rem;
   font-weight: 500;
   font-size: larger;
-
   font-size: var(--nav-font-size);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: 0.2s ease-in-out;
+
 }
 
 .sign-in:hover {
   color: #4169e1c0;
   text-decoration-style: solid;
-  text-decoration: underline;
-  text-decoration-color: #4169e1;
-  text-underline-offset: 10px;
-  opacity: 8;
+  opacity: 1;
   cursor:pointer;
+  text-decoration: underline;
+  text-decoration-color: #4169e1f4;
+  text-underline-offset: 19px;
 }
