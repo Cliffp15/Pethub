@@ -145,10 +145,10 @@
 
 .adopt-button:hover {
   background-color: rgb(195, 229, 243);
-color:#4169e1f4;
-outline: #4169e1f4;
-outline-width: 3px;
-outline-style: solid;
+  color: #4169e1f4;
+  outline: #4169e1f4;
+  outline-width: 3px;
+  outline-style: solid;
 }
 /* list styles horizontal*/
 .pet-details-list {
@@ -190,7 +190,7 @@ outline-style: solid;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 16px;
-  color: #044293
+  color: #044293;
 }
 /* pet details list vertical*/
 .pet-details-about-list {
