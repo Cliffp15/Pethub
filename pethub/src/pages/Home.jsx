@@ -184,23 +184,18 @@ const Home = () => {
         <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
           <h1>
-            {/*   */}
           Adopt a Pet Today!
           </h1>
-          <p>
-            {/* Adopt a new pet and <br /> <br />change a life! */}
+        <p>
             Take action today and give 
             a pet the loving home they deserve. 
         </p>
-          
-            {/* <div className="search-container"> */}
               <div className="search-for-animal">
                 <button className="search-button" onClick={handleSeeMorePetsClick}>
                   {" "}
                   Find your new pet →{" "}
                 </button>
               </div>
-            {/* </div> */}
           </div>
         </div>
     </div>
@@ -252,7 +247,6 @@ const Home = () => {
               →
             </button>
           </div>
-          
         </div>
       </div>
       </div>
@@ -271,11 +265,10 @@ const Home = () => {
             platform that makes it easy for potential adopters to search for and discover their perfect pet.
         </p>
         <button className="What-we-do-search-button" onClick={handleSeeMorePetsClick}>
-                  {" "}
-                  Find your new pet →{" "}
-                </button>
+          {" "}
+          Find your new pet →{" "}
+        </button>
         </div>
-        
       </div>
       </div>
       <div className="Benefit-Wrapper">
