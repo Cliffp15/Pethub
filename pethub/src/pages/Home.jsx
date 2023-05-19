@@ -1,5 +1,5 @@
 import React from "react";
-import HeroImage from "../photos/DogBlueBackground.jpg";
+import HeroImage from "../photos/Altblueback3-transformed.png";
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
@@ -8,8 +8,8 @@ import CircularProgress from "@mui/joy/CircularProgress";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchToken } from "../api/petFinderToken";
-import PetCard from "../components/PetImageSelection";
 import WhoWeAre from "../components/WhoWeAre";
+import PetCard from "../components/PetImageSelection";
 import "./styles/homepage.css";
 import "./styles/Navbar.css";
 
@@ -184,13 +184,14 @@ const Home = () => {
         <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
           <h1>
-          Adopt a Pet Today!
+            Find a pet to <br/>
+          <span id= "adopt-color">Adopt</span> Today!
           </h1>
         <p>
             Take action today and give 
             a pet the loving home they deserve. 
         </p>
-              <div className="search-for-animal">
+              <div className="search-container"> 
                 <button className="search-button" onClick={handleSeeMorePetsClick}>
                   {" "}
                   Find your new pet →{" "}
@@ -206,7 +207,7 @@ const Home = () => {
               Featured Pets
             </h1>
             <p> 
-            Discover your new furry friend with ease on our pet adoption website. Our featured section showcases adorable and adoptable pets, all of which are up-to-date on vaccinations and ready for a forever home. With our comprehensive database and filters, finding your perfect match has never been easier. Start your search today and find your new best friend!
+            Our featured section showcases adorable and adoptable pets, all of which are up-to-date on vaccinations and ready for a forever home. With our comprehensive database and filters, finding your perfect match has never been easier. Start your search today and find your new best friend!
             </p>
             <button className="See-more-Pets-Button" 
             onClick={handleSeeMorePetsClick}
@@ -231,7 +232,7 @@ const Home = () => {
             <button
               className="pagination-button-1"
               onClick={() => {handlePrevPage();
-                window.scrollTo(0,1100);}}
+                window.scrollTo(0,1000);}}
                 disabled={currentPage === 1}
             >
             ←
@@ -242,7 +243,7 @@ const Home = () => {
             <button
               className="pagination-button-2"
               onClick={() => {handleNextPage();
-              window.scrollTo(0,1100);}}
+              window.scrollTo(0,1000);}}
             >
               →
             </button>
@@ -261,8 +262,7 @@ const Home = () => {
             with loving families and find them their forever homes. We work with
             reputable animal rescues and shelters to ensure that all of the pets
             on our website are healthy, up-to-date on vaccinations, and ready to
-            join their new families. Our website provides a user-friendly
-            platform that makes it easy for potential adopters to search for and discover their perfect pet.
+            join their new families.
         </p>
         <button className="What-we-do-search-button" onClick={handleSeeMorePetsClick}>
           {" "}
@@ -272,26 +272,39 @@ const Home = () => {
       </div>
       </div>
       <div className="Benefit-Wrapper">
+        <div className ="Why-Choose-Us"><h1>Why Choose PETHUB</h1>
+        </div>
+          
         <div className="benefit-banner" id="bannerid">
             <div className="benefit">
               <img src={clock} alt="benefit-icon" className="benefit-icon" />
+              <div className="benefit-border">
               <h1>Save Time</h1>
-              <p>Instead of spending hours driving around to different shelters, you can browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
+              <p>Browse through multiple pets available for adoption in one place. This saves time and energy while increasing your chances of finding the perfect pet.
               </p>
             </div>
-            <div className="benefit">
+            </div>
+            <div className="benefit-2">
               <img src={animalcarecolor} alt="benefit-icon" className="benefit-icon" />
-            <h1>Save A Life</h1>
+            <div className="benefit-border">
+              <h1>Save A Life</h1>
               <p>By adopting a pet from a shelter or rescue group, you are helping to save a life. Many pets in shelters are euthanized each year due to overcrowding, so adopting a pet can make a real difference.
               </p>
             </div>
-            <div className="benefit">
+            </div>
+            <div className="benefit-3">
               <img src={animalinformation} alt="benefit-icon" className="benefit-icon" />
-            <h1>Convenient Access to Information</h1>
+              <div className="benefit-border">  
+              <h1>Easy Access to Info</h1>
               <p>Pet adoption sites allow you to easily access information about pets available for adoption. You can filter pets by breed, age, and location to find the perfect match for you and your family.
               </p>
+              </div>
             </div>
         </div>
+        <button className="Why-choose-Pethub-button" onClick={handleSeeMorePetsClick}>
+          {" "}
+          Find your new pet →{" "}
+        </button>
       </div>
   </div>
   );
