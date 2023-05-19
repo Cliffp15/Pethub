@@ -135,7 +135,7 @@ const FindShelter = (props) => {
         initMap();
       } else {
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBu3k86MKaUazcVMMNdeVmmdQO0pkSA2jE`;
         script.onload = () => initMap();
         document.body.appendChild(script);
       }
