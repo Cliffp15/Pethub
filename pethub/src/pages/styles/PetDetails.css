@@ -13,12 +13,22 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  background-color: #f5f5f5;
+
   width: 100%;
   max-width: 1200px;
   margin: 16px;
   flex-wrap: wrap;
-  gap: 2rem;
+}
+.contact-modal-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 16px;
+  flex-wrap: wrap;
 }
 
 .similar-pets-section {
@@ -66,6 +76,7 @@
   flex: 1;
   max-width: 50%;
   padding-left: 16px;
+  margin-right: auto;
 }
 
 .pet-details-list {
@@ -131,10 +142,10 @@
 
 .adopt-button {
   display: block;
-  margin: 1rem auto;
+  margin: 1.5rem auto;
   padding: 0.8rem 1.2rem;
   border-radius: 10px;
-  margin: 0 auto;
+  margin: 1rem auto;
   border: none;
   background-color: #4169e1;
 
@@ -143,7 +154,7 @@
   font-size: clamp(1rem, 2vw, 1.5rem);
   transition: 0.2s ease-in-out;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .adopt-button:hover {
@@ -181,11 +192,16 @@
 
 .similar-pet-img {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   border-radius: 4px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   margin-bottom: 16px;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 8px; /* increased border-radius */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* more prominent box-shadow */
+  border: 2px solid #4169e1; /* added border */
 }
 
 .similar-pet-name {
