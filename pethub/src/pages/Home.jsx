@@ -1,5 +1,5 @@
 import React from "react";
-import HeroImage from "../photos/Altblueback3-transformed.png";
+import HeroImage from "../photos/DogBlueBackground.jpg";
 import shiba from "../photos/shiba.png";
 import clock from "../photos/clock.png";
 import animalcarecolor from "../photos/animalcarecolor.png";
