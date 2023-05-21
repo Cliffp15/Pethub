@@ -91,6 +91,9 @@ const FindShelter = (props) => {
         const map = new window.google.maps.Map(document.getElementById("map"), {
           center: userLocation,
           zoom: 12,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
         });
         const marker = new window.google.maps.Marker({
           position: userLocation,
@@ -132,7 +135,7 @@ const FindShelter = (props) => {
         initMap();
       } else {
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBu3k86MKaUazcVMMNdeVmmdQO0pkSA2jE`;
         script.onload = () => initMap();
         document.body.appendChild(script);
       }
@@ -159,6 +162,13 @@ const FindShelter = (props) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             for (let i = 0; i < results.length; i++) {
               const marker = new window.google.maps.Marker({
+                label: {
+                  text: shelters.name,
+                  color: "#203334",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  className: "map-label",
+            },
                 position: results[i].geometry.location,
                 map: map,
               });
@@ -232,35 +242,41 @@ const FindShelter = (props) => {
 
 
   return (
-
     // style={{ height: "900px", width: "100%" }}
-    <div className= "FindShelter-page-container" >
-        {error && <div>{error}</div>}
-        {userLocation && (
-          // style={{ height: "400px", width: "100%" }}
-          <div className="map-container">
-            <div className= "Map-area"id="map"> </div>
-          </div>
-        )}
+    <div className="FindShelter-page-container">
       <div className="page-flex">
         <div className="ShelterSearch-area">
           <div className="Shelter-title">
             <h1>Shelters Near You</h1>
-              <div className="Searchbutton-area">
-                <button onClick={()=>{
+            <div className="Searchbutton-area">
+              <button
+                onClick={() => {
                   populateShelterMarkers();
-                  setIsSheltersVisible(true)
-                }}>
-                  Highlight Shelter Locations
-                </button>
-              </div>
-          </div>
-            <div className="Shelterresults-area">
-              {shelters.map((shelterinfo, index) => (
-                <Findshelterinfo key={index} address = {address} shelterinfo={shelterinfo}/>
-              ))}
-                  
+                  setIsSheltersVisible(true);
+                }}
+              >
+                Highlight Shelter Locations
+              </button>
             </div>
+          </div>{error && <div>{error}</div>}
+          {userLocation && (
+            // style={{ height: "400px", width: "100%" }}
+            <div className="map-container">
+              <div className="Map-area" id="map">
+                {" "}
+              </div>
+            </div>
+          )}
+          <div className="Shelterresults-area">
+            {shelters.map((shelterinfo, index) => (
+              <Findshelterinfo
+                key={index}
+                address={address}
+                shelterinfo={shelterinfo}
+              />
+            ))}
+          </div>
+          
         </div>
       </div>
     </div>
