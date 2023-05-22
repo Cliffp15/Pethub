@@ -48,6 +48,7 @@
   align-items: center;
   height: 100%;
   background-color: #f5f5f5;
+  margin: auto;
 }
 
 .component-details {
@@ -100,10 +101,10 @@
 }
 /* button styling  */
 .adopt-button {
-  padding: 1rem 1.5rem;
+  display: block;
+  margin: 1.5rem auto;
+  padding: 0.8rem 1.2rem;
   border-radius: 10px;
-
-  margin: 0 auto; /* Center the button horizontally */
   border: none;
   background-color: #4169e1;
   color: #f8fafb;
@@ -112,11 +113,10 @@
   transition: 0.2s ease-in-out;
   text-align: center;
 }
-
 .adopt-button:hover {
   background-color: rgb(195, 229, 243);
-  color: #4169e1f4;
-  outline: #4169e1f4;
+  color: #4169e1;
+  outline: #4169e1;
   outline-width: 3px;
   outline-style: solid;
 }

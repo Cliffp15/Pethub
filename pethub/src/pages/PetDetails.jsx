@@ -137,25 +137,6 @@ const ComponentDetails = () => {
   }
 
   return (
-    // <div className="pet-details-container">
-    //   <div variant="outlined" className="component-details">
-    //     <img
-    //       className="pet-details-img"
-    //       src={component.photos[0]?.medium}
-    //     ></img>
-    //     <h2 className="pet-details-header">{component.name}</h2>
-    //     <img src={component.imageUrl} alt={component.title} />
-    //     <h2 className="breed-age">
-    //       {component.breeds.primary}, {component.age}
-    //     </h2>
-    //     <p className="pet-details-para">{component.description}</p>
-    //     <Share />
-    //     <WebShare
-    //       url={window.location.href}
-    //       title={component.name}
-    //       text={component.description}
-    //     />
-
     <div className="main-container">
       <div className="pet-details-container">
         <div variant="outlined" className="component-details">
