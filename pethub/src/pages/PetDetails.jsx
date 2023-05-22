@@ -145,6 +145,7 @@ const ComponentDetails = () => {
             src={component.photos[0]?.medium}
             alt={component.name}
           ></img>
+
           <div className="pet-info-section">
             <div className="pet-details-about-divider"></div>
             <ul className="pet-details-list">

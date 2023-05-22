@@ -10,15 +10,38 @@
 
 .pet-details-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-
+  align-items: center;
   width: 100%;
   max-width: 1200px;
-  margin: 16px;
+
+  height: 100%;
+  background-color: #f5f5f5;
   flex-wrap: wrap;
 }
+.component-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+
+  height: 100%;
+  background-color: #f5f5f5;
+  flex-wrap: wrap;
+}
+.similar-pets-section {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin: 16px;
+  padding-right: 80px;
+}
+
 .contact-modal-wrapper {
   display: flex;
   flex-direction: row;
@@ -31,39 +54,6 @@
   flex-wrap: wrap;
 }
 
-.similar-pets-section {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  margin: 16px;
-  padding-right: 80px;
-}
-
-.pet-details-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: #f5f5f5;
-  margin: auto;
-}
-
-.component-details {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  background-color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  max-width: 1200px;
-  width: 100%;
-  margin: 16px;
-  flex-wrap: wrap;
-}
 .pet-image-section {
   flex: 1;
   max-width: 50%;
@@ -101,10 +91,10 @@
 }
 /* button styling  */
 .adopt-button {
-  display: block;
-  margin: 1.5rem auto;
-  padding: 0.8rem 1.2rem;
+  padding: 1rem 1.5rem;
   border-radius: 10px;
+
+  margin: 0 auto; /* Center the button horizontally */
   border: none;
   background-color: #4169e1;
   color: #f8fafb;
@@ -113,10 +103,11 @@
   transition: 0.2s ease-in-out;
   text-align: center;
 }
+
 .adopt-button:hover {
   background-color: rgb(195, 229, 243);
-  color: #4169e1;
-  outline: #4169e1;
+  color: #4169e1f4;
+  outline: #4169e1f4;
   outline-width: 3px;
   outline-style: solid;
 }
