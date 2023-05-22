@@ -16,6 +16,11 @@ const SimilarPets = ({ pets }) => {
 
             <h3 className="similar-pet-name">{pet.name}</h3>
             <p className="similar-pet-breed">{pet.breeds.primary}</p>
+            <p className="similar-pet-breed">{pet.gender}</p>
+            <p className="similar-pet-breed">
+              {" "}
+              Location: {pet.contact.address.city}, {pet.contact.address.state}
+            </p>
           </a>
         ))}
       </div>
