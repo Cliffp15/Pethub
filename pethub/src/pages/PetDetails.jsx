@@ -27,8 +27,8 @@ const ComponentDetails = () => {
   //   }, [id]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
@@ -121,12 +121,14 @@ const ComponentDetails = () => {
   }
 
   if (!component) {
-    return <div className="loadingScreen">
-    <h1 className="loadingText">
-      Stay put while we fetch our furry friends
-    </h1>
-    <CircularProgress classname="loading" size="lg" />
-  </div>;
+    return (
+      <div className="loadingScreen">
+        <h1 className="loadingText">
+          Stay put while we fetch our furry friends
+        </h1>
+        <CircularProgress classname="loading" size="lg" />
+      </div>
+    );
   }
 
   return (
@@ -167,77 +169,86 @@ const ComponentDetails = () => {
                   {component.contact.address.state}
                 </li>
 
-              {component.age && (
-                <li className="pet-details-about-li">Age: {component.age}</li>
+                {component.age && (
+                  <li className="pet-details-about-li">Age: {component.age}</li>
+                )}
+                {component.coat && (
+                  <li className="pet-details-about-li">
+                    Coat Length: {component.coat}
+                  </li>
+                )}
+                {component.attributes && component.attributes.house_trained && (
+                  <li className="pet-details-about-li">House-trained: Yes</li>
+                )}
+                {component.attributes &&
+                  !component.attributes.house_trained && (
+                    <li className="pet-details-about-li">House-trained: No</li>
+                  )}
+                {component.attributes && component.attributes.shots_current && (
+                  <li className="pet-details-about-li">
+                    Shots up to date: Yes
+                  </li>
+                )}
+                {component.attributes &&
+                  !component.attributes.shots_current && (
+                    <li className="pet-details-about-li">
+                      Shots up to date: No
+                    </li>
+                  )}
+                {component.environment && component.environment.children && (
+                  <li className="pet-details-about-li">
+                    Good with children: Yes
+                  </li>
+                )}
+                {component.environment && !component.environment.children && (
+                  <li className="pet-details-about-li">
+                    Good with children: No
+                  </li>
+                )}
+                {component.environment && component.environment.dogs && (
+                  <li className="pet-details-about-li">
+                    Good with other dogs: Yes
+                  </li>
+                )}
+                {component.environment && !component.environment.dogs && (
+                  <li className="pet-details-about-li">
+                    Good with other dogs: No
+                  </li>
+                )}
+                {component.characteristics && (
+                  <li className="pet-details-about-li">
+                    Characteristics: {component.characteristics}
+                  </li>
+                )}
+              </ul>
+              {component.fee && (
+                <p className="pet-details-about-fee">
+                  Adoption fee: ${component.fee.amount}
+                </p>
               )}
-              {component.coat && (
-                <li className="pet-details-about-li">
-                  Coat Length: {component.coat}
-                </li>
-              )}
-              {component.attributes && component.attributes.house_trained && (
-                <li className="pet-details-about-li">House-trained: Yes</li>
-              )}
-              {component.attributes && !component.attributes.house_trained && (
-                <li className="pet-details-about-li">House-trained: No</li>
-              )}
-              {component.attributes && component.attributes.shots_current && (
-                <li className="pet-details-about-li">Shots up to date: Yes</li>
-              )}
-              {component.attributes && !component.attributes.shots_current && (
-                <li className="pet-details-about-li">Shots up to date: No</li>
-              )}
-              {component.environment && component.environment.children && (
-                <li className="pet-details-about-li">
-                  Good with children: Yes
-                </li>
-              )}
-              {component.environment && !component.environment.children && (
-                <li className="pet-details-about-li">Good with children: No</li>
-              )}
-              {component.environment && component.environment.dogs && (
-                <li className="pet-details-about-li">
-                  Good with other dogs: Yes
-                </li>
-              )}
-              {component.environment && !component.environment.dogs && (
-                <li className="pet-details-about-li">
-                  Good with other dogs: No
-                </li>
-              )}
-              {component.characteristics && (
-                <li className="pet-details-about-li">
-                  Characteristics: {component.characteristics}
-                </li>
-              )}
-            </ul>
-            {component.fee && (
-              <p className="pet-details-about-fee">
-                Adoption fee: ${component.fee.amount}
-              </p>
-            )}
+            </div>
+            <ContactModal
+              show={showContactModal}
+              onClose={() => setShowContactModal(false)}
+              contact={component.contact}
+              petName={component.name}
+            />
+            <button className="adopt-button" onClick={handleAdoptClick}>
+              Details for Adopting {component.name}
+            </button>
           </div>
-          <ContactModal
-            show={showContactModal}
-            onClose={() => setShowContactModal(false)}
-            contact={component.contact}
-            petName={component.name}
-          />
-          <button className="adopt-button" onClick={handleAdoptClick}>
-            Details for Adopting {component.name}
-          </button>
+          <div>
+            <h2>Similar Pets</h2>
+          </div>
+          <div className="similar-pets-section">
+            {similarPets.map((petinfo, index) => (
+              <PetCard key={index} petinfo={petinfo} />
+            ))}
+          </div>
         </div>
-        <div>
-          <h2>Similar Pets</h2>
-        </div>
-        <div className="similar-pets-section">
-        {similarPets.map((petinfo, index) => (
-                  <PetCard key={index} petinfo={petinfo} />
-                ))}
-        </div>
-        </div>
-      )
-   </div>
+        )
+      </div>
+    </div>
   );
 };
 

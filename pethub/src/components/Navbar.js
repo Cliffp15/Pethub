@@ -59,7 +59,7 @@ export default function Navbar() {
               <SignInButton>
                 {({ handleClickOpen }) => (
                   <Typography
-                    style={{ fontSize: 35 }}
+                    style={{ fontSize: 35, color: "white" }}
                     variant="subtitle1"
                     className="nav-link"
                     onClick={handleClickOpen}
@@ -71,7 +71,7 @@ export default function Navbar() {
               <SignUpButton>
                 {({ handleClickOpen }) => (
                   <Typography
-                    style={{ fontSize: 35 }}
+                    style={{ fontSize: 35, color: "white" }}
                     variant="subtitle1"
                     className="nav-link"
                     onClick={handleClickOpen}
