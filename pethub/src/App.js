@@ -46,6 +46,10 @@ function App() {
         <Route path="/component/:id" element={<PetDetails />} />
         <Route path="/findshelter" element={<FindShelter />} />
         <Route path="/findapet" element={<FindPetPage />} />
+
+       
+        <Route path="/*" element={<Footer />} />
+
         {isAuthenticated && (
           <>
             <Route path="/signedin" element={<Accountpage />} />
@@ -59,6 +63,7 @@ function App() {
             <Route path="/resetpassword" element={<ResetPassword />} />
           </>
         )}
+
       </Routes>
       <Footer />
       </AuthContext.Provider>

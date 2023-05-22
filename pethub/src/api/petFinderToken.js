@@ -12,7 +12,7 @@ const fetchToken = async () => {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
 
-    body: 'grant_type=client_credentials&client_id=TR8jV8759ziO6wX1CJcRdXX3yYObYcfgVoQkzRhr1YOnKfWEmM&client_secret=70jGW9TISM6xLAdCQOeiDyZa0XFXvj8j5LkW1EVW'
+    body: 'grant_type=client_credentials&client_id=2EDep4nUnZldfKmEUG8j3YJlJcMG3dAlUZUA8IJeRA4BvbJ4z9&client_secret=1mnabGOO4gEMqwxItREiYk11hMvrywClXVvwDap3'
   });
 
   const json = await response.json();

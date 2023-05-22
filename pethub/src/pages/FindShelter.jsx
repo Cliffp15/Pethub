@@ -13,7 +13,7 @@ const FindShelter = (props) => {
   const [marker, setMarker] = useState(null);
   const [isSheltersVisible, setIsSheltersVisible] = useState(false);
   const [firstcall, setfirstcall] = useState(true);
-
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     // Get the user's location using the HTML5 Geolocation API
@@ -91,6 +91,9 @@ const FindShelter = (props) => {
         const map = new window.google.maps.Map(document.getElementById("map"), {
           center: userLocation,
           zoom: 12,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
         });
         const marker = new window.google.maps.Marker({
           position: userLocation,
@@ -132,7 +135,7 @@ const FindShelter = (props) => {
         initMap();
       } else {
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBu3k86MKaUazcVMMNdeVmmdQO0pkSA2jE`;
         script.onload = () => initMap();
         document.body.appendChild(script);
       }
@@ -152,16 +155,26 @@ const FindShelter = (props) => {
         const lng = userLocation.lng;
         const options = {
           query: shelters.name,
-          fields: ["name", "geometry"],
+          fields: ["name", "geometry", "formatted_address"],
           locationBias: { radius: 50, center: { lat: lat, lng: lng } },
         };
         service.findPlaceFromQuery(options, (results, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             for (let i = 0; i < results.length; i++) {
               const marker = new window.google.maps.Marker({
+                label: {
+                  text: shelters.name,
+                  color: "#203334",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  className: "map-label",
+            },
                 position: results[i].geometry.location,
                 map: map,
               });
+
+              console.log(results[i]);
+              setAddress(results[i].formatted_address);
 
               const infoContent =
                 '<div id="content">' +
@@ -170,6 +183,9 @@ const FindShelter = (props) => {
                 "</hi>" +
                 "<p>" +
                 shelters.phone +
+                "</p>" +
+                "<p>" +
+                results[i].formatted_address +
                 "</p>" +
                 "</div>";
 
@@ -226,32 +242,41 @@ const FindShelter = (props) => {
 
 
   return (
-
     // style={{ height: "900px", width: "100%" }}
-    <div className= "FindShelter-page-container" >
-        {error && <div>{error}</div>}
-        {userLocation && (
-          // style={{ height: "400px", width: "100%" }}
-          <div className= "Map-area"id="map"> </div>
-        )}
+    <div className="FindShelter-page-container">
       <div className="page-flex">
         <div className="ShelterSearch-area">
           <div className="Shelter-title">
             <h1>Shelters Near You</h1>
-              <div className="Searchbutton-area">
-                <button onClick={()=>{
+            <div className="Searchbutton-area">
+              <button
+                onClick={() => {
                   populateShelterMarkers();
-                  setIsSheltersVisible(true)
-                }}>
-                  Highlight Shelter Locations
-                </button>
-              </div>
-          </div>
-            <div className="Shelterresults-area">
-              {shelters.map((shelterinfo, index) => (
-                <Findshelterinfo key={index} shelterinfo={shelterinfo}/>
-              ))}
+                  setIsSheltersVisible(true);
+                }}
+              >
+                Highlight Shelter Locations
+              </button>
             </div>
+          </div>{error && <div>{error}</div>}
+          {userLocation && (
+            // style={{ height: "400px", width: "100%" }}
+            <div className="map-container">
+              <div className="Map-area" id="map">
+                {" "}
+              </div>
+            </div>
+          )}
+          <div className="Shelterresults-area">
+            {shelters.map((shelterinfo, index) => (
+              <Findshelterinfo
+                key={index}
+                address={address}
+                shelterinfo={shelterinfo}
+              />
+            ))}
+          </div>
+          
         </div>
       </div>
     </div>

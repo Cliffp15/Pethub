@@ -6,7 +6,7 @@ import SignInButton from "../components/SignInButton";
 import { Typography } from "@material-ui/core";
 import "../pages/styles/Navbar.css";
 import SignUpButton from "./SignUpButton";
-import { useHistory } from "react-router-dom";
+import { fontSize } from "@material-ui/system";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -49,24 +49,17 @@ export default function Navbar() {
           )}
           {!isAuthenticated && (
             <>
-              <Typography
-                variant="subtitle1"
-                className="nav-link"
-                onClick={() => handleNavigation("/findapet")}
-              >
-                Find Pets
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                className="nav-link"
-                onClick={() => handleNavigation("/findshelter")}
-              >
-                Find Shelter
-              </Typography>
+              <CustomLink to="/findapet">Find Pets</CustomLink>
+              <CustomLink to="/findshelter">Find Shelter</CustomLink>
+              {/* <<<<<<< HEAD
+              <CustomLink  to="/login">Login</CustomLink>
+              <CustomLink className="signup-button" to="/signup">Sign up</CustomLink> */}
+              {/* ======= */}
               {/* <CustomLink to="/signup">Sign up</CustomLink> */}
               <SignInButton>
                 {({ handleClickOpen }) => (
                   <Typography
+                    style={{ fontSize: 35 }}
                     variant="subtitle1"
                     className="nav-link"
                     onClick={handleClickOpen}
@@ -78,6 +71,7 @@ export default function Navbar() {
               <SignUpButton>
                 {({ handleClickOpen }) => (
                   <Typography
+                    style={{ fontSize: 35 }}
                     variant="subtitle1"
                     className="nav-link"
                     onClick={handleClickOpen}
@@ -86,6 +80,7 @@ export default function Navbar() {
                   </Typography>
                 )}
               </SignUpButton>
+              {/* >>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af */}
             </>
           )}
         </ul>
