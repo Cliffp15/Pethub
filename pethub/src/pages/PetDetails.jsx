@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+import { fetchToken } from "../api/petFinderToken";
+import Share from "../components/Share";
+import WebShare from "../components/WebShare";
+
 import { useParams, useNavigate } from "react-router-dom";
 import SimilarPets from "../components/SimilarPets";
 import "./styles/PetDetails.css";
@@ -7,6 +13,7 @@ import ContactModal from "../components/ContactModal";
 // import CircularProgress from "@mui/joy/CircularProgress";
 import CircularProgress from "@mui/joy/CircularProgress";
 import PetCard from "../components/PetImageSelection";
+
 
 const ComponentDetails = () => {
   const { id } = useParams();
@@ -19,16 +26,18 @@ const ComponentDetails = () => {
 
   let firstcall = true;
 
-  //   useEffect(() => {
+   //   useEffect(() => {
   //     fetch(`https://api.petfinder.com/v2/animals/${id}`)
   //       .then(response => response.json())
   //       .then(data => setComponent(data))
   //       .catch(error => console.error(error));
   //   }, [id]);
 
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
 
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
@@ -132,6 +141,23 @@ const ComponentDetails = () => {
   }
 
   return (
+
+    <div className="pet-details-container">
+      <div variant="outlined" className="component-details">
+        <img
+          className="pet-details-img"
+          src={component.photos[0]?.medium}
+        ></img>
+        <h2 className="pet-details-header">{component.name}</h2>
+        <img src={component.imageUrl} alt={component.title} />
+        <h2 className="breed-age">
+          {component.breeds.primary}, {component.age}
+        </h2>
+        <p className="pet-details-para">{component.description}</p>
+        <Share />
+        <WebShare url={window.location.href} title={component.name} text={component.description} />
+     
+
     <div className="main-container">
       <div className="pet-details-container">
         <div variant="outlined" className="component-details">
