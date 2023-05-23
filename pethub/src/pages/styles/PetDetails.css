@@ -10,38 +10,28 @@
 
 .pet-details-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
   width: 100%;
   max-width: 1200px;
-
-  height: 100%;
-  background-color: #f5f5f5;
+  margin: auto;
   flex-wrap: wrap;
 }
 .component-details {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-
-  height: 100%;
+  flex-direction: row;
+  align-items: flex-start;
   background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  width: 80%;
+  margin: auto;
   flex-wrap: wrap;
 }
-.similar-pets-section {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  margin: 16px;
-  padding-right: 80px;
-}
-
 .contact-modal-wrapper {
   display: flex;
   flex-direction: row;
@@ -52,6 +42,25 @@
   max-width: 1200px;
   margin: 16px;
   flex-wrap: wrap;
+}
+
+.similar-pets-section {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin: 16px;
+  padding-right: 80px;
+}
+
+.pet-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f5f5f5;
 }
 
 .pet-image-section {
@@ -71,7 +80,9 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* more prominent box-shadow */
   border: 2px solid #4169e1; /* added border */
 }
-
+.pet-info-section {
+  margin-right: 2rem;
+}
 .pet-details-header {
   font-size: 24px;
   font-weight: bold;
