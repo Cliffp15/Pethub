@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import AuthContext from "../contexts/AuthContext";
 import SignInButton from "../components/SignInButton";
@@ -10,6 +10,12 @@ import { fontSize } from "@material-ui/system";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   const CustomLink = ({ to, children }) => (
     <li>
@@ -45,36 +51,36 @@ export default function Navbar() {
             <>
               <CustomLink to="/findapet">Find Pets</CustomLink>
               <CustomLink to="/findshelter">Find Shelter</CustomLink>
-{/* <<<<<<< HEAD
+              {/* <<<<<<< HEAD
               <CustomLink  to="/login">Login</CustomLink>
               <CustomLink className="signup-button" to="/signup">Sign up</CustomLink> */}
-{/* ======= */}
+              {/* ======= */}
               {/* <CustomLink to="/signup">Sign up</CustomLink> */}
               <SignInButton>
                 {({ handleClickOpen }) => (
-                  <Typography 
-                  style={{fontSize: 35}}
+                  <Typography
+                    style={{ fontSize: 35, color: "white" }}
                     variant="subtitle1"
-                    className="sign-in"
+                    className="nav-link"
                     onClick={handleClickOpen}
                   >
-                    Sign in
+                    Sign In
                   </Typography>
                 )}
               </SignInButton>
               <SignUpButton>
                 {({ handleClickOpen }) => (
-                  <Typography 
-                  style={{fontSize: 35}}
+                  <Typography
+                    style={{ fontSize: 35, color: "white" }}
                     variant="subtitle1"
-                    className="sign-in"
+                    className="nav-link"
                     onClick={handleClickOpen}
                   >
                     Sign Up
                   </Typography>
                 )}
               </SignUpButton>
-{/* >>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af */}
+              {/* >>>>>>> 1c9f4123a80f3c82bfe1624881c4dc45b2f4d7af */}
             </>
           )}
         </ul>

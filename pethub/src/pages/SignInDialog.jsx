@@ -136,6 +136,7 @@ export default function SignInDialog({ open, onClose }) {
                   onClick={() => {
                     onClose();
                     setTimeout(() => navigate("/signup"), 100);
+                    onclick = { handleSubmit };
                   }}
                   variant="body2"
                   style={{ cursor: "pointer", color: "#87ceeb" }}

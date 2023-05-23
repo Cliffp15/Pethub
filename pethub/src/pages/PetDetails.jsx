@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
+import { fetchToken } from "../api/petFinderToken";
+import Share from "../components/Share";
+import WebShare from "../components/WebShare";
+
+import { useNavigate } from "react-router-dom";
 import SimilarPets from "../components/SimilarPets";
 import "./styles/PetDetails.css";
-import { fetchToken } from "../api/petFinderToken";
 import ContactModal from "../components/ContactModal";
 // import CircularProgress from "@mui/joy/CircularProgress";
 import CircularProgress from "@mui/joy/CircularProgress";
@@ -27,8 +32,8 @@ const ComponentDetails = () => {
   //   }, [id]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const Fetchpets = async (animal) => {
     const token = await fetchToken();
@@ -121,15 +126,36 @@ const ComponentDetails = () => {
   }
 
   if (!component) {
-    return <div className="loadingScreen">
-    <h1 className="loadingText">
-      Stay put while we fetch our furry friends
-    </h1>
-    <CircularProgress classname="loading" size="lg" />
-  </div>;
+    return (
+      <div className="loadingScreen">
+        <h1 className="loadingText">
+          Stay put while we fetch our furry friends
+        </h1>
+        <CircularProgress classname="loading" size="lg" />
+      </div>
+    );
   }
 
   return (
+    // <div className="pet-details-container">
+    //   <div variant="outlined" className="component-details">
+    //     <img
+    //       className="pet-details-img"
+    //       src={component.photos[0]?.medium}
+    //     ></img>
+    //     <h2 className="pet-details-header">{component.name}</h2>
+    //     <img src={component.imageUrl} alt={component.title} />
+    //     <h2 className="breed-age">
+    //       {component.breeds.primary}, {component.age}
+    //     </h2>
+    //     <p className="pet-details-para">{component.description}</p>
+    //     <Share />
+    //     <WebShare
+    //       url={window.location.href}
+    //       title={component.name}
+    //       text={component.description}
+    //     />
+
     <div className="main-container">
       <div className="pet-details-container">
         <div variant="outlined" className="component-details">
@@ -138,81 +164,99 @@ const ComponentDetails = () => {
             src={component.photos[0]?.medium}
             alt={component.name}
           ></img>
-          <div className="pet-details-about-divider"></div>
-          <ul className="pet-details-list">
-            {component.gender && (
-              <li className="pet-details-li">{component.gender}</li>
-            )}
-            {component.size && (
-              <li className="pet-details-li">{component.size}</li>
-            )}
-            {component.color && (
-              <li className="pet-details-li">{component.color}</li>
-            )}
-            {component.breeds.primary && (
-              <li className="pet-details-li">{component.breeds.primary}</li>
-            )}
-          </ul>
-          <div className="pet-details-about-divider"></div>
-          <div className="pet-details-about">
-            <h2 className="pet-details-about-heading">
-              About {component.name}
-            </h2>
-            <ul className="pet-details-about-list">
-              <li className="pet-details-about-li">
-                Location: {component.contact.address.city},{" "}
-                {component.contact.address.state}
-              </li>
-
-              {component.age && (
-                <li className="pet-details-about-li">Age: {component.age}</li>
+          <div className="pet-info-section">
+            <div className="pet-details-about-divider"></div>
+            <ul className="pet-details-list">
+              {component.gender && (
+                <li className="pet-details-li">Gender: {component.gender}</li>
               )}
-              {component.coat && (
-                <li className="pet-details-about-li">
-                  Coat Length: {component.coat}
-                </li>
+              {component.size && (
+                <li className="pet-details-li">Size: {component.size}</li>
               )}
-              {component.attributes && component.attributes.house_trained && (
-                <li className="pet-details-about-li">House-trained: Yes</li>
+              {component.color && (
+                <li className="pet-details-li">Color: {component.color}</li>
               )}
-              {component.attributes && !component.attributes.house_trained && (
-                <li className="pet-details-about-li">House-trained: No</li>
-              )}
-              {component.attributes && component.attributes.shots_current && (
-                <li className="pet-details-about-li">Shots up to date: Yes</li>
-              )}
-              {component.attributes && !component.attributes.shots_current && (
-                <li className="pet-details-about-li">Shots up to date: No</li>
-              )}
-              {component.environment && component.environment.children && (
-                <li className="pet-details-about-li">
-                  Good with children: Yes
-                </li>
-              )}
-              {component.environment && !component.environment.children && (
-                <li className="pet-details-about-li">Good with children: No</li>
-              )}
-              {component.environment && component.environment.dogs && (
-                <li className="pet-details-about-li">
-                  Good with other dogs: Yes
-                </li>
-              )}
-              {component.environment && !component.environment.dogs && (
-                <li className="pet-details-about-li">
-                  Good with other dogs: No
-                </li>
-              )}
-              {component.characteristics && (
-                <li className="pet-details-about-li">
-                  Characteristics: {component.characteristics}
+              {component.breeds.primary && (
+                <li className="pet-details-li">
+                  Breed: {component.breeds.primary}
                 </li>
               )}
             </ul>
-            {component.fee && (
-              <p className="pet-details-about-fee">
-                Adoption fee: ${component.fee.amount}
-              </p>
-            )}
+            <div className="pet-details-about-divider"></div>
+            <div className="pet-details-about">
+              <h2 className="pet-details-about-heading">
+                About {component.name}
+              </h2>
+              <ul className="pet-details-about-list">
+                <li className="pet-details-about-li">
+                  Location: {component.contact.address.city},{" "}
+                  {component.contact.address.state}
+                </li>
+
+                {component.age && (
+                  <li className="pet-details-about-li">Age: {component.age}</li>
+                )}
+                {component.coat && (
+                  <li className="pet-details-about-li">
+                    Coat Length: {component.coat}
+                  </li>
+                )}
+                {component.attributes && component.attributes.house_trained && (
+                  <li className="pet-details-about-li">House-trained: Yes</li>
+                )}
+                {component.attributes &&
+                  !component.attributes.house_trained && (
+                    <li className="pet-details-about-li">House-trained: No</li>
+                  )}
+                {component.attributes && component.attributes.shots_current && (
+                  <li className="pet-details-about-li">
+                    Shots up to date: Yes
+                  </li>
+                )}
+                {component.attributes &&
+                  !component.attributes.shots_current && (
+                    <li className="pet-details-about-li">
+                      Shots up to date: No
+                    </li>
+                  )}
+                {component.environment && component.environment.children && (
+                  <li className="pet-details-about-li">
+                    Good with children: Yes
+                  </li>
+                )}
+                {component.environment && !component.environment.children && (
+                  <li className="pet-details-about-li">
+                    Good with children: No
+                  </li>
+                )}
+                {component.environment && component.environment.dogs && (
+                  <li className="pet-details-about-li">
+                    Good with other dogs: Yes
+                  </li>
+                )}
+                {component.environment && !component.environment.dogs && (
+                  <li className="pet-details-about-li">
+                    Good with other dogs: No
+                  </li>
+                )}
+                {component.characteristics && (
+                  <li className="pet-details-about-li">
+                    Characteristics: {component.characteristics}
+                  </li>
+                )}
+              </ul>
+              {component.fee && (
+                <p className="pet-details-about-fee">
+                  Adoption fee: ${component.fee.amount}
+                </p>
+              )}
+            </div>
+            <Share />
+            <WebShare
+              url={window.location.href}
+              title={component.name}
+              text={component.description}
+            />
           </div>
           <ContactModal
             show={showContactModal}
@@ -228,13 +272,13 @@ const ComponentDetails = () => {
           <h2>Similar Pets</h2>
         </div>
         <div className="similar-pets-section">
-        {similarPets.map((petinfo, index) => (
-                  <PetCard key={index} petinfo={petinfo} />
-                ))}
+          {similarPets.map((petinfo, index) => (
+            <PetCard key={index} petinfo={petinfo} />
+          ))}
         </div>
-        </div>
+      </div>
       )
-   </div>
+    </div>
   );
 };
 
