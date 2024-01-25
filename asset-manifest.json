@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Pethub/static/css/main.965e9577.css",
+    "main.js": "/Pethub/static/js/main.a8490dd5.js",
+    "static/js/787.15b5127d.chunk.js": "/Pethub/static/js/787.15b5127d.chunk.js",
+    "static/media/DogBlueBackground.jpg": "/Pethub/static/media/DogBlueBackground.8f83aaf7d9c452b7308f.jpg",
+    "static/media/cartoonBackground.jpg": "/Pethub/static/media/cartoonBackground.287ca73b25dd098ab391.jpg",
+    "static/media/HeroImage.png": "/Pethub/static/media/HeroImage.90138c979afa687dbb42.png",
+    "static/media/animalcarecolor.png": "/Pethub/static/media/animalcarecolor.17a369b418fbb741a87d.png",
+    "static/media/dog.png": "/Pethub/static/media/dog.24a80f7a6fb0e602ded6.png",
+    "static/media/clock.png": "/Pethub/static/media/clock.4c336ed07d644fdac03b.png",
+    "static/media/shiba.png": "/Pethub/static/media/shiba.ecf36f215fcabbebe09b.png",
+    "static/media/LogoWhite.png": "/Pethub/static/media/LogoWhite.1693ed3d9a065dd94686.png",
+    "static/media/cat.png": "/Pethub/static/media/cat.3520beac0aa89b1278f9.png",
+    "static/media/animalinformation.png": "/Pethub/static/media/animalinformation.211f48c0567c4e5e5335.png",
+    "index.html": "/Pethub/index.html",
+    "main.965e9577.css.map": "/Pethub/static/css/main.965e9577.css.map",
+    "main.a8490dd5.js.map": "/Pethub/static/js/main.a8490dd5.js.map",
+    "787.15b5127d.chunk.js.map": "/Pethub/static/js/787.15b5127d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.965e9577.css",
+    "static/js/main.a8490dd5.js"
+  ]
+}
