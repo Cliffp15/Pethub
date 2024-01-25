@@ -247,6 +247,7 @@ const Home = () => {
               </div>
           </div>
         </div>
+      </div>
     </div>
       <div className="Featured-Content-wrapper">
       <div className="Featured-content-area">

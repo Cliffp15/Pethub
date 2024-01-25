@@ -1,7 +1,9 @@
 import { useState, useEffect, React } from "react";
 import axios from "axios";
 import "./styles/Findshelter.css";
-import { Divider } from "@chakra-ui/layout";
+
+// import { Divider } from "@chakra-ui/layout";
+
 import Findshelterinfo from "../components/FindShelters";
 import { fetchToken } from "../api/petFinderToken";
 
