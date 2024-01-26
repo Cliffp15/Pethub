@@ -61,7 +61,7 @@ body {
 /* //MUI Image styling, Copying from styles below */
 .newimg{  
   position: absolute;
-  transform: scaleX(-1);
+  /* transform: scaleX(-1); */
   top: 0;
   left: 0;
   width: 100%;

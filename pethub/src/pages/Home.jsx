@@ -19,7 +19,7 @@ import WhoWeAre from "../components/WhoWeAre";
 import PetCard from "../components/PetImageSelection";
 import "./styles/homepage.css";
 import "./styles/Navbar.css";
-import { Height, Image } from "@mui/icons-material";
+import { Block, Height, Image } from "@mui/icons-material";
 import Typography from "../components/Typography";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
@@ -237,41 +237,45 @@ const Home = () => {
   return (
     <div className="home-page">
 
-      {/* <!--Hero Section Begin--> 
+      {/* <!--Hero Section Begin-->  */}
       <Grid container spacing={4}>
-        <Box  xs={12} sm={12} md={12} lg={12} xl={12}
-        sx={{Height: 100,
-        width: 100,
-        }} 
-        >
-        
-        <img className="newimg" src={HeroImage} alt="heroimage" width={50} />
-        
+        <Box xs={12} sm={12} md={12} lg={12} xl={12}>
+          <img className="newimg" src={HeroImage} alt="heroimage" />
         </Box>
-            
-        <Grid className="Header" item xs={12} sm={8} md={12} lg={7} xl={8}>
+
+        <Grid className="Header" item xs={12} sm={8} md={8} lg={12} xl={12}
+        >
           <Typography variant="h1" component="h2">
-            Find a pet to adopt today
+            Find a pet to <span id="adopt-color">Adopt</span> today!
           </Typography>
         </Grid>
-        <Grid className="paragrah" item xs={12}>
+
+        <Grid className="paragraph" item  xs={12} sm={8} md={8} lg={6} xl={12} 
+        >
           <Typography variant="body1" component="p">
             Take action today and give a pet the loving home they deserve.
           </Typography>
         </Grid>
-        <Grid className="button" item xs={12} sm={4} md={8} lg={7} xl={4}>
-          <Button variant="contained" color="primary" onClick={handleSeeMorePetsClick}>Click here</Button>
+
+        <Grid className="button" item xs={12} sm={4} md={8} lg={8} xl={4}>
+          <Button
+            variant="contained"
+            color="primary" //Change colors listed in theme.js
+            onClick={handleSeeMorePetsClick}
+          >
+            {" "}Find your new pet →{" "}
+          </Button>
         </Grid>
-        
       </Grid>
-   <!--Hero Section End--> */}
+      {/* <!--Hero Section End--> */}
+
 
       <div className="hero-section">
         <div className="hero-section-content-wrapper">
-          <img src={HeroImage} alt="heroimage"/>
+          <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
             <h1>
-              Find a pet to <br/>
+              Find a pet to <br />
               <span id="adopt-color">Adopt</span> Today!
             </h1>
             <p>
@@ -291,8 +295,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-    
 
       <div className="Featured-Content-wrapper">
         <div className="Featured-content-area">
