@@ -235,40 +235,62 @@ const Home = () => {
   }, [petcard, firstcall, userLocation, fetchingUserLocation]);
 
   return (
-    <div className="home-page">
-
+    <div>
       {/* <!--Hero Section Begin-->  */}
-      <Grid container spacing={4}>
-        <Box xs={12} sm={12} md={12} lg={12} xl={12}>
-          <img className="newimg" src={HeroImage} alt="heroimage" />
-        </Box>
+      <Box
+        className="hero-container"
+        container
+        columns={12}
+        rows={1}
+        spacing={2}
+        xs={4}
+        sm={8}
+        md={12}
+        lg={12}
+        xl={12}
+      >
+        <Grid className="hero-content" item spacing={2}>
+          <Box xs={4} sm={8} md={12} lg={12} xl={12}>
+            <img className="newimg" src={HeroImage} alt="heropic" />
+          </Box>
+        </Grid>
 
-        <Grid className="Header" item xs={12} sm={8} md={8} lg={12} xl={12}
-        >
-          <Typography variant="h1" component="h2">
+        {/* <Box xs={12} sm={12} md={8} lg={12} xl={12}> */}
+        <Grid className="Header" item xs={4} sm={8} md={12} lg={12} xl={12}>
+          <Typography sx={{ fontSize: 32 }} variant="h1" component="h2">
             Find a pet to <span id="adopt-color">Adopt</span> today!
           </Typography>
         </Grid>
 
-        <Grid className="paragraph" item  xs={12} sm={8} md={8} lg={6} xl={12} 
+        <Grid
+          className="paragraph"
+          item
+          xs={4}
+          sm={8}
+          md={12}
+          lg={12}
+          xl={12}
+          sx={{ position: "absolute" }}
         >
           <Typography variant="body1" component="p">
             Take action today and give a pet the loving home they deserve.
           </Typography>
         </Grid>
 
-        <Grid className="button" item xs={12} sm={4} md={8} lg={8} xl={4}>
+        <Grid className="button" item xs={4} sm={8} md={9} lg={12} xl={12}>
           <Button
             variant="contained"
-            color="primary" //Change colors listed in theme.js
+            color="primary" //Change colors listed in
             onClick={handleSeeMorePetsClick}
           >
-            {" "}Find your new pet →{" "}
+            {" "}
+            Find your new pet →{" "}
           </Button>
         </Grid>
-      </Grid>
-      {/* <!--Hero Section End--> */}
+        {/* </Box> */}
+      </Box>
 
+      {/* <!--Hero Section End--> */}
 
       <div className="hero-section">
         <div className="hero-section-content-wrapper">
