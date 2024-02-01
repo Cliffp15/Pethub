@@ -27,12 +27,16 @@ body {
   font-weight: lighter;
 }
 
+/* .hero-container-block{
+  display: block;
+} */
 
 .hero-container{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1 auto;
   position: relative;
+  z-index: 1;
 }
 
 .hero-content{

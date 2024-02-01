@@ -237,6 +237,7 @@ const Home = () => {
   return (
     <div>
       {/* <!--Hero Section Begin-->  */}
+
       <Box
         className="hero-container"
         container
@@ -292,7 +293,7 @@ const Home = () => {
 
       {/* <!--Hero Section End--> */}
 
-      <div className="hero-section">
+      {/* <div className="hero-section">
         <div className="hero-section-content-wrapper">
           <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
@@ -316,7 +317,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="Featured-Content-wrapper">
         <div className="Featured-content-area">
