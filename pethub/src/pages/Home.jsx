@@ -21,6 +21,7 @@ import "./styles/homepage.css";
 import "./styles/Navbar.css";
 import { Block, Height, Image } from "@mui/icons-material";
 import Typography from "../components/Typography";
+import { blue } from "@material-ui/core/colors";
 
 // const searchAPI_URL = "https://api.petfinder.com/v2/animals?&limit=20&type=";
 const API_URL = "https://api.petfinder.com/v2/animals?limit=20&page=";
@@ -240,9 +241,10 @@ const Home = () => {
 
       <Box
         className="hero-container"
+
         container
         columns={12}
-        rows={1}
+        rows={3}
         spacing={2}
         xs={4}
         sm={8}
@@ -251,14 +253,14 @@ const Home = () => {
         xl={12}
       >
         <Grid className="hero-content" item spacing={2}>
-          <Box xs={4} sm={8} md={12} lg={12} xl={12}>
+          <Box xs={12} sm={12} md={12} lg={12} xl={12}>
             <img className="newimg" src={HeroImage} alt="heropic" />
           </Box>
         </Grid>
 
         {/* <Box xs={12} sm={12} md={8} lg={12} xl={12}> */}
         <Grid className="Header" item xs={4} sm={8} md={12} lg={12} xl={12}>
-          <Typography sx={{ fontSize: 32 }} variant="h1" component="h2">
+          <Typography className="Header-h1" sx={{ fontSize: 60  }} variant="h1" component="h2">
             Find a pet to <span id="adopt-color">Adopt</span> today!
           </Typography>
         </Grid>
@@ -273,13 +275,15 @@ const Home = () => {
           xl={12}
           sx={{ position: "absolute" }}
         >
-          <Typography variant="body1" component="p">
+          <Typography sx={{ fontSize: 28, mt:1, mb:2, color: blue}} variant="body1" component="p">
             Take action today and give a pet the loving home they deserve.
           </Typography>
         </Grid>
 
-        <Grid className="button" item xs={4} sm={8} md={9} lg={12} xl={12}>
+        <Grid className="button" item  xs={4} sm={8} md={9} lg={12} xl={12}>
           <Button
+            sx={{ mt:2 }}
+            size="large"
             variant="contained"
             color="primary" //Change colors listed in
             onClick={handleSeeMorePetsClick}
