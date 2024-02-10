@@ -241,10 +241,9 @@ const Home = () => {
 
       <Box
         className="hero-container"
-
         container
         columns={12}
-        rows={3}
+        rows={4}
         spacing={2}
         xs={4}
         sm={8}
@@ -252,7 +251,7 @@ const Home = () => {
         lg={12}
         xl={12}
       >
-        <Grid className="hero-content" item spacing={2}>
+        <Grid className="hero-image" item spacing={2}>
           <Box xs={12} sm={12} md={12} lg={12} xl={12}>
             <img className="newimg" src={HeroImage} alt="heropic" />
           </Box>
@@ -260,7 +259,12 @@ const Home = () => {
 
         {/* <Box xs={12} sm={12} md={8} lg={12} xl={12}> */}
         <Grid className="Header" item xs={4} sm={8} md={12} lg={12} xl={12}>
-          <Typography className="Header-h1" sx={{ fontSize: 60  }} variant="h1" component="h2">
+          <Typography
+            className="Header-h1"
+            sx={{ fontSize: 60 }}
+            variant="h1"
+            component="h2"
+          >
             Find a pet to <span id="adopt-color">Adopt</span> today!
           </Typography>
         </Grid>
@@ -275,14 +279,18 @@ const Home = () => {
           xl={12}
           sx={{ position: "absolute" }}
         >
-          <Typography sx={{ fontSize: 28, mt:1, mb:2, color: blue}} variant="body1" component="p">
+          <Typography
+            sx={{ fontSize: 28, mt: 1, mb: 2, color: blue }}
+            variant="body1"
+            component="p"
+          >
             Take action today and give a pet the loving home they deserve.
           </Typography>
         </Grid>
 
-        <Grid className="button" item  xs={4} sm={8} md={9} lg={12} xl={12}>
+        <Grid className="button" item xs={4} sm={8} md={9} lg={12} xl={12}>
           <Button
-            sx={{ mt:2 }}
+            sx={{ mt: 2 }}
             size="large"
             variant="contained"
             color="primary" //Change colors listed in
@@ -292,11 +300,207 @@ const Home = () => {
             Find your new pet →{" "}
           </Button>
         </Grid>
-        {/* </Box> */}
+
+        <Grid
+          className="Featured-Content-wrapper"
+          container
+          columns={12}
+          rows={1}
+        >
+          <Grid
+            className="Featured-content-area"
+            item
+            xs={4}
+            sm={8}
+            md={12}
+            lg={12}
+          >
+            <Box className="featured-title" xs={4} sm={8} md={12} lg={12}>
+              <Typography h1>Featured Pets</Typography>
+              <Typography p>
+                Our featured section showcases adorable and adoptable pets, all
+                of which are up-to-date on vaccinations and ready for a forever
+                home. With our comprehensive database and filters, finding your
+                perfect match has never been easier. Start your search today and
+                find your new best friend!
+              </Typography>
+              <Button
+                className="See-more-Pets-Button"
+                onClick={handleSeeMorePetsClick}
+              >
+                See More Pets →
+              </Button>
+            </Box>
+            <Box
+              className="featured-pets-section"
+              xs={4}
+              sm={8}
+              md={12}
+              lg={12}
+            >
+              {isLoading ? (
+                <div className="loading">
+                  <CircularProgress size="lg" />
+                </div>
+              ) : petcard?.length > 0 ? (
+                <div className="petcardcontainer">
+                  {petcard.map((petinfo, index) => (
+                    <PetCard key={index} petinfo={petinfo} />
+                  ))}
+                </div>
+              ) : (
+                <div className="empty">No pets found.</div>
+              )}
+              <div className="Pagination-Button-Area">
+                <button
+                  className="pagination-button-1"
+                  onClick={() => {
+                    handlePrevPage();
+                    window.scrollTo(0, 1000);
+                  }}
+                  disabled={currentPage === 1}
+                >
+                  ←
+                </button>
+                <div className="pagination-counter">
+                  <h3> {currentPage}</h3>
+                </div>
+                <button
+                  className="pagination-button-2"
+                  onClick={() => {
+                    handleNextPage();
+                    window.scrollTo(0, 1000);
+                  }}
+                >
+                  →
+                </button>
+              </div>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Grid
+          className="Mission-statement-wrapper"
+          container
+          columns={12}
+          rows={1}
+        >
+          <Grid
+            className="Mission-statement"
+            item
+            xs={4}
+            sm={8}
+            md={12}
+            lg={12}
+          >
+            <Box
+              className="Mission-statement-image"
+              xs={4}
+              sm={8}
+              md={12}
+              lg={12}
+            >
+              <img src={shiba} alt="shiba icon" className="shiba-icon" />
+            </Box>
+            <Box
+              className="Mission-statement-text"
+              xs={4}
+              sm={8}
+              md={12}
+              lg={12}
+            >
+              <Typography h2>What we do</Typography>
+              <Typography p>
+                At our pet adoption website, our goal is to connect adoptable
+                pets with loving families and find them their forever homes. We
+                work with reputable animal rescues and shelters to ensure that
+                all of the pets on our website are healthy, up-to-date on
+                vaccinations, and ready to join their new families.
+              </Typography>
+              <Button
+                className="What-we-do-search-button"
+                onClick={handleSeeMorePetsClick}
+              >
+                Find your new pet →{" "}
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Grid className="Benefit-Wrapper" container columns={12} rows={1}>
+          <Grid className="Why-Choose-Us" item xs={4} sm={8} md={12} lg={12}>
+            <Typography h1>Why Choose PETHUB</Typography>
+          </Grid>
+          <Grid
+            className="benefit-banner"
+            id="bannerid"
+            item
+            xs={4}
+            sm={8}
+            md={12}
+            lg={12}
+          >
+            <Box className="benefit" xs={4} sm={8} md={12} lg={12}>
+              <img src={clock} alt="benefit-icon" className="benefit-icon" />
+              <Box className="benefit-border" xs={4} sm={8} md={12} lg={12}>
+                <Typography h1>Save Time</Typography>
+                <Typography p>
+                  Browse through multiple pets available for adoption in one
+                  place. This saves time and energy while increasing your
+                  chances of finding the perfect pet.
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box className="benefit-2" xs={4} sm={8} md={12} lg={12}>
+              <img
+                src={animalcarecolor}
+                alt="benefit-icon"
+                className="benefit-icon"
+              />
+              <Box className="benefit-border" xs={4} sm={8} md={12} lg={12}>
+                <Typography h1>Save A Life</Typography>
+                <Typography p>
+                  By adopting a pet from a shelter or rescue group, you are
+                  helping to save a life. Many pets in shelters are euthanized
+                  each year due to overcrowding, so adopting a pet can make a
+                  real difference.
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box className="benefit-3" xs={4} sm={8} md={12} lg={12}>
+              <img
+                src={animalinformation}
+                alt="benefit-icon"
+                className="benefit-icon"
+              />
+              <Box className="benefit-border" xs={4} sm={8} md={12} lg={12}>
+                <Typography h1>Easy Access to Info</Typography>
+                <Typography p>
+                  {" "}
+                  Pet adoption sites allow you to easily access information
+                  about pets available for adoption. You can filter pets by
+                  breed, age, and location to find the perfect match for you and
+                  your family.
+                </Typography>
+              </Box>
+            </Box>
+            <Button
+              className="Why-choose-Pethub-button"
+              onClick={handleSeeMorePetsClick}
+            >
+              Find your new pet →{" "}
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
+
+      {/* </Box> */}
 
       {/* <!--Hero Section End--> */}
 
+      {/* <!-- Old Hero Section Begin--> */}
       {/* <div className="hero-section">
         <div className="hero-section-content-wrapper">
           <img src={HeroImage} alt="heroimage" />
@@ -322,154 +526,160 @@ const Home = () => {
           </div>
         </div>
       </div> */}
+      {/* <!-- Old Hero Section End--> */}
 
-      <div className="Featured-Content-wrapper">
-        <div className="Featured-content-area">
-          <div className="featured-title">
-            <h1>Featured Pets</h1>
-            <p>
-              Our featured section showcases adorable and adoptable pets, all of
-              which are up-to-date on vaccinations and ready for a forever home.
-              With our comprehensive database and filters, finding your perfect
-              match has never been easier. Start your search today and find your
-              new best friend!
-            </p>
-            <button
-              className="See-more-Pets-Button"
-              onClick={() => {
-                handleSeeMorePetsClick();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-            >
-              See More Pets →
-            </button>
-          </div>
-          <div className="featured-pets-section">
-            {isLoading ? (
-              <div className="loading">
-                <CircularProgress size="lg" />
-              </div>
-            ) : petcard?.length > 0 ? (
-              <div className="petcardcontainer">
-                {petcard.map((petinfo, index) => (
-                  <PetCard key={index} petinfo={petinfo} />
-                ))}
-              </div>
-            ) : (
-              <div className="empty">No pets found.</div>
-            )}
-            <div className="Pagination-Button-Area">
-              <button
-                className="pagination-button-1"
-                onClick={() => {
-                  handlePrevPage();
-                  window.scrollTo(0, 1000);
-                }}
-                disabled={currentPage === 1}
-              >
-                ←
-              </button>
-              <div className="pagination-counter">
-                <h3> {currentPage}</h3>
-              </div>
-              <button
-                className="pagination-button-2"
-                onClick={() => {
-                  handleNextPage();
-                  window.scrollTo(0, 1000);
-                }}
-              >
-                →
-              </button>
-            </div>
-          </div>
+      {/* <!--Old Featured Section Begin--> */}
+      {/* <div className="Featured-Content-wrapper"> */}
+      {/* <div className="Featured-content-area">
+        <div className="featured-title">
+          <h1>Featured Pets</h1>
+          <p>
+            Our featured section showcases adorable and adoptable pets, all of
+            which are up-to-date on vaccinations and ready for a forever home.
+            With our comprehensive database and filters, finding your perfect
+            match has never been easier. Start your search today and find your
+            new best friend!
+          </p>
+          <button
+            className="See-more-Pets-Button"
+            onClick={() => {
+              handleSeeMorePetsClick();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            See More Pets →
+          </button>
         </div>
-      </div>
-      <div className="Mission-statement-wrapper">
-        <div className="Mission-statement">
-          <div className="Mission-statement-image">
-            <img src={shiba} alt="shiba icon" className="shiba-icon" />
-          </div>
-          <div className="Mission-statement-text">
-            <h2>What we do</h2>
-            <p>
-              {" "}
-              At our pet adoption website, our goal is to connect adoptable pets
-              with loving families and find them their forever homes. We work
-              with reputable animal rescues and shelters to ensure that all of
-              the pets on our website are healthy, up-to-date on vaccinations,
-              and ready to join their new families.
-            </p>
+        <div className="featured-pets-section">
+          {isLoading ? (
+            <div className="loading">
+              <CircularProgress size="lg" />
+            </div>
+          ) : petcard?.length > 0 ? (
+            <div className="petcardcontainer">
+              {petcard.map((petinfo, index) => (
+                <PetCard key={index} petinfo={petinfo} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty">No pets found.</div>
+          )}
+          <div className="Pagination-Button-Area">
             <button
-              className="What-we-do-search-button"
+              className="pagination-button-1"
               onClick={() => {
-                handleSeeMorePetsClick();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                handlePrevPage();
+                window.scrollTo(0, 1000);
+              }}
+              disabled={currentPage === 1}
+            >
+              ←
+            </button>
+            <div className="pagination-counter">
+              <h3> {currentPage}</h3>
+            </div>
+            <button
+              className="pagination-button-2"
+              onClick={() => {
+                handleNextPage();
+                window.scrollTo(0, 1000);
               }}
             >
-              {" "}
-              Find your new pet →{" "}
+              →
             </button>
           </div>
         </div>
-      </div>
-      <div className="Benefit-Wrapper">
-        <div className="Why-Choose-Us">
-          <h1>Why Choose PETHUB</h1>
-        </div>
+      </div> */}
+      {/* </div> */}
+      {/* <!--Old Featured Section End--> */}
 
-        <div className="benefit-banner" id="bannerid">
-          <div className="benefit">
-            <img src={clock} alt="benefit-icon" className="benefit-icon" />
-            <div className="benefit-border">
-              <h1>Save Time</h1>
+      {/*<div className="Mission-statement-wrapper">
+          <div className="Mission-statement">
+            <div className="Mission-statement-image">
+              <img src={shiba} alt="shiba icon" className="shiba-icon" />
+            </div>
+            <div className="Mission-statement-text">
+              <h2>What we do</h2>
               <p>
-                Browse through multiple pets available for adoption in one
-                place. This saves time and energy while increasing your chances
-                of finding the perfect pet.
+                {" "}
+                At our pet adoption website, our goal is to connect adoptable
+                pets with loving families and find them their forever homes. We
+                work with reputable animal rescues and shelters to ensure that
+                all of the pets on our website are healthy, up-to-date on
+                vaccinations, and ready to join their new families.
               </p>
+              <button
+                className="What-we-do-search-button"
+                onClick={() => {
+                  handleSeeMorePetsClick();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                {" "}
+                Find your new pet →{" "}
+              </button>
             </div>
           </div>
-          <div className="benefit-2">
-            <img
-              src={animalcarecolor}
-              alt="benefit-icon"
-              className="benefit-icon"
-            />
-            <div className="benefit-border">
-              <h1>Save A Life</h1>
-              <p>
-                By adopting a pet from a shelter or rescue group, you are
-                helping to save a life. Many pets in shelters are euthanized
-                each year due to overcrowding, so adopting a pet can make a real
-                difference.
-              </p>
+        </div> */}
+
+      {/* <div className="Benefit-Wrapper">
+          <div className="Why-Choose-Us">
+            <h1>Why Choose PETHUB</h1>
+          </div>
+
+          <div className="benefit-banner" id="bannerid">
+            <div className="benefit">
+              <img src={clock} alt="benefit-icon" className="benefit-icon" />
+              <div className="benefit-border">
+                <h1>Save Time</h1>
+                <p>
+                  Browse through multiple pets available for adoption in one
+                  place. This saves time and energy while increasing your
+                  chances of finding the perfect pet.
+                </p>
+              </div>
+            </div>
+            <div className="benefit-2">
+              <img
+                src={animalcarecolor}
+                alt="benefit-icon"
+                className="benefit-icon"
+              />
+              <div className="benefit-border">
+                <h1>Save A Life</h1>
+                <p>
+                  By adopting a pet from a shelter or rescue group, you are
+                  helping to save a life. Many pets in shelters are euthanized
+                  each year due to overcrowding, so adopting a pet can make a
+                  real difference.
+                </p>
+              </div>
+            </div>
+            <div className="benefit-3">
+              <img
+                src={animalinformation}
+                alt="benefit-icon"
+                className="benefit-icon"
+              />
+              <div className="benefit-border">
+                <h1>Easy Access to Info</h1>
+                <p>
+                  Pet adoption sites allow you to easily access information
+                  about pets available for adoption. You can filter pets by
+                  breed, age, and location to find the perfect match for you and
+                  your family.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="benefit-3">
-            <img
-              src={animalinformation}
-              alt="benefit-icon"
-              className="benefit-icon"
-            />
-            <div className="benefit-border">
-              <h1>Easy Access to Info</h1>
-              <p>
-                Pet adoption sites allow you to easily access information about
-                pets available for adoption. You can filter pets by breed, age,
-                and location to find the perfect match for you and your family.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          className="Why-choose-Pethub-button"
-          onClick={handleSeeMorePetsClick}
-        >
-          {" "}
-          Find your new pet →{" "}
-        </button>
-      </div>
+          <button
+            className="Why-choose-Pethub-button"
+            onClick={handleSeeMorePetsClick}
+          >
+            {" "}
+            Find your new pet →{" "}
+          </button>
+        </div> */}
     </div>
   );
 };
