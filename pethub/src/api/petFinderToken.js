@@ -6,15 +6,13 @@ const fetchToken = async () => {
     return token;
   }
 
-  const response = await fetch('https://api.petfinder.com/v2/oauth2/token', {
-    method: 'POST',
+  const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/x-www-form-urlencoded",
     },
 
-
-    body: 'grant_type=client_credentials&client_id=2EDep4nUnZldfKmEUG8j3YJlJcMG3dAlUZUA8IJeRA4BvbJ4z9&client_secret=1mnabGOO4gEMqwxItREiYk11hMvrywClXVvwDap3'
-
+    body: "grant_type=client_credentials&client_id=zUwlQLdbpwyFalzBCWEeYyijJKRO9YzZwsAkBCEAGnKRaPN34b&client_secret=14NHGHL2bK132aXimartIeJyD9dYwDi4INMGKAhG",
   });
 
   const json = await response.json();

@@ -235,9 +235,7 @@ const Home = () => {
   }, [petcard, firstcall, userLocation, fetchingUserLocation]);
 
   return (
-    <div className="home-page">
-
-      {/* <!--Hero Section Begin--> 
+    /* <!--Hero Section Begin--> 
       <Grid container spacing={4}>
         <Box  xs={12} sm={12} md={12} lg={12} xl={12}
         sx={{Height: 100,
@@ -264,14 +262,15 @@ const Home = () => {
         </Grid>
         
       </Grid>
-   <!--Hero Section End--> */}
+   <!--Hero Section End--> */
 
+    <div className="home-page">
       <div className="hero-section">
         <div className="hero-section-content-wrapper">
-          <img src={HeroImage} alt="heroimage"/>
+          <img src={HeroImage} alt="heroimage" />
           <div className="hero-section-content-container">
             <h1>
-              Find a pet to <br/>
+              Find a pet to <br />
               <span id="adopt-color">Adopt</span> Today!
             </h1>
             <p>
@@ -291,8 +290,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-    
 
       <div className="Featured-Content-wrapper">
         <div className="Featured-content-area">
